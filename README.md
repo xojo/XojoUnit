@@ -16,7 +16,7 @@ You can contribute to XojoUnit in two ways:
 * submit changes from your Fork of XojoUnit
 * request to become a Contributor
 
-Don't send me emails with your updated changed project.
+Don't send me emails with your updated project.
 
 ### Forking XojoUnit
 
