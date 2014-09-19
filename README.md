@@ -7,7 +7,7 @@ A Unit Testing framework for Xojo.
 
 Refer to the wiki for usage instructions and an example.
 
-http://www.eqqon.com/index.php/Collaborative_Github_Workflow
+https://github.com/xojo/XojoUnit/wiki
 
 ## How to contribute
 
