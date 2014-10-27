@@ -180,6 +180,61 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Currency, actual As Currency, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As date, actual As date, message As String = "")
+		  //NCM-written
+		  If expected.TotalSeconds <> actual.TotalSeconds Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected.TotalSeconds), Str(actual.TotalSeconds)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Int64, actual As Int64, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Integer, actual As Integer, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As String, actual As string, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected, actual), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreSame(expected As Object, actual As Object, message As String = "")
 		  If expected Is actual Then
 		    Pass(message)
