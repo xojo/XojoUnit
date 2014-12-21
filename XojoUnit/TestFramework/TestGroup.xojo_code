@@ -100,9 +100,11 @@ Protected Class TestGroup
 		      Try
 		        CurrentTestResult = GetTestResult(m.Name)
 		        
+		        RaiseEvent SetupTest
 		        StartTimer
 		        rv = m.Invoke(Self, param)
 		        EndTimer
+		        RaiseEvent TearDownTest
 		        
 		      Catch e As RuntimeException
 		        Dim eInfo As Introspection.TypeInfo
@@ -147,7 +149,15 @@ Protected Class TestGroup
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event SetupTest()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event TearDown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event TearDownTest()
 	#tag EndHook
 
 
