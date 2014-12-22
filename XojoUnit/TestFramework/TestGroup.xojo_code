@@ -53,6 +53,9 @@ Protected Class TestGroup
 		  methods = info.GetMethods
 		  
 		  For Each m As Introspection.MethodInfo In methods
+		    if m.Name = "SetupTest" or m.Name = "TearDownTest" or _
+		    m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
+		    
 		    If m.Name.Right(4) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
@@ -94,6 +97,9 @@ Protected Class TestGroup
 		  For Each m As Introspection.MethodInfo In methods
 		    Dim param() As Variant
 		    Dim rv As Variant
+		    
+		    if m.Name = "SetupTest" or m.Name = "TearDownTest" or _
+		    m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
 		    
 		    If m.Name.Right(4) = kTestSuffix Then
 		      
