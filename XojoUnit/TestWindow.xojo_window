@@ -798,6 +798,17 @@ End
 		  mController.LoadTestGroups
 		  
 		  PopulateTestGroups
+		  
+		  // Run unit tests now and exit?
+		  dim args(-1) as String
+		  args = Split(System.CommandLine().Lowercase(), " ")
+		  dim runUnitTest as Integer = args.IndexOf("--rununittests")
+		  if runUnitTest > 0 and Ubound(args) > runUnitTest then
+		    RunTests
+		    ExportTests args(runUnitTest + 1)
+		    Quit
+		  end
+		  
 		End Sub
 	#tag EndEvent
 
