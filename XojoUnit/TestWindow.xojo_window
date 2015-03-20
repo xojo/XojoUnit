@@ -839,6 +839,13 @@ End
 	#tag EndMenuHandler
 
 
+	#tag Method, Flags = &h0
+		Sub ExportTests(filePath As String)
+		  mController.ExportTestResults filePath
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
 		  // Add the test groups into the listbox
@@ -1035,6 +1042,17 @@ End
 		  Case "RunButton"
 		    RunTests
 		  Case "ExportButton"
+		    Dim dlg as New SaveAsDialog
+		    Dim f as FolderItem
+		    dlg.InitialDirectory = SpecialFolder.Documents
+		    dlg.promptText = "Save results as"
+		    dlg.SuggestedFileName = "results.xml"
+		    dlg.Title = "Save Results"
+		    dlg.Filter = "xml"
+		    f = dlg.ShowModal()
+		    If f <> Nil then
+		      ExportTests f.PosixPath
+		    End if
 		  End Select
 		End Sub
 	#tag EndEvent

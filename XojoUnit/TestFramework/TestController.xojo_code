@@ -15,6 +15,39 @@ Protected Class TestController
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub ExportTestResults(filePath As String)
+		  Dim f as FolderItem
+		  f = New FolderItem(filePath, FolderItem.PathTypeShell)
+		  Dim stream as BinaryStream
+		  If f <> Nil Then
+		    stream=BinaryStream.Create(f, True)
+		    stream.Write "<?xml version=""1.0"" encoding=""UTF-8"" ?>" + EndOfLine
+		    stream.Write "<testsuites>" + EndOfLine
+		    For Each tg As TestGroup In mTestGroups
+		      stream.Write "  <testsuite errors=""0"" skipped=""" + Str(tg.SkippedTestCount) + """ tests=""" + Str(tg.TestCount) + """ time=""" + Str(tg.Duration) + """ failures=""" + Str(tg.FailedTestCount) + """ name=""com.atlassian.bamboo.labels." + tg.Name + """>" + EndOfLine
+		      For Each tr As TestResult In tg.Results
+		        stream.Write "    <testcase name=""" + tr.TestName + """ duration=""" + Str(tr.Duration) + """>" + EndOfLine
+		        if tr.Result = TestResult.Skipped then
+		          stream.Write "       <skipped />" + EndOfLine
+		        end
+		        if tr.Result = TestResult.Failed then
+		          dim failMessage As string = tr.Message
+		          failMessage = ReplaceAll(failMessage, "<", "&lt;")
+		          failMessage = ReplaceAll(failMessage, ">", "&gt;")
+		          stream.Write "       <failure type=""xojo.AssertionFailedError"" message=""" + failMessage + """/>" + EndOfLine
+		        end
+		        stream.Write "    </testcase>" + EndOfLine
+		      Next
+		      stream.Write "  </testsuite>" + EndOfLine
+		    Next
+		    stream.Write "</testsuites>" + EndOfLine
+		    stream.Close
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub LoadTestGroups()
 		  InitializeTestGroups
 		End Sub
