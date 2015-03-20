@@ -167,6 +167,23 @@ Protected Class TestGroup
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Dim _duration As Double = 0
+			  
+			  For Each tr As TestResult In mResults
+			    If tr.Result = TestResult.Passed Or tr.Result = TestResult.Failed Then
+			      _duration = _duration + tr.Duration
+			    End If
+			  Next
+			  
+			  Return _duration
+			End Get
+		#tag EndGetter
+		Duration As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Dim testCount As Integer
 			  
 			  For Each tr As TestResult In mResults
