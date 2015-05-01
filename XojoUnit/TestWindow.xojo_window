@@ -798,6 +798,17 @@ End
 		  mController.LoadTestGroups
 		  
 		  PopulateTestGroups
+		  
+		  // Run unit tests now and exit?
+		  dim args(-1) as String
+		  args = Split(System.CommandLine().Lowercase(), " ")
+		  dim runUnitTest as Integer = args.IndexOf("--rununittests")
+		  if runUnitTest > 0 and Ubound(args) > runUnitTest then
+		    RunTests
+		    ExportTests args(runUnitTest + 1)
+		    Quit
+		  end
+		  
 		End Sub
 	#tag EndEvent
 
@@ -838,6 +849,13 @@ End
 		End Function
 	#tag EndMenuHandler
 
+
+	#tag Method, Flags = &h0
+		Sub ExportTests(filePath As String)
+		  mController.ExportTestResults filePath
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
@@ -1035,6 +1053,17 @@ End
 		  Case "RunButton"
 		    RunTests
 		  Case "ExportButton"
+		    Dim dlg as New SaveAsDialog
+		    Dim f as FolderItem
+		    dlg.InitialDirectory = SpecialFolder.Documents
+		    dlg.promptText = "Save results as"
+		    dlg.SuggestedFileName = "results.xml"
+		    dlg.Title = "Save Results"
+		    dlg.Filter = "xml"
+		    f = dlg.ShowModal()
+		    If f <> Nil then
+		      ExportTests f.PosixPath
+		    End if
 		  End Select
 		End Sub
 	#tag EndEvent

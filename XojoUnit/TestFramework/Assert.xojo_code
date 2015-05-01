@@ -52,8 +52,8 @@ Protected Class Assert
 		  actualSize = UBound(actual)
 		  
 		  If expectedSize <> actualSize Then
-		    Fail( "Expected Integer array Ubound <" + Str(expectedSize) + _
-		    "> but was <" + Str(actualSize) + ">.", _
+		    Fail( "Expected Integer array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
 		    message)
 		    Return
 		  End If
@@ -111,8 +111,8 @@ Protected Class Assert
 		  actualSize = UBound(actual)
 		  
 		  If expectedSize <> actualSize Then
-		    Fail( "Expected Integer array Ubound <" + Str(expectedSize) + _
-		    "> but was <" + Str(actualSize) + ">.", _
+		    Fail( "Expected Integer array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
 		    message)
 		    Return
 		  End If
@@ -148,8 +148,8 @@ Protected Class Assert
 		  actualSize = UBound(actual)
 		  
 		  If expectedSize <> actualSize Then
-		    Fail( "Expected String array Ubound <" + Str(expectedSize) + _
-		    "> but was <" + Str(actualSize) + ">.", _
+		    Fail( "Expected String array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
 		    message)
 		    Return
 		  End If
@@ -278,7 +278,7 @@ Protected Class Assert
 		Private Function FailEqualMessage(expected As String, actual As String) As String
 		  Dim message As String
 		  
-		  message = "Expected <" + expected + "> but was <" + actual + ">."
+		  message = "Expected [" + expected + "] but was [" + actual + "]."
 		  
 		  Return message
 		End Function
@@ -287,7 +287,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub IsFalse(condition As Boolean, message As String = "")
 		  If condition Then
-		    Fail("<false> expected, but was <true>.", message)
+		    Fail("[false] expected, but was [true].", message)
 		  Else
 		    Pass(message)
 		  End If
@@ -299,7 +299,7 @@ Protected Class Assert
 		  If anObject = Nil Then
 		    Pass(message)
 		  Else
-		    Fail("Object was expected to be <nil>, but was not.", message)
+		    Fail("Object was expected to be [nil], but was not.", message)
 		  End If
 		  
 		End Sub
@@ -310,7 +310,7 @@ Protected Class Assert
 		  If anObject <> Nil Then
 		    Pass(message)
 		  Else
-		    Fail("Expected value not to be <nil>, but was <nil>.", message)
+		    Fail("Expected value not to be [nil], but was [nil].", message)
 		  End If
 		  
 		End Sub
@@ -321,7 +321,7 @@ Protected Class Assert
 		  If condition Then
 		    Pass(message)
 		  Else
-		    Fail("<true> expected, but was <false>.", message)
+		    Fail("[true] expected, but was [false].", message)
 		  End If
 		End Sub
 	#tag EndMethod
