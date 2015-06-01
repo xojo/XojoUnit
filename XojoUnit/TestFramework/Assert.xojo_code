@@ -290,7 +290,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected, actual), message)
+		    Fail("String '" + actual + "' is equal to '" + expected + "'", message)
 		  End If
 		End Sub
 	#tag EndMethod
