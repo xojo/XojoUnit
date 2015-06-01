@@ -241,6 +241,20 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Color, actual As Color, message As String = "")
+		  Dim expectedColor, actualColor As String
+		  
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    expectedColor = "RGB(" + Str(expected.Red) + ", " + Str(expected.Green) + ", " + Str(expected.Blue) + ")"
+		    actualColor = "RGB(" + Str(actual.Red) + ", " + Str(actual.Green) + ", " + Str(actual.Blue) + ")"
+		    Fail(FailEqualMessage(expectedColor, actualColor), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Currency, actual As Currency, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
