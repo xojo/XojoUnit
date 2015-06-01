@@ -296,6 +296,17 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Text, actual As Text, message As String = "")
+		  //NCM-written
+		  If expected.Compare(actual) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreSame(expected As Object, actual As Object, message As String = "")
 		  If expected Is actual Then
 		    Pass(message)
