@@ -11,6 +11,28 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreDifferent(expected As String, actual As String, message As String = "")
+		  If StrComp(expected, actual, 0) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("String '" + actual + "' is the same", message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreDifferent(expected As Text, actual As Text, message As String = "")
+		  If expected.Compare(actual, Text.CompareCaseSensitive) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("Text '" + actual + "' is the same", message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Color, actual As Color, message As String = "")
 		  Dim expectedColor, actualColor As String
 		  
