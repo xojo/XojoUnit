@@ -1062,7 +1062,7 @@ End
 		    dlg.Filter = "xml"
 		    f = dlg.ShowModal()
 		    If f <> Nil then
-		      ExportTests f.PosixPath
+		      ExportTests f.NativePath
 		    End if
 		  End Select
 		End Sub
