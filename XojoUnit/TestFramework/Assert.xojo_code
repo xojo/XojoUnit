@@ -116,7 +116,37 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int16, actual As Int16, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int32, actual As Int32, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int64, actual As Int64, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int8, actual As Int8, message As String = "")
 		  If expected = actual Then
 		    Pass(message)
 		  Else
@@ -149,16 +179,6 @@ Protected Class Assert
 		  Next
 		  
 		  Pass(message)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreEqual(expected As Integer, actual As Integer, message As String = "")
-		  If expected = actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
 		End Sub
 	#tag EndMethod
 
@@ -241,6 +261,46 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt16, actual As UInt16, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt32, actual As UInt32, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt64, actual As UInt64, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt8, actual As UInt8, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Color, actual As Color, message As String = "")
 		  Dim expectedColor, actualColor As String
 		  
@@ -299,6 +359,27 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Int16, actual As Int16, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Int32, actual As Int32, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Int64, actual As Int64, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
@@ -310,8 +391,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As Integer, actual As Integer, message As String = "")
-		  //NCM-written
+		Sub AreNotEqual(expected As Int8, actual As Int8, message As String = "")
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
@@ -337,6 +417,47 @@ Protected Class Assert
 		    Pass(message)
 		  Else
 		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt16, actual As UInt16, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt64, actual As UInt64, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
 		  End If
 		End Sub
 	#tag EndMethod
