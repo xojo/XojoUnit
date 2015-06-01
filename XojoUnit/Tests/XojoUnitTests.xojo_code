@@ -77,7 +77,7 @@ Inherits TestGroup
 		  Dim d1 As Double = 1.01
 		  Dim d2 As Double = 1.02
 		  
-		  // Passes becaue the numbers are within the tolerance of 0.01
+		  // Passes because the numbers are within the tolerance of 0.01
 		  Assert.AreEqual(d1, d2, 0.01)
 		End Sub
 	#tag EndMethod
