@@ -10,7 +10,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferent(expected As String, actual As String, message As String = "")
 		  If StrComp(expected, actual, 0) <> 0 Then
 		    Pass(message)
@@ -182,7 +182,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected() As String, actual() As String, message As String = "")
 		  Dim expectedSize, actualSize As Integer
 		  
@@ -209,7 +209,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As String, actual As String, message As String = "")
 		  // This is a case-insensitive comparison
 		  
@@ -400,7 +400,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As String, actual As String, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
@@ -472,7 +472,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected() As String, actual() As String, message As String = "")
 		  Dim expectedSize, actualSize As Integer
 		  
@@ -499,7 +499,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected As String, actual As String, message As String = "")
 		  If StrComp(expected, actual, 0) = 0 Then
 		    Pass(message)
