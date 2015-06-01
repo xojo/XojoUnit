@@ -333,7 +333,6 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Text, actual As Text, message As String = "")
-		  //NCM-written
 		  If expected.Compare(actual) <> 0 Then
 		    Pass(message)
 		  Else
