@@ -252,7 +252,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As date, actual As date, message As String = "")
+		Sub AreNotEqual(expected As Date, actual As Date, message As String = "")
 		  //NCM-written
 		  If expected.TotalSeconds <> actual.TotalSeconds Then
 		    Pass(message)
