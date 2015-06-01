@@ -783,7 +783,7 @@ Begin Window TestWindow
       Left            =   -40
       LockedInPosition=   False
       Scope           =   0
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
       Top             =   639
       Visible         =   True
       Width           =   463
@@ -996,6 +996,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
+		  #Pragma Unused column
+		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
 		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
@@ -1003,6 +1005,9 @@ End
 		    End If
 		    
 		    Return True
+		  #Else
+		    #Pragma Unused g
+		    #Pragma Unused row
 		  #Endif
 		  
 		End Function
@@ -1027,6 +1032,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  base.Append(New MenuItem("Select All"))
 		  base.Append(New MenuItem("Select Inverse"))
 		  base.Append(New MenuItem("Select None"))
@@ -1036,6 +1044,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		  #Pragma Unused column
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  If Me.Cell(row, 1) = TestResult.Failed Then
 		    g.ForeColor = &cFF0000
 		    g.Bold = True
@@ -1062,7 +1074,7 @@ End
 		    dlg.Filter = "xml"
 		    f = dlg.ShowModal()
 		    If f <> Nil then
-		      ExportTests f.PosixPath
+		      ExportTests f.NativePath
 		    End if
 		  End Select
 		End Sub
@@ -1163,6 +1175,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"
@@ -1243,6 +1256,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Placement"
@@ -1272,6 +1286,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
