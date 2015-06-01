@@ -277,6 +277,28 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Double, actual As Double, tolerance As Double, message As String = "")
+		  Dim diff As Double
+		  
+		  diff = Abs(expected - actual)
+		  If diff > (Abs(tolerance) + 0.00000001) Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Format(expected, "-#########.##########"), Format(actual, "-#########.##########")), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Double, actual As Double, message As String = "")
+		  Dim tolerance As Double = 0.00000001
+		  
+		  AreNotEqual(expected, actual, tolerance, message)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Int64, actual As Int64, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
