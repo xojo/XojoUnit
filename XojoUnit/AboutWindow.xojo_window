@@ -133,6 +133,8 @@ End
 #tag Events AppIcon
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  g.DrawPicture(bug, 0, 0, g.Width, g.Height, 0, 0, bug.Width, bug.Height)
 		End Sub
 	#tag EndEvent
