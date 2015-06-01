@@ -65,7 +65,7 @@ Inherits TestGroup
 		  Dim d1 As Double = 1.000000001
 		  Dim d2 As Double = 1.000000002
 		  
-		  // Passes becaue the numbers are within the 
+		  // Passes becaue the numbers are within the
 		  // default tolerance of 0.00000001
 		  Assert.AreEqual(d1, d2)
 		  
@@ -256,6 +256,11 @@ Inherits TestGroup
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Duration"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FailedTestCount"
 			Group="Behavior"
