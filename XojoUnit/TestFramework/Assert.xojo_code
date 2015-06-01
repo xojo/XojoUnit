@@ -355,6 +355,44 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreSame(expected() As Text, actual() As Text, message As String = "")
+		  Dim expectedSize, actualSize As Integer
+		  
+		  expectedSize = UBound(expected)
+		  actualSize = UBound(actual)
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected Text array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		    Return
+		  End If
+		  
+		  For i As Integer = 0 To expectedSize
+		    If expected(i).Compare(actual(i), Text.CompareCaseSensitive) <> 0 Then
+		      Fail( FailEqualMessage("Array(" + Str(i) + ") = '" + expected(i) + "'", _
+		      "Array(" + Str(i) + ") = '" + actual(i) + "'"), _
+		      message)
+		      Return
+		    End If
+		  Next
+		  
+		  Pass(message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreSame(expected As Text, actual As Text, message As String = "")
+		  If expected.Compare(actual, Text.CompareCaseSensitive) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected, actual), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Destructor()
 		  Group = Nil
 		End Sub
