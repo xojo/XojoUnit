@@ -202,6 +202,45 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqual(expected() As Text, actual() As Text, message As String = "")
+		  Dim expectedSize, actualSize As Integer
+		  
+		  expectedSize = UBound(expected)
+		  actualSize = UBound(actual)
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected Text array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		    Return
+		  End If
+		  
+		  For i As Integer = 0 To expectedSize
+		    If expected(i).Compare(actual(i)) <> 0 Then
+		      Fail( FailEqualMessage("Array(" + Str(i) + ") = '" + expected(i) + "'", _
+		      "Array(" + Str(i) + ") = '" + actual(i) + "'"), _
+		      message)
+		      Return
+		    End If
+		  Next
+		  
+		  Pass(message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Text, actual As Text, message As String = "")
+		  // This is a case-insensitive comparison
+		  
+		  If expected.Compare(actual) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected, actual), message )
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Currency, actual As Currency, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
