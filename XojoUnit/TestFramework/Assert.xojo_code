@@ -285,7 +285,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As String, actual As string, message As String = "")
+		Sub AreNotEqual(expected As String, actual As String, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
 		    Pass(message)
