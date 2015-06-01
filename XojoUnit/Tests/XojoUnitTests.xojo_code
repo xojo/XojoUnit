@@ -152,6 +152,25 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqualColorTest()
+		  Dim c1 As Color = &c0000fe
+		  Dim c2 As Color = &c0000ff
+		  
+		  Assert.AreNotEqual(c1, c2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualDoubleTest()
+		  Dim d1 As Double = 1.01
+		  Dim d2 As Double = 1.02
+		  
+		  // Passes because the numbers are not within the tolerance of 0.001
+		  Assert.AreNotEqual(d1, d2, 0.001)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
 		  Dim d1 As New Date
 		  Dim d2 As Date
