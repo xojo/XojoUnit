@@ -5,7 +5,7 @@ Protected Class Assert
 		  If Not (expected Is actual) Then
 		    Pass(message)
 		  Else
-		    Fail("Objects are not the same", message)
+		    Fail("Objects are the same", message)
 		  End If
 		End Sub
 	#tag EndMethod
