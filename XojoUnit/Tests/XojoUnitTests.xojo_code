@@ -111,7 +111,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreEqualIntegerTest()
 		  Dim i1 As Integer = 42
-		  Dim i2 As Integer = 7*6
+		  Dim i2 As Integer = 7 * 6
 		  
 		  Assert.AreEqual(i1, i2)
 		End Sub
