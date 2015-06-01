@@ -58,7 +58,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Date, actual As Date, message As String = "")
-		  If expected.TotalSeconds = actual.TotalSeconds Then
+		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected.ShortDate + " " + expected.LongTime, actual.ShortDate + " " + actual.LongTime), message)
