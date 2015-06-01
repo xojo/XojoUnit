@@ -152,6 +152,15 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqualUIntegerTest()
+		  Dim i1 As UInteger = 42
+		  Dim i2 As UInteger = 7 * 6
+		  
+		  Assert.AreEqual(i1, i2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqualColorTest()
 		  Dim c1 As Color = &c0000fe
 		  Dim c2 As Color = &c0000ff
