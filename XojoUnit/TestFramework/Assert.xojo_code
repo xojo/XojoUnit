@@ -5,8 +5,30 @@ Protected Class Assert
 		  If Not (expected Is actual) Then
 		    Pass(message)
 		  Else
-		    Fail("Objects are not the same", message)
+		    Fail("Objects are the same", message)
 		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreDifferent(expected As String, actual As String, message As String = "")
+		  If StrComp(expected, actual, 0) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("String '" + actual + "' is the same", message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreDifferent(expected As Text, actual As Text, message As String = "")
+		  If expected.Compare(actual, Text.CompareCaseSensitive) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("Text '" + actual + "' is the same", message )
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
@@ -36,7 +58,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Date, actual As Date, message As String = "")
-		  If expected.TotalSeconds = actual.TotalSeconds Then
+		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected.ShortDate + " " + expected.LongTime, actual.ShortDate + " " + actual.LongTime), message)
@@ -93,8 +115,65 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		    Pass(message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected MemoryBlock Size [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		  End If
+		  
+		  Dim sExpected As String = expected.StringValue(0, expectedSize)
+		  dim sActual As String = actual.StringValue(0, actualSize)
+		  
+		  If StrComp(sExpected, sActual, 0) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHex(sExpected, True), EncodeHex(sActual, True)), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int16, actual As Int16, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int32, actual As Int32, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int64, actual As Int64, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int8, actual As Int8, message As String = "")
 		  If expected = actual Then
 		    Pass(message)
 		  Else
@@ -130,17 +209,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub AreEqual(expected As Integer, actual As Integer, message As String = "")
-		  If expected = actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected() As String, actual() As String, message As String = "")
 		  Dim expectedSize, actualSize As Integer
 		  
@@ -167,7 +236,7 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As String, actual As String, message As String = "")
 		  // This is a case-insensitive comparison
 		  
@@ -175,6 +244,123 @@ Protected Class Assert
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected, actual), message )
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected() As Text, actual() As Text, message As String = "")
+		  Dim expectedSize, actualSize As Integer
+		  
+		  expectedSize = UBound(expected)
+		  actualSize = UBound(actual)
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected Text array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		    Return
+		  End If
+		  
+		  For i As Integer = 0 To expectedSize
+		    If expected(i).Compare(actual(i)) <> 0 Then
+		      Fail( FailEqualMessage("Array(" + Str(i) + ") = '" + expected(i) + "'", _
+		      "Array(" + Str(i) + ") = '" + actual(i) + "'"), _
+		      message)
+		      Return
+		    End If
+		  Next
+		  
+		  Pass(message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Text, actual As Text, message As String = "")
+		  // This is a case-insensitive comparison
+		  
+		  If expected.Compare(actual) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected, actual), message )
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
+		    Pass(message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected MemoryBlock Size [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		  End If
+		  
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt16, actual As UInt16, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt32, actual As UInt32, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt64, actual As UInt64, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt8, actual As UInt8, message As String = "")
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Color, actual As Color, message As String = "")
+		  Dim expectedColor, actualColor As String
+		  
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    expectedColor = "RGB(" + Str(expected.Red) + ", " + Str(expected.Green) + ", " + Str(expected.Blue) + ")"
+		    actualColor = "RGB(" + Str(actual.Red) + ", " + Str(actual.Green) + ", " + Str(actual.Blue) + ")"
+		    Fail(FailEqualMessage(expectedColor, actualColor), message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -191,12 +377,80 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As date, actual As date, message As String = "")
+		Sub AreNotEqual(expected As Date, actual As Date, message As String = "")
 		  //NCM-written
-		  If expected.TotalSeconds <> actual.TotalSeconds Then
+		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(Str(expected.TotalSeconds), Str(actual.TotalSeconds)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Double, actual As Double, tolerance As Double, message As String = "")
+		  Dim diff As Double
+		  
+		  diff = Abs(expected - actual)
+		  If diff > (Abs(tolerance) + 0.00000001) Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Format(expected, "-#########.##########"), Format(actual, "-#########.##########")), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Double, actual As Double, message As String = "")
+		  Dim tolerance As Double = 0.00000001
+		  
+		  AreNotEqual(expected, actual, tolerance, message)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		    Fail("The MemoryBlocks are the same", message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Pass(message)
+		  End If
+		  
+		  Dim sExpected As String = expected.StringValue(0, expectedSize)
+		  dim sActual As String = actual.StringValue(0, actualSize)
+		  
+		  If StrComp(sExpected, sActual, 0) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Int16, actual As Int16, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Int32, actual As Int32, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -213,7 +467,87 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As Integer, actual As Integer, message As String = "")
+		Sub AreNotEqual(expected As Int8, actual As Int8, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqual(expected As String, actual As String, message As String = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail("String '" + actual + "' is equal to '" + expected + "'", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As Text, actual As Text, message As String = "")
+		  If expected.Compare(actual) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
+		    Fail("The MemoryBlocks are the same", message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Pass(message)
+		  End If
+		  
+		  Dim lastByteIndex As Integer = actualSize - 1
+		  For byteIndex As Integer = 0 To lastByteIndex
+		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
+		      Pass(message)
+		      Return
+		    End If
+		  Next byteIndex
+		  
+		  //
+		  // If we get here, it's the same
+		  //
+		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt16, actual As UInt16, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As String = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt64, actual As UInt64, message As String = "")
 		  //NCM-written
 		  If expected <> actual Then
 		    Pass(message)
@@ -224,12 +558,11 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As String, actual As string, message As String = "")
-		  //NCM-written
+		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As String = "")
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected, actual), message)
+		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -244,9 +577,74 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreSame(expected() As String, actual() As String, message As String = "")
+		  Dim expectedSize, actualSize As Integer
+		  
+		  expectedSize = UBound(expected)
+		  actualSize = UBound(actual)
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected String array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		    Return
+		  End If
+		  
+		  For i As Integer = 0 To expectedSize
+		    If StrComp(expected(i), actual(i), 0) <> 0 Then
+		      Fail( FailEqualMessage("Array(" + Str(i) + ") = '" + expected(i) + "'", _
+		      "Array(" + Str(i) + ") = '" + actual(i) + "'"), _
+		      message)
+		      Return
+		    End If
+		  Next
+		  
+		  Pass(message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected As String, actual As String, message As String = "")
 		  If StrComp(expected, actual, 0) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected, actual), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreSame(expected() As Text, actual() As Text, message As String = "")
+		  Dim expectedSize, actualSize As Integer
+		  
+		  expectedSize = UBound(expected)
+		  actualSize = UBound(actual)
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected Text array Ubound [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		    Return
+		  End If
+		  
+		  For i As Integer = 0 To expectedSize
+		    If expected(i).Compare(actual(i), Text.CompareCaseSensitive) <> 0 Then
+		      Fail( FailEqualMessage("Array(" + Str(i) + ") = '" + expected(i) + "'", _
+		      "Array(" + Str(i) + ") = '" + actual(i) + "'"), _
+		      message)
+		      Return
+		    End If
+		  Next
+		  
+		  Pass(message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreSame(expected As Text, actual As Text, message As String = "")
+		  If expected.Compare(actual, Text.CompareCaseSensitive) = 0 Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected, actual), message )
@@ -259,6 +657,19 @@ Protected Class Assert
 		Sub Destructor()
 		  Group = Nil
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As Text
+		  Dim r() As Text
+		  
+		  Dim lastByteIndex As Integer = mb.Size - 1
+		  For byteIndex As Integer = 0 To lastByteIndex
+		    r.Append mb.Data.Byte(byteIndex).ToHex
+		  Next
+		  
+		  Return Text.Join(r, " " )
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

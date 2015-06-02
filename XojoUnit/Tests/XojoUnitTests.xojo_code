@@ -2,6 +2,35 @@
 Protected Class XojoUnitTests
 Inherits TestGroup
 	#tag Method, Flags = &h0
+		Sub AreDifferentObjectTest()
+		  Dim d1 As New Date
+		  Dim d2 As New Date(2001, 1, 1)
+		  
+		  Assert.AreDifferent(d1, d2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreDifferentStringTest()
+		  Dim s1 As String = "Hello"
+		  Dim s2 As String = "hello"
+		  
+		  // String matches with AreDifferent are case-sensitive
+		  Assert.AreDifferent(s1, s2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreDifferentTextTest()
+		  Dim t1 As Text = "Hello"
+		  Dim t2 As Text = "hello"
+		  
+		  // Text matches with AreDifferent are case-sensitive
+		  Assert.AreDifferent(t1, t2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreEqualColorTest()
 		  Dim c1 As Color = &c0000ff
 		  Dim c2 As Color = &c0000ff
@@ -36,7 +65,7 @@ Inherits TestGroup
 		  Dim d1 As Double = 1.000000001
 		  Dim d2 As Double = 1.000000002
 		  
-		  // Passes becaue the numbers are within the 
+		  // Passes becaue the numbers are within the
 		  // default tolerance of 0.00000001
 		  Assert.AreEqual(d1, d2)
 		  
@@ -48,7 +77,7 @@ Inherits TestGroup
 		  Dim d1 As Double = 1.01
 		  Dim d2 As Double = 1.02
 		  
-		  // Passes becaue the numbers are within the tolerance of 0.01
+		  // Passes because the numbers are within the tolerance of 0.01
 		  Assert.AreEqual(d1, d2, 0.01)
 		End Sub
 	#tag EndMethod
@@ -82,9 +111,27 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreEqualIntegerTest()
 		  Dim i1 As Integer = 42
-		  Dim i2 As Integer = 7*6
+		  Dim i2 As Integer = 7 * 6
 		  
 		  Assert.AreEqual(i1, i2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqualMemoryBlockTest()
+		  Dim m1 As Global.MemoryBlock = "Hello"
+		  Dim m2 As Global.MemoryBlock = "Hello"
+		  
+		  Assert.AreEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqualNewMemoryBlockTest()
+		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
+		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
+		  
+		  Assert.AreEqual(m1, m2)
 		End Sub
 	#tag EndMethod
 
@@ -111,6 +158,64 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqualTextArrayTest()
+		  Dim t1() As Text = Array("A", "B", "C")
+		  Dim t2() As Text
+		  t2.Append("A")
+		  t2.Append("B")
+		  t2.Append("C")
+		  
+		  Assert.AreEqual(t1, t2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqualUIntegerTest()
+		  Dim i1 As UInteger = 42
+		  Dim i2 As UInteger = 7 * 6
+		  
+		  Assert.AreEqual(i1, i2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualColorTest()
+		  Dim c1 As Color = &c0000fe
+		  Dim c2 As Color = &c0000ff
+		  
+		  Assert.AreNotEqual(c1, c2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualDoubleTest()
+		  Dim d1 As Double = 1.01
+		  Dim d2 As Double = 1.02
+		  
+		  // Passes because the numbers are not within the tolerance of 0.001
+		  Assert.AreNotEqual(d1, d2, 0.001)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualMemoryBlockTest()
+		  Dim m1 As Global.MemoryBlock = "hello"
+		  Dim m2 As Global.MemoryBlock = "Hello"
+		  
+		  Assert.AreNotEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualNewMemoryBlockTest()
+		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
+		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
+		  
+		  Assert.AreNotEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
 		  Dim d1 As New Date
 		  Dim d2 As Date
@@ -122,12 +227,46 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreSameStringArrayTest()
+		  Dim s1() As String = Array("A", "B", "C")
+		  Dim s2() As String
+		  s2.Append("A")
+		  s2.Append("B")
+		  s2.Append("C")
+		  
+		  Assert.AreSame(s1, s2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreSameStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "Hello"
 		  
 		  // String matches with AreSame are case-sensitive
 		  Assert.AreSame(s1, s2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreSameTextArrayTest()
+		  Dim t1() As Text = Array("A", "B", "C")
+		  Dim t2() As Text
+		  t2.Append("A")
+		  t2.Append("B")
+		  t2.Append("C")
+		  
+		  Assert.AreSame(t1, t2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreSameTextTest()
+		  Dim t1 As Text = "Hello"
+		  Dim t2 As Text = "Hello"
+		  
+		  // Text matches with AreSame are case-sensitive
+		  Assert.AreSame(t1, t2)
 		End Sub
 	#tag EndMethod
 
@@ -181,6 +320,11 @@ Inherits TestGroup
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Duration"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FailedTestCount"
 			Group="Behavior"
