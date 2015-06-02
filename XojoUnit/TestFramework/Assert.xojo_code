@@ -282,18 +282,11 @@ Protected Class Assert
 		    message)
 		  End If
 		  
-		  Dim lastByteIndex As Integer = actualSize - 1
-		  For byteIndex As Integer = 0 To lastByteIndex
-		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
-		      Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
-		      Return
-		    End If
-		  Next byteIndex
-		  
-		  //
-		  // If we get here, it's the same
-		  //
-		  Pass(message)
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
+		  End If
 		  
 		End Sub
 	#tag EndMethod
