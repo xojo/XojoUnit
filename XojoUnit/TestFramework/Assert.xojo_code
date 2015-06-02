@@ -115,6 +115,33 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		    Pass(message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected MemoryBlock Size [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		  End If
+		  
+		  Dim sExpected As String = expected.StringValue(0, expectedSize)
+		  dim sActual As String = actual.StringValue(0, actualSize)
+		  
+		  If StrComp(sExpected, sActual, 0) = 0 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHex(sExpected, True), EncodeHex(sActual, True)), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int16, actual As Int16, message As String = "")
 		  If expected = actual Then
@@ -260,6 +287,30 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
+		    Pass(message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected MemoryBlock Size [" + Str(expectedSize) + _
+		    "] but was [" + Str(actualSize) + "].", _
+		    message)
+		  End If
+		  
+		  If expected = actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As UInt16, actual As UInt16, message As String = "")
 		  If expected = actual Then
@@ -358,6 +409,31 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		    Fail("The MemoryBlocks are the same", message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Pass(message)
+		  End If
+		  
+		  Dim sExpected As String = expected.StringValue(0, expectedSize)
+		  dim sActual As String = actual.StringValue(0, actualSize)
+		  
+		  If StrComp(sExpected, sActual, 0) <> 0 Then
+		    Pass(message)
+		  Else
+		    Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True), message )
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Int16, actual As Int16, message As String = "")
 		  If expected <> actual Then
@@ -418,6 +494,35 @@ Protected Class Assert
 		  Else
 		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
 		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
+		    Fail("The MemoryBlocks are the same", message)
+		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Pass(message)
+		  End If
+		  
+		  Dim lastByteIndex As Integer = actualSize - 1
+		  For byteIndex As Integer = 0 To lastByteIndex
+		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
+		      Pass(message)
+		      Return
+		    End If
+		  Next byteIndex
+		  
+		  //
+		  // If we get here, it's the same
+		  //
+		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
+		  
 		End Sub
 	#tag EndMethod
 
@@ -552,6 +657,19 @@ Protected Class Assert
 		Sub Destructor()
 		  Group = Nil
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As Text
+		  Dim r() As Text
+		  
+		  Dim lastByteIndex As Integer = mb.Size - 1
+		  For byteIndex As Integer = 0 To lastByteIndex
+		    r.Append mb.Data.Byte(byteIndex).ToHex
+		  Next
+		  
+		  Return Text.Join(r, " " )
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

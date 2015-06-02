@@ -118,6 +118,24 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqualMemoryBlockTest()
+		  Dim m1 As Global.MemoryBlock = "Hello"
+		  Dim m2 As Global.MemoryBlock = "Hello"
+		  
+		  Assert.AreEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqualNewMemoryBlockTest()
+		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
+		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
+		  
+		  Assert.AreEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreEqualStringArrayTest()
 		  Dim s1() As String = Array("A", "B", "C")
 		  Dim s2() As String
@@ -176,6 +194,24 @@ Inherits TestGroup
 		  
 		  // Passes because the numbers are not within the tolerance of 0.001
 		  Assert.AreNotEqual(d1, d2, 0.001)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualMemoryBlockTest()
+		  Dim m1 As Global.MemoryBlock = "hello"
+		  Dim m2 As Global.MemoryBlock = "Hello"
+		  
+		  Assert.AreNotEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualNewMemoryBlockTest()
+		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
+		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
+		  
+		  Assert.AreNotEqual(m1, m2)
 		End Sub
 	#tag EndMethod
 
