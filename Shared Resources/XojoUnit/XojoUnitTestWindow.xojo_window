@@ -758,7 +758,7 @@ Begin Window XojoUnitTestWindow
          Width           =   100
       End
    End
-   Begin TestToolbar TestToolbar1
+   Begin XojoUnitTestToolbar TestToolbar1
       Enabled         =   True
       Height          =   90
       Index           =   -2147483648

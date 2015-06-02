@@ -1,5 +1,5 @@
 #tag Toolbar
-Begin Toolbar TestToolbar
+Begin Toolbar XojoUnitTestToolbar
 	Begin ToolButton RunButton
 		Caption = "Run Tests"
 		HelpTag = ""
