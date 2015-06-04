@@ -56,7 +56,7 @@ Protected Class TestGroup
 		    If m.Name.Right(4) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
-		      tr.TestName = m.Name.Left(m.Name.Len-Len(kTestSuffix))
+		      tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
 		      tr.Result = TestResult.NotImplemented
 		      
 		      mResults.Append(tr)
