@@ -197,6 +197,18 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqualDateTest()
+		  Dim d1 As New Date
+		  d1.SQLDate = "2012-11-29"
+		  
+		  Dim d2 As New Date
+		  d2.SQLDate = "2012-11-30"
+		  
+		  Assert.AreNotEqual(d1, d2)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreNotEqualDoubleTest()
 		  Dim d1 As Double = 1.01
