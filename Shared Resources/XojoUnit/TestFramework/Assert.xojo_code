@@ -51,17 +51,7 @@ Protected Class Assert
 		  If expected = actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreEqual(expected As Date, actual As Date, message As String = "")
-		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(expected.ShortDate + " " + expected.LongTime, actual.ShortDate + " " + actual.LongTime), message)
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -117,9 +107,20 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		Sub AreEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
+		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ShortDate.ToText + " " + expected.LongTime.ToText, actual.ShortDate.ToText + " " + actual.LongTime.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
 		  If expected IsA Global.MemoryBlock And expected Is actual Then
 		    Pass(message)
+		    Return
 		  End If
 		  
 		  Dim expectedSize As Integer = expected.Size
@@ -288,27 +289,13 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
-		    Pass(message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
-		    Fail( "Expected MemoryBlock Size [" + Str(expectedSize) + _
-		    "] but was [" + Str(actualSize) + "].", _
-		    message)
-		  End If
-		  
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As UInt16, actual As UInt16, message As Text = "")
 		  If expected = actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
-		  
 		End Sub
 	#tag EndMethod
 
@@ -342,13 +329,24 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub AreEqual(expected As UInt8, actual As UInt8, message As String = "")
-		  If expected = actual Then
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
+		  If expected IsA Xojo.Core.MemoryBlock And expected = actual Then
 		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
+		    Return
 		  End If
+		  
+		  Dim expectedSize As Integer = expected.Size
+		  Dim actualSize As Integer = actual.Size
+		  
+		  If expectedSize <> actualSize Then
+		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
+		    "] but was [" + actualSize.ToText + "].", _
+		    message)
+		  End If
+		  
+		  Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
+		  
 		End Sub
 	#tag EndMethod
 
@@ -372,18 +370,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As Date, actual As Date, message As String = "")
-		  //NCM-written
-		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected.TotalSeconds), Str(actual.TotalSeconds)), message)
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -412,7 +399,18 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
+		Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
+		  //NCM-written
+		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.TotalSeconds.ToText, actual.TotalSeconds.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
 		  If expected IsA Global.MemoryBlock And expected Is actual Then
 		    Fail("The MemoryBlocks are the same", message)
 		  End If
@@ -499,8 +497,49 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt16, actual As UInt16, message As Text = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As Text = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt64, actual As UInt64, message As Text = "")
+		  //NCM-written
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As Text = "")
+		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
 		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
 		    Fail("The MemoryBlocks are the same", message)
 		  End If
@@ -525,47 +564,6 @@ Protected Class Assert
 		  //
 		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As Text = "")
-		  If expected <> actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As String = "")
-		  If expected <> actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As UInt64, actual As UInt64, message As String = "")
-		  //NCM-written
-		  If expected <> actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As String = "")
-		  If expected <> actual Then
-		    Pass(message)
-		  Else
-		    Fail(FailEqualMessage(Str(expected), Str(actual)), message)
-		  End If
 		End Sub
 	#tag EndMethod
 
