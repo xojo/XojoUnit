@@ -835,7 +835,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ExportTests(filePath As String)
-		  mController.ExportTestResults filePath
+		  mController.ExportTestResults filePath.ToText
 		  
 		End Sub
 	#tag EndMethod
