@@ -549,7 +549,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date , message As Text = "")
+		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
 		  If Not (expected Is actual) And expected.SecondsFrom1970 <> actual.SecondsFrom1970 Then
 		    Pass(message)
 		  Else
@@ -796,14 +796,18 @@ Protected Class Assert
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mGroupWeakRef = New WeakRef(value)
+			  If value Is Nil Then
+			    mGroupWeakRef = Nil
+			  Else
+			    mGroupWeakRef = Xojo.Core.WeakRef.Create(value)
+			  End If
 			End Set
 		#tag EndSetter
 		Group As TestGroup
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mGroupWeakRef As WeakRef
+		Private mGroupWeakRef As Xojo.Core.WeakRef
 	#tag EndProperty
 
 

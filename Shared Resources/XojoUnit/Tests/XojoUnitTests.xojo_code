@@ -3,14 +3,14 @@ Protected Class XojoUnitTests
 Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
-		  Dim d1 As New Date
-		  Dim d2 As New Date(2001, 1, 1)
+		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
+		  Dim d2 As New Xojo.Core.Date(2001, 1, 1, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreDifferent(d1, d2)
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferentStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "hello"
@@ -117,7 +117,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualMemoryBlockTest()
 		  Dim m1 As Global.MemoryBlock = "Hello"
 		  Dim m2 As Global.MemoryBlock = "Hello"
@@ -126,7 +126,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualNewDateTest()
 		  Dim d1 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
 		  
@@ -145,7 +145,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringArrayTest()
 		  Dim s1() As String = Array("A", "B", "C")
 		  Dim s2() As String
@@ -157,7 +157,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "hello"
@@ -219,7 +219,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqualMemoryBlockTest()
 		  Dim m1 As Global.MemoryBlock = "hello"
 		  Dim m2 As Global.MemoryBlock = "Hello"
@@ -249,8 +249,8 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
-		  Dim d1 As New Date
-		  Dim d2 As Date
+		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
+		  Dim d2 As Xojo.Core.Date 
 		  
 		  d2 = d1
 		  
@@ -258,7 +258,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSameStringArrayTest()
 		  Dim s1() As String = Array("A", "B", "C")
 		  Dim s2() As String
@@ -270,7 +270,7 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSameStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "Hello"
@@ -332,7 +332,7 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub IsNotNilTest()
-		  Dim d As New Date
+		  Dim d As New Xojo.Core.Dictionary
 		  
 		  Assert.IsNotNil(d)
 		End Sub

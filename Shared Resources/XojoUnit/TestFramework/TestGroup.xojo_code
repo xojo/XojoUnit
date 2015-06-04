@@ -114,8 +114,8 @@ Protected Class TestGroup
 		        
 		        Dim errorMessage As Text
 		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
-		        If e.Message <> "" Then
-		          errorMessage = errorMessage + &u0A + "Message: " + e.Message.ToText
+		        If e.Reason <> "" Then
+		          errorMessage = errorMessage + &u0A + "Message: " + e.Reason
 		        End If
 		        Assert.Fail(errorMessage)
 		      End Try

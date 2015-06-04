@@ -14,7 +14,7 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub ExportTestResults(filePath As Text)
 		  #If TargetWin32 Then
 		    Const kEOL As Text = &u0D + &u0A
