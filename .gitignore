@@ -1,1 +1,4 @@
 *.xojo_uistate
+*.obsolete_*
+Console Project/XojoUnitConsole.debug
+Web Project/XojoUnitWeb.debug
