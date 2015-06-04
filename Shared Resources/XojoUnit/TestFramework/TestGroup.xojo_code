@@ -45,14 +45,14 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub GetTestMethods()
-		  Dim info As Introspection.TypeInfo
+		  Dim info As Xojo.Introspection.TypeInfo
 		  
-		  info = Introspection.GetType(Self)
+		  info = Xojo.Introspection.GetType(Self)
 		  
-		  Dim methods() As Introspection.MethodInfo
-		  methods = info.GetMethods
+		  Dim methods() As Xojo.Introspection.MethodInfo
+		  methods = info.Methods
 		  
-		  For Each m As Introspection.MethodInfo In methods
+		  For Each m As Xojo.Introspection.MethodInfo In methods
 		    If m.Name.Right(4) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
@@ -84,16 +84,16 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
-		  Dim info As Introspection.TypeInfo
+		  Dim info As Xojo.Introspection.TypeInfo
 		  
-		  info = Introspection.GetType(Self)
+		  info = Xojo.Introspection.GetType(Self)
 		  
-		  Dim methods() As Introspection.MethodInfo
-		  methods = info.GetMethods
+		  Dim methods() As Xojo.Introspection.MethodInfo
+		  methods = info.Methods
 		  
-		  For Each m As Introspection.MethodInfo In methods
-		    Dim param() As Variant
-		    Dim rv As Variant
+		  For Each m As Xojo.Introspection.MethodInfo In methods
+		    Dim param() As Auto
+		    Dim rv As Auto
 		    
 		    If m.Name.Right(4) = kTestSuffix Then
 		      
@@ -105,8 +105,12 @@ Protected Class TestGroup
 		        EndTimer
 		        
 		      Catch e As RuntimeException
-		        Dim eInfo As Introspection.TypeInfo
-		        eInfo = Introspection.GetType(e)
+		        If e IsA EndException Or e IsA ThreadEndException Then
+		          Raise e
+		        End If
+		        
+		        Dim eInfo As Xojo.Introspection.TypeInfo
+		        eInfo = Xojo.Introspection.GetType(e)
 		        
 		        Dim errorMessage As Text
 		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
