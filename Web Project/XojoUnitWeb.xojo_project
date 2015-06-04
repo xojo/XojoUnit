@@ -1,9 +1,9 @@
 Type=Web
 RBProjectVersion=2015.022
 MinIDEVersion=20110400
-Picture=bug;../../../../../../../../Applications/Xojo/Example Projects/Unit Testing/XojoUnit/Graphics/bug.png;&h7674E1F5;&h1A17BC03;false;0;&h0
-Picture=control_play_blue;../../../../../../../../Applications/Xojo/Example Projects/Unit Testing/XojoUnit/Graphics/control_play_blue.png;&h521F1467;&h1A17BC03;false;0;&h0
-Picture=download;../../../../../../../../Applications/Xojo/Example Projects/Unit Testing/XojoUnit/Graphics/download.png;&h4780B1E3;&h1A17BC03;false;0;&h0
+Picture=bug;../Shared Resources/Graphics/bug.png;&h7674E1F5;&h1A17BC03;false;0;&h0
+Picture=control_play_blue;../Shared Resources/Graphics/control_play_blue.png;&h521F1467;&h1A17BC03;false;0;&h0
+Picture=download;../Shared Resources/Graphics/download.png;&h4780B1E3;&h1A17BC03;false;0;&h0
 Class=App;App.xojo_code;&h5B4E0328;&h0;false
 WebSession=Session;Session.xojo_code;&h3BF03CAA;&h0;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h49BC33CE;&h0;false
