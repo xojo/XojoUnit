@@ -1,5 +1,5 @@
 #tag WebPage
-Begin WebPage TestPage
+Begin WebPage XojoUnitTestPage
    Compatibility   =   ""
    Cursor          =   0
    Enabled         =   True
@@ -52,7 +52,6 @@ Begin WebPage TestPage
       Left            =   20
       ListIndex       =   -1
       LockBottom      =   True
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -96,7 +95,6 @@ Begin WebPage TestPage
       Left            =   258
       ListIndex       =   -1
       LockBottom      =   True
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -133,7 +131,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   20
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -167,7 +164,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   20
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -202,7 +198,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   554
       LockBottom      =   True
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -236,7 +231,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   554
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -275,7 +269,6 @@ Begin WebPage TestPage
       ItemStyle       =   "0"
       Left            =   0
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -313,7 +306,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   20
       LockBottom      =   True
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -347,7 +339,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   35
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -383,7 +374,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   155
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -419,7 +409,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   336
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -455,7 +444,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   448
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -491,7 +479,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   35
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -527,7 +514,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   155
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -563,7 +549,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   284
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -599,7 +584,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   400
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -635,7 +619,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   526
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -671,7 +654,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   638
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -707,7 +689,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   35
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -743,7 +724,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   155
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -779,7 +759,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   565
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -815,7 +794,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   565
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -851,7 +829,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   565
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -887,7 +864,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   693
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -923,7 +899,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   565
       LockBottom      =   True
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -954,13 +929,12 @@ Begin WebPage TestPage
       Height          =   32
       Index           =   -2147483648
       Left            =   560
-      LockedIDEPosition=   False
       LockedInPosition=   False
       Priority        =   5
       Scope           =   0
       StackSize       =   0
       Style           =   "0"
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
       Top             =   560
       Width           =   32
    End
@@ -973,7 +947,6 @@ Begin WebPage TestPage
       Index           =   -2147483648
       Left            =   580
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -985,7 +958,7 @@ Begin WebPage TestPage
       Scope           =   0
       Style           =   "0"
       TabOrder        =   -1
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
       Top             =   580
       VerticalCenter  =   0
       Visible         =   True
@@ -1129,7 +1102,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mWaitDialog As WaitDialog
+		Private mWaitDialog As XojoUnitWaitDialog
 	#tag EndProperty
 
 
@@ -1202,7 +1175,7 @@ End
 		Sub ButtonAction(Item As WebToolbarButton)
 		  Select Case item.Name
 		  Case "RunButton"
-		    mWaitDialog = New WaitDialog
+		    mWaitDialog = New XojoUnitWaitDialog
 		    mWaitDialog.Show
 		    TestThread.Run
 		    
