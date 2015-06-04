@@ -330,6 +330,16 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
+		  If  expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText , actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
 		  If expected IsA Xojo.Core.MemoryBlock And expected = actual Then
 		    Pass(message)
@@ -531,6 +541,16 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As Text = "")
 		  If expected <> actual Then
+		    Pass(message)
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date , message As Text = "")
+		  If Not (expected Is actual) And expected.SecondsFrom1970 <> actual.SecondsFrom1970 Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
