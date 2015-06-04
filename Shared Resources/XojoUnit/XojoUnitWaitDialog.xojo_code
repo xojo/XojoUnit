@@ -1,5 +1,5 @@
 #tag WebPage
-Begin WebDialog WaitDialog
+Begin WebDialog XojoUnitWaitDialog
    Compatibility   =   ""
    Cursor          =   0
    Enabled         =   True
@@ -45,7 +45,6 @@ Begin WebDialog WaitDialog
       Index           =   -2147483648
       Left            =   86
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
@@ -80,7 +79,6 @@ Begin WebDialog WaitDialog
       Index           =   -2147483648
       Left            =   20
       LockBottom      =   False
-      LockedIDEPosition=   False
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
