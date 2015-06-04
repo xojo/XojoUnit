@@ -229,6 +229,16 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreNotEqualNewDateTest()
+		  Dim d1 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
+		  
+		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
+		  
+		  Assert.AreNotEqual(d1, d2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreNotEqualNewMemoryBlockTest()
 		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
 		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
