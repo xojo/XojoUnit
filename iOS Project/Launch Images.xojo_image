@@ -1,0 +1,103 @@
+#tag MultiImage
+Image Launch Images
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iPhone Retina HD 5.5\niOS 7\x2C 8
+			Device = 1
+			HSize = 640
+			Orientation = Portrait
+			Platform = 1
+			PPI = 144
+			VSize = 960
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iPhone Retina 4\niOS 7\x2C 8
+			Device = 1
+			HSize = 640
+			Orientation = Portrait
+			Platform = 1
+			PPI = 72
+			VSize = 1136
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iOS 7\x2C 8
+			Device = 2
+			HSize = 768
+			Orientation = Portrait
+			Platform = 1
+			PPI = 72
+			VSize = 1024
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iOS 7\x2C 8
+			Device = 2
+			HSize = 768
+			Orientation = Portrait
+			Platform = 1
+			PPI = 144
+			VSize = 1024
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iOS 7\x2C 8
+			Device = 2
+			HSize = 1024
+			Orientation = Landscape
+			Platform = 1
+			PPI = 72
+			VSize = 768
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iOS 7\x2C 8
+			Device = 2
+			HSize = 1024
+			Orientation = Landscape
+			Platform = 1
+			PPI = 144
+			VSize = 768
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iPhone Retina HD 4.7\niOS 8
+			Device = 1
+			HSize = 750
+			Orientation = Portrait
+			Platform = 1
+			PPI = 72
+			VSize = 1334
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iPhone Retina HD 5.5\niOS 8
+			Device = 1
+			HSize = 1242
+			Orientation = Portrait
+			Platform = 1
+			PPI = 144
+			VSize = 2208
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = iPhone Retina HD 5.5\niOS 8
+			Device = 1
+			HSize = 2208
+			Orientation = Landscape
+			Platform = 1
+			PPI = 144
+			VSize = 1242
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage
