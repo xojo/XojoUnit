@@ -12,10 +12,10 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferent(expected As String, actual As String, message As Text = "")
-		  If StrComp(expected, actual, 0) <> 0 Then
+		  If expected.Encoding <> actual.Encoding Or StrComp(expected, actual, 0) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("String '" + actual.ToText + "' is the same", message )
+		    Fail("String '" + StringToText(actual) + "' is the same", message )
 		  End If
 		  
 		End Sub
@@ -227,8 +227,8 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If expected(i) <> actual(i) Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
 		      Return
 		    End If
@@ -245,7 +245,7 @@ Protected Class Assert
 		  If expected = actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		End Sub
 	#tag EndMethod
@@ -492,7 +492,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual.ToText + "' is equal to '" + expected.ToText + "'", message)
+		    Fail("The Strings '" + StringToText(actual) + " are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -502,7 +502,7 @@ Protected Class Assert
 		  If expected.Compare(actual) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		    Fail("The Texts '" + actual + "' are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -613,9 +613,12 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If StrComp(expected(i), actual(i), 0) <> 0 Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail(FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
+		      Return
+		    ElseIf expected(i).Encoding <> actual(i).Encoding Then
+		      Fail("The text encoding of item " + i.ToText + " ('" + StringToText(expected(i)) + "') differs", message)
 		      Return
 		    End If
 		  Next
@@ -627,9 +630,13 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected As String, actual As String, message As Text = "")
 		  If StrComp(expected, actual, 0) = 0 Then
-		    Pass(message)
+		    If expected.Encoding <> actual.Encoding Then
+		      Fail("The bytes match but the text encoding does not", message)
+		    Else
+		      Pass(message)
+		    End if
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		  
 		End Sub
@@ -777,6 +784,21 @@ Protected Class Assert
 		  
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Private Function StringToText(s As String) As Text
+		  // Before a String can be converted to Text, it must have a valid encoding
+		  // to avoid an exception. If the encoding is not valid, we will hex-encode the string instead.
+		  
+		  If s.Encoding Is Nil Or Not s.Encoding.IsValidData(s) Then
+		    s = EncodeHex(s, True)
+		    s = s.DefineEncoding(Encodings.UTF8) // Just to make sure
+		  End If
+		  
+		  Return s.ToText
+		  
+		End Function
 	#tag EndMethod
 
 

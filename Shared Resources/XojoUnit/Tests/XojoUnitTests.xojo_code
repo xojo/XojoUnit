@@ -17,6 +17,11 @@ Inherits TestGroup
 		  
 		  // String matches with AreDifferent are case-sensitive
 		  Assert.AreDifferent(s1, s2)
+		  
+		  s1 = s2
+		  s1 = s1.DefineEncoding(nil)
+		  Assert.AreDifferent(s1, s2)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -152,7 +157,9 @@ Inherits TestGroup
 		  s2.Append("A")
 		  s2.Append("B")
 		  s2.Append("C")
+		  Assert.AreEqual(s1, s2)
 		  
+		  s2(1) = s2(1).DefineEncoding(Nil)
 		  Assert.AreEqual(s1, s2)
 		End Sub
 	#tag EndMethod
@@ -163,6 +170,9 @@ Inherits TestGroup
 		  Dim s2 As String = "hello"
 		  
 		  // Passes because string comparisons are case-insensitive
+		  Assert.AreEqual(s1, s2)
+		  
+		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreEqual(s1, s2)
 		End Sub
 	#tag EndMethod
@@ -250,7 +260,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
-		  Dim d2 As Xojo.Core.Date 
+		  Dim d2 As Xojo.Core.Date
 		  
 		  d2 = d1
 		  
@@ -265,8 +275,8 @@ Inherits TestGroup
 		  s2.Append("A")
 		  s2.Append("B")
 		  s2.Append("C")
-		  
 		  Assert.AreSame(s1, s2)
+		  
 		End Sub
 	#tag EndMethod
 
