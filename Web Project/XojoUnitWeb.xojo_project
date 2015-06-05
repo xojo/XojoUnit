@@ -24,6 +24,7 @@ WebStyle=HeadingStyle;../Shared Resources/XojoUnit/Styles/HeadingStyle.xojo_code
 Folder=Graphics;../Shared Resources/Graphics;&h1A17BC03;&h7C0B8EB7;false
 WebView=XojoUnitTestPage;../Shared Resources/XojoUnit/XojoUnitTestPage.xojo_code;&h13D04FEA;&h7C0B8EB7;false
 Class=Assert;../Shared Resources/XojoUnit/TestFramework/Assert.xojo_code;&h6F374736;&h3E1A9B41;false
+Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h2FC99FFF;&h44C729E7;false
 DefaultWindow=XojoUnitTestPage
 MajorVersion=1
 MinorVersion=0
