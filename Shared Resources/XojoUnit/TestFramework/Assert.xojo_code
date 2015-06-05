@@ -502,7 +502,7 @@ Protected Class Assert
 		  If expected.Compare(actual) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		    Fail("The Texts '" + actual + "' are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
