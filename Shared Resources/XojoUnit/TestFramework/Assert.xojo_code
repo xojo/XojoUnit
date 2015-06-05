@@ -779,6 +779,21 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Private Function StringToText(s As String) As Text
+		  // Before a String can be converted to Text, it must have a valid encoding
+		  // to avoid an exception. If the encoding is not valid, we will hex-encode the string instead.
+		  
+		  If s.Encoding Is Nil Or Not s.Encoding.IsValidData(s) Then
+		    s = EncodeHex(s, True)
+		    s = s.DefineEncoding(Encodings.UTF8) // Just to make sure
+		  End If
+		  
+		  Return s.ToText
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		Failed As Boolean
