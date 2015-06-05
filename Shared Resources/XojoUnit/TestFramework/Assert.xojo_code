@@ -15,7 +15,7 @@ Protected Class Assert
 		  If StrComp(expected, actual, 0) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("String '" + actual.ToText + "' is the same", message )
+		    Fail("String '" + StringToText(actual) + "' is the same", message )
 		  End If
 		  
 		End Sub
@@ -227,8 +227,8 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If expected(i) <> actual(i) Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
 		      Return
 		    End If
@@ -245,7 +245,7 @@ Protected Class Assert
 		  If expected = actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		End Sub
 	#tag EndMethod
@@ -492,7 +492,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual.ToText + "' is equal to '" + expected.ToText + "'", message)
+		    Fail("The Strings '" + StringToText(actual) + " are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -613,8 +613,8 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If StrComp(expected(i), actual(i), 0) <> 0 Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail(FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
 		      Return
 		    End If
@@ -629,7 +629,7 @@ Protected Class Assert
 		  If StrComp(expected, actual, 0) = 0 Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		  
 		End Sub
