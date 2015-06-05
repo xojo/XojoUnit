@@ -12,7 +12,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferent(expected As String, actual As String, message As Text = "")
-		  If StrComp(expected, actual, 0) <> 0 Then
+		  If expected.Encoding <> actual.Encoding Or StrComp(expected, actual, 0) <> 0 Then
 		    Pass(message)
 		  Else
 		    Fail("String '" + StringToText(actual) + "' is the same", message )
@@ -617,6 +617,9 @@ Protected Class Assert
 		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
 		      Return
+		    ElseIf expected(i).Encoding <> actual(i).Encoding Then
+		      Fail("The text encoding of item " + i.ToText + " ('" + StringToText(expected(i)) + "') differs", message)
+		      Return
 		    End If
 		  Next
 		  
@@ -627,7 +630,11 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected As String, actual As String, message As Text = "")
 		  If StrComp(expected, actual, 0) = 0 Then
-		    Pass(message)
+		    If expected.Encoding <> actual.Encoding Then
+		      Fail("The bytes match but the text encoding does not", message)
+		    Else
+		      Pass(message)
+		    End if
 		  Else
 		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
