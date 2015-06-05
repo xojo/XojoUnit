@@ -10,10 +10,10 @@ Begin iosView XojoUnitTestGroupView
    Begin iOSTable TestGroupsTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 3, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
+      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -41,8 +41,7 @@ End
 
 	#tag Event
 		Sub ToolbarPressed(button As iOSToolButton)
-		  mController.Start
-		  
+		  RunTests
 		End Sub
 	#tag EndEvent
 
@@ -51,18 +50,44 @@ End
 		Private Sub PopulateTestGroups()
 		  // Add the test groups
 		  TestGroupsTable.RemoveAll
-		  
 		  TestGroupsTable.AddSection("")
 		  
 		  Dim cellData As iOSTableCellData
 		  For Each g As TestGroup In mController.TestGroups
 		    cellData = New iOSTableCellData
 		    cellData.Text = g.Name
+		    cellData.DetailText = g.TestCount.ToText + " tests, " _
+		    + g.PassedTestCount.ToText + " passed, " _
+		    + g.FailedTestCount.ToText + " failed"
 		    cellData.AccessoryType = iOSTableCellData.AccessoryTypes.Detail
 		    cellData.Tag = g
 		    
 		    TestGroupsTable.AddRow(0, cellData)
 		  Next
+		  
+		  If Self.ParentSplitView <> Nil And Self.ParentSplitView.Available Then
+		    Dim detail As TestDetailsView = TestDetailsView(Self.ParentSplitView.Detail)
+		    
+		    Dim testCount As Integer
+		    testCount = mController.AllTestCount
+		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + mController.GroupCount.ToText + " groups."
+		    
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RunTests()
+		  If Self.ParentSplitView.Available Then
+		    Dim detail As TestDetailsView = TestDetailsView(Self.ParentSplitView.Detail)
+		    detail.StartLabel.Text = Date.Now.ToText(Locale.Current, Date.FormatStyles.Medium)
+		    
+		  End If
+		  
+		  mController.Start
+		  PopulateTestGroups
+		  
 		  
 		End Sub
 	#tag EndMethod

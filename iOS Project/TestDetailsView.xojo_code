@@ -1,0 +1,262 @@
+#tag IOSView
+Begin iosView TestDetailsView
+   BackButtonTitle =   ""
+   Compatibility   =   ""
+   Left            =   0
+   NavigationBarVisible=   False
+   TabTitle        =   ""
+   Title           =   ""
+   Top             =   0
+   Begin iOSLabel Label1
+      AutoLayout      =   Label1, 8, , 0, False, +1.00, 1, 1, 30, 
+      AutoLayout      =   Label1, 3, , 0, False, +1.00, 1, 1, 35, 
+      AutoLayout      =   Label1, 7, , 0, False, +1.00, 1, 1, 100, 
+      AutoLayout      =   Label1, 1, <Parent>, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
+      Enabled         =   True
+      Height          =   30.0
+      Left            =   20.0
+      LockedInPosition=   False
+      Scope           =   0
+      Text            =   "Overview"
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      TextFont        =   ""
+      TextSize        =   0
+      Top             =   35.0
+      Visible         =   True
+      Width           =   100.0
+   End
+   Begin iOSRectangle Rectangle1
+      AutoLayout      =   Rectangle1, 8, , 0, False, +1.00, 1, 1, 218, 
+      AutoLayout      =   Rectangle1, 3, Label1, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+      AutoLayout      =   Rectangle1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
+      AutoLayout      =   Rectangle1, 1, Label1, 1, False, +1.00, 1, 1, 0, 
+      BorderColor     =   &c00000000
+      BorderWidth     =   2.0
+      CornerHeight    =   0.0
+      CornerWidth     =   0.0
+      FillColor       =   &cFFFFFF00
+      Height          =   218.0
+      Left            =   20.0
+      LockedInPosition=   False
+      Scope           =   0
+      Top             =   73.0
+      Visible         =   True
+      Width           =   335.0
+      Begin iOSLabel Label2
+         AutoLayout      =   Label2, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   Label2, 3, Rectangle1, 3, False, +1.00, 1, 1, *kStdGapCtlToViewV, 
+         AutoLayout      =   Label2, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   Label2, 1, Rectangle1, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   40.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Start:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   93.0
+         Visible         =   True
+         Width           =   100.0
+      End
+      Begin iOSLabel StartLabel
+         AutoLayout      =   StartLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   StartLabel, 11, Label2, 11, False, +1.00, 2, 1, 0, 
+         AutoLayout      =   StartLabel, 2, Rectangle1, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
+         AutoLayout      =   StartLabel, 1, Label2, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   148.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "2015-01-01 12:00PM"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   93.0
+         Visible         =   True
+         Width           =   187.0
+      End
+      Begin iOSLabel Label4
+         AutoLayout      =   Label4, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   Label4, 3, StartLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+         AutoLayout      =   Label4, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   Label4, 1, Label2, 1, False, +1.00, 1, 1, 0, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   40.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Total:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   131.0
+         Visible         =   True
+         Width           =   100.0
+      End
+      Begin iOSLabel TestCountLabel
+         AutoLayout      =   TestCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   TestCountLabel, 11, Label4, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   TestCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   TestCountLabel, 1, Label4, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   148.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "100 tests in 10 groups"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   131.0
+         Visible         =   True
+         Width           =   187.0
+      End
+      Begin iOSLabel Label6
+         AutoLayout      =   Label6, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   Label6, 3, TestCountLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+         AutoLayout      =   Label6, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   Label6, 1, Label4, 1, False, +1.00, 1, 1, 0, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   40.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Passed:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   169.0
+         Visible         =   True
+         Width           =   100.0
+      End
+      Begin iOSLabel PassedCountLabel
+         AutoLayout      =   PassedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   PassedCountLabel, 11, Label6, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   PassedCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   PassedCountLabel, 1, Label6, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   148.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "0 (0%)"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   169.0
+         Visible         =   True
+         Width           =   187.0
+      End
+      Begin iOSLabel Label8
+         AutoLayout      =   Label8, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   Label8, 3, PassedCountLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+         AutoLayout      =   Label8, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   Label8, 1, Label6, 1, False, +1.00, 1, 1, 0, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   40.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Failed:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   207.0
+         Visible         =   True
+         Width           =   100.0
+      End
+      Begin iOSLabel FailedCountLabel
+         AutoLayout      =   FailedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   FailedCountLabel, 11, Label8, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   FailedCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   FailedCountLabel, 1, Label8, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   148.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "0 (0%)"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   207.0
+         Visible         =   True
+         Width           =   187.0
+      End
+      Begin iOSLabel Label10
+         AutoLayout      =   Label10, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   Label10, 3, FailedCountLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+         AutoLayout      =   Label10, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   Label10, 1, Label8, 1, False, +1.00, 1, 1, 0, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   40.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Skipped:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   245.0
+         Visible         =   True
+         Width           =   100.0
+      End
+      Begin iOSLabel SkippedCountLabel
+         AutoLayout      =   SkippedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   SkippedCountLabel, 11, Label10, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   SkippedCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   SkippedCountLabel, 1, Label10, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   148.0
+         LockedInPosition=   False
+         PanelIndex      =   -1
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "0 (0%)"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   245.0
+         Visible         =   True
+         Width           =   187.0
+      End
+   End
+End
+#tag EndIOSView
+
+#tag WindowCode
+#tag EndWindowCode
+
