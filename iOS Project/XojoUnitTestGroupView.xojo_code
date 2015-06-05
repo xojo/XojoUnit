@@ -1,6 +1,6 @@
 #tag IOSView
 Begin iosView XojoUnitTestGroupView
-   BackButtonTitle =   "Test Groups"
+   BackButtonTitle =   "Groups"
    Compatibility   =   ""
    Left            =   0
    NavigationBarVisible=   True
@@ -10,10 +10,10 @@ Begin iosView XojoUnitTestGroupView
    Begin iOSTable TestGroupsTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
-      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
+      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -30,7 +30,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  Self.LeftNavigationToolbar.Add(iOSToolButton.NewPlain("Run"))
+		  Self.RightNavigationToolbar.Add(iOSToolButton.NewPlain("Run"))
 		  
 		  mController = New iOSTestController
 		  mController.LoadTestGroups
@@ -66,7 +66,7 @@ End
 		  Next
 		  
 		  If Self.ParentSplitView <> Nil And Self.ParentSplitView.Available Then
-		    Dim detail As TestDetailsView = TestDetailsView(Self.ParentSplitView.Detail)
+		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		    
 		    Dim testCount As Integer
 		    testCount = mController.AllTestCount
@@ -80,15 +80,29 @@ End
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
 		  If Self.ParentSplitView.Available Then
-		    Dim detail As TestDetailsView = TestDetailsView(Self.ParentSplitView.Detail)
+		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		    detail.StartLabel.Text = Date.Now.ToText(Locale.Current, Date.FormatStyles.Medium)
 		    
+		    mController.Start
+		    
+		    detail.DurationLabel.Text = mController.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		    
+		    Dim testCount As Integer
+		    testCount = mController.RunTestCount
+		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + mController.RunGroupCount.ToText + " groups were run."
+		    
+		    Dim pct As Double
+		    pct = (mController.PassedCount / testCount) * 100
+		    detail.PassedCountLabel.Text = mController.PassedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		    
+		    pct = (mController.FailedCount / testCount) * 100
+		    detail.FailedCountLabel.Text = mController.FailedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		    detail.SkippedCountLabel.Text = mController.SkippedCount.ToText
+		    
+		    PopulateTestGroups
+		    
+		    
 		  End If
-		  
-		  mController.Start
-		  PopulateTestGroups
-		  
-		  
 		End Sub
 	#tag EndMethod
 
@@ -110,7 +124,7 @@ End
 		Sub AccessoryAction(section As Integer, row As Integer)
 		  // Display the test methods for the group
 		  Dim v As New XojoUnitTestMethodView
-		  v.Group = Me.RowData(section, row).Tag
+		  v.LoadTests(Me.RowData(section, row).Tag)
 		  
 		  Self.PushTo(v)
 		End Sub

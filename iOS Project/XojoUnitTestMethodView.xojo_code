@@ -10,10 +10,10 @@ Begin iosView XojoUnitTestMethodView
    Begin iOSTable MethodTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
-      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
+      AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -28,46 +28,52 @@ End
 #tag EndIOSView
 
 #tag WindowCode
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mGroup
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mGroup = value
-			  
-			  MethodTable.RemoveAll
-			  
-			  MethodTable.AddSection("")
-			  
-			  Dim cellData As iOSTableCellData
-			  For Each t As TestResult In mGroup.Results
-			    cellData = New iOSTableCellData
-			    cellData.Text = t.TestName
-			    cellData.DetailText = "Results: " + t.Result
-			    cellData.AccessoryType = iOSTableCellData.AccessoryTypes.Detail
-			    cellData.Tag = t
-			    
-			    If t.Result = TestResult.Failed Then
-			      
-			    End If
-			    
-			    MethodTable.AddRow(0, cellData)
-			  Next
-			End Set
-		#tag EndSetter
-		Group As TestGroup
-	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mGroup As TestGroup
-	#tag EndProperty
+	#tag Method, Flags = &h0
+		Sub LoadTests(g As TestGroup)
+		  Self.Title = g.Name + " Methods"
+		  
+		  MethodTable.RemoveAll
+		  
+		  MethodTable.AddSection("")
+		  
+		  Dim cellData As iOSTableCellData
+		  For Each t As TestResult In g.Results
+		    cellData = New iOSTableCellData
+		    cellData.Text = t.TestName
+		    cellData.DetailText = "Results: " + t.Result
+		    cellData.AccessoryType = iOSTableCellData.AccessoryTypes.Detail
+		    cellData.Tag = t
+		    
+		    If t.Result = TestResult.Failed Then
+		      
+		    End If
+		    
+		    MethodTable.AddRow(0, cellData)
+		  Next
+		End Sub
+	#tag EndMethod
 
 
 #tag EndWindowCode
 
+#tag Events MethodTable
+	#tag Event
+		Sub Action(section As Integer, row As Integer)
+		  If Me.RowData(section, row).Tag IsA TestResult Then
+		    Dim tr As TestResult
+		    tr = Me.RowData(section, row).Tag
+		    
+		    If Self.ParentSplitView.Available Then
+		      Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		      detail.TestNameLabel.Text = tr.TestName
+		      detail.TestResultLabel.Text = tr.Result
+		      detail.TestResultsArea.Text = tr.Message
+		      detail.TestDurationLabel.Text = tr.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		    End If
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackButtonTitle"
