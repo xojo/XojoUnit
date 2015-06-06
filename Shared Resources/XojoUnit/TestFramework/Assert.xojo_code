@@ -347,6 +347,11 @@ Protected Class Assert
 		    Return
 		  End If
 		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
+		    Return
+		  End If
+		  
 		  Dim expectedSize As Integer = expected.Size
 		  Dim actualSize As Integer = actual.Size
 		  
@@ -354,10 +359,9 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
 		  End If
-		  
-		  Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
-		  
 		End Sub
 	#tag EndMethod
 
