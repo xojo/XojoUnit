@@ -125,7 +125,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Start:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -160,7 +159,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -195,7 +193,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Total:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -230,7 +227,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -265,7 +261,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Failed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -300,7 +295,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Skipped:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -335,7 +329,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   6
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "1/1/2012 12:00PM"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -370,7 +363,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -405,7 +397,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   8
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "100 tests in 10 groups"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -440,7 +431,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   9
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -475,7 +465,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   10
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -510,7 +499,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -573,7 +561,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Test Name"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -608,7 +595,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -643,7 +629,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -726,7 +711,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Messages:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -761,7 +745,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed"
          TextAlign       =   0
          TextColor       =   &c00000000
