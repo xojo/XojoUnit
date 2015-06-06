@@ -342,7 +342,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected = actual Then
+		  If expected = actual Then
 		    Pass(message)
 		    Return
 		  End If
