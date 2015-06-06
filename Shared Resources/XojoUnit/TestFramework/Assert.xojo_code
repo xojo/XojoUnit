@@ -118,8 +118,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		  If expected = actual Then
 		    Pass(message)
+		    Return
+		  End If
+		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
 		    Return
 		  End If
 		  
@@ -332,7 +337,9 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If  expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given Date is Nil", message)
+		  ElseIf expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected.ToText , actual.ToText), message)
@@ -416,36 +423,47 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
 		  //NCM-written
-		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
+		  If expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.TotalSeconds = actual.TotalSeconds Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.TotalSeconds.ToText, actual.TotalSeconds.ToText), message)
+		    Pass(message)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		  If expected = actual Then
 		    Fail("The MemoryBlocks are the same", message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
+		    
+		  ElseIf expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
-		  End If
-		  
-		  Dim sExpected As String = expected.StringValue(0, expectedSize)
-		  dim sActual As String = actual.StringValue(0, actualSize)
-		  
-		  If StrComp(sExpected, sActual, 0) <> 0 Then
-		    Pass(message)
+		    
 		  Else
-		    Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		    Dim expectedSize As Integer = expected.Size
+		    Dim actualSize As Integer = actual.Size
+		    
+		    If expectedSize <> actualSize Then
+		      Pass(message)
+		      
+		    Else
+		      
+		      Dim sExpected As String = expected.StringValue(0, expectedSize)
+		      dim sActual As String = actual.StringValue(0, actualSize)
+		      
+		      If StrComp(sExpected, sActual, 0) <> 0 Then
+		        Pass(message)
+		      Else
+		        Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		      End If
+		      
+		    End If
+		    
 		  End If
-		  
 		End Sub
 	#tag EndMethod
 
@@ -555,39 +573,29 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If Not (expected Is actual) And expected.SecondsFrom1970 <> actual.SecondsFrom1970 Then
+		  If expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		    Pass(message)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
-		    Fail("The MemoryBlocks are the same", message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
+		  If expected Is Nil And actual Is Nil Then
+		    Fail("The given MemoryBlocks are both Nil", message)
+		  ElseIf expected Is Nil Xor actual Is Nil Then
+		    Pass(message)
+		  ElseIf expected = actual Then
+		    Fail("The MemoryBlocks are the same: " + EncodeHexNewMB(expected), message)
+		  Else
 		    Pass(message)
 		  End If
-		  
-		  Dim lastByteIndex As Integer = actualSize - 1
-		  For byteIndex As Integer = 0 To lastByteIndex
-		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
-		      Pass(message)
-		      Return
-		    End If
-		  Next byteIndex
-		  
-		  //
-		  // If we get here, it's the same
-		  //
-		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
 		  
 		End Sub
 	#tag EndMethod
