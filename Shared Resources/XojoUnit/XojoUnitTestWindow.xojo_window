@@ -894,12 +894,21 @@ End
 		  FailedCountLabel.Text = Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)"
 		  SkippedCountLabel.Text = Str(mController.SkippedCount)
 		  
-		  For i As Integer = TestGroupList.ListCount-1 DownTo 0
-		    TestGroupList.Expanded(i) = False
+		  Dim lastRow As Integer
+		  
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    If TestGroupList.RowIsFolder(row) Then
+		      TestGroupList.Expanded(row) = False
+		    End If
 		  Next
 		  
-		  For i As Integer = TestGroupList.ListCount-1 DownTo 0
-		    TestGroupList.Expanded(i) = True
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    Dim g As TestGroup = TestGroup(TestGroupList.RowTag(row))
+		    If g.IncludeGroup Then
+		      TestGroupList.Expanded(row) = True
+		    End If
 		  Next
 		  
 		End Sub
