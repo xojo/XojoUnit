@@ -130,6 +130,7 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		    Return
 		  End If
 		  
 		  Dim sExpected As String = expected.StringValue(0, expectedSize)
