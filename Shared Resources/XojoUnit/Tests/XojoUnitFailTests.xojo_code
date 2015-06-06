@@ -7,6 +7,9 @@ Inherits TestGroup
 		  Dim d2 As Xojo.Core.Date = d1
 		  
 		  Assert.AreDifferent(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -17,11 +20,14 @@ Inherits TestGroup
 		  
 		  // String matches with AreDifferent are case-sensitive
 		  Assert.AreDifferent(s1, s2)
+		  IncrementFailCountIfFail
 		  
 		  s1 = s1.DefineEncoding(nil)
 		  s2 = s1
 		  Assert.AreDifferent(s1, s2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -32,6 +38,9 @@ Inherits TestGroup
 		  
 		  // Text matches with AreDifferent are case-sensitive
 		  Assert.AreDifferent(t1, t2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -41,6 +50,9 @@ Inherits TestGroup
 		  Dim c2 As Color = &c0000aa
 		  
 		  Assert.AreEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -50,6 +62,9 @@ Inherits TestGroup
 		  Dim c2 As Currency = 40.00 + 2.30
 		  
 		  Assert.AreEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -62,6 +77,9 @@ Inherits TestGroup
 		  d2.SQLDate = "2012-11-29"
 		  
 		  Assert.AreEqual(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -73,7 +91,9 @@ Inherits TestGroup
 		  // Fails becaue the numbers are outside the
 		  // default tolerance of 0.00000001
 		  Assert.AreEqual(d1, d2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -86,6 +106,9 @@ Inherits TestGroup
 		  d1 = 1.00001
 		  d2 = 1.00002
 		  Assert.AreEqual(d1, d2, 0.000001)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -98,6 +121,9 @@ Inherits TestGroup
 		  Dim i2 As Int64 = temp + 1
 		  
 		  Assert.AreEqual(i1, i2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -113,12 +139,15 @@ Inherits TestGroup
 		  i2(4) = 6
 		  
 		  Assert.AreEqual(i1, i2)
+		  IncrementFailCountIfFail
 		  
 		  i2(4) = 5
 		  i2.Append(6)
 		  
 		  Assert.AreEqual(i1, i2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -128,6 +157,9 @@ Inherits TestGroup
 		  Dim i2 As Integer = 7 * 7
 		  
 		  Assert.AreEqual(i1, i2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -137,16 +169,19 @@ Inherits TestGroup
 		  Dim m2 As Global.MemoryBlock = "hello"
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m2 = "Hello1"
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m1 = Nil
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
-		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -157,10 +192,14 @@ Inherits TestGroup
 		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreEqual(d1, d2)
+		  IncrementFailCountIfFail
 		  
 		  d2 = Nil
 		  
 		  Assert.AreEqual(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -170,15 +209,19 @@ Inherits TestGroup
 		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m2 = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello1")
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m2 = Nil
 		  
 		  Assert.AreEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -190,10 +233,14 @@ Inherits TestGroup
 		  s2.Append("B")
 		  s2.Append("D")
 		  Assert.AreEqual(s1, s2)
+		  IncrementFailCountIfFail
 		  
 		  s2(2) = "C"
 		  s2.Append "D"
 		  Assert.AreEqual(s1, s2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -203,7 +250,9 @@ Inherits TestGroup
 		  Dim s2 As String = "hello1"
 		  
 		  Assert.AreEqual(s1, s2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -216,12 +265,15 @@ Inherits TestGroup
 		  t2.Append("D")
 		  
 		  Assert.AreEqual(t1, t2)
+		  IncrementFailCountIfFail
 		  
 		  t2(2) = "C"
 		  t2.Append "D"
 		  
 		  Assert.AreEqual(t1, t2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -231,6 +283,9 @@ Inherits TestGroup
 		  Dim i2 As UInteger = 7 * 7
 		  
 		  Assert.AreEqual(i1, i2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -240,6 +295,9 @@ Inherits TestGroup
 		  Dim c2 As Color = &c0000ff
 		  
 		  Assert.AreNotEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -252,11 +310,15 @@ Inherits TestGroup
 		  d2.SQLDate = "2012-11-29"
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  IncrementFailCountIfFail
 		  
 		  d1 = Nil
 		  d2 = Nil
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -266,6 +328,9 @@ Inherits TestGroup
 		  Dim d2 As Double = 1.01
 		  
 		  Assert.AreNotEqual(d1, d2, 0.001)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -275,12 +340,15 @@ Inherits TestGroup
 		  Dim m2 As Global.MemoryBlock = "Hello"
 		  
 		  Assert.AreNotEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m1 = Nil
 		  m2 = Nil
 		  
 		  Assert.AreNotEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -291,11 +359,15 @@ Inherits TestGroup
 		  Dim d2 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  IncrementFailCountIfFail
 		  
 		  d1 = Nil
 		  d2 = Nil
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -305,12 +377,15 @@ Inherits TestGroup
 		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
 		  
 		  Assert.AreNotEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
 		  m1 = Nil
 		  m2 = Nil
 		  
 		  Assert.AreNotEqual(m1, m2)
+		  IncrementFailCountIfFail
 		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -320,6 +395,9 @@ Inherits TestGroup
 		  Dim d2 As New Xojo.Core.Dictionary
 		  
 		  Assert.AreSame(d1, d2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -331,14 +409,18 @@ Inherits TestGroup
 		  s2.Append("B")
 		  s2.Append("D")
 		  Assert.AreSame(s1, s2)
-		  
+		  IncrementFailCountIfFail
 		  
 		  s2(2) = "C"
 		  s2.Append "D"
 		  Assert.AreSame(s1, s2)
+		  IncrementFailCountIfFail
 		  
 		  s2 = Array("A", "B", "c")
 		  Assert.AreSame(s1, s2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -349,6 +431,9 @@ Inherits TestGroup
 		  
 		  // String matches with AreSame are case-sensitive
 		  Assert.AreSame(s1, s2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -361,15 +446,20 @@ Inherits TestGroup
 		  t2.Append("D")
 		  
 		  Assert.AreSame(t1, t2)
+		  IncrementFailCountIfFail
 		  
 		  t2(2) = "c"
 		  
 		  Assert.AreSame(t1, t2)
+		  IncrementFailCountIfFail
 		  
 		  t2(2) = "C"
 		  t2.Append "D"
 		  
 		  Assert.AreSame(t1, t2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -380,18 +470,37 @@ Inherits TestGroup
 		  
 		  // Text matches with AreSame are case-sensitive
 		  Assert.AreSame(t1, t2)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub FailTest()
 		  Assert.Fail("Failed!")
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub IncrementFailCountIfFail()
+		  If Assert.Failed Then
+		    FailCount = FailCount + 1
+		  End If
+		  ExpectedFailCount = ExpectedFailCount + 1
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub IsFalseTest()
 		  Assert.IsFalse(True)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -400,6 +509,9 @@ Inherits TestGroup
 		  Dim d As New Date
 		  
 		  Assert.IsNil(d)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
@@ -408,14 +520,54 @@ Inherits TestGroup
 		  Dim d As Xojo.Core.Dictionary
 		  
 		  Assert.IsNotNil(d)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub IsTrueTest()
 		  Assert.IsTrue(False)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
 		End Sub
 	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub PassIfFailed()
+		  If FailCount = ExpectedFailCount Then
+		    Assert.Group.CurrentTestResult.Result = TestResult.Passed
+		    If FailCount = 1 Then
+		      Assert.Pass("One test has failed, as expected")
+		    Else
+		      Assert.Pass(FailCount.ToText + " tests have failed, as expected")
+		    End If
+		  Else
+		    If ExpectedFailCount = 1 Then
+		      Assert.Fail("Expected one failure, but had " + FailCount.ToText)
+		    Else
+		      Assert.Fail("Expected " + ExpectedFailCount.ToText + " failures, but had " + FailCount.ToText)
+		    End If
+		  End If
+		  
+		  //
+		  // Reset the counters
+		  //
+		  FailCount = 0
+		  ExpectedFailCount = 0
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private ExpectedFailCount As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private FailCount As Integer
+	#tag EndProperty
 
 
 	#tag ViewBehavior
