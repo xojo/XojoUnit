@@ -62,6 +62,11 @@ Inherits TestGroup
 		  d2.SQLDate = "2012-11-30"
 		  
 		  Assert.AreEqual(d1, d2)
+		  
+		  d1 = Nil
+		  d2 = Nil
+		  
+		  Assert.AreEqual(d1, d2)
 		End Sub
 	#tag EndMethod
 
@@ -128,6 +133,12 @@ Inherits TestGroup
 		  Dim m2 As Global.MemoryBlock = "Hello"
 		  
 		  Assert.AreEqual(m1, m2)
+		  
+		  m1 = Nil
+		  m2 = Nil
+		  
+		  Assert.AreEqual(m1, m2)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -138,6 +149,11 @@ Inherits TestGroup
 		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreEqual(d1, d2)
+		  
+		  d1 = Nil
+		  d2 = Nil
+		  
+		  Assert.AreEqual(d1, d2)
 		End Sub
 	#tag EndMethod
 
@@ -145,6 +161,11 @@ Inherits TestGroup
 		Sub AreEqualNewMemoryBlockTest()
 		  Dim m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
 		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
+		  
+		  Assert.AreEqual(m1, m2)
+		  
+		  m1 = Nil
+		  m2 = Nil
 		  
 		  Assert.AreEqual(m1, m2)
 		End Sub
@@ -216,6 +237,10 @@ Inherits TestGroup
 		  d2.SQLDate = "2012-11-30"
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  
+		  d2 = Nil
+		  
+		  Assert.AreNotEqual(d1, d2)
 		End Sub
 	#tag EndMethod
 
@@ -245,6 +270,11 @@ Inherits TestGroup
 		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreNotEqual(d1, d2)
+		  
+		  d2 = Nil
+		  
+		  Assert.AreNotEqual(d1, d2)
+		  
 		End Sub
 	#tag EndMethod
 
