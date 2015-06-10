@@ -265,7 +265,7 @@ Begin WebPage XojoUnitTestPage
       HelpTag         =   ""
       HorizontalCenter=   0
       Index           =   -2147483648
-      InitialValue    =   "0 WebToolbarButton RunButton UnVuIFRlc3Rz 0 Select... 67 0 1 1	2 WebToolbarSpace Space1  -1 Select... 0 0 1 1	0 WebToolbarButton DownloadButton RG93bmxvYWQgUmVzdWx0cw== 0 Select... 111 0 1 1"
+      InitialValue    =   "0 WebToolbarButton RunButton UnVuIFRlc3Rz 0 Select... 67 0 1 0	2 WebToolbarSpace Space1  -1 Select... 0 0 1 1	0 WebToolbarButton DownloadButton RG93bmxvYWQgUmVzdWx0cw== 0 Select... 111 0 1 0"
       ItemStyle       =   "0"
       Left            =   0
       LockBottom      =   False
