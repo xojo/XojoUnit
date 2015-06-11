@@ -506,7 +506,7 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub IsNilTest()
-		  Dim d As New Date
+		  Dim d As New Dictionary
 		  
 		  Assert.IsNil(d)
 		  IncrementFailCountIfFail
