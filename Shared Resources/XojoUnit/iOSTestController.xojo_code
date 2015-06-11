@@ -1,5 +1,5 @@
 #tag Class
-Protected Class DesktopTestController
+Protected Class iOSTestController
 Inherits TestController
 	#tag Event
 		Sub InitializeTestGroups()
@@ -8,6 +8,7 @@ Inherits TestController
 		  Dim group As TestGroup
 		  
 		  group = New XojoUnitTests(Self, "Assertion")
+		  group = New XojoUnitFailTests(Self, "Always Fail")
 		  
 		End Sub
 	#tag EndEvent

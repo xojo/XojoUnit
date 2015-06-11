@@ -3,20 +3,25 @@ Protected Class XojoUnitTests
 Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
-		  Dim d1 As New Date
-		  Dim d2 As New Date(2001, 1, 1)
+		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
+		  Dim d2 As New Xojo.Core.Date(2001, 1, 1, Xojo.Core.TimeZone.Current)
 		  
 		  Assert.AreDifferent(d1, d2)
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferentStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "hello"
 		  
 		  // String matches with AreDifferent are case-sensitive
 		  Assert.AreDifferent(s1, s2)
+		  
+		  s1 = s2
+		  s1 = s1.DefineEncoding(nil)
+		  Assert.AreDifferent(s1, s2)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -48,13 +53,18 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualDateTest()
 		  Dim d1 As New Date
 		  d1.SQLDate = "2012-11-30"
 		  
 		  Dim d2 As New Date
 		  d2.SQLDate = "2012-11-30"
+		  
+		  Assert.AreEqual(d1, d2)
+		  
+		  d1 = Nil
+		  d2 = Nil
 		  
 		  Assert.AreEqual(d1, d2)
 		End Sub
@@ -117,12 +127,33 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualMemoryBlockTest()
 		  Dim m1 As Global.MemoryBlock = "Hello"
 		  Dim m2 As Global.MemoryBlock = "Hello"
 		  
 		  Assert.AreEqual(m1, m2)
+		  
+		  m1 = Nil
+		  m2 = Nil
+		  
+		  Assert.AreEqual(m1, m2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreEqualNewDateTest()
+		  Dim d1 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
+		  
+		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
+		  
+		  Assert.AreEqual(d1, d2)
+		  
+		  d1 = Nil
+		  d2 = Nil
+		  
+		  Assert.AreEqual(d1, d2)
 		End Sub
 	#tag EndMethod
 
@@ -132,27 +163,37 @@ Inherits TestGroup
 		  Dim m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
 		  
 		  Assert.AreEqual(m1, m2)
+		  
+		  m1 = Nil
+		  m2 = Nil
+		  
+		  Assert.AreEqual(m1, m2)
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringArrayTest()
 		  Dim s1() As String = Array("A", "B", "C")
 		  Dim s2() As String
 		  s2.Append("A")
 		  s2.Append("B")
 		  s2.Append("C")
+		  Assert.AreEqual(s1, s2)
 		  
+		  s2(1) = s2(1).DefineEncoding(Nil)
 		  Assert.AreEqual(s1, s2)
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "hello"
 		  
 		  // Passes because string comparisons are case-insensitive
+		  Assert.AreEqual(s1, s2)
+		  
+		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreEqual(s1, s2)
 		End Sub
 	#tag EndMethod
@@ -187,6 +228,22 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub AreNotEqualDateTest()
+		  Dim d1 As New Date
+		  d1.SQLDate = "2012-11-29"
+		  
+		  Dim d2 As New Date
+		  d2.SQLDate = "2012-11-30"
+		  
+		  Assert.AreNotEqual(d1, d2)
+		  
+		  d2 = Nil
+		  
+		  Assert.AreNotEqual(d1, d2)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreNotEqualDoubleTest()
 		  Dim d1 As Double = 1.01
@@ -197,12 +254,27 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqualMemoryBlockTest()
 		  Dim m1 As Global.MemoryBlock = "hello"
 		  Dim m2 As Global.MemoryBlock = "Hello"
 		  
 		  Assert.AreNotEqual(m1, m2)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreNotEqualNewDateTest()
+		  Dim d1 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
+		  
+		  Dim d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
+		  
+		  Assert.AreNotEqual(d1, d2)
+		  
+		  d2 = Nil
+		  
+		  Assert.AreNotEqual(d1, d2)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -217,8 +289,8 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
-		  Dim d1 As New Date
-		  Dim d2 As Date
+		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
+		  Dim d2 As Xojo.Core.Date
 		  
 		  d2 = d1
 		  
@@ -226,19 +298,19 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSameStringArrayTest()
 		  Dim s1() As String = Array("A", "B", "C")
 		  Dim s2() As String
 		  s2.Append("A")
 		  s2.Append("B")
 		  s2.Append("C")
-		  
 		  Assert.AreSame(s1, s2)
+		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSameStringTest()
 		  Dim s1 As String = "Hello"
 		  Dim s2 As String = "Hello"
@@ -300,7 +372,7 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub IsNotNilTest()
-		  Dim d As New Date
+		  Dim d As New Xojo.Core.Dictionary
 		  
 		  Assert.IsNotNil(d)
 		End Sub
