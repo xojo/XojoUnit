@@ -12,10 +12,10 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferent(expected As String, actual As String, message As Text = "")
-		  If StrComp(expected, actual, 0) <> 0 Then
+		  If expected.Encoding <> actual.Encoding Or StrComp(expected, actual, 0) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("String '" + actual.ToText + "' is the same", message )
+		    Fail("String '" + StringToText(actual) + "' is the same", message )
 		  End If
 		  
 		End Sub
@@ -118,8 +118,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		  If expected = actual Then
 		    Pass(message)
+		    Return
+		  End If
+		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
 		    Return
 		  End If
 		  
@@ -130,6 +135,7 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		    Return
 		  End If
 		  
 		  Dim sExpected As String = expected.StringValue(0, expectedSize)
@@ -227,8 +233,8 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If expected(i) <> actual(i) Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
 		      Return
 		    End If
@@ -245,7 +251,7 @@ Protected Class Assert
 		  If expected = actual Then
 		    Pass(message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		End Sub
 	#tag EndMethod
@@ -331,7 +337,9 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If  expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given Date is Nil", message)
+		  ElseIf expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
 		    Pass(message)
 		  Else
 		    Fail(FailEqualMessage(expected.ToText , actual.ToText), message)
@@ -341,8 +349,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected = actual Then
+		  If expected = actual Then
 		    Pass(message)
+		    Return
+		  End If
+		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
 		    Return
 		  End If
 		  
@@ -353,10 +366,9 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
 		  End If
-		  
-		  Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
-		  
 		End Sub
 	#tag EndMethod
 
@@ -411,36 +423,47 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
 		  //NCM-written
-		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
+		  If expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.TotalSeconds = actual.TotalSeconds Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.TotalSeconds.ToText, actual.TotalSeconds.ToText), message)
+		    Pass(message)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		  If expected = actual Then
 		    Fail("The MemoryBlocks are the same", message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
+		    
+		  ElseIf expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
-		  End If
-		  
-		  Dim sExpected As String = expected.StringValue(0, expectedSize)
-		  dim sActual As String = actual.StringValue(0, actualSize)
-		  
-		  If StrComp(sExpected, sActual, 0) <> 0 Then
-		    Pass(message)
+		    
 		  Else
-		    Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		    Dim expectedSize As Integer = expected.Size
+		    Dim actualSize As Integer = actual.Size
+		    
+		    If expectedSize <> actualSize Then
+		      Pass(message)
+		      
+		    Else
+		      
+		      Dim sExpected As String = expected.StringValue(0, expectedSize)
+		      dim sActual As String = actual.StringValue(0, actualSize)
+		      
+		      If StrComp(sExpected, sActual, 0) <> 0 Then
+		        Pass(message)
+		      Else
+		        Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		      End If
+		      
+		    End If
+		    
 		  End If
-		  
 		End Sub
 	#tag EndMethod
 
@@ -492,7 +515,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual.ToText + "' is equal to '" + expected.ToText + "'", message)
+		    Fail("The Strings '" + StringToText(actual) + " are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -502,7 +525,7 @@ Protected Class Assert
 		  If expected.Compare(actual) <> 0 Then
 		    Pass(message)
 		  Else
-		    Fail("Text '" + actual + "' is equal to '" + expected + "'", message)
+		    Fail("The Texts '" + actual + "' are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -550,39 +573,29 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If Not (expected Is actual) And expected.SecondsFrom1970 <> actual.SecondsFrom1970 Then
+		  If expected Is Nil Xor actual Is Nil Then
 		    Pass(message)
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		    Pass(message)
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
-		    Fail("The MemoryBlocks are the same", message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
+		  If expected Is Nil And actual Is Nil Then
+		    Fail("The given MemoryBlocks are both Nil", message)
+		  ElseIf expected Is Nil Xor actual Is Nil Then
+		    Pass(message)
+		  ElseIf expected = actual Then
+		    Fail("The MemoryBlocks are the same: " + EncodeHexNewMB(expected), message)
+		  Else
 		    Pass(message)
 		  End If
-		  
-		  Dim lastByteIndex As Integer = actualSize - 1
-		  For byteIndex As Integer = 0 To lastByteIndex
-		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
-		      Pass(message)
-		      Return
-		    End If
-		  Next byteIndex
-		  
-		  //
-		  // If we get here, it's the same
-		  //
-		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
 		  
 		End Sub
 	#tag EndMethod
@@ -613,9 +626,12 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If StrComp(expected(i), actual(i), 0) <> 0 Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i).ToText + "'", _
-		      "Array(" + i.ToText + ") = '" + actual(i).ToText + "'"), _
+		      Fail(FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
+		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
 		      message)
+		      Return
+		    ElseIf expected(i).Encoding <> actual(i).Encoding Then
+		      Fail("The text encoding of item " + i.ToText + " ('" + StringToText(expected(i)) + "') differs", message)
 		      Return
 		    End If
 		  Next
@@ -627,9 +643,13 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected As String, actual As String, message As Text = "")
 		  If StrComp(expected, actual, 0) = 0 Then
-		    Pass(message)
+		    If expected.Encoding <> actual.Encoding Then
+		      Fail("The bytes match but the text encoding does not", message)
+		    Else
+		      Pass(message)
+		    End if
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message )
+		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
 		  
 		End Sub
@@ -777,6 +797,21 @@ Protected Class Assert
 		  
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Private Function StringToText(s As String) As Text
+		  // Before a String can be converted to Text, it must have a valid encoding
+		  // to avoid an exception. If the encoding is not valid, we will hex-encode the string instead.
+		  
+		  If s.Encoding Is Nil Or Not s.Encoding.IsValidData(s) Then
+		    s = EncodeHex(s, True)
+		    s = s.DefineEncoding(Encodings.UTF8) // Just to make sure
+		  End If
+		  
+		  Return s.ToText
+		  
+		End Function
 	#tag EndMethod
 
 
