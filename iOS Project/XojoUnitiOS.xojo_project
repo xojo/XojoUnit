@@ -21,6 +21,7 @@ Picture=bug;../Shared Resources/Graphics/bug.png;&h2A8B1E86;&hB8AD6A1;false;0;&h
 Picture=control_play_blue;../Shared Resources/Graphics/control_play_blue.png;&h138146E2;&hB8AD6A1;false;0;&h0
 Picture=download;../Shared Resources/Graphics/download.png;&hC54EB15;&hB8AD6A1;false;0;&h0
 Class=iOSTestController;../Shared Resources/XojoUnit/iOSTestController.xojo_code;&h3FC78D4E;&h2516B04D;false
+Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h2FC99FFF;&h44C729E7;false
 DefaultScreen=iPhoneScreen
 DefaultTabletScreen=iPadScreen
 MajorVersion=1
