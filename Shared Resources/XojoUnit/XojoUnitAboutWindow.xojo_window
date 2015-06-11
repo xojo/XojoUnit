@@ -103,7 +103,7 @@ End
 #tag Events VersionLabel
 	#tag Event
 		Sub Open()
-		  Me.Text = "Version " + Str(App.MajorVersion) + "." + Str(App.MinorVersion) + "." + Str(App.BugVersion) + " (" + Str(App.NonReleaseVersion) + ")"
+		  Me.Text = "Version " + TestController.XojoUnitVersion
 		  
 		End Sub
 	#tag EndEvent
