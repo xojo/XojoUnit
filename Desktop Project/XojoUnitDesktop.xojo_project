@@ -16,6 +16,7 @@ Class=TestGroup;../Shared Resources/XojoUnit/TestFramework/TestGroup.xojo_code;&
 Class=TestController;../Shared Resources/XojoUnit/TestFramework/TestController.xojo_code;&h6FF90549;&h3E1A9B41;false
 Class=Assert;../Shared Resources/XojoUnit/TestFramework/Assert.xojo_code;&h6F374736;&h3E1A9B41;false
 Class=TestResult;../Shared Resources/XojoUnit/TestFramework/TestResult.xojo_code;&h1624A4EB;&h3E1A9B41;false
+Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h2FC99FFF;&h44C729E7;false
 DefaultWindow=XojoUnitTestWindow
 AppMenuBar=XojoUnitMenuBar
 MajorVersion=4
