@@ -48,6 +48,7 @@ Begin Window XojoUnitAboutWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "XojoUnit"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -82,6 +83,7 @@ Begin Window XojoUnitAboutWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Version"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -103,7 +105,7 @@ End
 #tag Events VersionLabel
 	#tag Event
 		Sub Open()
-		  Me.Text = "Version " + Str(App.MajorVersion) + "." + Str(App.MinorVersion) + "." + Str(App.BugVersion) + " (" + Str(App.NonReleaseVersion) + ")"
+		  Me.Text = "Version " + TestController.XojoUnitVersion
 		  
 		End Sub
 	#tag EndEvent
