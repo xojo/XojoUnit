@@ -1,9 +1,6 @@
 Type=Web
 RBProjectVersion=2015.022
 MinIDEVersion=20110400
-Picture=bug;../Shared Resources/Graphics/bug.png;&h7674E1F5;&h1A17BC03;false;0;&h0
-Picture=control_play_blue;../Shared Resources/Graphics/control_play_blue.png;&h521F1467;&h1A17BC03;false;0;&h0
-Picture=download;../Shared Resources/Graphics/download.png;&h4780B1E3;&h1A17BC03;false;0;&h0
 Class=App;App.xojo_code;&h5B4E0328;&h0;false
 WebSession=Session;Session.xojo_code;&h3BF03CAA;&h0;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h49BC33CE;&h0;false
@@ -21,7 +18,6 @@ WebStyle=FailedTestStyle;../Shared Resources/XojoUnit/Styles/FailedTestStyle.xoj
 WebStyle=PassedTestStyle;../Shared Resources/XojoUnit/Styles/PassedTestStyle.xojo_code;&h530F0C7F;&h2F517880;false
 WebStyle=LabelStyle;../Shared Resources/XojoUnit/Styles/LabelStyle.xojo_code;&hFDD219;&h2F517880;false
 WebStyle=HeadingStyle;../Shared Resources/XojoUnit/Styles/HeadingStyle.xojo_code;&h17ECA977;&h2F517880;false
-Folder=Graphics;../Shared Resources/Graphics;&h1A17BC03;&h7C0B8EB7;false
 WebView=XojoUnitTestPage;../Shared Resources/XojoUnit/XojoUnitTestPage.xojo_code;&h13D04FEA;&h7C0B8EB7;false
 Class=Assert;../Shared Resources/XojoUnit/TestFramework/Assert.xojo_code;&h6F374736;&h3E1A9B41;false
 Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h2FC99FFF;&h44C729E7;false

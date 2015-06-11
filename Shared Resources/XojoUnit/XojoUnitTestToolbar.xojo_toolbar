@@ -4,7 +4,6 @@ Begin Toolbar XojoUnitTestToolbar
 		Caption = "Run Tests"
 		HelpTag = ""
 		Style = 0
-		Icon = 327239394
 	End
 	Begin ToolButton ToolItem1
 		Caption = "Untitled"
@@ -15,7 +14,6 @@ Begin Toolbar XojoUnitTestToolbar
 		Caption = "Export Results"
 		HelpTag = ""
 		Style = 0
-		Icon = 206891797
 	End
 End
 #tag EndToolbar
