@@ -560,6 +560,13 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub WillTrulyFailTest()
+		  Assert.Fail("Yup it failed", "We expect this to fail")
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private ExpectedFailCount As Integer
