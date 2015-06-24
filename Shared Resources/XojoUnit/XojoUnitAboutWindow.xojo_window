@@ -1,5 +1,5 @@
 #tag Window
-Begin Window AboutWindow
+Begin Window XojoUnitAboutWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -26,34 +26,6 @@ Begin Window AboutWindow
    Title           =   "About XojoUnit"
    Visible         =   True
    Width           =   301
-   Begin Canvas AppIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   64
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   118
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   "0"
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   14
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   64
-   End
    Begin Label AppNameLabel
       AutoDeactivate  =   True
       Bold            =   True
@@ -72,7 +44,7 @@ Begin Window AboutWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
@@ -83,7 +55,7 @@ Begin Window AboutWindow
       TextFont        =   "System"
       TextSize        =   14.0
       TextUnit        =   0
-      Top             =   90
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -107,7 +79,7 @@ Begin Window AboutWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
@@ -118,7 +90,7 @@ Begin Window AboutWindow
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   110
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -130,17 +102,10 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events AppIcon
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(bug, 0, 0, g.Width, g.Height, 0, 0, bug.Width, bug.Height)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events VersionLabel
 	#tag Event
 		Sub Open()
-		  Me.Text = "Version " + Str(App.MajorVersion) + "." + Str(App.MinorVersion) + "." + Str(App.BugVersion) + " (" + Str(App.NonReleaseVersion) + ")"
+		  Me.Text = "Version " + TestController.XojoUnitVersion
 		  
 		End Sub
 	#tag EndEvent
@@ -240,6 +205,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"
@@ -320,6 +286,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Placement"
@@ -349,6 +316,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"

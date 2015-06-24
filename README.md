@@ -1,7 +1,7 @@
 XojoUnit
 ========
 
-A Unit Testing framework for Xojo.
+A Unit Testing framework for Xojo. 
 
 ## How to Use
 

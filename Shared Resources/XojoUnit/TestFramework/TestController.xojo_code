@@ -14,6 +14,45 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub ExportTestResults(filePath As Text)
+		  #If TargetWin32 Then
+		    Const kEOL As Text = &u0D + &u0A
+		  #Else
+		    Const kEOL As Text = &u0A
+		  #Endif
+		  
+		  Dim f as FolderItem
+		  f = New FolderItem(filePath, FolderItem.PathTypeShell)
+		  Dim stream as BinaryStream
+		  If f <> Nil Then
+		    stream=BinaryStream.Create(f, True)
+		    stream.Write "<?xml version=""1.0"" encoding=""UTF-8"" ?>" + kEOL
+		    stream.Write "<testsuites>" + kEOL
+		    For Each tg As TestGroup In mTestGroups
+		      stream.Write "  <testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToText + """ tests=""" + tg.TestCount.ToText + """ time=""" + tg.Duration.ToText + """ failures=""" + tg.FailedTestCount.ToText + """ name=""com.atlassian.bamboo.labels." + tg.Name + """>" + kEOL
+		      For Each tr As TestResult In tg.Results
+		        stream.Write "    <testcase name=""" + tr.TestName + """ duration=""" + tr.Duration.ToText + """>" + kEOL
+		        if tr.Result = TestResult.Skipped then
+		          stream.Write "       <skipped />" + EndOfLine
+		        end
+		        if tr.Result = TestResult.Failed then
+		          dim failMessage As Text = tr.Message
+		          failMessage = failMessage.ReplaceAll("<", "&lt;")
+		          failMessage = failMessage.ReplaceAll(">", "&gt;")
+		          stream.Write "       <failure type=""xojo.AssertionFailedError"" message=""" + failMessage + """/>" + kEOL
+		        end
+		        stream.Write "    </testcase>" + kEOL
+		      Next
+		      stream.Write "  </testsuite>" + kEOL
+		    Next
+		    stream.Write "</testsuites>" + kEOL
+		    stream.Close
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub LoadTestGroups()
 		  InitializeTestGroups
@@ -175,6 +214,10 @@ Protected Class TestController
 		#tag EndGetter
 		SkippedCount As Integer
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = XojoUnitVersion, Type = String, Dynamic = False, Default = \"4.5", Scope = Public
+	#tag EndConstant
 
 
 	#tag ViewBehavior

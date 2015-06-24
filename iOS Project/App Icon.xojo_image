@@ -1,0 +1,235 @@
+#tag MultiImage
+Image App Icon
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 16
+			Orientation = Any
+			Platform = 6
+			PPI = 72
+			VSize = 16
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 16
+			Orientation = Any
+			Platform = 2
+			PPI = 144
+			VSize = 16
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 32
+			Orientation = Any
+			Platform = 6
+			PPI = 72
+			VSize = 32
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 32
+			Orientation = Any
+			Platform = 2
+			PPI = 144
+			VSize = 32
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Tiles / Thumbnails
+			Device = 16
+			HSize = 48
+			Orientation = Any
+			Platform = 4
+			PPI = 96
+			VSize = 48
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 128
+			Orientation = Any
+			Platform = 2
+			PPI = 72
+			VSize = 128
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 128
+			Orientation = Any
+			Platform = 2
+			PPI = 144
+			VSize = 128
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 256
+			Orientation = Any
+			Platform = 6
+			PPI = 72
+			VSize = 256
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 256
+			Orientation = Any
+			Platform = 2
+			PPI = 144
+			VSize = 256
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 512
+			Orientation = Any
+			Platform = 2
+			PPI = 72
+			VSize = 512
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 16
+			HSize = 512
+			Orientation = Any
+			Platform = 2
+			PPI = 144
+			VSize = 512
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Settings\niOS 5-8
+			Device = 2
+			HSize = 29
+			Orientation = Any
+			Platform = 1
+			PPI = 72
+			VSize = 29
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Settings\niOS 5-8
+			Device = 7
+			HSize = 29
+			Orientation = Any
+			Platform = 1
+			PPI = 144
+			VSize = 29
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Settings\niOS 5-8
+			Device = 1
+			HSize = 29
+			Orientation = Any
+			Platform = 1
+			PPI = 216
+			VSize = 29
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Spotlight\niOS 7\x2C8
+			Device = 2
+			HSize = 40
+			Orientation = Any
+			Platform = 1
+			PPI = 72
+			VSize = 40
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Spotlight\niOS 7\x2C 8
+			Device = 7
+			HSize = 40
+			Orientation = Any
+			Platform = 1
+			PPI = 144
+			VSize = 40
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = Spotlight\niOS 7\x2C 8
+			Device = 1
+			HSize = 40
+			Orientation = Any
+			Platform = 1
+			PPI = 216
+			VSize = 40
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = App\niOS 7\x2C 8
+			Device = 1
+			HSize = 60
+			Orientation = Any
+			Platform = 1
+			PPI = 144
+			VSize = 60
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = App\niOS 7\x2C 8
+			Device = 1
+			HSize = 60
+			Orientation = Any
+			Platform = 1
+			PPI = 216
+			VSize = 60
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = App\niOS 7\x2C8
+			Device = 2
+			HSize = 76
+			Orientation = Any
+			Platform = 1
+			PPI = 72
+			VSize = 76
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = App\niOS 7\x2C8
+			Device = 2
+			HSize = 76
+			Orientation = Any
+			Platform = 1
+			PPI = 144
+			VSize = 76
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

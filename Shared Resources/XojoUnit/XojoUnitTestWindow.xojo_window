@@ -1,5 +1,5 @@
 #tag Window
-Begin Window TestWindow
+Begin Window XojoUnitTestWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -125,7 +125,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Start:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -160,7 +159,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -195,7 +193,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Total:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -230,7 +227,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -265,7 +261,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Failed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -300,7 +295,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Skipped:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -335,7 +329,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   6
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "1/1/2012 12:00PM"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -370,7 +363,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -405,7 +397,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   8
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "100 tests in 10 groups"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -440,7 +431,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   9
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -475,7 +465,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   10
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -510,7 +499,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -573,7 +561,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Test Name"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -608,7 +595,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -643,7 +629,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -674,7 +659,7 @@ Begin Window TestWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   304
+         Left            =   306
          LimitText       =   0
          LineHeight      =   0.0
          LineSpacing     =   0.0
@@ -698,7 +683,7 @@ Begin Window TestWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   349
+         Top             =   346
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -726,7 +711,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Messages:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -761,7 +745,6 @@ Begin Window TestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -775,7 +758,7 @@ Begin Window TestWindow
          Width           =   100
       End
    End
-   Begin TestToolbar TestToolbar1
+   Begin XojoUnitTestToolbar TestToolbar1
       Enabled         =   True
       Height          =   90
       Index           =   -2147483648
@@ -783,7 +766,7 @@ Begin Window TestWindow
       Left            =   -40
       LockedInPosition=   False
       Scope           =   0
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
       Top             =   639
       Visible         =   True
       Width           =   463
@@ -798,6 +781,17 @@ End
 		  mController.LoadTestGroups
 		  
 		  PopulateTestGroups
+		  
+		  // Run unit tests now and exit?
+		  dim args(-1) as String
+		  args = Split(System.CommandLine().Lowercase(), " ")
+		  dim runUnitTest as Integer = args.IndexOf("--rununittests")
+		  if runUnitTest > 0 and Ubound(args) > runUnitTest then
+		    RunTests
+		    ExportTests args(runUnitTest + 1)
+		    Quit
+		  end
+		  
 		End Sub
 	#tag EndEvent
 
@@ -831,13 +825,20 @@ End
 
 	#tag MenuHandler
 		Function HelpAboutXojoUnit() As Boolean Handles HelpAboutXojoUnit.Action
-			AboutWindow.Show
+			XojoUnitAboutWindow.Show
 			
 			Return True
 			
 		End Function
 	#tag EndMenuHandler
 
+
+	#tag Method, Flags = &h0
+		Sub ExportTests(filePath As String)
+		  mController.ExportTestResults filePath.ToText
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
@@ -876,12 +877,21 @@ End
 		  FailedCountLabel.Text = Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)"
 		  SkippedCountLabel.Text = Str(mController.SkippedCount)
 		  
-		  For i As Integer = TestGroupList.ListCount-1 DownTo 0
-		    TestGroupList.Expanded(i) = False
+		  Dim lastRow As Integer
+		  
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    If TestGroupList.RowIsFolder(row) Then
+		      TestGroupList.Expanded(row) = False
+		    End If
 		  Next
 		  
-		  For i As Integer = TestGroupList.ListCount-1 DownTo 0
-		    TestGroupList.Expanded(i) = True
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    Dim g As TestGroup = TestGroup(TestGroupList.RowTag(row))
+		    If g.IncludeGroup Then
+		      TestGroupList.Expanded(row) = True
+		    End If
 		  Next
 		  
 		End Sub
@@ -978,6 +988,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
+		  #Pragma Unused column
+		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
 		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
@@ -985,6 +997,9 @@ End
 		    End If
 		    
 		    Return True
+		  #Else
+		    #Pragma Unused g
+		    #Pragma Unused row
 		  #Endif
 		  
 		End Function
@@ -1009,6 +1024,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  base.Append(New MenuItem("Select All"))
 		  base.Append(New MenuItem("Select Inverse"))
 		  base.Append(New MenuItem("Select None"))
@@ -1018,6 +1036,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		  #Pragma Unused column
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  If Me.Cell(row, 1) = TestResult.Failed Then
 		    g.ForeColor = &cFF0000
 		    g.Bold = True
@@ -1035,6 +1057,17 @@ End
 		  Case "RunButton"
 		    RunTests
 		  Case "ExportButton"
+		    Dim dlg as New SaveAsDialog
+		    Dim f as FolderItem
+		    dlg.InitialDirectory = SpecialFolder.Documents
+		    dlg.promptText = "Save results as"
+		    dlg.SuggestedFileName = "results.xml"
+		    dlg.Title = "Save Results"
+		    dlg.Filter = "xml"
+		    f = dlg.ShowModal()
+		    If f <> Nil then
+		      ExportTests f.NativePath
+		    End if
 		  End Select
 		End Sub
 	#tag EndEvent
@@ -1134,6 +1167,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"
@@ -1214,6 +1248,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Placement"
@@ -1243,6 +1278,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
