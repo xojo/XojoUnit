@@ -216,7 +216,7 @@ Protected Class TestController
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = XojoUnitVersion, Type = String, Dynamic = False, Default = \"4.5", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"4.5", Scope = Public
 	#tag EndConstant
 
 
