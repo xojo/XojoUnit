@@ -717,9 +717,8 @@ Protected Class Assert
 		  Failed = True
 		  Group.CurrentTestResult.Result = TestResult.Failed
 		  
-		  If Group.CurrentTestResult.Message = "" Then
-		    Message(message + ": " + failMessage)
-		  End If
+		  Message(message + ": " + failMessage)
+		  
 		End Sub
 	#tag EndMethod
 
