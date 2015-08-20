@@ -718,9 +718,7 @@ Protected Class Assert
 		  Group.CurrentTestResult.Result = TestResult.Failed
 		  
 		  If Group.CurrentTestResult.Message = "" Then
-		    Group.CurrentTestResult.Message = message + ": " + failMessage
-		  Else
-		    Group.CurrentTestResult.Message = Group.CurrentTestResult.Message + &u0A + message + ": " + failMessage
+		    Message(message + ": " + failMessage)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -792,7 +790,7 @@ Protected Class Assert
 		  Failed = False
 		  If Group.CurrentTestResult.Result <> TestResult.Failed Then
 		    Group.CurrentTestResult.Result = TestResult.Passed
-		    Group.CurrentTestResult.Message = message
+		    Message(message)
 		  End If
 		  
 		  
