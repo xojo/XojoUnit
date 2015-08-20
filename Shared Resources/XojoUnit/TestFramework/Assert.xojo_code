@@ -777,7 +777,12 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub Message(msg As Text)
-		  If Group.CurrentTestResult.Message = "" Then
+		  msg = msg.Trim
+		  if msg.Empty then
+		    return
+		  end if
+		  
+		  If Group.CurrentTestResult.Message.Empty Then
 		    Group.CurrentTestResult.Message = msg
 		  Else
 		    Group.CurrentTestResult.Message = Group.CurrentTestResult.Message + &u0A + msg
