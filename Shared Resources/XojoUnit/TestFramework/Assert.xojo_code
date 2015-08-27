@@ -3,7 +3,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreDifferent(expected As Object, actual As Object, message As Text = "")
 		  If Not (expected Is actual) Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("Objects are the same", message)
 		  End If
@@ -13,7 +13,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreDifferent(expected As String, actual As String, message As Text = "")
 		  If expected.Encoding <> actual.Encoding Or StrComp(expected, actual, 0) <> 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("String '" + StringToText(actual) + "' is the same", message )
 		  End If
@@ -24,7 +24,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreDifferent(expected As Text, actual As Text, message As Text = "")
 		  If expected.Compare(actual, Text.CompareCaseSensitive) <> 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("Text '" + actual + "' is the same", message )
 		  End If
@@ -37,7 +37,7 @@ Protected Class Assert
 		  Dim expectedColor, actualColor As Text
 		  
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    expectedColor = "RGB(" + expected.Red.ToText + ", " + expected.Green.ToText + ", " + expected.Blue.ToText + ")"
 		    actualColor = "RGB(" + actual.Red.ToText + ", " + actual.Green.ToText + ", " + actual.Blue.ToText + ")"
@@ -49,7 +49,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Currency, actual As Currency, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -79,7 +79,7 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
@@ -89,7 +89,7 @@ Protected Class Assert
 		  
 		  diff = Abs(expected - actual)
 		  If diff <= (Abs(tolerance) + 0.00000001) Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    'Fail(FailEqualMessage(Format(expected, "-#########.##########"), Format(actual, "-#########.##########")), message)
 		    Fail(FailEqualMessage(expected.ToText(Xojo.Core.Locale.Current, "-#########.##########"), actual.ToText(Xojo.Core.Locale.Current, "-#########.##########")), message)
@@ -109,7 +109,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
 		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ShortDate.ToText + " " + expected.LongTime.ToText, actual.ShortDate.ToText + " " + actual.LongTime.ToText), message)
 		  End If
@@ -118,8 +118,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
-		    Pass(message)
+		  If expected = actual Then
+		    Pass()
+		    Return
+		  End If
+		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
 		    Return
 		  End If
 		  
@@ -130,13 +135,14 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		    Return
 		  End If
 		  
 		  Dim sExpected As String = expected.StringValue(0, expectedSize)
 		  Dim sActual As String = actual.StringValue(0, actualSize)
 		  
 		  If StrComp(sExpected, sActual, 0) = 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(EncodeHex(sExpected, True).ToText, EncodeHex(sActual, True).ToText), message )
 		  End If
@@ -147,7 +153,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int16, actual As Int16, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -157,7 +163,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int32, actual As Int32, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -167,7 +173,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int64, actual As Int64, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -177,7 +183,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int8, actual As Int8, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -207,7 +213,7 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
@@ -234,7 +240,7 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
@@ -243,7 +249,7 @@ Protected Class Assert
 		  // This is a case-insensitive comparison
 		  
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
@@ -273,7 +279,7 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
@@ -282,7 +288,7 @@ Protected Class Assert
 		  // This is a case-insensitive comparison
 		  
 		  If expected.Compare(actual) = 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected, actual), message )
 		  End If
@@ -292,7 +298,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As UInt16, actual As UInt16, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -302,7 +308,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As UInt32, actual As UInt32, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -312,7 +318,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As UInt64, actual As UInt64, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -322,7 +328,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As UInt8, actual As UInt8, message As Text = "")
 		  If expected = actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -331,8 +337,10 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If  expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
-		    Pass(message)
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given Date is Nil", message)
+		  ElseIf expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText , actual.ToText), message)
 		  End If
@@ -341,8 +349,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected = actual Then
-		    Pass(message)
+		  If expected = actual Then
+		    Pass()
+		    Return
+		  End If
+		  
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given MemoryBlock is Nil", message)
 		    Return
 		  End If
 		  
@@ -353,10 +366,9 @@ Protected Class Assert
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
 		    "] but was [" + actualSize.ToText + "].", _
 		    message)
+		  Else
+		    Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
 		  End If
-		  
-		  Fail(FailEqualMessage(EncodeHexNewMB(expected), EncodeHexNewMB(actual)), message )
-		  
 		End Sub
 	#tag EndMethod
 
@@ -365,7 +377,7 @@ Protected Class Assert
 		  Dim expectedColor, actualColor As Text
 		  
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    expectedColor = "RGB(" + expected.Red.ToText + ", " + expected.Green.ToText + ", " + expected.Blue.ToText + ")"
 		    actualColor = "RGB(" + actual.Red.ToText + ", " + actual.Green.ToText + ", " + actual.Blue.ToText + ")"
@@ -378,7 +390,7 @@ Protected Class Assert
 		Sub AreNotEqual(expected As Currency, actual As Currency, message As Text = "")
 		  //NCM-written
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -391,7 +403,7 @@ Protected Class Assert
 		  
 		  diff = Abs(expected - actual)
 		  If diff > (Abs(tolerance) + 0.00000001) Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    'Fail(FailEqualMessage(Format(expected, "-#########.##########"), Format(actual, "-#########.##########")), message)
 		    Fail(FailEqualMessage(expected.ToText(Xojo.Core.Locale.Current, "-#########.##########"), actual.ToText(Xojo.Core.Locale.Current, "-#########.##########")), message)
@@ -411,43 +423,54 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As Text = "")
 		  //NCM-written
-		  If Not (expected Is actual) And expected.TotalSeconds <> actual.TotalSeconds Then
-		    Pass(message)
+		  If expected Is Nil Xor actual Is Nil Then
+		    Pass()
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.TotalSeconds = actual.TotalSeconds Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.TotalSeconds.ToText, actual.TotalSeconds.ToText), message)
+		    Pass()
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
-		  If expected IsA Global.MemoryBlock And expected Is actual Then
+		  If expected = actual Then
 		    Fail("The MemoryBlocks are the same", message)
-		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
-		    Pass(message)
-		  End If
-		  
-		  Dim sExpected As String = expected.StringValue(0, expectedSize)
-		  dim sActual As String = actual.StringValue(0, actualSize)
-		  
-		  If StrComp(sExpected, sActual, 0) <> 0 Then
-		    Pass(message)
+		    
+		  ElseIf expected Is Nil Xor actual Is Nil Then
+		    Pass()
+		    
 		  Else
-		    Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		    Dim expectedSize As Integer = expected.Size
+		    Dim actualSize As Integer = actual.Size
+		    
+		    If expectedSize <> actualSize Then
+		      Pass()
+		      
+		    Else
+		      
+		      Dim sExpected As String = expected.StringValue(0, expectedSize)
+		      dim sActual As String = actual.StringValue(0, actualSize)
+		      
+		      If StrComp(sExpected, sActual, 0) <> 0 Then
+		        Pass()
+		      Else
+		        Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		      End If
+		      
+		    End If
+		    
 		  End If
-		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Int16, actual As Int16, message As Text = "")
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -458,7 +481,7 @@ Protected Class Assert
 		Sub AreNotEqual(expected As Int32, actual As Int32, message As Text = "")
 		  //NCM-written
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -469,7 +492,7 @@ Protected Class Assert
 		Sub AreNotEqual(expected As Int64, actual As Int64, message As Text = "")
 		  //NCM-written
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -479,7 +502,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Int8, actual As Int8, message As Text = "")
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -490,7 +513,7 @@ Protected Class Assert
 		Sub AreNotEqual(expected As String, actual As String, message As Text = "")
 		  //NCM-written
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("The Strings '" + StringToText(actual) + " are equal but shouldn't be", message)
 		  End If
@@ -500,7 +523,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Text, actual As Text, message As Text = "")
 		  If expected.Compare(actual) <> 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("The Texts '" + actual + "' are equal but shouldn't be", message)
 		  End If
@@ -510,7 +533,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As UInt16, actual As UInt16, message As Text = "")
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -520,7 +543,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As UInt32, actual As UInt32, message As Text = "")
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -531,7 +554,7 @@ Protected Class Assert
 		Sub AreNotEqual(expected As UInt64, actual As UInt64, message As Text = "")
 		  //NCM-written
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -541,7 +564,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As UInt8, actual As UInt8, message As Text = "")
 		  If expected <> actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
 		  End If
@@ -550,39 +573,29 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As Text = "")
-		  If Not (expected Is actual) And expected.SecondsFrom1970 <> actual.SecondsFrom1970 Then
-		    Pass(message)
+		  If expected Is Nil Xor actual Is Nil Then
+		    Pass()
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Fail("Both Dates are the same", message)
 		  Else
-		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		    Pass()
 		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
 		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As Text = "")
-		  If expected IsA Xojo.Core.MemoryBlock And expected Is actual Then
-		    Fail("The MemoryBlocks are the same", message)
+		  If expected Is Nil And actual Is Nil Then
+		    Fail("The given MemoryBlocks are both Nil", message)
+		  ElseIf expected Is Nil Xor actual Is Nil Then
+		    Pass()
+		  ElseIf expected = actual Then
+		    Fail("The MemoryBlocks are the same: " + EncodeHexNewMB(expected), message)
+		  Else
+		    Pass()
 		  End If
-		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
-		  
-		  If expectedSize <> actualSize Then
-		    Pass(message)
-		  End If
-		  
-		  Dim lastByteIndex As Integer = actualSize - 1
-		  For byteIndex As Integer = 0 To lastByteIndex
-		    If expected.Data.Byte(byteIndex) <> actual.Data.Byte(byteIndex) Then
-		      Pass(message)
-		      Return
-		    End If
-		  Next byteIndex
-		  
-		  //
-		  // If we get here, it's the same
-		  //
-		  Fail("The MemoryBlock is the same: " + EncodeHexNewMB(expected), message )
 		  
 		End Sub
 	#tag EndMethod
@@ -590,7 +603,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreSame(expected As Object, actual As Object, message As Text = "")
 		  If expected Is actual Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("Objects are not the same", message)
 		  End If
@@ -623,7 +636,7 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
@@ -633,7 +646,7 @@ Protected Class Assert
 		    If expected.Encoding <> actual.Encoding Then
 		      Fail("The bytes match but the text encoding does not", message)
 		    Else
-		      Pass(message)
+		      Pass()
 		    End if
 		  Else
 		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
@@ -665,14 +678,14 @@ Protected Class Assert
 		    End If
 		  Next
 		  
-		  Pass(message)
+		  Pass()
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub AreSame(expected As Text, actual As Text, message As Text = "")
 		  If expected.Compare(actual, Text.CompareCaseSensitive) = 0 Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected, actual), message )
 		  End If
@@ -704,11 +717,8 @@ Protected Class Assert
 		  Failed = True
 		  Group.CurrentTestResult.Result = TestResult.Failed
 		  
-		  If Group.CurrentTestResult.Message = "" Then
-		    Group.CurrentTestResult.Message = message + ": " + failMessage
-		  Else
-		    Group.CurrentTestResult.Message = Group.CurrentTestResult.Message + &u0A + message + ": " + failMessage
-		  End If
+		  Message(message + ": " + failMessage)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -727,7 +737,7 @@ Protected Class Assert
 		  If condition Then
 		    Fail("[false] expected, but was [true].", message)
 		  Else
-		    Pass(message)
+		    Pass()
 		  End If
 		End Sub
 	#tag EndMethod
@@ -735,7 +745,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub IsNil(anObject As Object, message As Text = "")
 		  If anObject = Nil Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("Object was expected to be [nil], but was not.", message)
 		  End If
@@ -746,7 +756,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub IsNotNil(anObject As Object, message As Text = "")
 		  If anObject <> Nil Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("Expected value not to be [nil], but was [nil].", message)
 		  End If
@@ -757,7 +767,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub IsTrue(condition As Boolean, message As Text = "")
 		  If condition Then
-		    Pass(message)
+		    Pass()
 		  Else
 		    Fail("[true] expected, but was [false].", message)
 		  End If
@@ -766,7 +776,12 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub Message(msg As Text)
-		  If Group.CurrentTestResult.Message = "" Then
+		  msg = msg.Trim
+		  if msg.Empty then
+		    return
+		  end if
+		  
+		  If Group.CurrentTestResult.Message.Empty Then
 		    Group.CurrentTestResult.Message = msg
 		  Else
 		    Group.CurrentTestResult.Message = Group.CurrentTestResult.Message + &u0A + msg
@@ -779,7 +794,7 @@ Protected Class Assert
 		  Failed = False
 		  If Group.CurrentTestResult.Result <> TestResult.Failed Then
 		    Group.CurrentTestResult.Result = TestResult.Passed
-		    Group.CurrentTestResult.Message = message
+		    Message(message)
 		  End If
 		  
 		  

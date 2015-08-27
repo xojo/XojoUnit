@@ -12,6 +12,7 @@ Class=TestResult;../Shared Resources/XojoUnit/TestFramework/TestResult.xojo_code
 Folder=Tests;../Shared Resources/XojoUnit/Tests;&h44C729E7;&h32180256;false
 Class=XojoUnitTests;../Shared Resources/XojoUnit/Tests/XojoUnitTests.xojo_code;&h45CA76B3;&h44C729E7;false
 Class=Assert;../Shared Resources/XojoUnit/TestFramework/Assert.xojo_code;&h6F374736;&h3E1A9B41;false
+Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h2FC99FFF;&h44C729E7;false
 MajorVersion=1
 MinorVersion=0
 SubVersion=0

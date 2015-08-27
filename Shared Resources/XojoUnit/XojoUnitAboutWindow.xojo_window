@@ -26,34 +26,6 @@ Begin Window XojoUnitAboutWindow
    Title           =   "About XojoUnit"
    Visible         =   True
    Width           =   301
-   Begin Canvas AppIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   64
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   118
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   14
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   64
-   End
    Begin Label AppNameLabel
       AutoDeactivate  =   True
       Bold            =   True
@@ -76,13 +48,14 @@ Begin Window XojoUnitAboutWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "XojoUnit"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   14.0
       TextUnit        =   0
-      Top             =   90
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -110,13 +83,14 @@ Begin Window XojoUnitAboutWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Version"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   110
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -128,19 +102,10 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events AppIcon
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  #Pragma Unused areas
-		  
-		  g.DrawPicture(bug, 0, 0, g.Width, g.Height, 0, 0, bug.Width, bug.Height)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events VersionLabel
 	#tag Event
 		Sub Open()
-		  Me.Text = "Version " + Str(App.MajorVersion) + "." + Str(App.MinorVersion) + "." + Str(App.BugVersion) + " (" + Str(App.NonReleaseVersion) + ")"
+		  Me.Text = "Version " + TestController.XojoUnitVersion
 		  
 		End Sub
 	#tag EndEvent

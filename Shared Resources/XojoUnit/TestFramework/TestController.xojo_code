@@ -216,6 +216,10 @@ Protected Class TestController
 	#tag EndComputedProperty
 
 
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"4.5", Scope = Public
+	#tag EndConstant
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AllTestCount"

@@ -1,11 +1,21 @@
 #tag IOSScreen
-	OrientationPortrait = True
+	OrientationPortrait = False
 	OrientationLandscapeLeft = True
 	OrientationLandscapeRight = True
-	OrientationPortraitUpsideDown = True
+	OrientationPortraitUpsideDown = False
 	Begin ScreenContent
 		ItemName = 
-		Target = 436670463
+		Target = -1
 		Icon = 0
+			Begin ScreenContent
+				ItemName = Tab 0
+				Target = 436670463
+				Icon = 0
+			End ScreenContent
+			Begin ScreenContent
+				ItemName = Tab 1
+				Target = 559814655
+				Icon = 0
+			End ScreenContent
 	End ScreenContent
 #tag EndIOSScreen
