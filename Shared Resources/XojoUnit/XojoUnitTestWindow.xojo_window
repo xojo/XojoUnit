@@ -103,7 +103,7 @@ Begin Window XojoUnitTestWindow
       Underline       =   False
       Visible         =   True
       Width           =   494
-      Begin Label Label2
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -111,7 +111,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   1
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   295
@@ -137,7 +137,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label3
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -145,7 +145,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   2
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   540
@@ -171,7 +171,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   100
       End
-      Begin Label Label4
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -179,7 +179,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   3
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   295
@@ -205,7 +205,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label5
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -213,7 +213,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   4
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   295
@@ -239,7 +239,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label6
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -247,7 +247,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   5
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   295
@@ -273,7 +273,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label7
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -281,7 +281,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   6
          InitialParent   =   "GroupBox1"
          Italic          =   False
          Left            =   295
@@ -573,7 +573,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   242
       End
-      Begin Label Label1
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -581,7 +581,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   0
          InitialParent   =   "GroupBox2"
          Italic          =   False
          Left            =   304
@@ -689,7 +689,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   463
       End
-      Begin Label Label9
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -697,7 +697,7 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
+         Index           =   7
          InitialParent   =   "GroupBox2"
          Italic          =   False
          Left            =   304
