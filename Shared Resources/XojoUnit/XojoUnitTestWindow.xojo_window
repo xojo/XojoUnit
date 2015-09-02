@@ -76,14 +76,14 @@ Begin Window XojoUnitTestWindow
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin GroupBox GroupBox1
+   Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "Overview"
       Enabled         =   True
       Height          =   188
       HelpTag         =   ""
-      Index           =   -2147483648
+      Index           =   0
       InitialParent   =   ""
       Italic          =   False
       Left            =   286
@@ -112,7 +112,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   1
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -146,7 +146,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   2
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   540
          LockBottom      =   False
@@ -180,7 +180,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   3
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -214,7 +214,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   4
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -248,7 +248,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   5
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -282,7 +282,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   6
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -316,7 +316,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -350,7 +350,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   620
          LockBottom      =   False
@@ -384,7 +384,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -418,7 +418,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -452,7 +452,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -486,7 +486,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -512,14 +512,14 @@ Begin Window XojoUnitTestWindow
          Width           =   100
       End
    End
-   Begin GroupBox GroupBox2
+   Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "Selected Test Results"
       Enabled         =   True
       Height          =   366
       HelpTag         =   ""
-      Index           =   -2147483648
+      Index           =   1
       InitialParent   =   ""
       Italic          =   False
       Left            =   286
@@ -548,7 +548,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -582,7 +582,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   0
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -616,7 +616,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   420
          LockBottom      =   False
@@ -657,7 +657,7 @@ Begin Window XojoUnitTestWindow
          HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   306
          LimitText       =   0
@@ -698,7 +698,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   7
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -732,7 +732,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   667
          LockBottom      =   False
