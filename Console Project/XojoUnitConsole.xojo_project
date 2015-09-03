@@ -1,5 +1,5 @@
 Type=Console
-RBProjectVersion=2015.022
+RBProjectVersion=2015.024
 MinIDEVersion=20070100
 Class=App;App.xojo_code;&h3B77B45F;&h0;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h2FE3291F;&h0;false
