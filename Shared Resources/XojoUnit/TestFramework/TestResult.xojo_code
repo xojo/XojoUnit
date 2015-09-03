@@ -5,7 +5,15 @@ Protected Class TestResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		IncludeMethod As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Message As Text
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		MethodInfo As Xojo.Introspection.MethodInfo
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -53,7 +61,7 @@ Protected Class TestResult
 		#tag ViewProperty
 			Name="Message"
 			Group="Behavior"
-			Type="String"
+			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -65,7 +73,7 @@ Protected Class TestResult
 		#tag ViewProperty
 			Name="Result"
 			Group="Behavior"
-			Type="String"
+			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -77,7 +85,7 @@ Protected Class TestResult
 		#tag ViewProperty
 			Name="TestName"
 			Group="Behavior"
-			Type="String"
+			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
