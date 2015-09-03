@@ -16,6 +16,9 @@ Inherits ConsoleApplication
 		  mController = New ConsoleTestController
 		  mController.LoadTestGroups
 		  
+		  // Filter Tests
+		  FilterTests
+		  
 		  // Run Tests
 		  Print "Running Tests..."
 		  mController.Start
@@ -41,6 +44,42 @@ Inherits ConsoleApplication
 		End Function
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h21
+		Private Sub FilterTests()
+		  // Filter the tests based on the Include and Exclude options
+		  
+		  Dim includeOption As Option = mOptions.OptionValue(kOptionInclude)
+		  Dim excludeOption As Option = mOptions.OptionValue(kOptionExclude)
+		  
+		  If includeOption.WasSet Or excludeOption.WasSet Then
+		    Print "Filtering Tests..."
+		  Else
+		    Return
+		  End If
+		  
+		  Dim groups() As TestGroup = mController.TestGroups
+		  Dim rx As New RegEx
+		  
+		  If includeOption.WasSet Then
+		    Dim includes() As Variant = includeOption.Value
+		    For Each pattern As String In includes
+		      // Turn the pattern into a RegEx
+		      pattern = pattern.ReplaceAll("*", &u0)
+		      pattern = "\Q" + pattern.ReplaceAll("\E", "\\EE\Q") + "\E"
+		      pattern = pattern.ReplaceAll(&u0, "\E.*\Q")
+		      rx.SearchPattern = pattern
+		      
+		      For Each group As TestGroup In groups
+		        If rx.Search(group.Name) Is Nil Then
+		          group.IncludeGroup = False
+		        End If
+		      Next
+		    Next
+		    
+		  End If
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function OutputResults() As FolderItem
@@ -105,11 +144,11 @@ Inherits ConsoleApplication
 		  
 		  Dim o As Option
 		  
-		  o = New Option("i", kOptionInclude, "Include a group[.method] (* is wildcard)", Option.OptionType.String)
+		  o = New Option("i", kOptionInclude, "Include a Group[.Method] (* is wildcard)", Option.OptionType.String)
 		  o.IsArray = True
 		  parser.AddOption o
 		  
-		  o = New Option("x", kOptionExclude, "Exclude a group[.method] (* is wildcard)", Option.OptionType.String)
+		  o = New Option("x", kOptionExclude, "Exclude a Group[.Method] (* is wildcard)", Option.OptionType.String)
 		  o.IsArray = True
 		  parser.AddOption o
 		  
