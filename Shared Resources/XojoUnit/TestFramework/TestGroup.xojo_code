@@ -53,7 +53,7 @@ Protected Class TestGroup
 		  methods = info.Methods
 		  
 		  For Each m As Xojo.Introspection.MethodInfo In methods
-		    If m.Name.Right(4) = kTestSuffix Then
+		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
 		      tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
@@ -95,7 +95,7 @@ Protected Class TestGroup
 		    Dim param() As Auto
 		    Dim rv As Auto
 		    
-		    If m.Name.Right(4) = kTestSuffix Then
+		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
 		      
 		      Try
 		        CurrentTestResult = GetTestResult(m.Name)
