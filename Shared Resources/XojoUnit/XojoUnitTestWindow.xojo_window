@@ -943,15 +943,14 @@ End
 		  g = Me.RowTag(row)
 		  
 		  If g <> Nil Then
-		    For Each t As TestResult In g.Results
-		      Me.AddRow(t.TestName)
+		    For Each result As TestResult In g.Results
+		      Me.AddRow(result.TestName)
+		      Me.Cell(Me.LastIndex, 1) = result.Result
 		      
-		      If t.Result <> "" Then
-		        Me.Cell(Me.LastIndex, 0) = t.TestName
-		        Me.Cell(Me.LastIndex, 1) = t.Result
-		      End If
+		      Me.ColumnType(2) = ListBox.TypeCheckbox
+		      Me.CellCheck(Me.LastIndex, 2) = result.IncludeMethod
 		      
-		      Me.RowTag(Me.LastIndex) = t
+		      Me.RowTag(Me.LastIndex) = result
 		    Next
 		  End If
 		End Sub
@@ -979,10 +978,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub CellAction(row As Integer, column As Integer)
-		  If column = 2 And Me.RowTag(row) IsA TestGroup Then
-		    Dim tg As TestGroup
-		    tg = Me.RowTag(row)
-		    tg.IncludeGroup = Me.CellCheck(row, column)
+		  If column = 2 Then
+		    
+		    Select Case Me.RowTag(row)
+		    Case IsA TestGroup
+		      Dim tg As TestGroup = Me.RowTag(row)
+		      tg.IncludeGroup = Me.CellCheck(row, column)
+		      
+		    Case IsA TestResult
+		      Dim tr As TestResult = Me.RowTag(row)
+		      tr.IncludeMethod = Me.CellCheck(row, column)
+		      
+		    End Select
 		  End If
 		End Sub
 	#tag EndEvent
