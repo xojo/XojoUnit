@@ -3,7 +3,7 @@ Protected Class App
 Inherits ConsoleApplication
 	#tag Event
 		Function Run(args() as String) As Integer
-		  mOptions = SetOptions(args)
+		  mOptions = SetOptions
 		  mOptions.Parse args
 		  
 		  If mOptions.HelpRequested Then
@@ -58,26 +58,23 @@ Inherits ConsoleApplication
 		    Return
 		  End If
 		  
-		  Dim groups() As TestGroup = mController.TestGroups
-		  Dim rx As New RegEx
-		  
-		  If includeOption.WasSet Then
-		    Dim includes() As Variant = includeOption.Value
-		    For Each pattern As String In includes
-		      // Turn the pattern into a RegEx
-		      pattern = pattern.ReplaceAll("*", &u0)
-		      pattern = "\Q" + pattern.ReplaceAll("\E", "\\EE\Q") + "\E"
-		      pattern = pattern.ReplaceAll(&u0, "\E.*\Q")
-		      rx.SearchPattern = pattern
-		      
-		      For Each group As TestGroup In groups
-		        If rx.Search(group.Name) Is Nil Then
-		          group.IncludeGroup = False
-		        End If
-		      Next
+		  Dim includes() As String
+		  If Not includeOption.Value.IsNull Then
+		    Dim v() As Variant = includeOption.Value
+		    For Each pattern As String In v
+		      includes.Append pattern
 		    Next
-		    
 		  End If
+		  
+		  Dim excludes() As String
+		  If not excludeOption.Value.IsNull Then
+		    Dim v() As Variant = excludeOption.Value
+		    For Each pattern As String In v
+		      excludes.Append pattern
+		    Next
+		  End If
+		  
+		  mController.FilterTests(includes, excludes)
 		End Sub
 	#tag EndMethod
 
@@ -139,7 +136,7 @@ Inherits ConsoleApplication
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function SetOptions(args() As String) As OptionParser
+		Private Function SetOptions() As OptionParser
 		  Dim parser As New OptionParser
 		  
 		  Dim o As Option
