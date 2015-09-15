@@ -288,7 +288,7 @@ Protected Class TestGroup
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Private
+	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Public
 	#tag EndConstant
 
 
