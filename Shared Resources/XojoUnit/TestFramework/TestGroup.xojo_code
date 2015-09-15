@@ -123,6 +123,15 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub SetIncludeMethods(value As Boolean)
+		  For Each result As TestResult In Results
+		    result.IncludeMethod = value
+		  Next 
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Start()
 		  If IncludeGroup Then
 		    ClearResults
