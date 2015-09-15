@@ -53,6 +53,107 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub FilterTests(includePatterns() As String, excludePatterns() As String)
+		  // Filter the tests based on the include and exclude patterns
+		  // These are simple patterns with * used as a wildcard
+		  // A dot will indicate Group.Method
+		  //
+		  // Examples:
+		  //  "My Test Group" = Match the group named "My Test Group"
+		  //  "My T*" = Match any group that starts with "My T"
+		  //  "*Group" = Match any group or method that ends with "Group"
+		  //  "My Test Group.SomeTest" = Match the method in "My Test Group" named "SomeTest"
+		  //  "*.SomeTest" = Match the method named "SomeTest" in any group
+		  //  "*.Some" = Match the method named "SomeTest" in any group ("Test" is optional)
+		  //  "My*Group" = Match any group that starts with "My" and ends with "Group"
+		  
+		  
+		  If includePatterns.Ubound = -1 And excludePatterns.Ubound = -1 Then
+		    Dim err As New RuntimeException
+		    err.Message = "You must specify at least one include or exclude pattern"
+		    Raise err
+		  End if
+		  
+		  //
+		  // Convert the patterns into regular expressions
+		  //
+		  For i As Integer = 0 To includePatterns.Ubound
+		    includePatterns(i) = SimplePatternToRegExPattern(includePatterns(i))
+		  Next i
+		  
+		  For i As Integer = 0 To excludePatterns.Ubound
+		    excludePatterns(i) = SimplePatternToRegExPattern(excludePatterns(i))
+		  Next i
+		  
+		  //
+		  // Set up the RegEx
+		  //
+		  Dim rx As New RegEx
+		  
+		  //
+		  // Process includes
+		  //
+		  For Each group As TestGroup In TestGroups
+		    //
+		    // Turn all methods on and the group on/off
+		    //
+		    group.IncludeGroup = (includePatterns.Ubound = -1) // If there are any includes, default to False
+		    group.SetIncludeMethods(True)
+		    Dim methodsTurnedOff As Boolean
+		    
+		    For Each pattern As String In includePatterns
+		      rx.SearchPattern = pattern
+		      
+		      //
+		      // See if this pattern matches any methods
+		      //
+		      For Each result As TestResult In group.Results
+		        Dim methodName As String = group.Name + "." + result.MethodInfo.Name
+		        If rx.Search(methodName) IsA RegExMatch Then
+		          group.IncludeGroup = True
+		          
+		          If Not methodsTurnedOff Then
+		            group.SetIncludeMethods(False)
+		            methodsTurnedOff = True
+		          End If
+		          
+		          result.IncludeMethod = True
+		        End If
+		      Next result
+		      
+		      If rx.Search(group.Name) IsA RegExMatch Then
+		        group.IncludeGroup = True
+		      End If
+		    Next pattern
+		  Next group
+		  
+		  //
+		  // Process excludes
+		  //
+		  For Each group As TestGroup In TestGroups
+		    For Each pattern As String In excludePatterns
+		      rx.SearchPattern = pattern
+		      
+		      //
+		      // See if this pattern matches any methods
+		      //
+		      For Each result As TestResult In group.Results
+		        Dim methodName As String = group.Name + "." + result.MethodInfo.Name
+		        If rx.Search(methodName) IsA RegExMatch Then
+		          result.IncludeMethod = False
+		        End If
+		      Next result
+		      
+		      If rx.Search(group.Name) IsA RegExMatch Then
+		        group.IncludeGroup = False
+		      End If
+		    Next pattern
+		  Next group
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub LoadTestGroups()
 		  InitializeTestGroups
@@ -67,6 +168,27 @@ Protected Class TestController
 		  Next
 		  EndTimer
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Private Function SimplePatternToRegExPattern(pattern As String) As String
+		  Const kPlaceholder As String = &u01
+		  
+		  Dim hasDot As Boolean = pattern.InStr(".") <> 0
+		  
+		  pattern = pattern.ReplaceAll("*", kPlaceholder)
+		  pattern = "\Q" + pattern.ReplaceAllB("\E", "\E\\E\Q") + "\E"
+		  pattern = pattern.ReplaceAll(kPlaceholder, "\E.*\Q")
+		  
+		  //
+		  // If it may match a method (includs a dot), add the optional TestSuffix
+		  //
+		  If hasDot Then
+		    pattern = pattern + "(?:" + TestGroup.kTestSuffix + ")?"
+		  End If
+		  
+		  return pattern
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
