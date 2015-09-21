@@ -3,10 +3,21 @@ Protected Class App
 Inherits ConsoleApplication
 	#tag Event
 		Function Run(args() as String) As Integer
+		  mOptions = SetOptions
+		  mOptions.Parse args
+		  
+		  If mOptions.HelpRequested Then
+		    PrintHelp
+		    Return 0
+		  End If
+		  
 		  // Initialize Groups
 		  Print "Initializing Test Groups..."
 		  mController = New ConsoleTestController
 		  mController.LoadTestGroups
+		  
+		  // Filter Tests
+		  FilterTests
 		  
 		  // Run Tests
 		  Print "Running Tests..."
@@ -35,11 +46,51 @@ Inherits ConsoleApplication
 
 
 	#tag Method, Flags = &h21
+		Private Sub FilterTests()
+		  // Filter the tests based on the Include and Exclude options
+		  
+		  Dim includeOption As Option = mOptions.OptionValue(kOptionInclude)
+		  Dim excludeOption As Option = mOptions.OptionValue(kOptionExclude)
+		  
+		  If includeOption.WasSet Or excludeOption.WasSet Then
+		    Print "Filtering Tests..."
+		  Else
+		    Return
+		  End If
+		  
+		  Dim includes() As String
+		  If Not includeOption.Value.IsNull Then
+		    Dim v() As Variant = includeOption.Value
+		    For Each pattern As String In v
+		      includes.Append pattern
+		    Next
+		  End If
+		  
+		  Dim excludes() As String
+		  If not excludeOption.Value.IsNull Then
+		    Dim v() As Variant = excludeOption.Value
+		    For Each pattern As String In v
+		      excludes.Append pattern
+		    Next
+		  End If
+		  
+		  mController.FilterTests(includes, excludes)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function OutputResults() As FolderItem
 		  Const kIndent = "   "
 		  
 		  Dim outputFile As FolderItem
-		  outputFile = GetFolderItem("XojoUnitResults.txt")
+		  If mOptions.Extra.Ubound = -1 Then
+		    outputFile = GetFolderItem(kDefaultExportFileName)
+		  Else
+		    outputFile = GetFolderItem(mOptions.Extra(0), FolderItem.PathTypeNative)
+		    If outputFile.Directory Then
+		      outputFile = outputFile.Child(kDefaultExportFileName)
+		    End If
+		  End If
 		  
 		  Dim output As TextOutputStream
 		  
@@ -75,10 +126,55 @@ Inherits ConsoleApplication
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub PrintHelp()
+		  Print ""
+		  Print "Usage: " + mOptions.AppName + " [params] [/path/to/export/file]"
+		  Print ""
+		  mOptions.ShowHelp
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function SetOptions() As OptionParser
+		  Dim parser As New OptionParser
+		  
+		  Dim o As Option
+		  
+		  o = New Option("i", kOptionInclude, "Include a Group[.Method] (* is wildcard)", Option.OptionType.String)
+		  o.IsArray = True
+		  parser.AddOption o
+		  
+		  o = New Option("x", kOptionExclude, "Exclude a Group[.Method] (* is wildcard)", Option.OptionType.String)
+		  o.IsArray = True
+		  parser.AddOption o
+		  
+		  parser.AdditionalHelpNotes = "If an export path is not specified, a default file named `" + kDefaultExportFileName + _
+		  "' will be created next to the app. If the path is a directory, a file of that name will be created within it."
+		  
+		  Return parser
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mController As TestController
 	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mOptions As OptionParser
+	#tag EndProperty
+
+
+	#tag Constant, Name = kDefaultExportFileName, Type = String, Dynamic = False, Default = \"XojoUnitResults.txt", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kOptionExclude, Type = String, Dynamic = False, Default = \"exclude", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kOptionInclude, Type = String, Dynamic = False, Default = \"include", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior
