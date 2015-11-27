@@ -98,9 +98,11 @@ Protected Class TestGroup
 		      CurrentTestResult = result
 		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
 		      
+		      RaiseEvent SetupTest
 		      StartTimer
 		      rv = method.Invoke(Self, param)
 		      EndTimer
+		      RaiseEvent TearDownTest
 		      
 		    Catch e As RuntimeException
 		      If e IsA EndException Or e IsA ThreadEndException Then
@@ -156,7 +158,15 @@ Protected Class TestGroup
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event SetupTest()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event TearDown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event TearDownTest()
 	#tag EndHook
 
 
