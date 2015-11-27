@@ -53,6 +53,9 @@ Protected Class TestGroup
 		  methods = info.Methods
 		  
 		  For Each m As Xojo.Introspection.MethodInfo In methods
+		    // Kirill Pekarov 2015-11-27
+		    if m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
+		    
 		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
@@ -98,10 +101,14 @@ Protected Class TestGroup
 		      CurrentTestResult = result
 		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
 		      
+		      // Kirill Pekarov 2015-11-27
 		      RaiseEvent SetupTest
+		      
 		      StartTimer
 		      rv = method.Invoke(Self, param)
 		      EndTimer
+		      
+		      // Kirill Pekarov 2015-11-27
 		      RaiseEvent TearDownTest
 		      
 		    Catch e As RuntimeException
