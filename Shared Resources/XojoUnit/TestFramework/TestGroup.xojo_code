@@ -53,13 +53,11 @@ Protected Class TestGroup
 		  methods = info.Methods
 		  
 		  For Each m As Xojo.Introspection.MethodInfo In methods
-		    if m.Name = "SetupTest" or m.Name = "TearDownTest" or _
-		    m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
-		    
-		    If m.Name.Right(4) = kTestSuffix Then
+		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
 		      tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
+		      tr.MethodInfo = m
 		      tr.Result = TestResult.NotImplemented
 		      
 		      mResults.Append(tr)
@@ -87,50 +85,49 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
-		  Dim info As Xojo.Introspection.TypeInfo
-		  
-		  info = Xojo.Introspection.GetType(Self)
-		  
-		  Dim methods() As Xojo.Introspection.MethodInfo
-		  methods = info.Methods
-		  
-		  For Each m As Xojo.Introspection.MethodInfo In methods
+		  For Each result As TestResult In mResults
+		    If Not result.IncludeMethod Then
+		      result.Result = Result.Skipped
+		      Continue For result
+		    End If
+		    
 		    Dim param() As Auto
 		    Dim rv As Auto
 		    
-		    if m.Name = "SetupTest" or m.Name = "TearDownTest" or _
-		    m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
-		    
-		    If m.Name.Right(4) = kTestSuffix Then
+		    Try
+		      CurrentTestResult = result
+		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
 		      
-		      Try
-		        CurrentTestResult = GetTestResult(m.Name)
-		        
-		        RaiseEvent SetupTest
-		        StartTimer
-		        rv = m.Invoke(Self, param)
-		        EndTimer
-		        RaiseEvent TearDownTest
-		        
-		      Catch e As RuntimeException
-		        If e IsA EndException Or e IsA ThreadEndException Then
-		          Raise e
-		        End If
-		        
-		        Dim eInfo As Xojo.Introspection.TypeInfo
-		        eInfo = Xojo.Introspection.GetType(e)
-		        
-		        Dim errorMessage As Text
-		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
-		        If e.Reason <> "" Then
-		          errorMessage = errorMessage + &u0A + "Message: " + e.Reason
-		        End If
-		        Assert.Fail(errorMessage)
-		      End Try
+		      StartTimer
+		      rv = method.Invoke(Self, param)
+		      EndTimer
 		      
-		    End If
+		    Catch e As RuntimeException
+		      If e IsA EndException Or e IsA ThreadEndException Then
+		        Raise e
+		      End If
+		      
+		      Dim eInfo As Xojo.Introspection.TypeInfo
+		      eInfo = Xojo.Introspection.GetType(e)
+		      
+		      Dim errorMessage As Text
+		      errorMessage = "A " + eInfo.FullName + " occurred and was caught."
+		      If e.Reason <> "" Then
+		        errorMessage = errorMessage + &u0A + "Message: " + e.Reason
+		      End If
+		      Assert.Fail(errorMessage)
+		    End Try
 		    
 		  Next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetIncludeMethods(value As Boolean)
+		  For Each result As TestResult In Results
+		    result.IncludeMethod = value
+		  Next 
+		  
 		End Sub
 	#tag EndMethod
 
@@ -159,15 +156,7 @@ Protected Class TestGroup
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event SetupTest()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event TearDown()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event TearDownTest()
 	#tag EndHook
 
 
@@ -299,7 +288,7 @@ Protected Class TestGroup
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Private
+	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Public
 	#tag EndConstant
 
 
