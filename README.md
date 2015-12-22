@@ -49,4 +49,9 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 - Changed TestController.Version into a Text for compatibility with iOS.
 - Bug fixes.
 
+4.6 (September 21, 2015)
+
+- Better command-line parsing and options for console version.
+- Allow filtering by methods.
+
 Paul Lefebvre (paul@xojo.com)
