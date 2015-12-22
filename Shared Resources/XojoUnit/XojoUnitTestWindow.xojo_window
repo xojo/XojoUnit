@@ -848,7 +848,7 @@ End
 		  For Each g As TestGroup In mController.TestGroups
 		    TestGroupList.AddFolder(g.Name)
 		    TestGroupList.CellType(TestGroupList.LastIndex, 2) = Listbox.TypeCheckbox
-		    TestGroupList.CellCheck(TestGroupList.LastIndex, 2) = True
+		    TestGroupList.CellCheck(TestGroupList.LastIndex, 2) = g.IncludeGroup
 		    TestGroupList.RowTag(TestGroupList.LastIndex) = g
 		  Next
 		  
