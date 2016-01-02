@@ -15,8 +15,8 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(controller As TestController, groupName As Text)
-		  Name = groupName
+		Sub Constructor(controller As TestController, groupName As Text = "")
+		  Name = If(groupName <> "", groupName, Introspection.GetType(Me).FullName.ToText)
 		  
 		  controller.AddGroup(Self)
 		  
