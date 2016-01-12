@@ -36,5 +36,26 @@ Frankly, this is all still new to me so we'll see how it goes!
 
 If you actively submit good changes, I'll probably make you a Contributor so that I don't have to process all your pull requests.
 
+### Release Notes
+
+4.5 (June 2015)
+
+- Added iOS.
+- Other stuff.
+
+4.5.1 (August 27, 2015)
+
+- Messages passed to Assert messages will only show up with the test fails.
+- Changed TestController.Version into a Text for compatibility with iOS.
+- Bug fixes.
+
+4.6 (September 21, 2015)
+
+- Better command-line parsing and options for console version.
+- Allow filtering by methods.
+
+4.6.1 (December 22, 2015)
+
+- Desktop version will honor groups that are marked as "Ignore" in code.
 
 Paul Lefebvre (paul@xojo.com)

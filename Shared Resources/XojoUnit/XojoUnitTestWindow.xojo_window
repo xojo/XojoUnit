@@ -76,14 +76,14 @@ Begin Window XojoUnitTestWindow
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin GroupBox GroupBox1
+   Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "Overview"
       Enabled         =   True
       Height          =   188
       HelpTag         =   ""
-      Index           =   -2147483648
+      Index           =   0
       InitialParent   =   ""
       Italic          =   False
       Left            =   286
@@ -103,7 +103,7 @@ Begin Window XojoUnitTestWindow
       Underline       =   False
       Visible         =   True
       Width           =   494
-      Begin Label Label2
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -111,8 +111,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   1
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -125,6 +125,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Start:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -137,7 +138,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label3
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -145,8 +146,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   2
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   540
          LockBottom      =   False
@@ -159,6 +160,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -171,7 +173,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   100
       End
-      Begin Label Label4
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -179,8 +181,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   3
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -193,6 +195,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Total:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -205,7 +208,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label5
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -213,8 +216,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   4
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -227,6 +230,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Passed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -239,7 +243,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label6
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -247,8 +251,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   5
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -261,6 +265,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Failed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -273,7 +278,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   68
       End
-      Begin Label Label7
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -281,8 +286,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         Index           =   6
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   295
          LockBottom      =   False
@@ -295,6 +300,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Skipped:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -316,7 +322,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -329,6 +335,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   6
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "1/1/2012 12:00PM"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -350,7 +357,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   620
          LockBottom      =   False
@@ -363,6 +370,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -384,7 +392,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -397,6 +405,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   8
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "100 tests in 10 groups"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -418,7 +427,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -431,6 +440,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   9
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -452,7 +462,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -465,6 +475,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   10
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -486,7 +497,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
+         InitialParent   =   "GroupBoxes$0"
          Italic          =   False
          Left            =   375
          LockBottom      =   False
@@ -499,6 +510,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -512,14 +524,14 @@ Begin Window XojoUnitTestWindow
          Width           =   100
       End
    End
-   Begin GroupBox GroupBox2
+   Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "Selected Test Results"
       Enabled         =   True
       Height          =   366
       HelpTag         =   ""
-      Index           =   -2147483648
+      Index           =   1
       InitialParent   =   ""
       Italic          =   False
       Left            =   286
@@ -548,7 +560,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -561,6 +573,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Test Name"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -573,7 +586,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   242
       End
-      Begin Label Label1
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -581,8 +594,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         Index           =   0
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -595,6 +608,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -616,7 +630,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   420
          LockBottom      =   False
@@ -629,6 +643,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -657,7 +672,7 @@ Begin Window XojoUnitTestWindow
          HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   306
          LimitText       =   0
@@ -689,7 +704,7 @@ Begin Window XojoUnitTestWindow
          Visible         =   True
          Width           =   463
       End
-      Begin Label Label9
+      Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -697,8 +712,8 @@ Begin Window XojoUnitTestWindow
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         Index           =   7
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   304
          LockBottom      =   False
@@ -711,6 +726,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Messages:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -732,7 +748,7 @@ Begin Window XojoUnitTestWindow
          Height          =   20
          HelpTag         =   ""
          Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
+         InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   667
          LockBottom      =   False
@@ -745,6 +761,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Passed"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -760,16 +777,12 @@ Begin Window XojoUnitTestWindow
    End
    Begin XojoUnitTestToolbar TestToolbar1
       Enabled         =   True
-      Height          =   90
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   -40
       LockedInPosition=   False
       Scope           =   0
       TabPanelIndex   =   0
-      Top             =   639
       Visible         =   True
-      Width           =   463
    End
 End
 #tag EndWindow
@@ -848,7 +861,7 @@ End
 		  For Each g As TestGroup In mController.TestGroups
 		    TestGroupList.AddFolder(g.Name)
 		    TestGroupList.CellType(TestGroupList.LastIndex, 2) = Listbox.TypeCheckbox
-		    TestGroupList.CellCheck(TestGroupList.LastIndex, 2) = True
+		    TestGroupList.CellCheck(TestGroupList.LastIndex, 2) = g.IncludeGroup
 		    TestGroupList.RowTag(TestGroupList.LastIndex) = g
 		  Next
 		  
@@ -943,15 +956,14 @@ End
 		  g = Me.RowTag(row)
 		  
 		  If g <> Nil Then
-		    For Each t As TestResult In g.Results
-		      Me.AddRow(t.TestName)
+		    For Each result As TestResult In g.Results
+		      Me.AddRow(result.TestName)
+		      Me.Cell(Me.LastIndex, 1) = result.Result
 		      
-		      If t.Result <> "" Then
-		        Me.Cell(Me.LastIndex, 0) = t.TestName
-		        Me.Cell(Me.LastIndex, 1) = t.Result
-		      End If
+		      Me.ColumnType(2) = ListBox.TypeCheckbox
+		      Me.CellCheck(Me.LastIndex, 2) = result.IncludeMethod
 		      
-		      Me.RowTag(Me.LastIndex) = t
+		      Me.RowTag(Me.LastIndex) = result
 		    Next
 		  End If
 		End Sub
@@ -979,10 +991,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub CellAction(row As Integer, column As Integer)
-		  If column = 2 And Me.RowTag(row) IsA TestGroup Then
-		    Dim tg As TestGroup
-		    tg = Me.RowTag(row)
-		    tg.IncludeGroup = Me.CellCheck(row, column)
+		  If column = 2 Then
+		    
+		    Select Case Me.RowTag(row)
+		    Case IsA TestGroup
+		      Dim tg As TestGroup = Me.RowTag(row)
+		      tg.IncludeGroup = Me.CellCheck(row, column)
+		      
+		    Case IsA TestResult
+		      Dim tr As TestResult = Me.RowTag(row)
+		      tr.IncludeMethod = Me.CellCheck(row, column)
+		      
+		    End Select
 		  End If
 		End Sub
 	#tag EndEvent
