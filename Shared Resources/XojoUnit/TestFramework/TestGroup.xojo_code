@@ -116,6 +116,8 @@ Protected Class TestGroup
 		        errorMessage = errorMessage + &u0A + "Message: " + e.Reason
 		      End If
 		      Assert.Fail(errorMessage)
+		      
+		      RaiseEvent UnhandledException(e, result.TestName)
 		    End Try
 		    
 		  Next
@@ -157,6 +159,10 @@ Protected Class TestGroup
 
 	#tag Hook, Flags = &h0
 		Event TearDown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event UnhandledException(err As RuntimeException, methodName As Text)
 	#tag EndHook
 
 
