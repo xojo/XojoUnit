@@ -107,15 +107,19 @@ Protected Class TestGroup
 		        Raise e
 		      End If
 		      
-		      Dim eInfo As Xojo.Introspection.TypeInfo
-		      eInfo = Xojo.Introspection.GetType(e)
-		      
-		      Dim errorMessage As Text
-		      errorMessage = "A " + eInfo.FullName + " occurred and was caught."
-		      If e.Reason <> "" Then
-		        errorMessage = errorMessage + &u0A + "Message: " + e.Reason
+		      If Not RaiseEvent UnhandledException(e, result.TestName) Then
+		        
+		        Dim eInfo As Xojo.Introspection.TypeInfo
+		        eInfo = Xojo.Introspection.GetType(e)
+		        
+		        Dim errorMessage As Text
+		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
+		        If e.Reason <> "" Then
+		          errorMessage = errorMessage + &u0A + "Message: " + e.Reason
+		        End If
+		        Assert.Fail(errorMessage)
+		        
 		      End If
-		      Assert.Fail(errorMessage)
 		    End Try
 		    
 		  Next
@@ -157,6 +161,10 @@ Protected Class TestGroup
 
 	#tag Hook, Flags = &h0
 		Event TearDown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event UnhandledException(err As RuntimeException, methodName As Text) As Boolean
 	#tag EndHook
 
 
