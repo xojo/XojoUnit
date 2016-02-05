@@ -1,6 +1,20 @@
 #tag Class
 Protected Class XojoUnitTests
 Inherits TestGroup
+	#tag Event
+		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		  #pragma unused err
+		  
+		  Const kMethodName As Text = "UnhandledException"
+		  
+		  If methodName.Left(kMethodName.Length) = kMethodName Then
+		    Assert.Pass("Exception was handled")
+		    Return True
+		  End If
+		End Function
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -387,6 +401,20 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub PassTest()
 		  Assert.Pass("Passed!")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UnhandledExceptionTest()
+		  //
+		  // Create an exception
+		  //
+		  
+		  Dim d As Dictionary // Nil!
+		  
+		  #Pragma BreakOnExceptions False
+		  call d.Value(1)
+		  #Pragma BreakOnExceptions Default 
 		End Sub
 	#tag EndMethod
 
