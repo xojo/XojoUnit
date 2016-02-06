@@ -55,3 +55,4 @@ iOSName=XojoUnit
 iOSProvisioningProfile=0
 GenerateGlobalUsingClauses=True
 EnvironmentVariables=
+Capabilities={"AppGroups":{"Enabled":false,"Groups":{}},"ApplePay":{"Enabled":false,"Merchants":{}},"AssociatedDomains":{"Enabled":false,"Domains":{}},"BackgroundModes":{"Enabled":false,"Modes":{}},"iCloud":{"Enabled":false,"Containers":{}},"KeyChainSharing":{"Enabled":false,"Groups":{}},"Maps":{"Enabled":false,"MapDirections":{}},"Passbook":{"Enabled":false,"Passes":{}}}
