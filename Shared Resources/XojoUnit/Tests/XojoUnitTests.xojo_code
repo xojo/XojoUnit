@@ -21,7 +21,7 @@ Inherits TestGroup
 		  
 		  Const kMethodName As Text = "UnhandledException"
 		  
-		  If methodName.Left(kMethodName.Length) = kMethodName Then
+		  If methodName.Length >= kMethodName.Length And methodName.Left(kMethodName.Length) = kMethodName Then
 		    Assert.Pass("Exception was handled")
 		    Return True
 		  End If
