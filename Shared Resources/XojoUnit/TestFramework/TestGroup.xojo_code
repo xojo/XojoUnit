@@ -82,6 +82,16 @@ Protected Class TestGroup
 		    
 		  Loop Until doComputed = False
 		  
+		  IsClone = True
+		  RaiseEvent Setup
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Destructor()
+		  If IsClone Then
+		    RaiseEvent TearDown
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -212,9 +222,7 @@ Protected Class TestGroup
 		Sub Start()
 		  If IncludeGroup Then
 		    ClearResults
-		    RaiseEvent Setup
 		    RunTests
-		    RaiseEvent TearDown
 		  Else
 		    ClearResults(True) // Mark tests as Skipped
 		  End If
@@ -290,6 +298,10 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h0
 		IncludeGroup As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private IsClone As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
