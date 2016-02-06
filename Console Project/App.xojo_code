@@ -81,6 +81,7 @@ Inherits ConsoleApplication
 	#tag Method, Flags = &h21
 		Private Function OutputResults() As FolderItem
 		  Const kIndent = "   "
+		  Const kFailIndent = " * "
 		  
 		  Dim outputFile As FolderItem
 		  If mOptions.Extra.Ubound = -1 Then
@@ -107,15 +108,39 @@ Inherits ConsoleApplication
 		  output.WriteLine("Passed: " + Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)")
 		  output.WriteLine("Failed: " + Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)")
 		  output.WriteLine("Skipped: " + Str(mController.SkippedCount))
-		  output.WriteLine("")
+		  
+		  #If DebugBuild
+		    Dim debugOutput As String
+		  #Endif
 		  
 		  For Each tg As TestGroup In mController.TestGroups
+		    output.WriteLine("")
 		    output.WriteLine(tg.Name)
+		    #If DebugBuild
+		      debugOutput = debugOutput + EndOfLine + tg.Name + EndOfLine
+		    #Endif
 		    
 		    For Each tr As TestResult In tg.Results
-		      output.WriteLine(kIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)")
-		      If tr.Message <> "" Then
-		        output.WriteLine(kIndent + kIndent + tr.Message)
+		      Dim useIndent As String = If(tr.Result = tr.Failed, kFailIndent, kIndent)
+		      Dim outLine As String = useIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)"
+		      output.WriteLine(outLine)
+		      #If DebugBuild
+		        debugOutput = debugOutput + outLine + EndOfLine
+		      #Endif
+		      
+		      Dim msg As String = tr.Message
+		      If msg <> "" Then
+		        msg = ReplaceLineEndings(msg, EndOfLine)
+		        Dim msgs() As String = msg.Split(EndOfLine)
+		        
+		        For i As Integer = 0 To msgs.Ubound
+		          msg = msgs(i)
+		          outLine  = kIndent + kIndent + msg
+		          output.WriteLine(outLine)
+		          #If DebugBuild
+		            debugOutput = debugOutput + outLine + EndOfLine
+		          #Endif
+		        Next i
 		      End If
 		    Next
 		  Next
