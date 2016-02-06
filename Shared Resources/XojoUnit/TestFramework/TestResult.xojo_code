@@ -45,6 +45,12 @@ Protected Class TestResult
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IncludeMethod"
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
