@@ -326,6 +326,23 @@ Protected Class TestGroup
 			  Dim testCount As Integer
 			  
 			  For Each tr As TestResult In mResults
+			    If tr.Result = TestResult.NotImplemented Then
+			      testCount = testCount + 1
+			    End If
+			  Next
+			  
+			  Return testCount
+			End Get
+		#tag EndGetter
+		NotImplementedCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Dim testCount As Integer
+			  
+			  For Each tr As TestResult In mResults
 			    If tr.Result = TestResult.Passed Then
 			      testCount = testCount + 1
 			    End If
