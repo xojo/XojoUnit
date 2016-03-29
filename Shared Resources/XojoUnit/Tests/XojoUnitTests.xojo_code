@@ -1,6 +1,34 @@
 #tag Class
 Protected Class XojoUnitTests
 Inherits TestGroup
+	#tag Event
+		Sub Setup()
+		  Prop2 = Prop2 + 1
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub TearDown()
+		  Prop2 = Prop2 - 1
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		  #pragma unused err
+		  
+		  Const kMethodName As Text = "UnhandledException"
+		  
+		  If methodName.Length >= kMethodName.Length And methodName.Left(kMethodName.Length) = kMethodName Then
+		    Assert.Pass("Exception was handled")
+		    Return True
+		  End If
+		End Function
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -357,6 +385,20 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CleanSlate1Test()
+		  Assert.AreEqual(0, Prop1)
+		  Prop1 = Prop1 + 1
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CleanSlate2Test()
+		  Assert.AreEqual(0, Prop1)
+		  Prop1 = Prop1 + 1
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub IsFalseTest()
 		  Assert.IsFalse(False)
 		End Sub
@@ -389,6 +431,43 @@ Inherits TestGroup
 		  Assert.Pass("Passed!")
 		End Sub
 	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Setup1Test()
+		  Assert.AreEqual(1, Prop2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Setup2Test()
+		  Assert.AreEqual(1, Prop2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UnhandledExceptionTest()
+		  //
+		  // Create an exception
+		  //
+		  
+		  Dim d As Dictionary // Nil!
+		  
+		  #Pragma BreakOnExceptions False
+		  call d.Value(1)
+		  #Pragma BreakOnExceptions Default 
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private Prop1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Shared Prop2 As Integer
+	#tag EndProperty
 
 
 	#tag ViewBehavior

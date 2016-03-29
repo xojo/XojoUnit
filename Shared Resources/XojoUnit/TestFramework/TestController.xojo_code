@@ -222,6 +222,7 @@ Protected Class TestController
 	#tag Method, Flags = &h0
 		Sub Start()
 		  RunTestGroups
+		  Call RunTestCount // Updates all the counts
 		End Sub
 	#tag EndMethod
 
@@ -294,6 +295,10 @@ Protected Class TestController
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private mNotImplementedCount As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mPassedCount As Integer
 	#tag EndProperty
 
@@ -308,6 +313,15 @@ Protected Class TestController
 	#tag Property, Flags = &h21
 		Private mTimer As Double
 	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mNotImplementedCount
+			End Get
+		#tag EndGetter
+		NotImplementedCount As Integer
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -339,6 +353,7 @@ Protected Class TestController
 			  mPassedCount = 0
 			  mFailedCount = 0
 			  mSkippedCount = 0
+			  mNotImplementedCount = 0
 			  
 			  Dim totalCount As Integer
 			  
@@ -348,6 +363,7 @@ Protected Class TestController
 			    mPassedCount = mPassedCount + tg.PassedTestCount
 			    mFailedCount = mFailedCount + tg.FailedTestCount
 			    mSkippedCount = mSkippedCount + tg.SkippedTestCount
+			    mNotImplementedCount = mNotImplementedCount + tg.NotImplementedCount
 			  Next
 			  
 			  Return totalCount
@@ -369,7 +385,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"4.6.1", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"5.0", Scope = Public
 	#tag EndConstant
 
 
@@ -413,6 +429,11 @@ Protected Class TestController
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedCount"
