@@ -62,5 +62,9 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 - TestGroup Setup and TearDown events will run around each test method.
 - Every test method will start from a fresh copy of the TestGroup.
+- Fixed report indenting.
+- Fixed formatting of doubles in Assert.Fail.
+- Added "Not Implemented" count and properly update all counts.
+- TestGroup now has an UnhandledException event.
 
 Paul Lefebvre (paul@xojo.com)
