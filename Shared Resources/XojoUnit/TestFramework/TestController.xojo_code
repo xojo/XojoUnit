@@ -385,7 +385,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"4.6.1", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"5.0", Scope = Public
 	#tag EndConstant
 
 
@@ -429,6 +429,11 @@ Protected Class TestController
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedCount"

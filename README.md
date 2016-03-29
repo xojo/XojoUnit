@@ -58,4 +58,13 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 - Desktop version will honor groups that are marked as "Ignore" in code.
 
+5.0 (March 29, 2016)
+
+- TestGroup Setup and TearDown events will run around each test method.
+- Every test method will start from a fresh copy of the TestGroup.
+- Fixed report indenting.
+- Fixed formatting of doubles in Assert.Fail.
+- Added "Not Implemented" count and properly update all counts.
+- TestGroup now has an UnhandledException event.
+
 Paul Lefebvre (paul@xojo.com)
