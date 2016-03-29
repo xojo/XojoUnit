@@ -27,6 +27,74 @@ Protected Class TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(fromGroup As TestGroup)
+		  //
+		  // Clone from another group
+		  //
+		  // Only take the super's properties
+		  //
+		  
+		  Static props() As Xojo.Introspection.PropertyInfo
+		  If props.Ubound = -1 Then
+		    Dim ti As Xojo.Introspection.TypeInfo
+		    ti = Xojo.Introspection.GetType(Self)
+		    While ti.BaseType IsA Object And Not (ti Is ti.BaseType)
+		      ti = ti.BaseType
+		    Wend
+		    props = ti.Properties
+		  End If
+		  
+		  //
+		  // Since computed properties can have side effects, do them first
+		  //
+		  Dim doComputed As Boolean = False // Will be flipped in the loop
+		  
+		  Do
+		    doComputed = Not doComputed
+		    
+		    For Each prop As Xojo.Introspection.PropertyInfo In props
+		      If prop.IsComputed <> doComputed Then
+		        Continue For prop
+		      End If
+		      
+		      If Not prop.CanRead Or Not prop.CanWrite Then
+		        Continue For prop
+		      End If
+		      
+		      Dim fromValue As Auto = prop.Value(fromGroup)
+		      Dim propName As Text = prop.PropertyType.Name
+		      
+		      //
+		      // Handle arrays specially
+		      //
+		      If propName.Right(2) = "()" Then
+		        Dim toArr() As Object = prop.Value(Self)
+		        Dim fromArr() As Object = fromValue
+		        
+		        For i As Integer = 0 To fromArr.Ubound
+		          toArr.Append(fromArr(i))
+		        Next i
+		      Else
+		        prop.Value(Self) = fromValue
+		      End If
+		    Next prop
+		    
+		  Loop Until doComputed = False
+		  
+		  IsClone = True
+		  RaiseEvent Setup
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Destructor()
+		  If IsClone Then
+		    RaiseEvent TearDown
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub EndTimer()
 		  Dim elapsed As Double
@@ -85,21 +153,36 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
+		  Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
+		  Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
+		  Dim useConstructor As Xojo.Introspection.ConstructorInfo
+		  For Each c As Xojo.Introspection.ConstructorInfo In constructors
+		    If c.Parameters.Ubound = 0 Then
+		      useConstructor = c
+		      Exit For c
+		    End If
+		  Next c
+		  
+		  Dim constructorParams() As Auto
+		  constructorParams.Append Self
+		  
 		  For Each result As TestResult In mResults
 		    If Not result.IncludeMethod Then
 		      result.Result = Result.Skipped
 		      Continue For result
 		    End If
 		    
-		    Dim param() As Auto
-		    Dim rv As Auto
-		    
 		    Try
 		      CurrentTestResult = result
 		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
 		      
+		      //
+		      // Get a clone
+		      //
+		      Dim clone As TestGroup = useConstructor.Invoke(constructorParams)
+		      
 		      StartTimer
-		      rv = method.Invoke(Self, param)
+		      method.Invoke(clone)
 		      EndTimer
 		      
 		    Catch e As RuntimeException
@@ -139,9 +222,7 @@ Protected Class TestGroup
 		Sub Start()
 		  If IncludeGroup Then
 		    ClearResults
-		    RaiseEvent Setup
 		    RunTests
-		    RaiseEvent TearDown
 		  Else
 		    ClearResults(True) // Mark tests as Skipped
 		  End If
@@ -217,6 +298,10 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h0
 		IncludeGroup As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private IsClone As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
