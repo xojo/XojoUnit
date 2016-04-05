@@ -790,7 +790,6 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  mController = New DesktopTestController
 		  mController.LoadTestGroups
 		  
 		  PopulateTestGroups
@@ -845,6 +844,15 @@ End
 		End Function
 	#tag EndMenuHandler
 
+
+	#tag Method, Flags = &h0
+		Sub Constructor(controller As TestController = Nil)
+		  mController = If(controller <> Nil, controller, TestController(New DesktopTestController()))
+		  
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor()
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub ExportTests(filePath As String)
