@@ -1,7 +1,7 @@
 #tag Class
 Protected Class TestGroup
-	#tag Method, Flags = &h21
-		Private Sub AsyncAwait(maxSeconds As Integer)
+	#tag Method, Flags = &h1
+		Protected Sub AsyncAwait(maxSeconds As Integer)
 		  If IsRunning Then
 		    IsAwaitingAsync = True
 		    RunTestsTimer.Period = maxSeconds * 1000
@@ -10,8 +10,8 @@ Protected Class TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub AsyncComplete()
+	#tag Method, Flags = &h1
+		Protected Sub AsyncComplete()
 		  IsAwaitingAsync = False
 		  If IsRunning Then
 		    RunTestsTimer.Period = 1
