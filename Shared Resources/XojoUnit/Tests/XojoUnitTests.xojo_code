@@ -12,15 +12,10 @@ Inherits TestGroup
 		Sub TearDown()
 		  Prop2 = Prop2 - 1
 		  
-		  If AsyncTestThread IsA Object Then
-		    If AsyncTestThread.State <> Thread.NotRunning Then
-		      AsyncTestThread.Kill
-		      While Not AsyncTestThread.State <> Thread.NotRunning
-		        App.YieldToNextThread
-		      Wend
-		    End If
-		    RemoveHandler AsyncTestThread.Run, WeakAddressOf AsyncTestThread_Run
-		    AsyncTestThread = Nil
+		  If AsyncTestTimer IsA Object Then
+		    AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Off
+		    RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    AsyncTestTimer = Nil
 		  End If
 		  
 		End Sub
@@ -397,31 +392,23 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub AsyncTest()
-		  If AsyncTestThread Is Nil Then
-		    AsyncTestThread = New Thread
-		    AddHandler AsyncTestThread.Run, WeakAddressOf AsyncTestThread_Run
+		  If AsyncTestTimer Is Nil Then
+		    AsyncTestTimer = New Xojo.Core.Timer
+		    AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
 		  End If
 		  
-		  AsyncTestThread.Run
+		  AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Single
+		  AsyncTestTimer.Period = 500
 		  AsyncAwait 3
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AsyncTestThread_Run(sender As Thread)
+		Private Sub AsyncTestTimer_Action(sender As Xojo.Core.Timer)
 		  #Pragma Unused sender
 		  
-		  #If Not TargetiOS Then
-		    App.SleepCurrentThread 750
-		  #Else
-		    Dim now As Double = Microseconds
-		    While (Microseconds - now) < 750000
-		      App.YieldToNextThread
-		    Wend
-		  #Endif
-		  
 		  AsyncComplete
-		  Assert.Pass "Async thread ran as scheduled"
+		  Assert.Pass "Async timer action ran as scheduled"
 		  
 		End Sub
 	#tag EndMethod
@@ -504,7 +491,7 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
-		Private AsyncTestThread As Thread
+		Private AsyncTestTimer As Xojo.Core.Timer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
