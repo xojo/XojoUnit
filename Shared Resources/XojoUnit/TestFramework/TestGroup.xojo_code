@@ -219,6 +219,8 @@ Protected Class TestGroup
 		  End If
 		  
 		  While CurrentResultIndex <= mResults.Ubound
+		    CurrentClone = Nil // Make sure TearDown happens
+		    
 		    Dim result As TestResult = mResults(CurrentResultIndex)
 		    CurrentResultIndex = CurrentResultIndex + 1
 		    
