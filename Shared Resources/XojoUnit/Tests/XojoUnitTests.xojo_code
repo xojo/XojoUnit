@@ -12,6 +12,17 @@ Inherits TestGroup
 		Sub TearDown()
 		  Prop2 = Prop2 - 1
 		  
+		  If AsyncTestThread IsA Object Then
+		    If AsyncTestThread.State <> Thread.NotRunning Then
+		      AsyncTestThread.Kill
+		      While Not AsyncTestThread.State <> Thread.NotRunning
+		        App.YieldToNextThread
+		      Wend
+		    End If
+		    RemoveHandler AsyncTestThread.Run, WeakAddressOf AsyncTestThread_Run
+		    AsyncTestThread = Nil
+		  End If
+		  
 		End Sub
 	#tag EndEvent
 
@@ -385,6 +396,37 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  If AsyncTestThread Is Nil Then
+		    AsyncTestThread = New Thread
+		    AddHandler AsyncTestThread.Run, WeakAddressOf AsyncTestThread_Run
+		  End If
+		  
+		  AsyncTestThread.Run
+		  AsyncAwait 3
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub AsyncTestThread_Run(sender As Thread)
+		  #Pragma Unused sender
+		  
+		  #If Not TargetiOS Then
+		    App.SleepCurrentThread 750
+		  #Else
+		    Dim now As Double = Microseconds
+		    While (Microseconds - now) < 750000
+		      App.YieldToNextThread
+		    Wend
+		  #Endif
+		  
+		  AsyncComplete
+		  Assert.Pass "Async thread ran as scheduled"
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CleanSlate1Test()
 		  Assert.AreEqual(0, Prop1)
 		  Prop1 = Prop1 + 1
@@ -460,6 +502,10 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private AsyncTestThread As Thread
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private Prop1 As Integer
