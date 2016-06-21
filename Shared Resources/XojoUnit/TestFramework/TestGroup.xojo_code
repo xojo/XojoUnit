@@ -65,6 +65,11 @@ Protected Class TestGroup
 		  End If
 		  
 		  //
+		  // Skip certain props all the time
+		  //
+		  Dim skipProps() As Text = Array("CurrentClone")
+		  
+		  //
 		  // Since computed properties can have side effects, do them first
 		  //
 		  Dim doComputed As Boolean = False // Will be flipped in the loop
@@ -77,7 +82,7 @@ Protected Class TestGroup
 		        Continue For prop
 		      End If
 		      
-		      If Not prop.CanRead Or Not prop.CanWrite Then
+		      If Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(prop.Name) <> -1 Then
 		        Continue For prop
 		      End If
 		      
