@@ -175,6 +175,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "401385847"
       TabOrder        =   0
       Text            =   "Overview"
+      TextAlign       =   0
       Top             =   14
       VerticalCenter  =   0
       Visible         =   True
@@ -242,6 +243,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "401385847"
       TabOrder        =   1
       Text            =   "Selected Test Results"
+      TextAlign       =   0
       Top             =   274
       VerticalCenter  =   0
       Visible         =   True
@@ -265,7 +267,7 @@ Begin WebPage XojoUnitTestPage
       HelpTag         =   ""
       HorizontalCenter=   0
       Index           =   -2147483648
-      InitialValue    =   "0 WebToolbarButton RunButton UnVuIFRlc3Rz 0 Select... 67 0 1 0	2 WebToolbarSpace Space1  -1 Select... 0 0 1 1	0 WebToolbarButton DownloadButton RG93bmxvYWQgUmVzdWx0cw== 0 Select... 111 0 1 0"
+      InitialValue    =   "0 WebToolbarButton RunButton UnVuIFRlc3Rz -1 Select... 67 0 1 0	2 WebToolbarSpace Space1  -1 Select... 0 0 1 1	0 WebToolbarButton DownloadButton RG93bmxvYWQgUmVzdWx0cw== -1 Select... 109 0 1 0"
       ItemStyle       =   "0"
       Left            =   0
       LockBottom      =   False
@@ -350,6 +352,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   3
       Text            =   "Start:"
+      TextAlign       =   0
       Top             =   63
       VerticalCenter  =   0
       Visible         =   True
@@ -385,6 +388,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   4
       Text            =   "1/1/2013 12:00PM"
+      TextAlign       =   0
       Top             =   63
       VerticalCenter  =   0
       Visible         =   True
@@ -420,6 +424,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   5
       Text            =   "Duration:"
+      TextAlign       =   0
       Top             =   63
       VerticalCenter  =   0
       Visible         =   True
@@ -455,6 +460,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   6
       Text            =   "0s"
+      TextAlign       =   0
       Top             =   63
       VerticalCenter  =   0
       Visible         =   True
@@ -490,6 +496,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   7
       Text            =   "Passed:"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -525,6 +532,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   8
       Text            =   "0 (0%)"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -560,6 +568,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   9
       Text            =   "Failed:"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -595,6 +604,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   10
       Text            =   "0 (0%)"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -630,6 +640,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   11
       Text            =   "Skipped:"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -665,6 +676,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   12
       Text            =   "0 (0%)"
+      TextAlign       =   0
       Top             =   139
       VerticalCenter  =   0
       Visible         =   True
@@ -700,6 +712,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   13
       Text            =   "Total:"
+      TextAlign       =   0
       Top             =   97
       VerticalCenter  =   0
       Visible         =   True
@@ -735,6 +748,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   14
       Text            =   "100 tests in 10 groups"
+      TextAlign       =   0
       Top             =   97
       VerticalCenter  =   0
       Visible         =   True
@@ -770,6 +784,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   15
       Text            =   "Test Name"
+      TextAlign       =   0
       Top             =   319
       VerticalCenter  =   0
       Visible         =   True
@@ -805,6 +820,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   16
       Text            =   "Passed"
+      TextAlign       =   0
       Top             =   353
       VerticalCenter  =   0
       Visible         =   True
@@ -840,6 +856,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "16634393"
       TabOrder        =   17
       Text            =   "Duration:"
+      TextAlign       =   0
       Top             =   395
       VerticalCenter  =   0
       Visible         =   True
@@ -875,6 +892,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   18
       Text            =   "0s"
+      TextAlign       =   0
       Top             =   395
       VerticalCenter  =   0
       Visible         =   True
@@ -911,6 +929,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   19
       Text            =   ""
+      TextAlign       =   0
       Top             =   445
       VerticalCenter  =   0
       Visible         =   True
@@ -926,26 +945,20 @@ Begin WebPage XojoUnitTestPage
       _VerticalPercent=   0.0
    End
    Begin Thread TestThread
-      Height          =   32
       Index           =   -2147483648
-      Left            =   560
       LockedInPosition=   False
       Priority        =   5
       Scope           =   0
       StackSize       =   0
       Style           =   "0"
       TabPanelIndex   =   0
-      Top             =   560
-      Width           =   32
    End
    Begin WebTimer TestTimer
       Cursor          =   0
       Enabled         =   True
-      Height          =   32
       HelpTag         =   ""
       HorizontalCenter=   0
       Index           =   -2147483648
-      Left            =   580
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -959,10 +972,7 @@ Begin WebPage XojoUnitTestPage
       Style           =   "0"
       TabOrder        =   -1
       TabPanelIndex   =   0
-      Top             =   580
       VerticalCenter  =   0
-      Visible         =   True
-      Width           =   32
       ZIndex          =   1
       _DeclareLineRendered=   False
       _HorizontalPercent=   0.0
@@ -973,14 +983,22 @@ Begin WebPage XojoUnitTestPage
       _OpenEventFired =   False
       _VerticalPercent=   0.0
    End
+   Begin WebTestController Controller
+      Height          =   32
+      Index           =   -2147483648
+      Left            =   20
+      LockedInPosition=   False
+      Style           =   "-1"
+      Top             =   20
+      Width           =   32
+   End
 End
 #tag EndWebPage
 
 #tag WindowCode
 	#tag Event
 		Sub Shown()
-		  mController = New WebTestController
-		  mController.LoadTestGroups
+		  Controller.LoadTestGroups
 		  
 		  PopulateTestGroups
 		End Sub
@@ -999,18 +1017,18 @@ End
 		  Dim output As String
 		  
 		  Dim testCount As Integer
-		  testCount = mController.RunTestCount
+		  testCount = Controller.RunTestCount
 		  
 		  Dim now As New Date
 		  
 		  output = output + "Start: " + now.ShortDate + " " + now.ShortTime + EndOfLine
-		  output = output + "Duration: " + Format(mController.Duration, "#,###.0000000") + "s" + EndOfLine
-		  output = output + "Total: " + Str(testCount) + " tests in " + Str(mController.GroupCount) + " groups were run." + EndOfLine
-		  output = output + "Passed: " + Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
-		  output = output + "Failed: " + Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
-		  output = output + "Skipped: " + Str(mController.SkippedCount) + EndOfLine + EndOfLine
+		  output = output + "Duration: " + Format(Controller.Duration, "#,###.0000000") + "s" + EndOfLine
+		  output = output + "Total: " + Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups were run." + EndOfLine
+		  output = output + "Passed: " + Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
+		  output = output + "Failed: " + Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
+		  output = output + "Skipped: " + Str(Controller.SkippedCount) + EndOfLine + EndOfLine
 		  
-		  For Each tg As TestGroup In mController.TestGroups
+		  For Each tg As TestGroup In Controller.TestGroups
 		    output = output + tg.Name + EndOfLine
 		    
 		    For Each tr As TestResult In tg.Results
@@ -1032,7 +1050,7 @@ End
 		  // Add the test groups into the listbox
 		  TestGroupList.DeleteAllRows
 		  
-		  For Each g As TestGroup In mController.TestGroups
+		  For Each g As TestGroup In Controller.TestGroups
 		    If (g.FailedTestCount > 0 And mFilter = TestView.Failed) Or _
 		      (g.FailedTestCount = 0 And mFilter = TestView.Passed) Or _
 		      mFilter = TestView.All Then
@@ -1055,8 +1073,8 @@ End
 		  Next
 		  
 		  Dim testCount As Integer
-		  testCount = mController.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(mController.GroupCount) + " groups."
+		  testCount = Controller.AllTestCount
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups."
 		  
 		End Sub
 	#tag EndMethod
@@ -1067,27 +1085,12 @@ End
 		  
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
-		  mController.Start
+		  Controller.Start
 		  
-		  DurationLabel.Text = Format(mController.Duration, "#,###.0000000") + "s"
-		  
-		  Dim testCount As Integer
-		  testCount = mController.RunTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(mController.RunGroupCount) + " groups were run."
-		  
-		  PassedCountLabel.Text = Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)"
-		  FailedCountLabel.Text = Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)"
-		  SkippedCountLabel.Text = Str(mController.SkippedCount)
-		  
-		  PopulateTestGroups
 		  
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h21
-		Private mController As TestController
-	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		mFilter As TestView
@@ -1225,6 +1228,32 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events Controller
+	#tag Event
+		Sub AllTestsFinished()
+		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
+		  
+		  Dim testCount As Integer
+		  testCount = Controller.RunTestCount
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.RunGroupCount) + " groups were run."
+		  
+		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
+		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
+		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  
+		  If mWaitDialog IsA Object Then
+		    mWaitDialog.Close
+		    mWaitDialog = Nil
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub GroupFinished(group As TestGroup)
+		  PopulateTestGroups
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Cursor"
@@ -1234,7 +1263,7 @@ End
 		Type="Integer"
 		EditorType="Enum"
 		#tag EnumValues
-			"0 - Auto"
+			"0 - Automatic"
 			"1 - Standard Pointer"
 			"2 - Finger Pointer"
 			"3 - IBeam"
@@ -1245,10 +1274,10 @@ End
 			"8 - Arrow South"
 			"9 - Arrow East"
 			"10 - Arrow West"
-			"11 - Arrow North East"
-			"12 - Arrow North West"
-			"13 - Arrow South East"
-			"14 - Arrow South West"
+			"11 - Arrow Northeast"
+			"12 - Arrow Northwest"
+			"13 - Arrow Southeast"
+			"14 - Arrow Southwest"
 			"15 - Splitter East West"
 			"16 - Splitter North South"
 			"17 - Progress"
@@ -1334,6 +1363,11 @@ End
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="mFilter"
+		Group="Behavior"
+		Type="TestView"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="MinHeight"
 		Visible=true
 		Group="Behavior"
@@ -1401,6 +1435,12 @@ End
 		Group="Behavior"
 		InitialValue="1"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_DeclareLineRendered"
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="_HorizontalPercent"
