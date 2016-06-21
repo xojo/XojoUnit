@@ -2,15 +2,21 @@
 Protected Class TestGroup
 	#tag Method, Flags = &h21
 		Private Sub AsyncAwait(maxSeconds As Integer)
-		  AwaitingAsync = True
-		  RunTestsTimer.Period = maxSeconds * 1000
+		  If IsRunning Then
+		    IsAwaitingAsync = True
+		    RunTestsTimer.Period = maxSeconds * 1000
+		  End If
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub AsyncComplete()
-		  AwaitingAsync = False
+		  IsAwaitingAsync = False
+		  If IsRunning Then
+		    RunTestsTimer.Period = 1
+		  End If
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -36,6 +42,7 @@ Protected Class TestGroup
 	#tag Method, Flags = &h0
 		Sub Constructor(controller As TestController, groupName As Text)
 		  Name = groupName
+		  Self.Controller = controller
 		  
 		  controller.AddGroup(Self)
 		  
@@ -133,6 +140,12 @@ Protected Class TestGroup
 		  elapsed = (Microseconds-mTimer) / 1000000
 		  
 		  CurrentTestResult.Duration = elapsed
+		  
+		  Dim c As TestController = Controller
+		  If c IsA Object Then
+		    c.RaiseTestFinished CurrentTestResult, Self
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
@@ -200,8 +213,8 @@ Protected Class TestGroup
 		  
 		  If CurrentClone IsA Object Then
 		    EndTimer
-		    If CurrentClone.AwaitingAsync Then
-		      Assert.Fail "Asynchonous method failed"
+		    If CurrentClone.IsAwaitingAsync Then
+		      Assert.Fail "Asynchonous method did not complete in time"
 		    End If
 		  End If
 		  
@@ -214,6 +227,11 @@ Protected Class TestGroup
 		      Continue While
 		    End If
 		    
+		    //
+		    // Handle any error after stopping the Timer
+		    //
+		    Dim err As RuntimeException
+		    
 		    Try
 		      CurrentTestResult = result
 		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
@@ -225,36 +243,50 @@ Protected Class TestGroup
 		      
 		      StartTimer
 		      method.Invoke(CurrentClone)
-		      If CurrentClone.AwaitingAsync Then
+		      If CurrentClone.IsAwaitingAsync Then
 		        Return // The next round will resume testing
 		      End If
-		      EndTimer
 		      
 		    Catch e As RuntimeException
 		      If e IsA EndException Or e IsA ThreadEndException Then
 		        Raise e
 		      End If
 		      
-		      If Not RaiseEvent UnhandledException(e, result.TestName) Then
+		      //
+		      // Process it below
+		      //
+		      err = e
+		      
+		    End Try
+		    
+		    EndTimer
+		    
+		    If err IsA Object Then
+		      
+		      If Not RaiseEvent UnhandledException(err, result.TestName) Then
 		        
 		        Dim eInfo As Xojo.Introspection.TypeInfo
-		        eInfo = Xojo.Introspection.GetType(e)
+		        eInfo = Xojo.Introspection.GetType(err)
 		        
 		        Dim errorMessage As Text
 		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
-		        If e.Reason <> "" Then
-		          errorMessage = errorMessage + &u0A + "Message: " + e.Reason
+		        If err.Reason <> "" Then
+		          errorMessage = errorMessage + &u0A + "Message: " + err.Reason
 		        End If
 		        Assert.Fail(errorMessage)
 		        
 		      End If
-		    End Try
-		    
+		    End If
 		  Wend
 		  
 		  CurrentClone = Nil
 		  CurrentTestResult = Nil
 		  sender.Mode = Xojo.Core.Timer.Modes.Off
+		  
+		  Dim c As TestController = Controller
+		  If c IsA Object Then
+		    c.RaiseGroupFinished Self
+		  End if
 		  
 		  
 		End Sub
@@ -315,9 +347,29 @@ Protected Class TestGroup
 		Protected Assert As Assert
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h1
-		Protected AwaitingAsync As Boolean
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  If mController Is Nil Then
+			    Return Nil
+			  Else
+			    Return TestController(mController.Value)
+			  End If
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value Is Nil Then
+			    mController = Nil
+			  Else
+			    mController = Xojo.Core.WeakRef.Create(value)
+			  End If
+			  
+			End Set
+		#tag EndSetter
+		Private Controller As TestController
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
 		Private CurrentClone As TestGroup
@@ -369,12 +421,30 @@ Protected Class TestGroup
 		IncludeGroup As Boolean = True
 	#tag EndProperty
 
+	#tag Property, Flags = &h1
+		Protected IsAwaitingAsync As Boolean
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private IsClone As Boolean
 	#tag EndProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return RunTestsTimer Isa Object And RunTestsTimer.Mode <> Xojo.Core.Timer.Modes.Off
+			  
+			End Get
+		#tag EndGetter
+		IsRunning As Boolean
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
 		Private mAssert As Assert
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mController As Xojo.Core.WeakRef
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -502,6 +572,11 @@ Protected Class TestGroup
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsRunning"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
