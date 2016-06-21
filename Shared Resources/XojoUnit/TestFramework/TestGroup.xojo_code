@@ -214,7 +214,7 @@ Protected Class TestGroup
 		  If CurrentClone IsA Object Then
 		    EndTimer
 		    If CurrentClone.IsAwaitingAsync Then
-		      Assert.Fail "Asynchonous method did not complete in time"
+		      Assert.Fail "Asynchronous test did not complete in time"
 		    End If
 		  End If
 		  
