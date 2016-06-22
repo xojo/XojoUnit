@@ -10,8 +10,8 @@ Protected Class TestGroup
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Protected Sub AsyncComplete()
+	#tag Method, Flags = &h0
+		Sub AsyncComplete()
 		  IsAwaitingAsync = False
 		  If IsRunning Then
 		    RunTestsTimer.Period = 1
