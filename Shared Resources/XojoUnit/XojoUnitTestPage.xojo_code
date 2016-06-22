@@ -944,53 +944,21 @@ Begin WebPage XojoUnitTestPage
       _OpenEventFired =   False
       _VerticalPercent=   0.0
    End
-   Begin Thread TestThread
-      Index           =   -2147483648
-      LockedInPosition=   False
-      Priority        =   5
-      Scope           =   0
-      StackSize       =   0
-      Style           =   "0"
-      TabPanelIndex   =   0
-   End
-   Begin WebTimer TestTimer
-      Cursor          =   0
-      Enabled         =   True
-      HelpTag         =   ""
-      HorizontalCenter=   0
-      Index           =   -2147483648
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Mode            =   2
-      Period          =   1000
-      Scope           =   0
-      Style           =   "0"
-      TabOrder        =   -1
-      TabPanelIndex   =   0
-      VerticalCenter  =   0
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
-   End
    Begin WebTestController Controller
-      Height          =   32
+      AllTestCount    =   0
+      Duration        =   0.0
+      FailedCount     =   0
+      GroupCount      =   0
       Index           =   -2147483648
-      Left            =   20
+      IsRunning       =   False
       LockedInPosition=   False
+      NotImplementedCount=   0
+      PassedCount     =   0
+      RunGroupCount   =   0
+      RunTestCount    =   0
+      Scope           =   0
+      SkippedCount    =   0
       Style           =   "-1"
-      Top             =   20
-      Width           =   32
    End
 End
 #tag EndWebPage
@@ -1081,12 +1049,14 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
+		  mWaitDialog = New XojoUnitWaitDialog
+		  mWaitDialog.Show
+		  
 		  Dim now As New Date
 		  
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
 		  Controller.Start
-		  
 		  
 		End Sub
 	#tag EndMethod
@@ -1094,10 +1064,6 @@ End
 
 	#tag Property, Flags = &h0
 		mFilter As TestView
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mFinished As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1178,9 +1144,7 @@ End
 		Sub ButtonAction(Item As WebToolbarButton)
 		  Select Case item.Name
 		  Case "RunButton"
-		    mWaitDialog = New XojoUnitWaitDialog
-		    mWaitDialog.Show
-		    TestThread.Run
+		    RunTests
 		    
 		  Case "DownloadButton"
 		    DownloadResults
@@ -1207,27 +1171,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events TestThread
-	#tag Event
-		Sub Run()
-		  mFinished = False
-		  
-		  RunTests
-		  
-		  mFinished = True
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events TestTimer
-	#tag Event
-		Sub Action()
-		  If mFinished Then
-		    Me.Mode = 0
-		    mWaitDialog.Close
-		  End If
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events Controller
 	#tag Event
 		Sub AllTestsFinished()
@@ -1250,6 +1193,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub GroupFinished(group As TestGroup)
+		  #Pragma Unused group
+		  
 		  PopulateTestGroups
 		End Sub
 	#tag EndEvent
@@ -1366,6 +1311,12 @@ End
 		Name="mFilter"
 		Group="Behavior"
 		Type="TestView"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - All"
+			"1 - Failed"
+			"2 - Passed"
+		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="MinHeight"
