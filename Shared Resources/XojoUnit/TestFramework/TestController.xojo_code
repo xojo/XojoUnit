@@ -174,6 +174,14 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub Finish()
+		  EndTimer
+		  Call RunTestCount // Updates all the counts
+		  RaiseEvent AllTestsFinished
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub LoadTestGroups()
 		  InitializeTestGroups
@@ -186,13 +194,42 @@ Protected Class TestController
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub RaiseGroupFinished(group As TestGroup)
+		  RaiseEvent GroupFinished(group)
+		  If Not IsRunning Then
+		    Finish
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RaiseTestFinished(result As TestResult, group As TestGroup)
+		  RaiseEvent TestFinished(result, group)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub RunTestGroups()
 		  StartTimer
+		  Dim excludeCount As Integer
 		  For Each tg As TestGroup In mTestGroups
-		    tg.Start
+		    If Not tg.IncludeGroup Then
+		      excludeCount = excludeCount + 1
+		    Else
+		      tg.Start
+		    End If
 		  Next
-		  EndTimer
+		  
+		  If excludeCount = (mTestGroups.Ubound + 1) Then
+		    //
+		    // All excluded or no tests
+		    //
+		    Finish
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
@@ -222,7 +259,7 @@ Protected Class TestController
 	#tag Method, Flags = &h0
 		Sub Start()
 		  RunTestGroups
-		  Call RunTestCount // Updates all the counts
+		  
 		End Sub
 	#tag EndMethod
 
@@ -240,7 +277,19 @@ Protected Class TestController
 
 
 	#tag Hook, Flags = &h0
+		Event AllTestsFinished()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event GroupFinished(group As TestGroup)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event InitializeTestGroups()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event TestFinished(result As TestResult, group As TestGroup)
 	#tag EndHook
 
 
@@ -284,6 +333,22 @@ Protected Class TestController
 			End Get
 		#tag EndGetter
 		GroupCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  For Each group As TestGroup In mTestGroups
+			    If group.IsRunning Then
+			      Return True
+			    End If
+			  Next
+			  
+			  Return False
+			  
+			End Get
+		#tag EndGetter
+		IsRunning As Boolean
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -385,7 +450,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"5.0", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.0", Scope = Public
 	#tag EndConstant
 
 
@@ -416,6 +481,11 @@ Protected Class TestController
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsRunning"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
