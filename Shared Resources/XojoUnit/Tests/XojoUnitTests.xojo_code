@@ -12,6 +12,12 @@ Inherits TestGroup
 		Sub TearDown()
 		  Prop2 = Prop2 - 1
 		  
+		  If AsyncTestTimer IsA Object Then
+		    AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Off
+		    RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    AsyncTestTimer = Nil
+		  End If
+		  
 		End Sub
 	#tag EndEvent
 
@@ -385,6 +391,29 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  If AsyncTestTimer Is Nil Then
+		    AsyncTestTimer = New Xojo.Core.Timer
+		    AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		  End If
+		  
+		  AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Single
+		  AsyncTestTimer.Period = 500
+		  AsyncAwait 3
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub AsyncTestTimer_Action(sender As Xojo.Core.Timer)
+		  #Pragma Unused sender
+		  
+		  AsyncComplete
+		  Assert.Pass "Async timer action ran as scheduled"
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CleanSlate1Test()
 		  Assert.AreEqual(0, Prop1)
 		  Prop1 = Prop1 + 1
@@ -462,6 +491,10 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
+		Private AsyncTestTimer As Xojo.Core.Timer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private Prop1 As Integer
 	#tag EndProperty
 
@@ -495,6 +528,11 @@ Inherits TestGroup
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IsRunning"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -506,6 +544,11 @@ Inherits TestGroup
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedTestCount"
