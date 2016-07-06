@@ -141,8 +141,6 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub GroupFinished(group As TestGroup)
-		  
-		  
 		  PopulateTestGroups
 		  
 		End Sub
