@@ -4,16 +4,19 @@ Begin iosView XojoUnitTestGroupView
    Compatibility   =   ""
    Left            =   0
    NavigationBarVisible=   True
+   TabIcon         =   ""
    TabTitle        =   ""
    Title           =   "XojoUnit"
    Top             =   0
    Begin iOSTable TestGroupsTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
-      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
+      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      EditingEnabled  =   False
+      EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -26,15 +29,21 @@ Begin iosView XojoUnitTestGroupView
    End
    Begin iOSTestController Controller
       AllTestCount    =   0
+      Duration        =   0.0
       FailedCount     =   0
       GroupCount      =   0
+      IsRunning       =   False
+      Left            =   0
       LockedInPosition=   False
       NotImplementedCount=   0
+      PanelIndex      =   -1
+      Parent          =   ""
       PassedCount     =   0
       RunGroupCount   =   0
       RunTestCount    =   0
       Scope           =   2
       SkippedCount    =   0
+      Top             =   0
    End
 End
 #tag EndIOSView
@@ -52,6 +61,8 @@ End
 
 	#tag Event
 		Sub ToolbarPressed(button As iOSToolButton)
+		  #Pragma Unused button
+		  
 		  RunTests
 		End Sub
 	#tag EndEvent
@@ -65,7 +76,11 @@ End
 		  
 		  Dim cellData As iOSTableCellData
 		  For Each g As TestGroup In Controller.TestGroups
-		    cellData = New iOSTableCellData
+		    #If RBVersion < 2016.02
+		      cellData = New iOSTableCellData
+		    #Else
+		      cellData = TestGroupsTable.CreateCell
+		    #Endif
 		    cellData.Text = g.Name
 		    cellData.DetailText = g.TestCount.ToText + " tests, " _
 		    + g.PassedTestCount.ToText + " passed, " _
@@ -105,11 +120,6 @@ End
 
 #tag Events TestGroupsTable
 	#tag Event
-		Sub Action(section As Integer, row As Integer)
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
 		Sub AccessoryAction(section As Integer, row As Integer)
 		  // Display the test methods for the group
 		  Dim v As New XojoUnitTestMethodView
@@ -141,6 +151,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub GroupFinished(group As TestGroup)
+		  #Pragma Unused group
+		  
 		  PopulateTestGroups
 		  
 		End Sub
@@ -183,6 +195,11 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TabIcon"
+		Group="Behavior"
+		Type="iOSImage"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabTitle"
