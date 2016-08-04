@@ -241,13 +241,13 @@ Protected Class TestGroup
 		      CurrentTestResult = result
 		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
 		      
-		      // Kirill Pekarov 2015-11-27
-		      RaiseEvent SetupTest
-		      
 		      //
 		      // Get a clone
 		      //
 		      CurrentClone = useConstructor.Invoke(constructorParams)
+		      
+		      // Kirill Pekarov 2015-11-27
+		      RaiseEvent SetupTest
 		      
 		      StartTimer
 		      method.Invoke(CurrentClone)
