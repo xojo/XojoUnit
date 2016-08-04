@@ -4,6 +4,7 @@ Begin iosView XojoUnitTestGroupView
    Compatibility   =   ""
    Left            =   0
    NavigationBarVisible=   True
+   TabIcon         =   ""
    TabTitle        =   ""
    Title           =   "XojoUnit"
    Top             =   0
@@ -14,6 +15,8 @@ Begin iosView XojoUnitTestGroupView
       AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      EditingEnabled  =   False
+      EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -24,6 +27,24 @@ Begin iosView XojoUnitTestGroupView
       Visible         =   True
       Width           =   320.0
    End
+   Begin iOSTestController Controller
+      AllTestCount    =   0
+      Duration        =   0.0
+      FailedCount     =   0
+      GroupCount      =   0
+      IsRunning       =   False
+      Left            =   0
+      LockedInPosition=   False
+      NotImplementedCount=   0
+      PanelIndex      =   -1
+      Parent          =   ""
+      PassedCount     =   0
+      RunGroupCount   =   0
+      RunTestCount    =   0
+      Scope           =   2
+      SkippedCount    =   0
+      Top             =   0
+   End
 End
 #tag EndIOSView
 
@@ -32,8 +53,7 @@ End
 		Sub Open()
 		  Self.RightNavigationToolbar.Add(iOSToolButton.NewPlain("Run"))
 		  
-		  mController = New iOSTestController
-		  mController.LoadTestGroups
+		  Controller.LoadTestGroups
 		  
 		  PopulateTestGroups
 		End Sub
@@ -41,6 +61,8 @@ End
 
 	#tag Event
 		Sub ToolbarPressed(button As iOSToolButton)
+		  #Pragma Unused button
+		  
 		  RunTests
 		End Sub
 	#tag EndEvent
@@ -53,8 +75,12 @@ End
 		  TestGroupsTable.AddSection("")
 		  
 		  Dim cellData As iOSTableCellData
-		  For Each g As TestGroup In mController.TestGroups
-		    cellData = New iOSTableCellData
+		  For Each g As TestGroup In Controller.TestGroups
+		    #If RBVersion < 2016.02
+		      cellData = New iOSTableCellData
+		    #Else
+		      cellData = TestGroupsTable.CreateCell
+		    #Endif
 		    cellData.Text = g.Name
 		    cellData.DetailText = g.TestCount.ToText + " tests, " _
 		    + g.PassedTestCount.ToText + " passed, " _
@@ -69,8 +95,8 @@ End
 		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		    
 		    Dim testCount As Integer
-		    testCount = mController.AllTestCount
-		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + mController.GroupCount.ToText + " groups."
+		    testCount = Controller.AllTestCount
+		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + Controller.GroupCount.ToText + " groups."
 		    
 		  End If
 		  
@@ -83,43 +109,16 @@ End
 		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		    detail.StartLabel.Text = Date.Now.ToText(Locale.Current, Date.FormatStyles.Medium)
 		    
-		    mController.Start
-		    
-		    detail.DurationLabel.Text = mController.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
-		    
-		    Dim testCount As Integer
-		    testCount = mController.RunTestCount
-		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + mController.RunGroupCount.ToText + " groups were run."
-		    
-		    Dim pct As Double
-		    pct = (mController.PassedCount / testCount) * 100
-		    detail.PassedCountLabel.Text = mController.PassedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
-		    
-		    pct = (mController.FailedCount / testCount) * 100
-		    detail.FailedCountLabel.Text = mController.FailedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
-		    detail.SkippedCountLabel.Text = mController.SkippedCount.ToText
-		    
-		    PopulateTestGroups
-		    
+		    Controller.Start
 		    
 		  End If
 		End Sub
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21
-		Private mController As TestController
-	#tag EndProperty
-
-
 #tag EndWindowCode
 
 #tag Events TestGroupsTable
-	#tag Event
-		Sub Action(section As Integer, row As Integer)
-		  
-		End Sub
-	#tag EndEvent
 	#tag Event
 		Sub AccessoryAction(section As Integer, row As Integer)
 		  // Display the test methods for the group
@@ -127,6 +126,35 @@ End
 		  v.LoadTests(Me.RowData(section, row).Tag)
 		  
 		  Self.PushTo(v)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Controller
+	#tag Event
+		Sub AllTestsFinished()
+		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		  
+		  detail.DurationLabel.Text = Controller.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		  
+		  Dim testCount As Integer
+		  testCount = Controller.RunTestCount
+		  detail.TestCountLabel.Text = testCount.ToText + " tests in " + Controller.RunGroupCount.ToText + " groups were run."
+		  
+		  Dim pct As Double
+		  pct = (Controller.PassedCount / testCount) * 100
+		  detail.PassedCountLabel.Text = Controller.PassedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		  
+		  pct = (Controller.FailedCount / testCount) * 100
+		  detail.FailedCountLabel.Text = Controller.FailedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		  detail.SkippedCountLabel.Text = Controller.SkippedCount.ToText
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub GroupFinished(group As TestGroup)
+		  #Pragma Unused group
+		  
+		  PopulateTestGroups
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -167,6 +195,11 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TabIcon"
+		Group="Behavior"
+		Type="iOSImage"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabTitle"

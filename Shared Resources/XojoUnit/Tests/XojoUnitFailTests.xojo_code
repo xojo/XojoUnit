@@ -1,6 +1,16 @@
 #tag Class
 Protected Class XojoUnitFailTests
 Inherits TestGroup
+	#tag Event
+		Sub TearDown()
+		  If IsAsyncTest Then
+		    PassIfFailed
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -477,6 +487,20 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  IsAsyncTest = True
+		  AsyncAwait 1
+		  Assert.Fail "No async method started"
+		  IncrementFailCountIfFail
+		  
+		  //
+		  // TearDown will finish this up
+		  //
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub FailTest()
 		  Assert.Fail("Failed!")
 		  IncrementFailCountIfFail
@@ -576,6 +600,10 @@ Inherits TestGroup
 		Private FailCount As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private IsAsyncTest As Boolean
+	#tag EndProperty
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
@@ -602,6 +630,11 @@ Inherits TestGroup
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IsRunning"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -613,6 +646,11 @@ Inherits TestGroup
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedTestCount"

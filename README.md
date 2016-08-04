@@ -67,4 +67,14 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 - Added "Not Implemented" count and properly update all counts.
 - TestGroup now has an UnhandledException event.
 
+6.0 (July 6, 2016)
+
+- Asynchronous testing is now possible through the `AsyncAwait(maxSeconds)` and `AsyncComplete` methods.
+- Projects were refactored to allow asynchronous testing.
+- Asynchronous tests added.
+
+6.0.1 (July 14, 2016)
+
+- Updated iOS project for Xojo 2016r2.
+
 Paul Lefebvre (paul@xojo.com)

@@ -4,16 +4,20 @@ Begin iosView XojoUnitTestMethodView
    Compatibility   =   ""
    Left            =   0
    NavigationBarVisible=   True
+   TabIcon         =   ""
    TabTitle        =   ""
    Title           =   "Test Methods"
    Top             =   0
    Begin iOSTable MethodTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      EditingEnabled  =   False
+      EditingEnabled  =   False
+      EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   415.0
       Left            =   0
@@ -38,7 +42,11 @@ End
 		  
 		  Dim cellData As iOSTableCellData
 		  For Each t As TestResult In g.Results
-		    cellData = New iOSTableCellData
+		    #If RBVersion < 2016.02
+		      cellData = New iOSTableCellData
+		    #Else
+		      cellData = MethodTable.CreateCell
+		    #Endif
 		    cellData.Text = t.TestName
 		    cellData.DetailText = "Results: " + t.Result
 		    cellData.Tag = t
@@ -110,6 +118,11 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TabIcon"
+		Group="Behavior"
+		Type="iOSImage"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabTitle"
