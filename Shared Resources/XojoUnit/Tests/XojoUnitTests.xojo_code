@@ -13,7 +13,7 @@ Inherits TestGroup
 		  Prop2 = Prop2 - 1
 		  
 		  If AsyncTestTimer IsA Object Then
-		    AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Off
+		    AsyncTestTimer.Mode = Timer.ModeOff
 		    RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
 		    AsyncTestTimer = Nil
 		  End If
@@ -393,18 +393,18 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AsyncTest()
 		  If AsyncTestTimer Is Nil Then
-		    AsyncTestTimer = New Xojo.Core.Timer
+		    AsyncTestTimer = New Timer
 		    AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
 		  End If
 		  
-		  AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Single
+		  AsyncTestTimer.Mode = Timer.ModeSingle
 		  AsyncTestTimer.Period = 500
 		  AsyncAwait 3
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AsyncTestTimer_Action(sender As Xojo.Core.Timer)
+		Private Sub AsyncTestTimer_Action(sender As Timer)
 		  #Pragma Unused sender
 		  
 		  AsyncComplete
@@ -491,7 +491,7 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
-		Private AsyncTestTimer As Xojo.Core.Timer
+		Private AsyncTestTimer As Timer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

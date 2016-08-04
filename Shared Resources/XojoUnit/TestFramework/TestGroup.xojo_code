@@ -125,7 +125,7 @@ Protected Class TestGroup
 		  End If
 		  
 		  If Not IsClone And RunTestsTimer IsA Object Then
-		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Off
+		    RunTestsTimer.Mode = Timer.ModeOff
 		    RemoveHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
 		    RunTestsTimer = Nil
 		  End If
@@ -165,6 +165,9 @@ Protected Class TestGroup
 		  methods = info.Methods
 		  
 		  For Each m As Xojo.Introspection.MethodInfo In methods
+		    // Kirill Pekarov 2015-11-27
+		    if m.Name = "Event_SetupTest" or m.Name = "Event_TearDownTest" then continue
+		    
 		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
 		      // Initialize test results
 		      Dim tr As New TestResult
@@ -196,7 +199,7 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
+		Private Sub RunTestsTimer_Action(sender As Timer)
 		  If UseConstructor Is Nil then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
@@ -243,11 +246,17 @@ Protected Class TestGroup
 		      //
 		      CurrentClone = useConstructor.Invoke(constructorParams)
 		      
+		      // Kirill Pekarov 2015-11-27
+		      RaiseEvent SetupTest
+		      
 		      StartTimer
 		      method.Invoke(CurrentClone)
 		      If CurrentClone.IsAwaitingAsync Then
 		        Return // The next round will resume testing
 		      End If
+		      
+		      // Kirill Pekarov 2015-11-27
+		      RaiseEvent TearDownTest
 		      
 		    Catch e As RuntimeException
 		      If e IsA EndException Or e IsA ThreadEndException Then
@@ -283,7 +292,7 @@ Protected Class TestGroup
 		  
 		  CurrentClone = Nil
 		  CurrentTestResult = Nil
-		  sender.Mode = Xojo.Core.Timer.Modes.Off
+		  sender.Mode = Timer.ModeOff
 		  
 		  Dim c As TestController = Controller
 		  If c IsA Object Then
@@ -308,11 +317,11 @@ Protected Class TestGroup
 		  If IncludeGroup Then
 		    ClearResults
 		    If RunTestsTimer Is Nil Then
-		      RunTestsTimer = New Xojo.Core.Timer
-		      AddHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
+		      RunTestsTimer = New Timer
+		      AddHandler RunTestsTimer.Action, AddressOf RunTestsTimer_Action
 		    End If
 		    RunTestsTimer.Period = 1
-		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Multiple
+		    RunTestsTimer.Mode = Timer.ModeMultiple
 		  Else
 		    ClearResults(True) // Mark tests as Skipped
 		  End If
@@ -332,7 +341,15 @@ Protected Class TestGroup
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event SetupTest()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event TearDown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event TearDownTest()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -434,7 +451,7 @@ Protected Class TestGroup
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return RunTestsTimer Isa Object And RunTestsTimer.Mode <> Xojo.Core.Timer.Modes.Off
+			  Return RunTestsTimer Isa Object And RunTestsTimer.Mode <> Timer.ModeOff
 			  
 			End Get
 		#tag EndGetter
@@ -513,7 +530,7 @@ Protected Class TestGroup
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private RunTestsTimer As Xojo.Core.Timer
+		Private RunTestsTimer As Timer
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
