@@ -40,7 +40,17 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(controller As TestController, groupName As Text)
+		Sub Constructor(controller As TestController, groupName As Text = "")
+		  groupName = groupName.Trim
+		  
+		  //
+		  // If groupName was not given, use the name of the class
+		  //
+		  If groupName = "" Then
+		    Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
+		    groupName = ti.FullName
+		  End If
+		  
 		  Name = groupName
 		  Self.Controller = controller
 		  

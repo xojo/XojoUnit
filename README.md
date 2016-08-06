@@ -77,4 +77,8 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 - Updated iOS project for Xojo 2016r2.
 
+6.0.2 (____, 2016)
+
+- TestGroup.Constructor no longer requires groupName. Will default to the name of the class if not given.
+
 Paul Lefebvre (paul@xojo.com)
