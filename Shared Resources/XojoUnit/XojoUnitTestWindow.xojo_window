@@ -817,8 +817,7 @@ End
 		  Dim runUnitTest As Integer = args.IndexOf("--rununittests")
 		  If runUnitTest > 0 And Ubound(args) > runUnitTest Then
 		    RunTests
-		    ExportTests args(runUnitTest + 1)
-		    Quit
+		    self.exportFilePath = ConvertEncoding(args(runUnitTest + 1), Encodings.UTF8)
 		  End
 		End Sub
 	#tag EndEvent
@@ -951,6 +950,11 @@ End
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private exportFilePath As String
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -1117,6 +1121,12 @@ End
 		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
 		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
 		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  
+		  // We were launched from the command-line, write out the results and quit
+		  if self.exportFilePath <> "" then
+		    ExportTests(self.exportFilePath)
+		    Quit
+		  end if
 		  
 		End Sub
 	#tag EndEvent
