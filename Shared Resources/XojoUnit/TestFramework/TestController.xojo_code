@@ -53,6 +53,47 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
+		Sub ExportTestResultsAsTAP(filePath As Text)
+		  #If TargetWin32 Then
+		    Const kEOL As Text = &u0D + &u0A
+		  #Else
+		    Const kEOL As Text = &u0A
+		  #Endif
+		  
+		  Dim f as FolderItem
+		  f = New FolderItem(filePath, FolderItem.PathTypeShell)
+		  Dim stream as BinaryStream
+		  
+		  If f <> Nil Then
+		    stream=BinaryStream.Create(f, True)
+		    Dim data as string
+		    Dim count as integer = 0
+		    
+		    For Each tg As TestGroup In mTestGroups
+		      
+		      For Each tr As TestResult In tg.Results
+		        count = count + 1
+		        stream.Write "    <testcase name=""" + tr.TestName + """ duration=""" + tr.Duration.ToText + """>" + kEOL
+		        if tr.Result = TestResult.Passed then
+		          data = data + "ok " + cstr( count ) + " " + tr.TestName + kEOL
+		        elseif tr.Result = TestResult.Skipped then
+		          data = data + "ok " + cstr( count ) + " [SKIPPED] " + tr.TestName + kEOL
+		        elseif tr.Result = TestResult.Failed then
+		          data = data + "not ok " + cstr( count ) + " " + tr.TestName + kEOL +_
+		          "  ---" + kEOL + "  message: " + tr.Message + kEOL
+		        end
+		      Next
+		    Next
+		    stream.Write "1.." + cstr( count ) + kEOL
+		    stream.Write data
+		    stream.Flush
+		    stream.Close
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub FilterTests(includePatterns() As String, excludePatterns() As String)
 		  // Filter the tests based on the include and exclude patterns
