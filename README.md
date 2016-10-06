@@ -77,8 +77,10 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 - Updated iOS project for Xojo 2016r2.
 
-6.0.2 (____, 2016)
+6.0.2 (October 6, 2016)
 
 - TestGroup.Constructor no longer requires groupName. Will default to the name of the class if not given.
+- Desktop will once again properly run the tests and quit if given the `--rununittests <path>` argument on the command line.
+- Export file paths can now contain spaces, but it must be the last argument.
 
 Paul Lefebvre (paul@xojo.com)
