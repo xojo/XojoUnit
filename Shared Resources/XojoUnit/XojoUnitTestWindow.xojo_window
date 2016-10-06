@@ -812,13 +812,34 @@ End
 		  PopulateTestGroups
 		  
 		  // Run unit tests now and exit?
-		  Dim args(-1) As String
-		  args = Split(System.CommandLine().Lowercase(), " ")
-		  Dim runUnitTest As Integer = args.IndexOf("--rununittests")
-		  If runUnitTest > 0 And Ubound(args) > runUnitTest Then
+		  //
+		  // Note:
+		  //   The '--rununittests path' argument must be last
+		  
+		  Dim argString As String = System.CommandLine
+		  
+		  Dim rx As New RegEx
+		  rx.SearchPattern = "(?mi-Us)\s?--rununittests\b( (.+))?"
+		  
+		  Dim match As RegExMatch = rx.Search(argString)
+		  
+		  If match IsA Object Then
+		    Try
+		      #Pragma BreakOnExceptions False
+		      ExportFilePath = match.SubExpressionString(2) // Let it raise an exception if needed
+		      #Pragma BreakOnExceptions Default 
+		    Catch err As OutOfBoundsException
+		      err.Message = "A valid export file path was not provided"
+		      Raise err
+		    End Try
+		    
+		    If ExportFilePath.Encoding Is Nil Then
+		      ExportFilePath = ExportFilePath.DefineEncoding(Encodings.UTF8)
+		    Else
+		      ExportFilePath = ExportFilePath.ConvertEncoding(Encodings.UTF8)
+		    End If
+		    
 		    RunTests
-		    ExportTests args(runUnitTest + 1)
-		    Quit
 		  End
 		End Sub
 	#tag EndEvent
@@ -951,6 +972,11 @@ End
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private ExportFilePath As String
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -1117,6 +1143,12 @@ End
 		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
 		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
 		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  
+		  // We were launched from the command-line, write out the results and quit
+		  If ExportFilePath <> "" Then
+		    ExportTests(ExportFilePath)
+		    Quit
+		  End If
 		  
 		End Sub
 	#tag EndEvent

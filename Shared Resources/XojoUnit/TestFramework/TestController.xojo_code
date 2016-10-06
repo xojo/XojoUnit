@@ -450,7 +450,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.0.1", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.0.2", Scope = Public
 	#tag EndConstant
 
 
