@@ -1,6 +1,6 @@
 #tag Class
 Protected Class XojoUnitTests
-Inherits TestGroup
+Inherits XojoUnitSuperClassTests
 	#tag Event
 		Sub Setup()
 		  Prop2 = Prop2 + 1
@@ -456,6 +456,12 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub OverriddenMethodTest()
+		  Assert.Pass "This subclass method executed as intended"
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub PassTest()
 		  Assert.Pass("Passed!")
 		End Sub
@@ -472,6 +478,14 @@ Inherits TestGroup
 		Sub Setup2Test()
 		  Assert.AreEqual(1, Prop2)
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestMethodWithParamTest(param As Text)
+		  #Pragma Unused param
+		  
+		  Assert.Fail "A test method with a param should have been ignored"
 		End Sub
 	#tag EndMethod
 
