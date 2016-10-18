@@ -83,4 +83,9 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 - Desktop will once again properly run the tests and quit if given the `--rununittests <path>` argument on the command line.
 - Export file paths can now contain spaces, but it must be the last argument.
 
+6.1 (October 18, 2016)
+
+- Overridden superclass methods will be ignored.
+- "Tests" that specify a parameter will be ignored.
+
 Paul Lefebvre (paul@xojo.com)
