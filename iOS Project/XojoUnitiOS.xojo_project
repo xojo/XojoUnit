@@ -1,5 +1,5 @@
 Type=iOS
-RBProjectVersion=2016.02
+RBProjectVersion=2016.03
 MinIDEVersion=20140300
 Class=App;App.xojo_code;&hFF22FFF;&h0;false
 iOSScreen=iPhoneScreen;iPhoneScreen.xojo_code;&h1A9FEFFF;&h0;false
@@ -56,3 +56,4 @@ iOSProvisioningProfile=0
 GenerateGlobalUsingClauses=True
 EnvironmentVariables=
 Capabilities={"AppGroups":{"Enabled":false,"Groups":{}},"ApplePay":{"Enabled":false,"Merchants":{}},"AssociatedDomains":{"Enabled":false,"Domains":{}},"BackgroundModes":{"Enabled":false,"Modes":{}},"iCloud":{"Enabled":false,"Containers":{}},"KeyChainSharing":{"Enabled":false,"Groups":{}},"Maps":{"Enabled":false,"MapDirections":{}},"Passbook":{"Enabled":false,"Passes":{}}}
+OptimizationLevel=0

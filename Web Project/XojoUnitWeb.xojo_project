@@ -1,5 +1,5 @@
 Type=Web
-RBProjectVersion=2016.011
+RBProjectVersion=2016.03
 MinIDEVersion=20110400
 Class=App;App.xojo_code;&h5B4E0328;&h0;false
 WebSession=Session;Session.xojo_code;&h3BF03CAA;&h0;false
@@ -61,3 +61,4 @@ WebHTMLHeader=
 WebDisconnectMessage=The application has gone off-line. Please try again later.
 WebHostingIdentifier=
 WebHostingAppName=MyApplication
+OptimizationLevel=0
