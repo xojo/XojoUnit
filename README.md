@@ -38,25 +38,26 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 ### Release Notes
 
-4.5 (June 2015)
+6.1 (October 18, 2016)
 
-- Added iOS.
-- Other stuff.
+- Overridden superclass methods will be ignored.
+- "Tests" that specify a parameter will be ignored.
 
-4.5.1 (August 27, 2015)
+6.0.2 (October 6, 2016)
 
-- Messages passed to Assert messages will only show up with the test fails.
-- Changed TestController.Version into a Text for compatibility with iOS.
-- Bug fixes.
+- TestGroup.Constructor no longer requires groupName. Will default to the name of the class if not given.
+- Desktop will once again properly run the tests and quit if given the `--rununittests <path>` argument on the command line.
+- Export file paths can now contain spaces, but it must be the last argument.
 
-4.6 (September 21, 2015)
+6.0.1 (July 14, 2016)
 
-- Better command-line parsing and options for console version.
-- Allow filtering by methods.
+- Updated iOS project for Xojo 2016r2.
 
-4.6.1 (December 22, 2015)
+6.0 (July 6, 2016)
 
-- Desktop version will honor groups that are marked as "Ignore" in code.
+- Asynchronous testing is now possible through the `AsyncAwait(maxSeconds)` and `AsyncComplete` methods.
+- Projects were refactored to allow asynchronous testing.
+- Asynchronous tests added.
 
 5.0 (March 29, 2016)
 
@@ -67,25 +68,24 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 - Added "Not Implemented" count and properly update all counts.
 - TestGroup now has an UnhandledException event.
 
-6.0 (July 6, 2016)
+4.6.1 (December 22, 2015)
 
-- Asynchronous testing is now possible through the `AsyncAwait(maxSeconds)` and `AsyncComplete` methods.
-- Projects were refactored to allow asynchronous testing.
-- Asynchronous tests added.
+- Desktop version will honor groups that are marked as "Ignore" in code.
 
-6.0.1 (July 14, 2016)
+4.6 (September 21, 2015)
 
-- Updated iOS project for Xojo 2016r2.
+- Better command-line parsing and options for console version.
+- Allow filtering by methods.
 
-6.0.2 (October 6, 2016)
+4.5.1 (August 27, 2015)
 
-- TestGroup.Constructor no longer requires groupName. Will default to the name of the class if not given.
-- Desktop will once again properly run the tests and quit if given the `--rununittests <path>` argument on the command line.
-- Export file paths can now contain spaces, but it must be the last argument.
+- Messages passed to Assert messages will only show up with the test fails.
+- Changed TestController.Version into a Text for compatibility with iOS.
+- Bug fixes.
 
-6.1 (October 18, 2016)
+4.5 (June 2015)
 
-- Overridden superclass methods will be ignored.
-- "Tests" that specify a parameter will be ignored.
+- Added iOS.
+- Other stuff.
 
 Paul Lefebvre (paul@xojo.com)
