@@ -174,17 +174,27 @@ Protected Class TestGroup
 		  Dim methods() As Xojo.Introspection.MethodInfo
 		  methods = info.Methods
 		  
-		  For Each m As Xojo.Introspection.MethodInfo In methods
-		    If m.Name.Right(kTestSuffix.Length) = kTestSuffix Then
-		      // Initialize test results
-		      Dim tr As New TestResult
-		      tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
-		      tr.MethodInfo = m
-		      tr.Result = TestResult.NotImplemented
-		      
-		      mResults.Append(tr)
+		  //
+		  // Get the unique set of methods
+		  //
+		  Dim methodsDict As New Xojo.Core.Dictionary
+		  For i As Integer = 0 To methods.Ubound
+		    Dim m As Xojo.Introspection.MethodInfo = methods(i)
+		    If m.Name.Length > kTestSuffix.Length And m.Name.Right(kTestSuffix.Length) = kTestSuffix And _
+		      m.Parameters.Ubound = -1 Then
+		      methodsDict.Value(m.Name) = m // Will replace overridden methods
 		    End If
+		  Next 
+		  
+		  For Each entry As Xojo.Core.DictionaryEntry In methodsDict
+		    // Initialize test results
+		    Dim m As Xojo.Introspection.MethodInfo = entry.Value
+		    Dim tr As New TestResult
+		    tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
+		    tr.MethodInfo = m
+		    tr.Result = TestResult.NotImplemented
 		    
+		    mResults.Append(tr)
 		  Next
 		End Sub
 	#tag EndMethod
