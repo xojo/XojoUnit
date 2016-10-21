@@ -38,6 +38,11 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 ### Release Notes
 
+6.2 (October 21, 2016)
+
+- Added Assert.Matches and Assert.DoesNotMatch to test strings against regular expressions.
+- iOS project will show failed method names in red.
+
 6.1 (October 18, 2016)
 
 - Overridden superclass methods will be ignored.
