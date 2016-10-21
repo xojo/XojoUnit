@@ -7,6 +7,7 @@ iOSScreen=iPadScreen;iPadScreen.xojo_code;&h1CB577FF;&h0;false
 AppIcons=App Icon;App Icon.xojo_image;&h28FFAFFF;&h0;false
 LaunchImages=Launch Images;Launch Images.xojo_image;&h5642C7FF;&h0;false
 Folder=XojoUnit;../Shared Resources/XojoUnit;&h2516B04D;&h0;false
+iOSContainerControl=XojoUnitMethodTableCell;../Shared Resources/XojoUnit/XojoUnitMethodTableCell.xojo_code;&h72BD9FFF;&h2516B04D;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h2DBA17FF;&h0;false
 Folder=Tests;../Shared Resources/XojoUnit/Tests;&h44C729E7;&h2516B04D;false
 Class=XojoUnitTests;../Shared Resources/XojoUnit/Tests/XojoUnitTests.xojo_code;&h45CA76B3;&h44C729E7;false
