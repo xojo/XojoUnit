@@ -48,7 +48,7 @@ Begin iosView XojoUnitTestDetailsView
       Scope           =   0
       Top             =   73
       Visible         =   True
-      Width           =   280.0
+      Width           =   984.0
       Begin iOSLabel Label2
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
@@ -356,7 +356,7 @@ Begin iosView XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      Top             =   196
+      Top             =   340
       Visible         =   True
       Width           =   294.0
    End
@@ -376,9 +376,9 @@ Begin iosView XojoUnitTestDetailsView
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Top             =   234
+      Top             =   378
       Visible         =   True
-      Width           =   280.0
+      Width           =   984.0
       Begin iOSLabel TestNameLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
@@ -399,7 +399,7 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   254
+         Top             =   398
          Visible         =   True
          Width           =   190.0
       End
@@ -412,7 +412,7 @@ Begin iosView XojoUnitTestDetailsView
          AutoLayout      =   TestResultLabel, 8, , 0, False, +1.00, 1, 1, 30, 
          Enabled         =   True
          Height          =   30.0
-         Left            =   180
+         Left            =   884
          LineBreakMode   =   "0"
          LockedInPosition=   False
          PanelIndex      =   0
@@ -423,7 +423,7 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   254
+         Top             =   398
          Visible         =   True
          Width           =   100.0
       End
@@ -447,7 +447,7 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   292
+         Top             =   436
          Visible         =   True
          Width           =   75.0
       End
@@ -471,9 +471,9 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   292
+         Top             =   436
          Visible         =   True
-         Width           =   169.0
+         Width           =   873.0
       End
       Begin iOSLabel Label12
          AccessibilityHint=   ""
@@ -495,7 +495,7 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   330
+         Top             =   474
          Visible         =   True
          Width           =   100.0
       End
@@ -519,9 +519,9 @@ Begin iosView XojoUnitTestDetailsView
          TextColor       =   &c00000000
          TextFont        =   ""
          TextSize        =   0
-         Top             =   368
+         Top             =   512
          Visible         =   True
-         Width           =   240.0
+         Width           =   944.0
       End
    End
 End

@@ -19,14 +19,14 @@ Begin iosView XojoUnitTestMethodView
       EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
-      Height          =   415.0
+      Height          =   703.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       Top             =   65
       Visible         =   True
-      Width           =   320.0
+      Width           =   1024.0
    End
 End
 #tag EndIOSView
@@ -41,20 +41,25 @@ End
 		  MethodTable.AddSection("")
 		  
 		  Dim cellData As iOSTableCellData
+		  
 		  For Each t As TestResult In g.Results
 		    #If RBVersion < 2016.02
 		      cellData = New iOSTableCellData
+		      cellData.Text = t.TestName
+		      cellData.DetailText = "Results: " + t.Result
 		    #Else
-		      cellData = MethodTable.CreateCell
-		    #Endif
-		    cellData.Text = t.TestName
-		    cellData.DetailText = "Results: " + t.Result
-		    cellData.Tag = t
-		    
-		    If t.Result = TestResult.Failed Then
+		      cellData = MethodTable.CreateCustomCell(GetTypeInfo(XojoUnitMethodTableCell))
+		      Dim cell As XojoUnitMethodTableCell = XojoUnitMethodTableCell(cellData.Control)
 		      
-		    End If
+		      cell.MethodNameLabel.Text = t.TestName
+		      cell.ResultLabel.Text = "Results: " + t.Result
+		      If t.Result = TestResult.Failed Then
+		        cell.MethodNameLabel.TextColor = Color.Red
+		        cell.ResultLabel.TextColor = cell.MethodNameLabel.TextColor
+		      End If
+		    #Endif
 		    
+		    cellData.Tag = t
 		    MethodTable.AddRow(0, cellData)
 		  Next
 		End Sub
