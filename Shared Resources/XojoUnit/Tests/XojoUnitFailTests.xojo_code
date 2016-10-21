@@ -500,6 +500,24 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatchStringTest()
+		  Dim actual As String = "12345"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^[A-Z]+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub FailTest()
 		  Assert.Fail("Failed!")
@@ -553,6 +571,24 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub IsTrueTest()
 		  Assert.IsTrue(False)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub MatchesStringTest()
+		  Dim actual As String = "1234a"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^(?-i)[A-Z]+$"
+		  
+		  Assert.Matches(pattern, actual)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed
