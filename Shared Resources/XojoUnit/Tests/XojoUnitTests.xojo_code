@@ -427,6 +427,20 @@ Inherits XojoUnitSuperClassTests
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatchStringTest()
+		  Dim actual As String = "abcde"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  
+		  actual = "abcd"
+		  pattern = "^(?-i)[A-Z]+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub IsFalseTest()
 		  Assert.IsFalse(False)
@@ -452,6 +466,20 @@ Inherits XojoUnitSuperClassTests
 	#tag Method, Flags = &h0
 		Sub IsTrueTest()
 		  Assert.IsTrue(True)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub MatchesStringTest()
+		  Dim actual As String = "12345"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  
+		  actual = "abcd"
+		  pattern = "^[A-Z]+$"
+		  
+		  Assert.Matches(pattern, actual)
 		End Sub
 	#tag EndMethod
 
