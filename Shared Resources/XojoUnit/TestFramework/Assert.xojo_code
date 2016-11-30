@@ -699,6 +699,25 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatch(regExPattern As String, actual As String, message As Text = "")
+		  If regExPattern = "" Then
+		    Dim err As New RegExException
+		    err.Reason = "No pattern was specified"
+		    Raise err
+		  End If
+		  
+		  Dim rx As New RegEx
+		  rx.SearchPattern = regExPattern
+		  
+		  If rx.Search(actual) Is Nil Then
+		    Pass()
+		  Else
+		    Fail("[" + StringToText(actual) + "]  matches the pattern /" + StringToText(regExPattern) + "/", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As Text
 		  Dim r() As Text
@@ -770,6 +789,25 @@ Protected Class Assert
 		    Pass()
 		  Else
 		    Fail("[true] expected, but was [false].", message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub Matches(regExPattern As String, actual As String, message As Text = "")
+		  If regExPattern = "" Then
+		    Dim err As New RegExException
+		    err.Reason = "No pattern was specified"
+		    Raise err
+		  End If
+		  
+		  Dim rx As New RegEx
+		  rx.SearchPattern = regExPattern
+		  
+		  If rx.Search(actual) Is Nil Then
+		    Fail("[" + StringToText(actual) + "]  does not match the pattern /" + StringToText(regExPattern) + "/", message)
+		  Else
+		    Pass()
 		  End If
 		End Sub
 	#tag EndMethod

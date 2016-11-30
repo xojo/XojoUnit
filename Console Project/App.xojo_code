@@ -22,6 +22,9 @@ Inherits ConsoleApplication
 		  // Run Tests
 		  Print "Running Tests..."
 		  mController.Start
+		  While mController.IsRunning
+		    App.DoEvents
+		  Wend
 		  
 		  // Output Results
 		  Print "Saving Results..."

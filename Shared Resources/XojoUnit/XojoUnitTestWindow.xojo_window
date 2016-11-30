@@ -784,27 +784,63 @@ Begin Window XojoUnitTestWindow
       TabPanelIndex   =   0
       Visible         =   True
    End
+   Begin DesktopTestController Controller
+      AllTestCount    =   0
+      Duration        =   0.0
+      Enabled         =   True
+      FailedCount     =   0
+      GroupCount      =   0
+      Index           =   -2147483648
+      IsRunning       =   False
+      LockedInPosition=   False
+      NotImplementedCount=   0
+      PassedCount     =   0
+      RunGroupCount   =   0
+      RunTestCount    =   0
+      Scope           =   2
+      SkippedCount    =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  mController = New DesktopTestController
-		  mController.LoadTestGroups
+		  Controller.LoadTestGroups
 		  
 		  PopulateTestGroups
 		  
 		  // Run unit tests now and exit?
-		  dim args(-1) as String
-		  args = Split(System.CommandLine().Lowercase(), " ")
-		  dim runUnitTest as Integer = args.IndexOf("--rununittests")
-		  if runUnitTest > 0 and Ubound(args) > runUnitTest then
-		    RunTests
-		    ExportTests args(runUnitTest + 1)
-		    Quit
-		  end
+		  //
+		  // Note:
+		  //   The '--rununittests path' argument must be last
 		  
+		  Dim argString As String = System.CommandLine
+		  
+		  Dim rx As New RegEx
+		  rx.SearchPattern = "(?mi-Us)\s?--rununittests\b( (.+))?"
+		  
+		  Dim match As RegExMatch = rx.Search(argString)
+		  
+		  If match IsA Object Then
+		    Try
+		      #Pragma BreakOnExceptions False
+		      ExportFilePath = match.SubExpressionString(2) // Let it raise an exception if needed
+		      #Pragma BreakOnExceptions Default 
+		    Catch err As OutOfBoundsException
+		      err.Message = "A valid export file path was not provided"
+		      Raise err
+		    End Try
+		    
+		    If ExportFilePath.Encoding Is Nil Then
+		      ExportFilePath = ExportFilePath.DefineEncoding(Encodings.UTF8)
+		    Else
+		      ExportFilePath = ExportFilePath.ConvertEncoding(Encodings.UTF8)
+		    End If
+		    
+		    RunTests
+		  End
 		End Sub
 	#tag EndEvent
 
@@ -848,7 +884,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ExportTests(filePath As String)
-		  mController.ExportTestResults filePath.ToText
+		  Controller.ExportTestResults filePath.ToText
 		  
 		End Sub
 	#tag EndMethod
@@ -858,7 +894,7 @@ End
 		  // Add the test groups into the listbox
 		  TestGroupList.DeleteAllRows
 		  
-		  For Each g As TestGroup In mController.TestGroups
+		  For Each g As TestGroup In Controller.TestGroups
 		    TestGroupList.AddFolder(g.Name)
 		    TestGroupList.CellType(TestGroupList.LastIndex, 2) = Listbox.TypeCheckbox
 		    TestGroupList.CellCheck(TestGroupList.LastIndex, 2) = g.IncludeGroup
@@ -866,8 +902,8 @@ End
 		  Next
 		  
 		  Dim testCount As Integer
-		  testCount = mController.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(mController.GroupCount) + " groups."
+		  testCount = Controller.AllTestCount
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups."
 		  
 		End Sub
 	#tag EndMethod
@@ -878,34 +914,8 @@ End
 		  
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
-		  mController.Start
+		  Controller.Start
 		  
-		  DurationLabel.Text = Format(mController.Duration, "#,###.0000000") + "s"
-		  
-		  Dim testCount As Integer
-		  testCount = mController.RunTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(mController.RunGroupCount) + " groups were run."
-		  
-		  PassedCountLabel.Text = Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)"
-		  FailedCountLabel.Text = Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)"
-		  SkippedCountLabel.Text = Str(mController.SkippedCount)
-		  
-		  Dim lastRow As Integer
-		  
-		  lastRow = TestGroupList.ListCount - 1
-		  For row As Integer = lastRow DownTo 0
-		    If TestGroupList.RowIsFolder(row) Then
-		      TestGroupList.Expanded(row) = False
-		    End If
-		  Next
-		  
-		  lastRow = TestGroupList.ListCount - 1
-		  For row As Integer = lastRow DownTo 0
-		    Dim g As TestGroup = TestGroup(TestGroupList.RowTag(row))
-		    If g.IncludeGroup Then
-		      TestGroupList.Expanded(row) = True
-		    End If
-		  Next
 		  
 		End Sub
 	#tag EndMethod
@@ -941,9 +951,31 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub UpdateResults()
+		  Dim lastRow As Integer
+		  
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    If TestGroupList.RowIsFolder(row) Then
+		      TestGroupList.Expanded(row) = False
+		    End If
+		  Next
+		  
+		  lastRow = TestGroupList.ListCount - 1
+		  For row As Integer = lastRow DownTo 0
+		    Dim g As TestGroup = TestGroup(TestGroupList.RowTag(row))
+		    If g.IncludeGroup Then
+		      TestGroupList.Expanded(row) = True
+		    End If
+		  Next
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
-		Private mController As TestController
+		Private ExportFilePath As String
 	#tag EndProperty
 
 
@@ -1092,6 +1124,35 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events Controller
+	#tag Event
+		Sub GroupFinished(group As TestGroup)
+		  #Pragma Unused group
+		  
+		  UpdateResults
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub AllTestsFinished()
+		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
+		  
+		  Dim testCount As Integer
+		  testCount = Controller.RunTestCount
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.RunGroupCount) + " groups were run."
+		  
+		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
+		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
+		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  
+		  // We were launched from the command-line, write out the results and quit
+		  If ExportFilePath <> "" Then
+		    ExportTests(ExportFilePath)
+		    Quit
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
@@ -1140,7 +1201,6 @@ End
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
 			"9 - Metal Window"
-			"10 - Drawer Window"
 			"11 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty

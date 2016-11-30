@@ -36,27 +36,36 @@ Frankly, this is all still new to me so we'll see how it goes!
 
 If you actively submit good changes, I'll probably make you a Contributor so that I don't have to process all your pull requests.
 
+### Requirements
+Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
+
 ### Release Notes
 
-4.5 (June 2015)
+6.2 (October 21, 2016)
 
-- Added iOS.
-- Other stuff.
+- Added Assert.Matches and Assert.DoesNotMatch to test strings against regular expressions.
+- iOS project will show failed method names in red.
 
-4.5.1 (August 27, 2015)
+6.1 (October 18, 2016)
 
-- Messages passed to Assert messages will only show up with the test fails.
-- Changed TestController.Version into a Text for compatibility with iOS.
-- Bug fixes.
+- Overridden superclass methods will be ignored.
+- "Tests" that specify a parameter will be ignored.
 
-4.6 (September 21, 2015)
+6.0.2 (October 6, 2016)
 
-- Better command-line parsing and options for console version.
-- Allow filtering by methods.
+- TestGroup.Constructor no longer requires groupName. Will default to the name of the class if not given.
+- Desktop will once again properly run the tests and quit if given the `--rununittests <path>` argument on the command line.
+- Export file paths can now contain spaces, but it must be the last argument.
 
-4.6.1 (December 22, 2015)
+6.0.1 (July 14, 2016)
 
-- Desktop version will honor groups that are marked as "Ignore" in code.
+- Updated iOS project for Xojo 2016r2.
+
+6.0 (July 6, 2016)
+
+- Asynchronous testing is now possible through the `AsyncAwait(maxSeconds)` and `AsyncComplete` methods.
+- Projects were refactored to allow asynchronous testing.
+- Asynchronous tests added.
 
 5.0 (March 29, 2016)
 
@@ -66,5 +75,25 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 - Fixed formatting of doubles in Assert.Fail.
 - Added "Not Implemented" count and properly update all counts.
 - TestGroup now has an UnhandledException event.
+
+4.6.1 (December 22, 2015)
+
+- Desktop version will honor groups that are marked as "Ignore" in code.
+
+4.6 (September 21, 2015)
+
+- Better command-line parsing and options for console version.
+- Allow filtering by methods.
+
+4.5.1 (August 27, 2015)
+
+- Messages passed to Assert messages will only show up with the test fails.
+- Changed TestController.Version into a Text for compatibility with iOS.
+- Bug fixes.
+
+4.5 (June 2015)
+
+- Added iOS.
+- Other stuff.
 
 Paul Lefebvre (paul@xojo.com)

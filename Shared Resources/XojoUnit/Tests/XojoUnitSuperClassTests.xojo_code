@@ -1,39 +1,35 @@
 #tag Class
-Protected Class DesktopTestController
-Inherits TestController
-	#tag Event
-		Sub InitializeTestGroups()
-		  // Instantiate TestGroup subclasses here so that they can be run
-		  
-		  Dim group As TestGroup
-		  
-		  group = New XojoUnitTests(Self, "Assertion")
-		  group = New XojoUnitFailTests(Self, "Always Fail")
-		  
+Protected Class XojoUnitSuperClassTests
+Inherits TestGroup
+	#tag Method, Flags = &h0
+		Sub OverriddenMethodTest()
+		  Assert.Fail "This superclass method should have been ignored"
 		End Sub
-	#tag EndEvent
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SuperClassMethodTest()
+		  Assert.Pass "This superclass method executed as intended"
+		End Sub
+	#tag EndMethod
 
 
 	#tag ViewBehavior
-		#tag ViewProperty
-			Name="AllTestCount"
-			Group="Behavior"
-			Type="Integer"
-		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Duration"
 			Group="Behavior"
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="FailedCount"
+			Name="FailedTestCount"
 			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="GroupCount"
+			Name="IncludeGroup"
 			Group="Behavior"
-			Type="Integer"
+			InitialValue="True"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -66,12 +62,7 @@ Inherits TestController
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="PassedCount"
-			Group="Behavior"
-			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RunGroupCount"
+			Name="PassedTestCount"
 			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
@@ -81,7 +72,7 @@ Inherits TestController
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="SkippedCount"
+			Name="SkippedTestCount"
 			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
@@ -90,6 +81,11 @@ Inherits TestController
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TestCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
