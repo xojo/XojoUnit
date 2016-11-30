@@ -1,6 +1,16 @@
 #tag Class
 Protected Class XojoUnitFailTests
 Inherits TestGroup
+	#tag Event
+		Sub TearDown()
+		  If IsAsyncTest Then
+		    PassIfFailed
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -477,6 +487,38 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  IsAsyncTest = True
+		  AsyncAwait 1
+		  Assert.Fail "No async method started"
+		  IncrementFailCountIfFail
+		  
+		  //
+		  // TearDown will finish this up
+		  //
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatchStringTest()
+		  Dim actual As String = "12345"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^[A-Z]+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub FailTest()
 		  Assert.Fail("Failed!")
 		  IncrementFailCountIfFail
@@ -535,6 +577,24 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub MatchesStringTest()
+		  Dim actual As String = "1234a"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^(?-i)[A-Z]+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub PassIfFailed()
 		  If FailCount = ExpectedFailCount Then
@@ -576,6 +636,10 @@ Inherits TestGroup
 		Private FailCount As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private IsAsyncTest As Boolean
+	#tag EndProperty
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
@@ -602,6 +666,11 @@ Inherits TestGroup
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IsRunning"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -613,6 +682,11 @@ Inherits TestGroup
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedTestCount"

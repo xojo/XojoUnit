@@ -4,25 +4,29 @@ Begin iosView XojoUnitTestMethodView
    Compatibility   =   ""
    Left            =   0
    NavigationBarVisible=   True
+   TabIcon         =   ""
    TabTitle        =   ""
    Title           =   "Test Methods"
    Top             =   0
    Begin iOSTable MethodTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      EditingEnabled  =   False
+      EditingEnabled  =   False
+      EstimatedRowHeight=   -1
       Format          =   "0"
-      Height          =   415.0
+      Height          =   703.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       Top             =   65
       Visible         =   True
-      Width           =   320.0
+      Width           =   1024.0
    End
 End
 #tag EndIOSView
@@ -37,16 +41,25 @@ End
 		  MethodTable.AddSection("")
 		  
 		  Dim cellData As iOSTableCellData
+		  
 		  For Each t As TestResult In g.Results
-		    cellData = New iOSTableCellData
-		    cellData.Text = t.TestName
-		    cellData.DetailText = "Results: " + t.Result
-		    cellData.Tag = t
-		    
-		    If t.Result = TestResult.Failed Then
+		    #If RBVersion < 2016.02
+		      cellData = New iOSTableCellData
+		      cellData.Text = t.TestName
+		      cellData.DetailText = "Results: " + t.Result
+		    #Else
+		      cellData = MethodTable.CreateCustomCell(GetTypeInfo(XojoUnitMethodTableCell))
+		      Dim cell As XojoUnitMethodTableCell = XojoUnitMethodTableCell(cellData.Control)
 		      
-		    End If
+		      cell.MethodNameLabel.Text = t.TestName
+		      cell.ResultLabel.Text = "Results: " + t.Result
+		      If t.Result = TestResult.Failed Then
+		        cell.MethodNameLabel.TextColor = Color.Red
+		        cell.ResultLabel.TextColor = cell.MethodNameLabel.TextColor
+		      End If
+		    #Endif
 		    
+		    cellData.Tag = t
 		    MethodTable.AddRow(0, cellData)
 		  Next
 		End Sub
@@ -110,6 +123,11 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TabIcon"
+		Group="Behavior"
+		Type="iOSImage"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabTitle"
