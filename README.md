@@ -36,6 +36,9 @@ Frankly, this is all still new to me so we'll see how it goes!
 
 If you actively submit good changes, I'll probably make you a Contributor so that I don't have to process all your pull requests.
 
+### Requirements
+Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
+
 ### Release Notes
 
 6.2 (October 21, 2016)
