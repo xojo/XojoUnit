@@ -299,7 +299,9 @@ Protected Class TestController
 			  Dim totalCount As Integer
 			  
 			  For Each tg As TestGroup In mTestGroups
-			    totalCount = totalCount + tg.TestCount
+			    If tg.IncludeGroup Then
+			      totalCount = totalCount + tg.TestCount
+			    End If
 			  Next
 			  
 			  Return totalCount
@@ -423,12 +425,14 @@ Protected Class TestController
 			  Dim totalCount As Integer
 			  
 			  For Each tg As TestGroup In mTestGroups
-			    totalCount = totalCount + tg.RunTestCount
-			    
-			    mPassedCount = mPassedCount + tg.PassedTestCount
-			    mFailedCount = mFailedCount + tg.FailedTestCount
-			    mSkippedCount = mSkippedCount + tg.SkippedTestCount
-			    mNotImplementedCount = mNotImplementedCount + tg.NotImplementedCount
+			    If tg.IncludeGroup Then
+			      totalCount = totalCount + tg.RunTestCount
+			      
+			      mPassedCount = mPassedCount + tg.PassedTestCount
+			      mFailedCount = mFailedCount + tg.FailedTestCount
+			      mSkippedCount = mSkippedCount + tg.SkippedTestCount
+			      mNotImplementedCount = mNotImplementedCount + tg.NotImplementedCount
+			    End If
 			  Next
 			  
 			  Return totalCount
