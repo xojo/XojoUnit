@@ -851,6 +851,27 @@ Begin Window XojoUnitTestWindow
       SkippedCount    =   0
       TabPanelIndex   =   0
    End
+   Begin ProgressWheel ProgressWheel1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   764
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   7
+      Visible         =   False
+      Width           =   16
+   End
 End
 #tag EndWindow
 
@@ -965,8 +986,7 @@ End
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
 		  Controller.Start
-		  
-		  
+		  ProgressWheel1.Visible = True
 		End Sub
 	#tag EndMethod
 
@@ -1184,6 +1204,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub AllTestsFinished()
+		  ProgressWheel1.Visible = False
+		  
 		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
 		  
 		  Dim allTestCount As Integer = Controller.AllTestCount
