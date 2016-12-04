@@ -32,18 +32,8 @@ Inherits ConsoleApplication
 		  Dim outputFile As FolderItem
 		  outputFile = OutputResults
 		  
-		  Dim testCount As Integer
-		  testCount = mController.RunTestCount
+		  PrintSummary(StdOut, mController)
 		  
-		  Dim now As New Date
-		  
-		  Print "Start: " + now.ShortDate + " " + now.ShortTime
-		  Print "Duration: " + Format(mController.Duration, "#,###.0000000") + "s"
-		  Print "Total: " + Str(testCount) + " tests in " + Str(mController.GroupCount) + " groups were run."
-		  Print "Passed: " + Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)"
-		  Print "Failed: " + Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)"
-		  Print "Skipped: " + Str(mController.SkippedCount)
-		  Print "Results file: " + outputFile.NativePath
 		End Function
 	#tag EndEvent
 
@@ -96,21 +86,9 @@ Inherits ConsoleApplication
 		    End If
 		  End If
 		  
-		  Dim output As TextOutputStream
+		  Dim output As TextOutputStream = TextOutputStream.Create(outputFile)
 		  
-		  output = TextOutputStream.Create(outputFile)
-		  
-		  Dim testCount As Integer
-		  testCount = mController.RunTestCount
-		  
-		  Dim now As New Date
-		  
-		  output.WriteLine("Start: " + now.ShortDate + " " + now.ShortTime)
-		  output.WriteLine("Duration: " + Format(mController.Duration, "#,###.0000000") + "s")
-		  output.WriteLine("Total: " + Str(testCount) + " tests in " + Str(mController.GroupCount) + " groups were run.")
-		  output.WriteLine("Passed: " + Str(mController.PassedCount) + " (" + Format((mController.PassedCount / testCount) * 100, "##.00") + "%)")
-		  output.WriteLine("Failed: " + Str(mController.FailedCount) + " (" + Format((mController.FailedCount / testCount) * 100, "##.00") + "%)")
-		  output.WriteLine("Skipped: " + Str(mController.SkippedCount))
+		  PrintSummary(output, mController)
 		  
 		  #If DebugBuild
 		    Dim debugOutput As String
@@ -164,6 +142,27 @@ Inherits ConsoleApplication
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub PrintSummary(output As Writeable, controller As TestController)
+		  Dim now As New Date
+		  
+		  Dim allTestCount As Integer = controller.AllTestCount
+		  Dim runTestCount As Integer = controller.RunTestCount
+		  
+		  WriteLine(output, "Start: " + now.ShortDate + " " + now.ShortTime)
+		  WriteLine(output, "Duration: " + Format(controller.Duration, "#,###.0000000") + "s")
+		  WriteLine(output, "Groups: " + Format(controller.RunGroupCount, "#,0"))
+		  WriteLine(output, "Total: " + Str(runTestCount) + If(allTestCount <> runTestCount, " of " + Str(allTestCount), "") + " tests were run")
+		  WriteLine(output, "Passed: " + Str(controller.PassedCount) + _
+		  If(runTestCount = 0, "", " (" + Format((controller.PassedCount / runTestCount) * 100, "##.00") + "%)"))
+		  WriteLine(output, "Failed: " + Str(controller.FailedCount) + _
+		  If(runTestCount = 0, "", " (" + Format((controller.FailedCount / runTestCount) * 100, "##.00") + "%)"))
+		  WriteLine(output, "Skipped: " + Str(controller.SkippedCount))
+		  WriteLine(output, "Not Implemented: " + Str(controller.NotImplementedCount))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function SetOptions() As OptionParser
 		  Dim parser As New OptionParser
 		  
@@ -183,6 +182,13 @@ Inherits ConsoleApplication
 		  Return parser
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub WriteLine(output As Writeable, s As String)
+		  output.Write s
+		  output.Write EndOfLine
+		End Sub
 	#tag EndMethod
 
 
