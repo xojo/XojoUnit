@@ -22,6 +22,7 @@ iOSView=XojoUnitTestGroupView;../Shared Resources/XojoUnit/XojoUnitTestGroupView
 iOSView=XojoUnitTestMethodView;../Shared Resources/XojoUnit/XojoUnitTestMethodView.xojo_code;&h38986FFF;&h2516B04D;false
 iOSView=XojoUnitTestDetailsView;../Shared Resources/XojoUnit/XojoUnitTestDetailsView.xojo_code;&h215E17FF;&h2516B04D;false
 Class=XojoUnitSuperClassTests;../Shared Resources/XojoUnit/Tests/XojoUnitSuperClassTests.xojo_code;&h3A8067FF;&h44C729E7;false
+Class=XojoUnitTestFailedException;../Shared Resources/XojoUnit/TestFramework/XojoUnitTestFailedException.xojo_code;&h5B98AFFF;&h3E1A9B41;false
 DefaultTabletScreen=iPadScreen
 MajorVersion=1
 MinorVersion=0

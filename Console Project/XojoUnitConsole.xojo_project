@@ -21,6 +21,7 @@ Class=OptionParser;../Shared Resources/OptionParser/OptionParser.xojo_code;&h25C
 Class=OptionParserException;../Shared Resources/OptionParser/OptionParserException.xojo_code;&h5CB2B525;&h24116FFF;false
 Class=OptionUnrecognizedKeyException;../Shared Resources/OptionParser/OptionUnrecognizedKeyException.xojo_code;&h12104F75;&h24116FFF;false
 Class=XojoUnitSuperClassTests;../Shared Resources/XojoUnit/Tests/XojoUnitSuperClassTests.xojo_code;&h3A8067FF;&h44C729E7;false
+Class=XojoUnitTestFailedException;../Shared Resources/XojoUnit/TestFramework/XojoUnitTestFailedException.xojo_code;&h638227FF;&h3E1A9B41;false
 MajorVersion=1
 MinorVersion=0
 SubVersion=0
