@@ -960,6 +960,78 @@ Begin WebPage XojoUnitTestPage
       SkippedCount    =   0
       Style           =   "-1"
    End
+   Begin WebLabel NotImplementedCountLabel
+      Cursor          =   1
+      Enabled         =   True
+      HasFocusRing    =   True
+      Height          =   22
+      HelpTag         =   ""
+      HorizontalCenter=   0
+      Index           =   -2147483648
+      Left            =   812
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      Multiline       =   False
+      Scope           =   0
+      Style           =   "0"
+      TabOrder        =   12
+      Text            =   "0 (0%)"
+      TextAlign       =   0
+      Top             =   139
+      VerticalCenter  =   0
+      Visible         =   True
+      Width           =   100
+      ZIndex          =   1
+      _DeclareLineRendered=   False
+      _HorizontalPercent=   0.0
+      _IsEmbedded     =   False
+      _Locked         =   False
+      _NeedsRendering =   True
+      _OfficialControl=   False
+      _OpenEventFired =   False
+      _VerticalPercent=   0.0
+   End
+   Begin WebLabel Label10
+      Cursor          =   1
+      Enabled         =   True
+      HasFocusRing    =   True
+      Height          =   22
+      HelpTag         =   ""
+      HorizontalCenter=   0
+      Index           =   -2147483648
+      Left            =   750
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      Multiline       =   False
+      Scope           =   0
+      Style           =   "16634393"
+      TabOrder        =   11
+      Text            =   "N/A:"
+      TextAlign       =   0
+      Top             =   139
+      VerticalCenter  =   0
+      Visible         =   True
+      Width           =   50
+      ZIndex          =   1
+      _DeclareLineRendered=   False
+      _HorizontalPercent=   0.0
+      _IsEmbedded     =   False
+      _Locked         =   False
+      _NeedsRendering =   True
+      _OfficialControl=   False
+      _OpenEventFired =   False
+      _VerticalPercent=   0.0
+   End
 End
 #tag EndWebPage
 
@@ -1042,7 +1114,7 @@ End
 		  
 		  Dim testCount As Integer
 		  testCount = Controller.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups."
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
 		  
 		End Sub
 	#tag EndMethod
@@ -1176,13 +1248,30 @@ End
 		Sub AllTestsFinished()
 		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
 		  
-		  Dim testCount As Integer
-		  testCount = Controller.RunTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.RunGroupCount) + " groups were run."
+		  Dim allTestCount As Integer = Controller.AllTestCount
+		  Dim runTestCount As Integer = Controller.RunTestCount
 		  
-		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
-		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
+		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
+		  
+		  If runTestCount = allTestCount Then
+		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
+		  Else
+		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
+		  End If
+		  
+		  Dim passedCount As Integer = Controller.PassedCount
+		  Dim passedPercent As Double = passedCount / runTestCount
+		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  
+		  Dim failedCount As Integer = Controller.FailedCount
+		  Dim failedPercent As Double = failedCount / runTestCount
+		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  
+		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
+		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
 		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
 		  
 		  If mWaitDialog IsA Object Then
 		    mWaitDialog.Close

@@ -125,7 +125,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Start:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -160,7 +159,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -195,7 +193,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Total:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -230,7 +227,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -265,7 +261,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Failed:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -300,7 +295,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Skipped:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -335,7 +329,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   6
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "1/1/2012 12:00PM"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -370,7 +363,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -405,8 +397,7 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   8
          TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "100 tests in 10 groups"
+         Text            =   "(run tests first)"
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "System"
@@ -440,7 +431,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   9
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -451,7 +441,7 @@ Begin Window XojoUnitTestWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   247
+         Width           =   100
       End
       Begin Label FailedCountLabel
          AutoDeactivate  =   True
@@ -475,7 +465,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   10
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -510,7 +499,74 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
-         TabStop         =   True
+         Text            =   "0 (0%)"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   172
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+      End
+      Begin Label Labels
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   8
+         InitialParent   =   "GroupBoxes$0"
+         Italic          =   False
+         Left            =   540
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   12
+         TabPanelIndex   =   0
+         Text            =   "Not Implemented:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   172
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   135
+      End
+      Begin Label NotImplementedCountLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBoxes$0"
+         Italic          =   False
+         Left            =   680
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   13
+         TabPanelIndex   =   0
          Text            =   "0 (0%)"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -573,7 +629,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Test Name"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -608,7 +663,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Duration:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -643,7 +697,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   2
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "0s"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -726,7 +779,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   4
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Messages:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -761,7 +813,6 @@ Begin Window XojoUnitTestWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Passed"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -787,7 +838,6 @@ Begin Window XojoUnitTestWindow
    Begin DesktopTestController Controller
       AllTestCount    =   0
       Duration        =   0.0
-      Enabled         =   True
       FailedCount     =   0
       GroupCount      =   0
       Index           =   -2147483648
@@ -800,6 +850,27 @@ Begin Window XojoUnitTestWindow
       Scope           =   2
       SkippedCount    =   0
       TabPanelIndex   =   0
+   End
+   Begin ProgressWheel ProgressWheel1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   764
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   7
+      Visible         =   False
+      Width           =   16
    End
 End
 #tag EndWindow
@@ -903,7 +974,7 @@ End
 		  
 		  Dim testCount As Integer
 		  testCount = Controller.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups."
+		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
 		  
 		End Sub
 	#tag EndMethod
@@ -915,8 +986,7 @@ End
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
 		  Controller.Start
-		  
-		  
+		  ProgressWheel1.Visible = True
 		End Sub
 	#tag EndMethod
 
@@ -1134,15 +1204,34 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub AllTestsFinished()
+		  ProgressWheel1.Visible = False
+		  
 		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
 		  
-		  Dim testCount As Integer
-		  testCount = Controller.RunTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.RunGroupCount) + " groups were run."
+		  Dim allTestCount As Integer = Controller.AllTestCount
+		  Dim runTestCount As Integer = Controller.RunTestCount
 		  
-		  PassedCountLabel.Text = Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)"
-		  FailedCountLabel.Text = Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)"
+		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
+		  
+		  If runTestCount = allTestCount Then
+		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
+		  Else
+		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
+		  End If
+		  
+		  Dim passedCount As Integer = Controller.PassedCount
+		  Dim passedPercent As Double = passedCount / runTestCount
+		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  
+		  Dim failedCount As Integer = Controller.FailedCount
+		  Dim failedPercent As Double = failedCount / runTestCount
+		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  
+		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
+		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
 		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
 		  
 		  // We were launched from the command-line, write out the results and quit
 		  If ExportFilePath <> "" Then
