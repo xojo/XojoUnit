@@ -19,14 +19,14 @@ Begin iosView XojoUnitTestMethodView
       EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
-      Height          =   703.0
+      Height          =   415.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       Top             =   65
       Visible         =   True
-      Width           =   1024.0
+      Width           =   320.0
    End
 End
 #tag EndIOSView
