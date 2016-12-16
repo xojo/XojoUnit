@@ -1,5 +1,5 @@
 Type=Console
-RBProjectVersion=2016.03
+RBProjectVersion=2016.041
 MinIDEVersion=20070100
 Class=App;App.xojo_code;&h3B77B45F;&h0;false
 Folder=OptionParser;../Shared Resources/OptionParser;&h24116FFF;&h0;false
@@ -51,5 +51,6 @@ OSXBundleID=
 DebuggerCommandLine=--include 'A*' ~/Desktop/
 UseGDIPlus=False
 UseBuildsFolder=True
+CopyRedistNextToWindowsEXE=False
 IsWebProject=False
 OptimizationLevel=0

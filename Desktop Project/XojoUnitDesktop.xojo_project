@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2016.03
+RBProjectVersion=2016.041
 MinIDEVersion=20070100
 Class=App;App.xojo_code;&h1BA8AB47;&h0;false
 Folder=XojoUnit;../Shared Resources/XojoUnit;&h2516B04D;&h0;false
@@ -50,5 +50,6 @@ OSXBundleID=com.example.xojounitdesktop
 DebuggerCommandLine=
 UseGDIPlus=True
 UseBuildsFolder=True
+CopyRedistNextToWindowsEXE=False
 IsWebProject=False
 OptimizationLevel=0
