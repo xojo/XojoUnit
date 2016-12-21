@@ -16,36 +16,61 @@ Protected Class TestController
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub ExportTestResults(filePath As Text)
+		  //
+		  // Conforms to JUnit XML schema, found here:
+		  //
+		  // http://www.ibm.com/support/knowledgecenter/SSQ2R2_9.5.1/com.ibm.rsar.analysis.codereview.cobol.doc/topics/cac_useresults_junit.html
+		  //
+		  
 		  #If TargetWin32 Then
 		    Const kEOL As Text = &u0D + &u0A
 		  #Else
 		    Const kEOL As Text = &u0A
 		  #Endif
 		  
-		  Dim f as FolderItem
+		  Dim testId As Text = Xojo.Core.Date.Now.ToText + "." + Xojo.Core.Date.Now.Nanosecond.ToText
+		  
+		  Dim f As FolderItem
 		  f = New FolderItem(filePath, FolderItem.PathTypeShell)
-		  Dim stream as BinaryStream
+		  Dim stream As BinaryStream
 		  If f <> Nil Then
 		    stream=BinaryStream.Create(f, True)
 		    stream.Write "<?xml version=""1.0"" encoding=""UTF-8"" ?>" + kEOL
-		    stream.Write "<testsuites>" + kEOL
+		    stream.Write "<testsuites id=""" + testId + _
+		    """ tests=""" + RunTestCount.ToText + _
+		    """ failures=""" + FailedCount.ToText + _
+		    """ time=""" + Duration.ToText + """>" + kEOL
+		    
 		    For Each tg As TestGroup In mTestGroups
-		      stream.Write "  <testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToText + """ tests=""" + tg.TestCount.ToText + """ time=""" + tg.Duration.ToText + """ failures=""" + tg.FailedTestCount.ToText + """ name=""com.atlassian.bamboo.labels." + tg.Name + """>" + kEOL
+		      stream.Write "  <testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToText + _
+		      """ tests=""" + tg.TestCount.ToText + _
+		      """ time=""" + tg.Duration.ToText + _
+		      """ failures=""" + tg.FailedTestCount.ToText + _
+		      """ name=""com.atlassian.bamboo.labels." + tg.Name + """>" + kEOL
+		      
 		      For Each tr As TestResult In tg.Results
-		        stream.Write "    <testcase name=""" + tr.TestName + """ duration=""" + tr.Duration.ToText + """>" + kEOL
-		        if tr.Result = TestResult.Skipped then
+		        stream.Write "    <testcase name=""" + tr.TestName + """ time=""" + tr.Duration.ToText + _
+		        """ duration= """ + tr.Duration.ToText + """>" + kEOL // "time" is right, but "duration" is maintained for backwards compatibility
+		        
+		        If tr.Result = TestResult.Skipped Then
 		          stream.Write "       <skipped />" + EndOfLine
-		        end
-		        if tr.Result = TestResult.Failed then
-		          dim failMessage As Text = tr.Message
+		          
+		        ElseIf tr.Result = TestResult.NotImplemented Then
+		          stream.Write "       <not_implemented />" + EndOfLine
+		          
+		        ElseIf tr.Result = TestResult.Failed Then
+		          Dim failMessage As Text = tr.Message
 		          failMessage = failMessage.ReplaceAll("<", "&lt;")
 		          failMessage = failMessage.ReplaceAll(">", "&gt;")
 		          stream.Write "       <failure type=""xojo.AssertionFailedError"" message=""" + failMessage + """/>" + kEOL
-		        end
+		        End If
+		        
 		        stream.Write "    </testcase>" + kEOL
 		      Next
+		      
 		      stream.Write "  </testsuite>" + kEOL
 		    Next
+		    
 		    stream.Write "</testsuites>" + kEOL
 		    stream.Close
 		  End if
@@ -299,7 +324,9 @@ Protected Class TestController
 			  Dim totalCount As Integer
 			  
 			  For Each tg As TestGroup In mTestGroups
-			    totalCount = totalCount + tg.TestCount
+			    If tg.IncludeGroup Then
+			      totalCount = totalCount + tg.TestCount
+			    End If
 			  Next
 			  
 			  Return totalCount
@@ -423,12 +450,14 @@ Protected Class TestController
 			  Dim totalCount As Integer
 			  
 			  For Each tg As TestGroup In mTestGroups
-			    totalCount = totalCount + tg.RunTestCount
-			    
-			    mPassedCount = mPassedCount + tg.PassedTestCount
-			    mFailedCount = mFailedCount + tg.FailedTestCount
-			    mSkippedCount = mSkippedCount + tg.SkippedTestCount
-			    mNotImplementedCount = mNotImplementedCount + tg.NotImplementedCount
+			    If tg.IncludeGroup Then
+			      totalCount = totalCount + tg.RunTestCount
+			      
+			      mPassedCount = mPassedCount + tg.PassedTestCount
+			      mFailedCount = mFailedCount + tg.FailedTestCount
+			      mSkippedCount = mSkippedCount + tg.SkippedTestCount
+			      mNotImplementedCount = mNotImplementedCount + tg.NotImplementedCount
+			    End If
 			  Next
 			  
 			  Return totalCount
@@ -450,7 +479,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.2", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.3", Scope = Public
 	#tag EndConstant
 
 

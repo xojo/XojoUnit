@@ -41,6 +41,12 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
 
+6.3 (Dec. 16, 2016)
+
+- Added `TestGroup.StopTestOnFail` property. If `True`, the first Fail will stop a test. A TestGroup can be set to stop when it is first added, it can be set in the `Setup` event, or an individual test can set it for that lone test.
+- Modified projects to properly report tests that did not return a result.
+- Modified `ExportTestResults` to be more compatible with JUnit.
+
 6.2 (October 21, 2016)
 
 - Added Assert.Matches and Assert.DoesNotMatch to test strings against regular expressions.

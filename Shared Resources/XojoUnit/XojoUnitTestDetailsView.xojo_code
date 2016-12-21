@@ -8,28 +8,6 @@ Begin iosView XojoUnitTestDetailsView
    TabTitle        =   ""
    Title           =   ""
    Top             =   0
-   Begin iOSLabel Label1
-      AccessibilityHint=   ""
-      AccessibilityLabel=   ""
-      AutoLayout      =   Label1, 8, , 0, False, +1.00, 1, 1, 30, 
-      AutoLayout      =   Label1, 3, <Parent>, 3, False, +1.00, 1, 1, 35, 
-      AutoLayout      =   Label1, 7, , 0, False, +1.00, 1, 1, 100, 
-      AutoLayout      =   Label1, 1, <Parent>, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
-      Enabled         =   True
-      Height          =   30.0
-      Left            =   20
-      LineBreakMode   =   "0"
-      LockedInPosition=   False
-      Scope           =   0
-      Text            =   "Overview"
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      TextFont        =   "System Bold		"
-      TextSize        =   0
-      Top             =   35
-      Visible         =   True
-      Width           =   100.0
-   End
    Begin iOSRectangle Rectangle1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
@@ -67,7 +45,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Start:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   93
          Visible         =   True
@@ -115,7 +93,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Total:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   131
          Visible         =   True
@@ -136,7 +114,7 @@ Begin iosView XojoUnitTestDetailsView
          PanelIndex      =   0
          Parent          =   "Rectangle1"
          Scope           =   0
-         Text            =   "100 tests in 10 groups"
+         Text            =   "(run tests first)"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
          TextFont        =   ""
@@ -163,7 +141,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Passed:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   169
          Visible         =   True
@@ -211,7 +189,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Failed:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   207
          Visible         =   True
@@ -241,13 +219,13 @@ Begin iosView XojoUnitTestDetailsView
          Visible         =   True
          Width           =   187.0
       End
-      Begin iOSLabel Label10
+      Begin iOSLabel SkippedLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
-         AutoLayout      =   Label10, 8, , 0, False, +1.00, 1, 1, 30, 
-         AutoLayout      =   Label10, 3, FailedCountLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
-         AutoLayout      =   Label10, 7, , 0, False, +1.00, 1, 1, 100, 
-         AutoLayout      =   Label10, 1, Label8, 1, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   SkippedLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   SkippedLabel, 3, FailedCountLabel, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+         AutoLayout      =   SkippedLabel, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   SkippedLabel, 1, Label8, 1, False, +1.00, 1, 1, 0, 
          Enabled         =   True
          Height          =   30.0
          Left            =   40
@@ -259,7 +237,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Skipped:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   245
          Visible         =   True
@@ -268,10 +246,10 @@ Begin iosView XojoUnitTestDetailsView
       Begin iOSLabel SkippedCountLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
-         AutoLayout      =   SkippedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
-         AutoLayout      =   SkippedCountLabel, 11, Label10, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   SkippedCountLabel, 1, SkippedLabel, 2, False, +1.00, 1, 1, *kStdControlGapH, 
          AutoLayout      =   SkippedCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
-         AutoLayout      =   SkippedCountLabel, 1, Label10, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         AutoLayout      =   SkippedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   SkippedCountLabel, 11, SkippedLabel, 11, False, +1.00, 1, 1, 0, 
          Enabled         =   True
          Height          =   30.0
          Left            =   148
@@ -280,7 +258,7 @@ Begin iosView XojoUnitTestDetailsView
          PanelIndex      =   0
          Parent          =   "Rectangle1"
          Scope           =   0
-         Text            =   "0 (0%)"
+         Text            =   "0"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
          TextFont        =   ""
@@ -289,13 +267,13 @@ Begin iosView XojoUnitTestDetailsView
          Visible         =   True
          Width           =   187.0
       End
-      Begin iOSLabel Label14
+      Begin iOSLabel DurationLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
-         AutoLayout      =   Label14, 7, , 0, False, +1.00, 1, 1, 100, 
-         AutoLayout      =   Label14, 11, Label2, 11, False, +1.00, 1, 1, 0, 
-         AutoLayout      =   Label14, 1, Rectangle1, 1, False, +1.00, 1, 1, 347, 
-         AutoLayout      =   Label14, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   DurationLabel, 7, , 0, False, +1.00, 1, 1, 100, 
+         AutoLayout      =   DurationLabel, 11, Label2, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   DurationLabel, 1, Rectangle1, 1, False, +1.00, 1, 1, 347, 
+         AutoLayout      =   DurationLabel, 8, , 0, False, +1.00, 1, 1, 30, 
          Enabled         =   True
          Height          =   30.0
          Left            =   367
@@ -307,19 +285,19 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Duration:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   93
          Visible         =   True
          Width           =   100.0
       End
-      Begin iOSLabel DurationLabel
+      Begin iOSLabel DurationValueLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
-         AutoLayout      =   DurationLabel, 7, , 0, False, +1.00, 1, 1, 187, 
-         AutoLayout      =   DurationLabel, 11, Label2, 11, False, +1.00, 1, 1, 0, 
-         AutoLayout      =   DurationLabel, 1, Label14, 2, False, +1.00, 1, 1, *kStdControlGapH, 
-         AutoLayout      =   DurationLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   DurationValueLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   DurationValueLabel, 11, Label2, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   DurationValueLabel, 1, DurationLabel, 2, False, +1.00, 1, 1, *kStdControlGapH, 
+         AutoLayout      =   DurationValueLabel, 8, , 0, False, +1.00, 1, 1, 30, 
          Enabled         =   True
          Height          =   30.0
          Left            =   475
@@ -337,6 +315,76 @@ Begin iosView XojoUnitTestDetailsView
          Visible         =   True
          Width           =   187.0
       End
+      Begin iOSLabel NotImplementedCountLabel
+         AccessibilityHint=   ""
+         AccessibilityLabel=   ""
+         AutoLayout      =   NotImplementedCountLabel, 1, Rectangle1, 1, False, +1.00, 1, 1, 516, 
+         AutoLayout      =   NotImplementedCountLabel, 7, , 0, False, +1.00, 1, 1, 187, 
+         AutoLayout      =   NotImplementedCountLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   NotImplementedCountLabel, 11, SkippedLabel, 11, False, +1.00, 1, 1, 0, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   536
+         LineBreakMode   =   "0"
+         LockedInPosition=   False
+         PanelIndex      =   0
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "0"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   ""
+         TextSize        =   0
+         Top             =   245
+         Visible         =   True
+         Width           =   187.0
+      End
+      Begin iOSLabel NotImplementedLabel
+         AccessibilityHint=   ""
+         AccessibilityLabel=   ""
+         AutoLayout      =   NotImplementedLabel, 11, SkippedLabel, 11, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   NotImplementedLabel, 8, , 0, False, +1.00, 1, 1, 30, 
+         AutoLayout      =   NotImplementedLabel, 1, DurationLabel, 1, False, +1.00, 1, 1, 0, 
+         AutoLayout      =   NotImplementedLabel, 7, , 0, False, +1.00, 1, 1, 132, 
+         Enabled         =   True
+         Height          =   30.0
+         Left            =   367
+         LineBreakMode   =   "0"
+         LockedInPosition=   False
+         PanelIndex      =   0
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         Text            =   "Not Implemented:"
+         TextAlignment   =   "0"
+         TextColor       =   &c00000000
+         TextFont        =   "System Bold		"
+         TextSize        =   0
+         Top             =   245
+         Visible         =   True
+         Width           =   132.0
+      End
+   End
+   Begin iOSLabel Label1
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      AutoLayout      =   Label1, 8, , 0, False, +1.00, 1, 1, 30, 
+      AutoLayout      =   Label1, 3, <Parent>, 3, False, +1.00, 1, 1, 35, 
+      AutoLayout      =   Label1, 7, , 0, False, +1.00, 1, 1, 100, 
+      AutoLayout      =   Label1, 1, <Parent>, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
+      Enabled         =   True
+      Height          =   30.0
+      Left            =   20
+      LineBreakMode   =   "0"
+      LockedInPosition=   False
+      Scope           =   0
+      Text            =   "Overview"
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      TextFont        =   "System Bold		"
+      TextSize        =   0
+      Top             =   35
+      Visible         =   True
+      Width           =   100.0
    End
    Begin iOSLabel Label11
       AccessibilityHint=   ""
@@ -445,7 +493,7 @@ Begin iosView XojoUnitTestDetailsView
          Text            =   "Duration:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   436
          Visible         =   True
@@ -490,10 +538,10 @@ Begin iosView XojoUnitTestDetailsView
          PanelIndex      =   0
          Parent          =   "Rectangle2"
          Scope           =   0
-         Text            =   "Messages"
+         Text            =   "Messages:"
          TextAlignment   =   "0"
          TextColor       =   &c00000000
-         TextFont        =   ""
+         TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   474
          Visible         =   True

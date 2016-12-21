@@ -738,6 +738,11 @@ Protected Class Assert
 		  
 		  Message(message + ": " + failMessage)
 		  
+		  If Group.StopTestOnFail Then
+		    #Pragma BreakOnExceptions False
+		    Raise New XojoUnitTestFailedException
+		    #Pragma BreakOnExceptions Default
+		  End If
 		End Sub
 	#tag EndMethod
 
