@@ -16,6 +16,7 @@ Begin iosView XojoUnitTestGroupView
       AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       EditingEnabled  =   False
+      EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   415.0
@@ -134,19 +135,30 @@ End
 		Sub AllTestsFinished()
 		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		  
-		  detail.DurationLabel.Text = Controller.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		  detail.DurationValueLabel.Text = Controller.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
 		  
-		  Dim testCount As Integer
-		  testCount = Controller.RunTestCount
-		  detail.TestCountLabel.Text = testCount.ToText + " tests in " + Controller.RunGroupCount.ToText + " groups were run."
+		  Dim allTestCount As Integer = Controller.AllTestCount
+		  Dim runTestCount As Integer = Controller.RunTestCount
+		  
+		  Dim groupsMessage As Text = Controller.RunGroupCount.ToText + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Dim testsMessage As Text = If(allTestCount = 1, " test", " tests")
+		  
+		  If runTestCount = allTestCount Then
+		    detail.TestCountLabel.Text = runTestCount.ToText + testsMessage + " in " + groupsMessage
+		  Else
+		    detail.TestCountLabel.Text = runTestCount.ToText + " of " + allTestCount.ToText + testsMessage + " in " + groupsMessage
+		  End If
 		  
 		  Dim pct As Double
-		  pct = (Controller.PassedCount / testCount) * 100
-		  detail.PassedCountLabel.Text = Controller.PassedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		  pct = (Controller.PassedCount / runTestCount) * 100.0
+		  detail.PassedCountLabel.Text = Controller.PassedCount.ToText + _
+		  If(runTestCount = 0, "", " (" + pct.ToText(Locale.Current, "#0.00") + "%)")
 		  
-		  pct = (Controller.FailedCount / testCount) * 100
-		  detail.FailedCountLabel.Text = Controller.FailedCount.ToText + " (" + pct.ToText(Locale.Current, "#0.00") + "%)"
+		  pct = (Controller.FailedCount / runTestCount) * 100.0
+		  detail.FailedCountLabel.Text = Controller.FailedCount.ToText + _
+		  If(runTestCount = 0, "", " (" + pct.ToText(Locale.Current, "#0.00") + "%)")
 		  detail.SkippedCountLabel.Text = Controller.SkippedCount.ToText
+		  detail.NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToText
 		End Sub
 	#tag EndEvent
 	#tag Event

@@ -484,6 +484,17 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub NotImplementedTest()
+		  // Tests will only return a result if one of the Assert methods
+		  // are called. This test intentionally does nothing useful to 
+		  // simulate those times when a developer forgets to do this.
+		  //
+		  // It should report as "not implemented".
+		  //
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub OverriddenMethodTest()
 		  Assert.Pass "This subclass method executed as intended"
 		End Sub
@@ -606,6 +617,11 @@ Inherits XojoUnitSuperClassTests
 			Name="SkippedTestCount"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

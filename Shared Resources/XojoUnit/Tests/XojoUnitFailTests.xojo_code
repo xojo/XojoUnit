@@ -7,6 +7,14 @@ Inherits TestGroup
 		    PassIfFailed
 		  End If
 		  
+		  StopTestOnFail = True
+		  //
+		  // Why is this here?
+		  // Because this property, when set in the middle of a test
+		  // should not carry over to the next test.
+		  // If it does, all of the subsequent tests will truly
+		  // fail.
+		  //
 		End Sub
 	#tag EndEvent
 
@@ -623,7 +631,16 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub WillTrulyFailTest()
 		  Assert.Fail("Yup it failed", "We expect this to fail")
+		  
+		  StopTestOnFail = True
+		  
 		  Assert.AreEqual(3, 4, "Another test that should fail")
+		  
+		  //
+		  // StopTestOnFail should prevent us from ever getting to this point
+		  //
+		  Break
+		  Assert.Fail("This should not have happened, so StopTestOnFail did not work!")
 		End Sub
 	#tag EndMethod
 

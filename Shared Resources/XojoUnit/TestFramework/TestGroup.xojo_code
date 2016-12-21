@@ -265,9 +265,15 @@ Protected Class TestGroup
 		      
 		      StartTimer
 		      method.Invoke(CurrentClone)
+		      
 		      If CurrentClone.IsAwaitingAsync Then
 		        Return // The next round will resume testing
 		      End If
+		      
+		    Catch failedErr As XojoUnitTestFailedException
+		      //
+		      // The exception is raised because the group was set to StopTestOnFail
+		      //
 		      
 		    Catch e As RuntimeException
 		      If e IsA EndException Or e IsA ThreadEndException Then
@@ -474,6 +480,10 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Attributes( hidden ) Private mStopTestOnFail As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mTimer As Double
 	#tag EndProperty
 
@@ -551,6 +561,28 @@ Protected Class TestGroup
 			End Get
 		#tag EndGetter
 		SkippedTestCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  If Not IsClone And CurrentClone IsA Object Then
+			    Return CurrentClone.StopTestOnFail
+			  Else
+			    Return mStopTestOnFail
+			  End If
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If Not IsClone And CurrentClone IsA Object Then
+			    CurrentClone.StopTestOnFail = value
+			  Else
+			    mStopTestOnFail = value
+			  End If
+			End Set
+		#tag EndSetter
+		StopTestOnFail As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
