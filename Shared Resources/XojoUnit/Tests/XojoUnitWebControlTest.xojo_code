@@ -1,6 +1,6 @@
 #tag Class
 Protected Class XojoUnitWebControlTest
-Inherits TestGroup
+Inherits WebControlTestGroup
 	#tag Method, Flags = &h0
 		Sub HTMLTest()
 		  // will raise SessionNotAvailableException

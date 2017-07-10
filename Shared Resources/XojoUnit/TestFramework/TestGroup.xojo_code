@@ -216,7 +216,18 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
+		Private Sub RunTestNoTimer()
+		  RunTestObject()
+		  
+		  Dim c As TestController = Controller
+		  If c IsA Object Then
+		    c.RaiseGroupFinished Self
+		  End if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RunTestObject()
 		  If UseConstructor Is Nil then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
@@ -309,14 +320,19 @@ Protected Class TestGroup
 		  
 		  CurrentClone = Nil
 		  CurrentTestResult = Nil
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
+		  RunTestObject()
+		  
 		  sender.Mode = Xojo.Core.Timer.Modes.Off
 		  
 		  Dim c As TestController = Controller
 		  If c IsA Object Then
 		    c.RaiseGroupFinished Self
 		  End if
-		  
-		  
 		End Sub
 	#tag EndMethod
 
@@ -331,6 +347,14 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h0
 		Sub Start()
+		  // UseTimer = False to prevent SessionNotAvailableException
+		  // when testing a web control
+		  If Not UseTimer Then
+		    RunTestNoTimer()
+		    Return
+		  End If
+		  
+		  
 		  If IncludeGroup Then
 		    ClearResults
 		    If RunTestsTimer Is Nil Then
@@ -350,6 +374,12 @@ Protected Class TestGroup
 		Private Sub StartTimer()
 		  mTimer = Microseconds
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Function UseTimer() As Boolean
+		  Return True
+		End Function
 	#tag EndMethod
 
 
@@ -664,6 +694,11 @@ Protected Class TestGroup
 			Name="SkippedTestCount"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
