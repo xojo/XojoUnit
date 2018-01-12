@@ -62,6 +62,7 @@ Begin Window XojoUnitTestWindow
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -755,7 +756,7 @@ Begin Window XojoUnitTestWindow
          LockTop         =   True
          Mask            =   ""
          Multiline       =   True
-         ReadOnly        =   False
+         ReadOnly        =   True
          Scope           =   0
          ScrollbarHorizontal=   False
          ScrollbarVertical=   True
@@ -857,7 +858,6 @@ Begin Window XojoUnitTestWindow
    Begin DesktopTestController Controller
       AllTestCount    =   0
       Duration        =   0.0
-      Enabled         =   True
       FailedCount     =   0
       GroupCount      =   0
       Index           =   -2147483648
@@ -937,8 +937,8 @@ End
 
 
 	#tag MenuHandler
-		Function EditClearAll() As Boolean Handles EditClearAll.Action
-			SelectAll(False)
+		Function EditSelectAllGroups() As Boolean Handles EditSelectAllGroups.Action
+			SelectAllGroups(True, False)
 			
 			Return True
 			
@@ -946,8 +946,8 @@ End
 	#tag EndMenuHandler
 
 	#tag MenuHandler
-		Function EditSelectAll() As Boolean Handles EditSelectAll.Action
-			SelectAll(True)
+		Function EditUnselectAllGroups() As Boolean Handles EditUnselectAllGroups.Action
+			SelectAllGroups(False, False)
 			
 			Return True
 			
@@ -1000,18 +1000,38 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function RowOfTestGroup(tg As TestGroup) As Integer
+		  For row As Integer = 0 To TestGroupList.ListCount - 1
+		    If TestGroupList.RowTag(row) Is tg Then
+		      Return row
+		    End If
+		  Next
+		  
+		  Return -1
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub RunTests()
 		  Dim now As New Date
 		  
 		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
 		  
-		  Controller.Start
+		  UpdateResults
+		  
 		  ProgressWheel1.Visible = True
+		  TestToolbar1.RunButton.Enabled = False
+		  TestToolbar1.StopButton.Enabled = True
+		  TestToolbar1.ExportButton.Enabled = False
+		  
+		  Controller.Start
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SelectAll(value As Boolean)
+		Private Sub SelectAllGroups(value As Boolean, andTests As Boolean)
 		  For i As Integer = 0 To TestGroupList.ListCount - 1
 		    If TestGroupList.RowTag(i) IsA TestGroup Then
 		      Dim tg As TestGroup
@@ -1019,6 +1039,10 @@ End
 		      tg.IncludeGroup = value
 		      
 		      TestGroupList.CellCheck(i, 2) = value
+		      
+		      If andTests Then
+		        SelectAllTests(tg, value)
+		      End If
 		    End If
 		  Next
 		  
@@ -1027,16 +1051,122 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SelectInverse()
+		Private Sub SelectAllTests(tg As TestGroup, value As Boolean)
+		  For Each tr As TestResult In tg.Results
+		    tr.IncludeMethod = value
+		  Next
+		  
+		  tg.IncludeGroup = value
+		  
+		  Dim tgRow As Integer = RowOfTestGroup(tg)
+		  
+		  If tgRow <> -1 Then
+		    TestGroupList.CellCheck(tgRow, 2) = value
+		    
+		    If TestGroupList.Expanded(tgRow) Then
+		      
+		      For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
+		        If Not (TestGroupList.RowTag(row) IsA TestResult) Then
+		          Exit For
+		        End If
+		        TestGroupList.CellCheck(row, 2) = value
+		      Next
+		      
+		    End If
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SelectInverseGroups(andTests As Boolean)
 		  For i As Integer = 0 To TestGroupList.ListCount - 1
 		    If TestGroupList.RowTag(i) IsA TestGroup Then
 		      Dim tg As TestGroup = TestGroupList.RowTag(i)
 		      tg.IncludeGroup = Not tg.IncludeGroup
 		      
 		      TestGroupList.CellCheck(i, 2) = tg.IncludeGroup
+		      
+		      If andTests Then
+		        SelectInverseTests(tg)
+		      End If
 		    End If
 		  Next
 		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SelectInverseTests(tg As TestGroup)
+		  For Each tr As TestResult In tg.Results
+		    tr.IncludeMethod = Not tr.IncludeMethod
+		  Next
+		  
+		  Dim tgRow As Integer = RowOfTestGroup(tg)
+		  
+		  If tgRow <> -1 And TestGroupList.Expanded(tgRow) Then
+		    
+		    For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
+		      Dim tag As Variant = TestGroupList.RowTag(row)
+		      If Not (tag IsA TestResult) Then
+		        Exit For
+		      End If
+		      Dim tr As TestResult = tag
+		      TestGroupList.CellCheck(row, 2) = tr.IncludeMethod
+		    Next
+		    
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub StopTests()
+		  Controller.Stop
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub TestsFinished()
+		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
+		  
+		  Dim allTestCount As Integer = Controller.AllTestCount
+		  Dim runTestCount As Integer = Controller.RunTestCount
+		  
+		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
+		  
+		  If runTestCount = allTestCount Then
+		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
+		  Else
+		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
+		  End If
+		  
+		  Dim passedCount As Integer = Controller.PassedCount
+		  Dim passedPercent As Double = passedCount / runTestCount
+		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  
+		  Dim failedCount As Integer = Controller.FailedCount
+		  Dim failedPercent As Double = failedCount / runTestCount
+		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  
+		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
+		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
+		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
+		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
+		  
+		  // We were launched from the command-line, write out the results and quit
+		  If ExportFilePath <> "" Then
+		    ExportTests(ExportFilePath)
+		    Quit
+		  End If
+		  
+		  ProgressWheel1.Visible = False
+		  TestToolbar1.RunButton.Enabled = True
+		  TestToolbar1.StopButton.Enabled = False
+		  TestToolbar1.ExportButton.Enabled = True
 		  
 		End Sub
 	#tag EndMethod
@@ -1045,7 +1175,11 @@ End
 		Private Sub UpdateResults()
 		  Dim lastRow As Integer
 		  
+		  Dim selectedRow As Integer = TestGroupList.ListIndex
+		  Dim scroll As Integer = TestGroupList.ScrollPosition
+		  
 		  lastRow = TestGroupList.ListCount - 1
+		  
 		  For row As Integer = lastRow DownTo 0
 		    If TestGroupList.RowIsFolder(row) Then
 		      TestGroupList.Expanded(row) = False
@@ -1060,6 +1194,8 @@ End
 		    End If
 		  Next
 		  
+		  TestGroupList.ListIndex = selectedRow
+		  TestGroupList.ScrollPosition = scroll
 		End Sub
 	#tag EndMethod
 
@@ -1067,6 +1203,34 @@ End
 	#tag Property, Flags = &h21
 		Private ExportFilePath As String
 	#tag EndProperty
+
+
+	#tag Constant, Name = kCMSelectAllGroups, Type = String, Dynamic = False, Default = \"Select All Groups", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMSelectAllGroupsAndTests, Type = String, Dynamic = False, Default = \"Select All Groups && Tests", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMSelectAllTests, Type = String, Dynamic = False, Default = \"Select All Tests", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMSelectInverseGroups, Type = String, Dynamic = False, Default = \"Select Inverse Goups", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMSelectInverseGroupsAndTests, Type = String, Dynamic = False, Default = \"Select Inverse Groups && Tests", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMSelectInverseTests, Type = String, Dynamic = False, Default = \"Select Inverse Tests", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMUnselectAllGroups, Type = String, Dynamic = False, Default = \"Unselect All Groups", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMUnselectAllGroupsAndTests, Type = String, Dynamic = False, Default = \"Unselect All Groups && Tests", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kCMUnselectAllTests, Type = String, Dynamic = False, Default = \"Unselect All Tests", Scope = Private
+	#tag EndConstant
 
 
 #tag EndWindowCode
@@ -1135,7 +1299,7 @@ End
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
 		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
-		      g.Fillrect(0, 0, g.Width, g.Height)
+		      g.FillRect(0, 0, g.Width, g.Height)
 		    End If
 		    
 		    Return True
@@ -1149,14 +1313,32 @@ End
 	#tag Event
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
 		  Select Case hitItem.Text
-		  Case "Select All"
-		    SelectAll(True)
+		  Case kCMSelectAllGroups
+		    SelectAllGroups(True, False)
 		    
-		  Case "Select None"
-		    SelectAll(False)
+		  Case kCMUnselectAllGroups
+		    SelectAllGroups(False, False)
 		    
-		  Case "Select Inverse"
-		    SelectInverse
+		  Case kCMSelectInverseGroups
+		    SelectInverseGroups(False)
+		    
+		  Case kCMSelectAllTests
+		    SelectAllTests(hitItem.Tag, True)
+		    
+		  Case kCMSelectInverseTests
+		    SelectInverseTests(hitItem.Tag)
+		    
+		  Case kCMUnselectAllTests
+		    SelectAllTests(hitItem.Tag, False)
+		    
+		  Case kCMSelectAllGroupsAndTests
+		    SelectAllGroups(True, True)
+		    
+		  Case kCMUnselectAllGroupsAndTests
+		    SelectAllGroups(False, True)
+		    
+		  Case kCMSelectInverseGroupsAndTests
+		    SelectInverseGroups(True)
 		    
 		  Case "Select Errors"
 		    
@@ -1169,9 +1351,31 @@ End
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  base.Append(New MenuItem("Select All"))
-		  base.Append(New MenuItem("Select Inverse"))
-		  base.Append(New MenuItem("Select None"))
+		  base.Append(New MenuItem(kCMSelectAllGroups))
+		  base.Append(New MenuItem(kCMSelectInverseGroups))
+		  base.Append(New MenuItem(kCMUnselectAllGroups))
+		  
+		  If Me.ListIndex <> -1 Then
+		    Dim tg As TestGroup
+		    For row As Integer = Me.ListIndex DownTo 0
+		      If Me.RowTag(row) IsA TestGroup Then
+		        tg = Me.RowTag(row)
+		        Exit For row
+		      End If
+		    Next
+		    
+		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    
+		    base.Append(New MenuItem(kCMSelectAllTests, tg))
+		    base.Append(New MenuItem(kCMSelectInverseTests, tg))
+		    base.Append(New MenuItem(kCMUnselectAllTests, tg))
+		  End If
+		  
+		  base.Append(New MenuItem(MenuItem.TextSeparator))
+		  
+		  base.Append(New MenuItem(kCMSelectAllGroupsAndTests))
+		  base.Append(New MenuItem(kCMSelectInverseGroupsAndTests))
+		  base.Append(New MenuItem(kCMUnselectAllGroupsAndTests))
 		  
 		  Return True
 		End Function
@@ -1195,10 +1399,14 @@ End
 #tag Events TestToolbar1
 	#tag Event
 		Sub Action(item As ToolItem)
-		  Select Case item.Name
-		  Case "RunButton"
+		  Select Case item
+		  Case TestToolbar1.RunButton
 		    RunTests
-		  Case "ExportButton"
+		    
+		  Case TestToolbar1.StopButton
+		    StopTests
+		    
+		  Case TestToolbar1.ExportButton
 		    Dim dlg as New SaveAsDialog
 		    Dim f as FolderItem
 		    dlg.InitialDirectory = SpecialFolder.Documents
@@ -1210,7 +1418,15 @@ End
 		    If f <> Nil then
 		      ExportTests f.NativePath
 		    End if
+		    
 		  End Select
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  Me.RunButton.Enabled = True
+		  Me.StopButton.Enabled = False
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1224,41 +1440,13 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub AllTestsFinished()
-		  ProgressWheel1.Visible = False
+		  TestsFinished()
 		  
-		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
-		  
-		  Dim allTestCount As Integer = Controller.AllTestCount
-		  Dim runTestCount As Integer = Controller.RunTestCount
-		  
-		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
-		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
-		  
-		  If runTestCount = allTestCount Then
-		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
-		  Else
-		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
-		  End If
-		  
-		  Dim passedCount As Integer = Controller.PassedCount
-		  Dim passedPercent As Double = passedCount / runTestCount
-		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
-		  
-		  Dim failedCount As Integer = Controller.FailedCount
-		  Dim failedPercent As Double = failedCount / runTestCount
-		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
-		  
-		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
-		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
-		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
-		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
-		  
-		  // We were launched from the command-line, write out the results and quit
-		  If ExportFilePath <> "" Then
-		    ExportTests(ExportFilePath)
-		    Quit
-		  End If
-		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TestFinished(result As TestResult, group As TestGroup)
+		  UpdateResults
 		End Sub
 	#tag EndEvent
 #tag EndEvents

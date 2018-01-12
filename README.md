@@ -41,6 +41,15 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
 
+6.4 (Jan. 12, 2018)
+
+- Fixed bug where asynchronous tests will yield time to other TestGroups.
+- Desktop will update UI as tests run and allow Stop.
+- More Desktop contextual menus.
+- Running tests in Desktop with no groups selected will no longer show the useless wheel.
+- If the `TestGroup.Setup` event raised an Exception, the Duration would be wrong. No longer.
+- Test message in Desktop is now read-only.
+
 6.3 (Dec. 16, 2016)
 
 - Added `TestGroup.StopTestOnFail` property. If `True`, the first Fail will stop a test. A TestGroup can be set to stop when it is first added, it can be set in the `Setup` event, or an individual test can set it for that lone test.
