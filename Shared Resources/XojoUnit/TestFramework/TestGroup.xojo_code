@@ -14,7 +14,7 @@ Protected Class TestGroup
 		Sub AsyncComplete()
 		  IsAwaitingAsync = False
 		  If IsRunning Then
-		    RunTestsTimer.Period = 1
+		    RunTestsTimer.Period = kTimerPeriod
 		  End If
 		  
 		  
@@ -22,7 +22,27 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ClearResults(skipped As Boolean = False)
+		Private Sub CalculateTestDuration()
+		  Dim elapsed As Double
+		  
+		  If CurrentClone Is Nil Then
+		    elapsed = 0.0
+		  Else
+		    elapsed = (Microseconds - TestDuration) / 1000000.0
+		  End If
+		  
+		  CurrentTestResult.Duration = elapsed
+		  
+		  Dim c As TestController = Controller
+		  If c IsA Object Then
+		    c.RaiseTestFinished CurrentTestResult, Self
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ClearResults(skipped As Boolean = False)
 		  For Each tr As TestResult In mResults
 		    If skipped Then
 		      tr.Result = TestResult.Skipped
@@ -99,7 +119,7 @@ Protected Class TestGroup
 		        Continue For prop
 		      End If
 		      
-		      If Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(prop.Name) <> -1 Then
+		      If prop.IsShared Or Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(prop.Name) <> -1 Then
 		        Continue For prop
 		      End If
 		      
@@ -138,22 +158,6 @@ Protected Class TestGroup
 		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Off
 		    RemoveHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
 		    RunTestsTimer = Nil
-		  End If
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub EndTimer()
-		  Dim elapsed As Double
-		  
-		  elapsed = (Microseconds-mTimer) / 1000000
-		  
-		  CurrentTestResult.Duration = elapsed
-		  
-		  Dim c As TestController = Controller
-		  If c IsA Object Then
-		    c.RaiseTestFinished CurrentTestResult, Self
 		  End If
 		  
 		End Sub
@@ -209,6 +213,12 @@ Protected Class TestGroup
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub ResetTestDuration()
+		  TestDuration = Microseconds
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function Results() As TestResult()
 		  Return mResults
@@ -217,6 +227,8 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
+		  #Pragma Unused sender
+		  
 		  If UseConstructor Is Nil then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
@@ -232,13 +244,14 @@ Protected Class TestGroup
 		  constructorParams.Append Self
 		  
 		  If CurrentClone IsA Object Then
-		    EndTimer
+		    CalculateTestDuration
 		    If CurrentClone.IsAwaitingAsync Then
 		      Assert.Fail "Asynchronous test did not complete in time"
 		    End If
 		  End If
 		  
-		  While CurrentResultIndex <= mResults.Ubound
+		  If CurrentResultIndex <= mResults.Ubound Then
+		    RunTestsTimer.Period = kTimerPeriod
 		    CurrentClone = Nil // Make sure TearDown happens
 		    
 		    Dim result As TestResult = mResults(CurrentResultIndex)
@@ -246,7 +259,7 @@ Protected Class TestGroup
 		    
 		    If Not result.IncludeMethod Then
 		      result.Result = Result.Skipped
-		      Continue While
+		      Return
 		    End If
 		    
 		    //
@@ -263,7 +276,7 @@ Protected Class TestGroup
 		      //
 		      CurrentClone = useConstructor.Invoke(constructorParams)
 		      
-		      StartTimer
+		      ResetTestDuration
 		      method.Invoke(CurrentClone)
 		      
 		      If CurrentClone.IsAwaitingAsync Then
@@ -287,7 +300,7 @@ Protected Class TestGroup
 		      
 		    End Try
 		    
-		    EndTimer
+		    CalculateTestDuration
 		    
 		    If err IsA Object Then
 		      
@@ -297,7 +310,12 @@ Protected Class TestGroup
 		        eInfo = Xojo.Introspection.GetType(err)
 		        
 		        Dim errorMessage As Text
-		        errorMessage = "A " + eInfo.FullName + " occurred and was caught."
+		        errorMessage = "A " + eInfo.FullName + " occurred and was caught"
+		        If CurrentClone Is Nil Then
+		          errorMessage = errorMessage + " – something in the Setup event failed"
+		        End If
+		        errorMessage = errorMessage + "."
+		        
 		        If err.Reason <> "" Then
 		          errorMessage = errorMessage + &u0A + "Message: " + err.Reason
 		        End If
@@ -305,16 +323,18 @@ Protected Class TestGroup
 		        
 		      End If
 		    End If
-		  Wend
+		    
+		    Return
+		  End If
 		  
-		  CurrentClone = Nil
-		  CurrentTestResult = Nil
-		  sender.Mode = Xojo.Core.Timer.Modes.Off
+		  Stop
 		  
 		  Dim c As TestController = Controller
 		  If c IsA Object Then
 		    c.RaiseGroupFinished Self
 		  End if
+		  
+		  Controller.RunNextTest
 		  
 		  
 		End Sub
@@ -332,23 +352,25 @@ Protected Class TestGroup
 	#tag Method, Flags = &h0
 		Sub Start()
 		  If IncludeGroup Then
-		    ClearResults
 		    If RunTestsTimer Is Nil Then
 		      RunTestsTimer = New Xojo.Core.Timer
 		      AddHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
 		    End If
-		    RunTestsTimer.Period = 1
+		    RunTestsTimer.Period = kTimerPeriod
 		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Multiple
-		  Else
-		    ClearResults(True) // Mark tests as Skipped
 		  End If
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub StartTimer()
-		  mTimer = Microseconds
+	#tag Method, Flags = &h0
+		Sub Stop()
+		  CurrentClone = Nil
+		  CurrentTestResult = Nil
+		  If RunTestsTimer IsA Object Then
+		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Off
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
@@ -414,15 +436,15 @@ Protected Class TestGroup
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Dim _duration As Double = 0
+			  Dim duration As Double
 			  
 			  For Each tr As TestResult In mResults
 			    If tr.Result = TestResult.Passed Or tr.Result = TestResult.Failed Then
-			      _duration = _duration + tr.Duration
+			      duration = duration + tr.Duration
 			    End If
 			  Next
 			  
-			  Return _duration
+			  Return duration
 			End Get
 		#tag EndGetter
 		Duration As Double
@@ -481,10 +503,6 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h21
 		Attributes( hidden ) Private mStopTestOnFail As Boolean
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mTimer As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -595,11 +613,18 @@ Protected Class TestGroup
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
+		Private TestDuration As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private UseConstructor As Xojo.Introspection.ConstructorInfo
 	#tag EndProperty
 
 
 	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kTimerPeriod, Type = Double, Dynamic = False, Default = \"1", Scope = Private
 	#tag EndConstant
 
 
@@ -664,6 +689,11 @@ Protected Class TestGroup
 			Name="SkippedTestCount"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

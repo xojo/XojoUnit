@@ -5,6 +5,11 @@ Begin Toolbar XojoUnitTestToolbar
 		HelpTag = ""
 		Style = 0
 	End
+	Begin ToolButton StopButton
+		Caption = "Stop Tests"
+		HelpTag = ""
+		Style = 0
+	End
 	Begin ToolButton ToolItem1
 		Caption = "Untitled"
 		HelpTag = ""
