@@ -11,22 +11,22 @@ Begin iosView XojoUnitTestGroupView
    Begin iOSTable TestGroupsTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
-      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, , True
+      AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, , True
+      AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, , True
+      AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, , True
       EditingEnabled  =   False
       EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
-      Height          =   415.0
+      Height          =   703.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       Top             =   65
       Visible         =   True
-      Width           =   320.0
+      Width           =   1024.0
    End
    Begin iOSTestController Controller
       AllTestCount    =   0
@@ -52,7 +52,8 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  Self.RightNavigationToolbar.Add(iOSToolButton.NewPlain("Run"))
+		  RunButton = iOSToolButton.NewPlain("Run")
+		  Self.RightNavigationToolbar.Add(RunButton)
 		  
 		  Controller.LoadTestGroups
 		  
@@ -111,28 +112,13 @@ End
 		    detail.StartLabel.Text = Date.Now.ToText(Locale.Current, Date.FormatStyles.Medium)
 		    
 		    Controller.Start
-		    
+		    RunButton.Enabled = False
 		  End If
 		End Sub
 	#tag EndMethod
 
-
-#tag EndWindowCode
-
-#tag Events TestGroupsTable
-	#tag Event
-		Sub AccessoryAction(section As Integer, row As Integer)
-		  // Display the test methods for the group
-		  Dim v As New XojoUnitTestMethodView
-		  v.LoadTests(Me.RowData(section, row).Tag)
-		  
-		  Self.PushTo(v)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Controller
-	#tag Event
-		Sub AllTestsFinished()
+	#tag Method, Flags = &h21
+		Private Sub UpdateSummary()
 		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		  
 		  detail.DurationValueLabel.Text = Controller.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
@@ -160,12 +146,41 @@ End
 		  detail.SkippedCountLabel.Text = Controller.SkippedCount.ToText
 		  detail.NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToText
 		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private RunButton As iOSToolButton
+	#tag EndProperty
+
+
+#tag EndWindowCode
+
+#tag Events TestGroupsTable
+	#tag Event
+		Sub AccessoryAction(section As Integer, row As Integer)
+		  // Display the test methods for the group
+		  Dim v As New XojoUnitTestMethodView
+		  v.LoadTests(Me.RowData(section, row).Tag)
+		  
+		  Self.PushTo(v)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Controller
+	#tag Event
+		Sub AllTestsFinished()
+		  UpdateSummary
+		  RunButton.Enabled = True
+		  
+		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub GroupFinished(group As TestGroup)
 		  #Pragma Unused group
 		  
 		  PopulateTestGroups
+		  UpdateSummary
 		  
 		End Sub
 	#tag EndEvent

@@ -908,6 +908,7 @@ Begin WebPage XojoUnitTestPage
       _VerticalPercent=   0.0
    End
    Begin WebTextArea TestResultsArea
+      CueText         =   ""
       Cursor          =   0
       Enabled         =   True
       HasFocusRing    =   True
