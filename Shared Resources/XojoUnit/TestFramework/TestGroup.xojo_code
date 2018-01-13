@@ -229,7 +229,7 @@ Protected Class TestGroup
 		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
 		  #Pragma Unused sender
 		  
-		  If UseConstructor Is Nil then
+		  If UseConstructor Is Nil Then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
 		    For Each c As Xojo.Introspection.ConstructorInfo In constructors
@@ -332,7 +332,7 @@ Protected Class TestGroup
 		  Dim c As TestController = Controller
 		  If c IsA Object Then
 		    c.RaiseGroupFinished Self
-		  End if
+		  End If
 		  
 		  Controller.RunNextTest
 		  

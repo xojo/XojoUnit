@@ -647,7 +647,7 @@ Protected Class Assert
 		      Fail("The bytes match but the text encoding does not", message)
 		    Else
 		      Pass()
-		    End if
+		    End If
 		  Else
 		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
 		  End If
@@ -820,9 +820,9 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub Message(msg As Text)
 		  msg = msg.Trim
-		  if msg.Empty then
-		    return
-		  end if
+		  If msg.Empty Then
+		    Return
+		  End If
 		  
 		  If Group.CurrentTestResult.Message.Empty Then
 		    Group.CurrentTestResult.Message = msg

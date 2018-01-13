@@ -72,7 +72,7 @@ Protected Class TestController
 		    
 		    stream.Write "</testsuites>" + kEOL
 		    stream.Close
-		  End if
+		  End If
 		  
 		End Sub
 	#tag EndMethod
@@ -97,7 +97,7 @@ Protected Class TestController
 		    Dim err As New RuntimeException
 		    err.Message = "You must specify at least one include or exclude pattern"
 		    Raise err
-		  End if
+		  End If
 		  
 		  //
 		  // Convert the patterns into regular expressions
@@ -261,7 +261,7 @@ Protected Class TestController
 		      TestQueue.Append tg
 		      tg.ClearResults
 		    Else
-		      tg.ClearResults(true)
+		      tg.ClearResults(True)
 		    End If
 		  Next
 		  
