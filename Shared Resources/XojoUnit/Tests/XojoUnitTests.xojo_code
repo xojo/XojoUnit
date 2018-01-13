@@ -84,6 +84,11 @@ Inherits XojoUnitSuperClassTests
 		  Dim c2 As Currency = 40.00 + 2.38
 		  
 		  Assert.AreEqual(c1, c2)
+		  
+		  c1 = 1.02
+		  c2 = 1.99
+		  
+		  Assert.AreNotEqual(c1, c2)
 		End Sub
 	#tag EndMethod
 

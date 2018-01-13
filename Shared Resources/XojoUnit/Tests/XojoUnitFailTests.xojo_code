@@ -82,6 +82,12 @@ Inherits TestGroup
 		  Assert.AreEqual(c1, c2)
 		  IncrementFailCountIfFail
 		  
+		  c1 = 1.02
+		  c2 = 1.02
+		  
+		  Assert.AreNotEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
 		  PassIfFailed
 		End Sub
 	#tag EndMethod
