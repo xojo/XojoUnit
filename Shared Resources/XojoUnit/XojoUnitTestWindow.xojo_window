@@ -1224,6 +1224,14 @@ End
 		    TestGroupList.Cell(row, ColTestName) = tr.TestName
 		    TestGroupList.Cell(row, ColResult) = tr.Result
 		    TestGroupList.CellCheck(row, ColInclude) = tr.IncludeMethod
+		    
+		    If TestGroupList.ListIndex = row Then
+		      //
+		      // Trigger Change event
+		      //
+		      TestGroupList.ListIndex = -1
+		      TestGroupList.ListIndex = row
+		    End If
 		  End If
 		  
 		End Sub
