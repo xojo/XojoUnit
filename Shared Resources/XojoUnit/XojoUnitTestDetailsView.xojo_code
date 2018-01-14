@@ -572,6 +572,22 @@ Begin iosView XojoUnitTestDetailsView
          Width           =   944.0
       End
    End
+   Begin iOSProgressWheel ProgressWheel1
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      AutoLayout      =   ProgressWheel1, 2, Rectangle2, 2, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   ProgressWheel1, 7, , 0, True, +1.00, 4, 1, 24, , True
+      AutoLayout      =   ProgressWheel1, 3, Label1, 3, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   ProgressWheel1, 8, , 0, True, +1.00, 4, 1, 24, , True
+      Height          =   24.0
+      Left            =   980
+      LockedInPosition=   False
+      Scope           =   0
+      Shade           =   "0"
+      Top             =   35
+      Visible         =   False
+      Width           =   24.0
+   End
 End
 #tag EndIOSView
 

@@ -106,6 +106,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub ProgressWheelVisible(Assigns value As Boolean)
+		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		  detail.ProgressWheel1.Visible = value
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub RunTests()
 		  If Self.ParentSplitView.Available Then
 		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
@@ -113,6 +121,7 @@ End
 		    
 		    Controller.Start
 		    RunButton.Enabled = False
+		    ProgressWheelVisible = True
 		  End If
 		End Sub
 	#tag EndMethod
@@ -172,7 +181,7 @@ End
 		Sub AllTestsFinished()
 		  UpdateSummary
 		  RunButton.Enabled = True
-		  
+		  ProgressWheelVisible = False
 		End Sub
 	#tag EndEvent
 	#tag Event
