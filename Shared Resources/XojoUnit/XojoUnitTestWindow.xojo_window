@@ -1166,6 +1166,19 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub SelectOneTest(tg As TestGroup, tr As TestResult)
+		  SelectOneGroup(tg, True)
+		  
+		  tr.IncludeMethod = True
+		  Dim row As Integer = RowOfTestResult(tr)
+		  If row <> -1 Then
+		    TestGroupList.CellCheck(row, ColInclude) = True
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub StopTests()
 		  Controller.Stop
 		  
@@ -1317,6 +1330,9 @@ End
 	#tag Constant, Name = kCMSelectAllTests, Type = String, Dynamic = False, Default = \"Select All Tests In This Group", Scope = Private
 	#tag EndConstant
 
+	#tag Constant, Name = kCMSelectFailedTests, Type = String, Dynamic = False, Default = \"Select Failed Test(s)", Scope = Private
+	#tag EndConstant
+
 	#tag Constant, Name = kCMSelectInverseGroups, Type = String, Dynamic = False, Default = \"Select Inverse Goups", Scope = Private
 	#tag EndConstant
 
@@ -1436,6 +1452,17 @@ End
 		  Case kCMSelectInverseGroups
 		    SelectInverseGroups(False)
 		    
+		  Case kCMSelectFailedTests
+		    SelectAllGroups(False, True)
+		    
+		    For Each tg As TestGroup In Controller.TestGroups
+		      For Each tr As TestResult In tg.Results
+		        If tr.Result = TestResult.Failed Then
+		          SelectOneTest(tg, tr)
+		        End If
+		      Next
+		    Next
+		    
 		  Case kCMSelectAllTests
 		    SelectAllTests(hitItem.Tag, True)
 		    
@@ -1450,10 +1477,7 @@ End
 		    Dim tg As TestGroup = tag.Left
 		    Dim tr As TestResult = tag.Right
 		    SelectAllGroups(False, True)
-		    SelectOneGroup(tg, True)
-		    
-		    tr.IncludeMethod = True
-		    TestGroupList.CellCheck(RowOfTestResult(tr), ColInclude) = True
+		    SelectOneTest(tg, tr)
 		    
 		  Case kCMSelectThisGroup
 		    Dim tg As TestGroup = hitItem.Tag
@@ -1486,6 +1510,12 @@ End
 		  base.Append(New MenuItem(kCMSelectAllGroups))
 		  base.Append(New MenuItem(kCMSelectInverseGroups))
 		  base.Append(New MenuItem(kCMUnselectAllGroups))
+		  
+		  If Controller.FailedCount <> 0 Then
+		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    
+		    base.Append(New MenuItem(kCMSelectFailedTests))
+		  End If
 		  
 		  If Me.ListIndex <> -1 Then
 		    Dim tg As TestGroup
