@@ -40,7 +40,7 @@ Inherits TestGroup
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
 		  
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  s2 = s1
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
@@ -80,6 +80,12 @@ Inherits TestGroup
 		  Dim c2 As Currency = 40.00 + 2.30
 		  
 		  Assert.AreEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
+		  c1 = 1.02
+		  c2 = 1.02
+		  
+		  Assert.AreNotEqual(c1, c2)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed

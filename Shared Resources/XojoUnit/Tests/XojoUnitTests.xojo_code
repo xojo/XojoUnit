@@ -53,7 +53,7 @@ Inherits XojoUnitSuperClassTests
 		  Assert.AreDifferent(s1, s2)
 		  
 		  s1 = s2
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreDifferent(s1, s2)
 		  
 		End Sub
@@ -84,6 +84,11 @@ Inherits XojoUnitSuperClassTests
 		  Dim c2 As Currency = 40.00 + 2.38
 		  
 		  Assert.AreEqual(c1, c2)
+		  
+		  c1 = 1.02
+		  c2 = 1.99
+		  
+		  Assert.AreNotEqual(c1, c2)
 		End Sub
 	#tag EndMethod
 
@@ -525,6 +530,47 @@ Inherits XojoUnitSuperClassTests
 		  #Pragma Unused param
 		  
 		  Assert.Fail "A test method with a param should have been ignored"
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestTimersTest()
+		  //
+		  // Demonstrates the use of Test Timers
+		  // 
+		  
+		  StartTestTimer // key is optional
+		  StartTestTimer("Part1")
+		  StartTestTimer("Part2")
+		  StartTestTimer("Part3")
+		  StartTestTimer("Unused")
+		  
+		  Dim target As Double = Microseconds + 250000.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "initial")
+		  LogTestTimer("Part3", "before reset")
+		  StartTestTimer("Part3") // A Test Timer can be restarted at any time, even if not logged
+		  
+		  target = Microseconds + 500.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "done") // Reusing this as a way to creating a lap
+		  LogTestTimer("Part2")
+		  LogTestTimer("Part3", "after reset")
+		  
+		  //
+		  // Timer "Unused" is never logged, and that's ok
+		  //
+		  
 		End Sub
 	#tag EndMethod
 

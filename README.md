@@ -37,9 +37,20 @@ Frankly, this is all still new to me so we'll see how it goes!
 If you actively submit good changes, I'll probably make you a Contributor so that I don't have to process all your pull requests.
 
 ### Requirements
+
 Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
+
+6.5 (Jan. 16, 2018)
+
+- Added "Run Until Fail"" button to Desktop. Tests will continue to run in a loop until one fails. "Stop Tests" will stop after the last test if running in a loop, or immediately if not. If you want to stop looping tests right away, press "Stop Tests" twice.
+- Added more contextual menus to Desktop (Selected Failed Tests, Select One Test).
+- Better updating of results and summary on Desktop. Also means less flicker on Windows.
+- Better handling of `Controller.Duration`.
+- Added more Currency tests.
+- Disabled Run button and added progress wheel to iOS.
+- Added Test Timers.
 
 6.4 (Jan. 12, 2018)
 

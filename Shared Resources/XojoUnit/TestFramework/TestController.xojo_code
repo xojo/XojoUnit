@@ -8,7 +8,7 @@ Protected Class TestController
 
 	#tag Method, Flags = &h21
 		Private Sub CalculateDuration()
-		  mDurationMS = Microseconds - mDurationMS
+		  mFinishMS = Microseconds
 		  
 		End Sub
 	#tag EndMethod
@@ -235,7 +235,10 @@ Protected Class TestController
 
 	#tag Method, Flags = &h21
 		Private Sub ResetDuration()
-		  mDurationMS = Microseconds
+		  mStartMS = Microseconds
+		  mFinishMS = 0.0
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -357,7 +360,14 @@ Protected Class TestController
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mDurationMS / 1000000.0
+			  Dim duration As Double
+			  If mFinishMS = 0.0 Then
+			    duration = Microseconds - mStartMS
+			  Else
+			    duration = mFinishMS - mStartMS
+			  End If
+			  
+			  Return duration / 1000000.0
 			End Get
 		#tag EndGetter
 		Duration As Double
@@ -398,11 +408,11 @@ Protected Class TestController
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mDurationMS As Double
+		Private mFailedCount As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mFailedCount As Integer
+		Private mFinishMS As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -415,6 +425,10 @@ Protected Class TestController
 
 	#tag Property, Flags = &h21
 		Private mSkippedCount As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mStartMS As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -498,7 +512,7 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.4", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.5", Scope = Public
 	#tag EndConstant
 
 
