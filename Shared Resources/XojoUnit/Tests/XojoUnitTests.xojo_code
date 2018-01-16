@@ -53,7 +53,7 @@ Inherits XojoUnitSuperClassTests
 		  Assert.AreDifferent(s1, s2)
 		  
 		  s1 = s2
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreDifferent(s1, s2)
 		  
 		End Sub

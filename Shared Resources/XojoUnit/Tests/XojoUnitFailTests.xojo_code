@@ -40,7 +40,7 @@ Inherits TestGroup
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
 		  
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  s2 = s1
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
