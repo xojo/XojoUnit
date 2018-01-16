@@ -534,6 +534,47 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub TestTimersTest()
+		  //
+		  // Demonstrates the use of Test Timers
+		  // 
+		  
+		  StartTestTimer // key is optional
+		  StartTestTimer("Part1")
+		  StartTestTimer("Part2")
+		  StartTestTimer("Part3")
+		  StartTestTimer("Unused")
+		  
+		  Dim target As Double = Microseconds + 250000.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "initial")
+		  LogTestTimer("Part3", "before reset")
+		  StartTestTimer("Part3") // A Test Timer can be restarted at any time, even if not logged
+		  
+		  target = Microseconds + 500.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "done") // Reusing this as a way to creating a lap
+		  LogTestTimer("Part2")
+		  LogTestTimer("Part3", "after reset")
+		  
+		  //
+		  // Timer "Unused" is never logged, and that's ok
+		  //
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub UnhandledExceptionTest()
 		  //
 		  // Create an exception
