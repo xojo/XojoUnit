@@ -1061,6 +1061,7 @@ End
 		  
 		  ProgressWheel1.Visible = True
 		  TestToolbar1.RunButton.Enabled = False
+		  TestToolbar1.RunUntilFailButton.Enabled = False
 		  TestToolbar1.StopButton.Enabled = True
 		  TestToolbar1.ExportButton.Enabled = False
 		  
@@ -1180,7 +1181,11 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub StopTests()
-		  Controller.Stop
+		  If RunUntilFail Then
+		    RunUntilFail = False
+		  Else
+		    Controller.Stop
+		  End If
 		  
 		End Sub
 	#tag EndMethod
@@ -1195,10 +1200,15 @@ End
 		    Quit
 		  End If
 		  
-		  ProgressWheel1.Visible = False
-		  TestToolbar1.RunButton.Enabled = True
-		  TestToolbar1.StopButton.Enabled = False
-		  TestToolbar1.ExportButton.Enabled = True
+		  If RunUntilFail And Controller.FailedCount = 0 Then
+		    RunTests
+		  Else
+		    ProgressWheel1.Visible = False
+		    TestToolbar1.RunButton.Enabled = True
+		    TestToolbar1.RunUntilFailButton.Enabled = True
+		    TestToolbar1.StopButton.Enabled = False
+		    TestToolbar1.ExportButton.Enabled = True
+		  End If
 		  
 		End Sub
 	#tag EndMethod
@@ -1318,6 +1328,10 @@ End
 
 	#tag Property, Flags = &h21
 		Private ExportFilePath As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private RunUntilFail As Boolean
 	#tag EndProperty
 
 
@@ -1577,6 +1591,11 @@ End
 		Sub Action(item As ToolItem)
 		  Select Case item
 		  Case TestToolbar1.RunButton
+		    RunUntilFail = False
+		    RunTests
+		    
+		  Case TestToolbar1.RunUntilFailButton
+		    RunUntilFail = True
 		    RunTests
 		    
 		  Case TestToolbar1.StopButton
