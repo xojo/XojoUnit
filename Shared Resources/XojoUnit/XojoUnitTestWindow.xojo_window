@@ -1257,7 +1257,7 @@ End
 		    TestGroupList.CellCheck(row, ColInclude) = tr.IncludeMethod
 		    
 		    If TestGroupList.ListIndex = row Then
-		      UpdateTestSummary(tr)
+		      UpdateTestSummary
 		    End If
 		  End If
 		  
@@ -1269,31 +1269,59 @@ End
 		  TestGroupList.Invalidate
 		  
 		  Dim tgRow As Integer = RowOfTestGroup(tg)
-		  If tgRow = -1 Or TestGroupList.Expanded(tgRow) = False Then
+		  If tgRow = -1 Then
 		    Return
 		  End If
 		  
-		  For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
-		    Dim tag As Variant = TestGroupList.RowTag(row)
-		    If Not (tag IsA TestResult) Then
-		      //
-		      // We have exhausted the group
-		      //
-		      Return
-		    End If
-		    
-		    UpdateTestResult(TestResult(tag), row)
-		  Next
+		  If TestGroupList.ListIndex = tgRow Then
+		    UpdateTestSummary
+		  End If
+		  
+		  If TestGroupList.Expanded(tgRow) Then
+		    For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
+		      Dim tag As Variant = TestGroupList.RowTag(row)
+		      If Not (tag IsA TestResult) Then
+		        //
+		        // We have exhausted the group
+		        //
+		        Return
+		      End If
+		      
+		      UpdateTestResult(TestResult(tag), row)
+		    Next
+		  End If
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UpdateTestSummary(tr As TestResult)
-		  TestNameLabel.Text = tr.TestName
-		  TestResultLabel.Text = tr.Result
-		  TestResultsArea.Text = tr.Message
-		  TestDurationLabel.Text = Format(tr.Duration, "#,###.0000000") + "s"
+		Private Sub UpdateTestSummary()
+		  Dim name As String
+		  Dim result As String
+		  Dim message As String
+		  Dim duration As String
+		  
+		  Dim item As Variant
+		  If TestGroupList.ListIndex <> -1 Then
+		    item = TestGroupList.RowTag(TestGroupList.ListIndex)
+		  End If
+		  
+		  If item IsA TestResult Then
+		    Dim tr As TestResult = item
+		    name = tr.TestName
+		    result = tr.Result
+		    message = tr.Message
+		    duration = Format(tr.Duration, "#,0.0000000") + "s"
+		  ElseIf item IsA TestGroup Then
+		    Dim tg As TestGroup = item
+		    name = tg.Name + " Group"
+		    duration = Format(tg.Duration, "#,0.0000000") + "s"
+		  End If
+		  
+		  TestNameLabel.Text = name
+		  TestResultLabel.Text = result
+		  TestResultsArea.Text = message
+		  TestDurationLabel.Text = duration
 		  
 		End Sub
 	#tag EndMethod
@@ -1403,15 +1431,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  Dim row As Integer = Me.ListIndex
-		  
-		  If row < 0 Then Return
-		  
-		  If Me.RowTag(row) IsA TestResult Then
-		    Dim tr As TestResult
-		    tr = Me.RowTag(row)
-		    UpdateTestSummary(tr)
-		  End If
+		  UpdateTestSummary
 		End Sub
 	#tag EndEvent
 	#tag Event
