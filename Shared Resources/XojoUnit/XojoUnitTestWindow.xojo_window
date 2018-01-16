@@ -1158,6 +1158,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub SelectOneGroup(tg As TestGroup, value As Boolean)
+		  tg.IncludeGroup = value
+		  TestGroupList.CellCheck(RowOfTestGroup(tg), ColInclude) = tg.IncludeGroup
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub StopTests()
 		  Controller.Stop
 		  
@@ -1226,11 +1234,7 @@ End
 		    TestGroupList.CellCheck(row, ColInclude) = tr.IncludeMethod
 		    
 		    If TestGroupList.ListIndex = row Then
-		      //
-		      // Trigger Change event
-		      //
-		      TestGroupList.ListIndex = -1
-		      TestGroupList.ListIndex = row
+		      UpdateTestSummary(tr)
 		    End If
 		  End If
 		  
@@ -1257,6 +1261,16 @@ End
 		    
 		    UpdateTestResult(TestResult(tag), row)
 		  Next
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateTestSummary(tr As TestResult)
+		  TestNameLabel.Text = tr.TestName
+		  TestResultLabel.Text = tr.Result
+		  TestResultsArea.Text = tr.Message
+		  TestDurationLabel.Text = Format(tr.Duration, "#,###.0000000") + "s"
 		  
 		End Sub
 	#tag EndMethod
@@ -1312,6 +1326,9 @@ End
 	#tag Constant, Name = kCMSelectInverseTests, Type = String, Dynamic = False, Default = \"Select Inverse Tests In This Group", Scope = Private
 	#tag EndConstant
 
+	#tag Constant, Name = kCMSelectOneTest, Type = String, Dynamic = False, Default = \"Select This Test Only", Scope = Private
+	#tag EndConstant
+
 	#tag Constant, Name = kCMSelectThisGroup, Type = String, Dynamic = False, Default = \"Select This Group", Scope = Private
 	#tag EndConstant
 
@@ -1363,10 +1380,7 @@ End
 		  If Me.RowTag(row) IsA TestResult Then
 		    Dim tr As TestResult
 		    tr = Me.RowTag(row)
-		    TestNameLabel.Text = tr.TestName
-		    TestResultLabel.Text = tr.Result
-		    TestResultsArea.Text = tr.Message
-		    TestDurationLabel.Text = Format(tr.Duration, "#,###.0000000") + "s"
+		    UpdateTestSummary(tr)
 		  End If
 		End Sub
 	#tag EndEvent
@@ -1431,15 +1445,23 @@ End
 		  Case kCMUnselectAllTests
 		    SelectAllTests(hitItem.Tag, False)
 		    
+		  Case kCMSelectOneTest
+		    Dim tag As Pair = hitItem.Tag
+		    Dim tg As TestGroup = tag.Left
+		    Dim tr As TestResult = tag.Right
+		    SelectAllGroups(False, True)
+		    SelectOneGroup(tg, True)
+		    
+		    tr.IncludeMethod = True
+		    TestGroupList.CellCheck(RowOfTestResult(tr), ColInclude) = True
+		    
 		  Case kCMSelectThisGroup
 		    Dim tg As TestGroup = hitItem.Tag
-		    tg.IncludeGroup = True
-		    TestGroupList.CellCheck(RowOfTestGroup(tg), ColInclude) = tg.IncludeGroup
+		    SelectOneGroup(tg, True)
 		    
 		  Case kCMUnselectThisGroup
 		    Dim tg As TestGroup = hitItem.Tag
-		    tg.IncludeGroup = False
-		    TestGroupList.CellCheck(RowOfTestGroup(tg), ColInclude) = tg.IncludeGroup
+		    SelectOneGroup(tg, False)
 		    
 		  Case kCMSelectAllGroupsAndTests
 		    SelectAllGroups(True, True)
@@ -1474,6 +1496,9 @@ End
 		      End If
 		    Next
 		    
+		    Dim tr As TestResult = _
+		    If(Me.RowTag(Me.ListIndex) IsA TestResult, TestResult(Me.RowTag(Me.ListIndex)), Nil)
+		    
 		    base.Append(New MenuItem(MenuItem.TextSeparator))
 		    
 		    base.Append(New MenuItem(kCMSelectAllTests, tg))
@@ -1481,6 +1506,12 @@ End
 		    base.Append(New MenuItem(kCMUnselectAllTests, tg))
 		    
 		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    
+		    If tr IsA TestResult Then
+		      base.Append(New MenuItem(kCMSelectOneTest, tg : tr))
+		      
+		      base.Append(New MenuItem(MenuItem.TextSeparator))
+		    End If
 		    
 		    base.Append(New MenuItem(kCMSelectThisGroup, tg))
 		    base.Append(New MenuItem(kCMUnselectThisGroup, tg))
