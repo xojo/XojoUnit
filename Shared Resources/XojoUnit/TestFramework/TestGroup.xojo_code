@@ -104,7 +104,7 @@ Protected Class TestGroup
 		  //
 		  // Skip certain props all the time
 		  //
-		  Dim skipProps() As Text = Array("CurrentClone")
+		  Dim skipProps() As Text = Array("CurrentClone", "TestTimers")
 		  
 		  //
 		  // Since computed properties can have side effects, do them first
@@ -119,17 +119,19 @@ Protected Class TestGroup
 		        Continue For prop
 		      End If
 		      
-		      If prop.IsShared Or Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(prop.Name) <> -1 Then
+		      Dim propName As Text = prop.Name
+		      
+		      If prop.IsShared Or Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(propName) <> -1 Then
 		        Continue For prop
 		      End If
 		      
+		      Dim propType As Text = prop.PropertyType.Name
 		      Dim fromValue As Auto = prop.Value(fromGroup)
-		      Dim propName As Text = prop.PropertyType.Name
 		      
 		      //
 		      // Handle arrays specially
 		      //
-		      If propName.Right(2) = "()" Then
+		      If propType.Right(2) = "()" Then
 		        Dim toArr() As Object = prop.Value(Self)
 		        Dim fromArr() As Object = fromValue
 		        
@@ -213,6 +215,62 @@ Protected Class TestGroup
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Function GetTestTimer(key As Text = "") As Double
+		  Dim endTime As Double = Microseconds
+		  Dim startTime As Double = TestTimers.Value(key)
+		  Dim duration As Double = endTime - startTime
+		  
+		  Return duration
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub LogTestTimer(key As Text = "", stage As Text = "")
+		  //
+		  // StartTestTimer must be called first.
+		  //
+		  // If not used properly, this will raise an exception, intentionally.
+		  //
+		  
+		  Dim duration As Double = GetTestTimer(key)
+		  
+		  Dim durationText As Text
+		  Dim unit As Text = "µs"
+		  Dim useFormat As Text = "#,###,##0"
+		  
+		  Const kSeconds As Double = 1000000.0
+		  
+		  If duration > (60.0 * kSeconds) Then
+		    duration = duration / (60.0 * kSeconds)
+		    unit = "m"
+		    useFormat = "#,###,##0.0##"
+		    
+		  ElseIf duration > (1.0 * kSeconds) Then
+		    duration = duration / (1.0 * kSeconds)
+		    unit = "s"
+		    useFormat = "#,###,##0.0###"
+		    
+		  ElseIf duration > 1000.0 Then
+		    duration = duration / 1000.0
+		    unit = "ms"
+		    useFormat = "#,###,##0.0##"
+		    
+		  End If
+		  
+		  durationText = duration.ToText(Xojo.Core.Locale.Current, useFormat) + " " + unit
+		  stage = stage.Trim
+		  
+		  Assert.Message "Test Timer " + _
+		  If(key.Empty, "", key + " ") + _
+		  If(stage.Empty, "", "[" + stage + "] ") + _
+		  "took " + durationText
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub ResetTestDuration()
 		  TestDuration = Microseconds
@@ -229,7 +287,7 @@ Protected Class TestGroup
 		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
 		  #Pragma Unused sender
 		  
-		  If UseConstructor Is Nil then
+		  If UseConstructor Is Nil Then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
 		    For Each c As Xojo.Introspection.ConstructorInfo In constructors
@@ -332,7 +390,7 @@ Protected Class TestGroup
 		  Dim c As TestController = Controller
 		  If c IsA Object Then
 		    c.RaiseGroupFinished Self
-		  End if
+		  End If
 		  
 		  Controller.RunNextTest
 		  
@@ -359,6 +417,17 @@ Protected Class TestGroup
 		    RunTestsTimer.Period = kTimerPeriod
 		    RunTestsTimer.Mode = Xojo.Core.Timer.Modes.Multiple
 		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub StartTestTimer(key As Text = "")
+		  If TestTimers Is Nil Then
+		    TestTimers = New Xojo.Core.Dictionary
+		  End If
+		  
+		  TestTimers.Value(key) = Microseconds
 		  
 		End Sub
 	#tag EndMethod
@@ -614,6 +683,10 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h21
 		Private TestDuration As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private TestTimers As Xojo.Core.Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
