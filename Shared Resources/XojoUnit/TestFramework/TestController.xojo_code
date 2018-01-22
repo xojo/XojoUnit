@@ -92,6 +92,19 @@ Protected Class TestController
 		  //  "*.Some" = Match the method named "SomeTest" in any group ("Test" is optional)
 		  //  "My*Group" = Match any group that starts with "My" and ends with "Group"
 		  
+		  //
+		  // Replace Nil with an empty array
+		  //
+		  If True Then // Scope
+		    Dim emptyArr() As String
+		    
+		    If includePatterns Is Nil Then
+		      includePatterns = emptyArr
+		    End If
+		    If excludePatterns Is Nil Then
+		      excludePatterns = emptyArr
+		    End If
+		  End If
 		  
 		  If includePatterns.Ubound = -1 And excludePatterns.Ubound = -1 Then
 		    Dim err As New RuntimeException
@@ -293,7 +306,7 @@ Protected Class TestController
 		  
 		  pattern = pattern + "$"
 		  
-		  return pattern
+		  Return pattern
 		End Function
 	#tag EndMethod
 
