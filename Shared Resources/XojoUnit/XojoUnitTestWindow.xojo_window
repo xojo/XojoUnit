@@ -932,6 +932,34 @@ End
 		    
 		    RunTests
 		  End
+		  
+		  //
+		  // Alternative: Include or Exclude unit tests with
+		  //
+		  //  --includeunittests or --excludeunitttests
+		  //
+		  // Multiple patterns can be specified with commas.
+		  //
+		  // Note:
+		  //  These must also be last.
+		  //
+		  
+		  rx.SearchPattern = "(?mi-Us)(?<=\s)--(include|exclude)unittests\b (.+)"
+		  match = rx.Search(argString)
+		  
+		  If match IsA Object Then
+		    Dim type As String = match.SubExpressionString(1)
+		    Dim pattern As String = match.SubExpressionString(2)
+		    Dim patterns() As String = pattern.Split(",")
+		    
+		    Select Case type
+		    Case "include"
+		      Controller.FilterTests(patterns, Nil)
+		    Case "exclude"
+		      Controller.FilterTests(Nil, patterns)
+		    End Select
+		  End If
+		  
 		End Sub
 	#tag EndEvent
 
