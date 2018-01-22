@@ -1596,13 +1596,30 @@ End
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  If Me.Cell(row, ColResult) = TestResult.Failed Then
-		    g.ForeColor = &cFF0000
-		    g.Bold = True
-		  Else
-		    g.ForeColor = &c000000
-		    g.Bold = False
+		  Const kRedColor As Color = &cFF000000
+		  Const kBlackColor As Color = &c00000000
+		  Static kGreyColor As Color = DisabledTextColor // Pseudo-constant
+		  
+		  If Me.RowTag(row) IsA TestResult Then
+		    
+		    Dim tr As TestResult = Me.RowTag(row)
+		    
+		    If tr.Result = TestResult.Failed Then
+		      g.ForeColor = kRedColor
+		      g.Bold = True
+		      
+		    Else
+		      If tr.Result = TestResult.NotImplemented Then
+		        g.ForeColor = kGreyColor
+		      Else
+		        g.ForeColor = kBlackColor
+		      End If
+		      g.Bold = Not tr.Message.Empty
+		      
+		    End If
+		    
 		  End If
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
