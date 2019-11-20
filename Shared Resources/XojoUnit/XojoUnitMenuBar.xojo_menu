@@ -93,9 +93,9 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditSelectAll
+      Begin MenuItem EditSelectAllGroups
          SpecialMenu = 0
-         Text = "Select &All"
+         Text = "Select &All Groups"
          Index = -2147483648
          ShortcutKey = "A"
          Shortcut = "Cmd+A"
@@ -103,9 +103,9 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditClearAll
+      Begin MenuItem EditUnselectAllGroups
          SpecialMenu = 0
-         Text = "Clear All"
+         Text = "Unselect All Groups"
          Index = -2147483648
          ShortcutKey = "-"
          Shortcut = "Cmd+-"

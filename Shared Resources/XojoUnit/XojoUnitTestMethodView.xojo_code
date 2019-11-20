@@ -11,10 +11,10 @@ Begin iosView XojoUnitTestMethodView
    Begin iOSTable MethodTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
-      AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, , True
+      AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, , True
+      AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, , True
+      AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, , True
       EditingEnabled  =   False
       EditingEnabled  =   False
       EstimatedRowHeight=   -1

@@ -7,9 +7,8 @@ Protected Class TestController
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub EndTimer()
-		  mDuration = (Microseconds-mTimer) / 1000000
-		  
+		Private Sub CalculateDuration()
+		  mFinishMS = Microseconds
 		  
 		End Sub
 	#tag EndMethod
@@ -73,7 +72,7 @@ Protected Class TestController
 		    
 		    stream.Write "</testsuites>" + kEOL
 		    stream.Close
-		  End if
+		  End If
 		  
 		End Sub
 	#tag EndMethod
@@ -93,12 +92,25 @@ Protected Class TestController
 		  //  "*.Some" = Match the method named "SomeTest" in any group ("Test" is optional)
 		  //  "My*Group" = Match any group that starts with "My" and ends with "Group"
 		  
+		  //
+		  // Replace Nil with an empty array
+		  //
+		  If True Then // Scope
+		    Dim emptyArr() As String
+		    
+		    If includePatterns Is Nil Then
+		      includePatterns = emptyArr
+		    End If
+		    If excludePatterns Is Nil Then
+		      excludePatterns = emptyArr
+		    End If
+		  End If
 		  
 		  If includePatterns.Ubound = -1 And excludePatterns.Ubound = -1 Then
 		    Dim err As New RuntimeException
 		    err.Message = "You must specify at least one include or exclude pattern"
 		    Raise err
-		  End if
+		  End If
 		  
 		  //
 		  // Convert the patterns into regular expressions
@@ -201,7 +213,8 @@ Protected Class TestController
 
 	#tag Method, Flags = &h21
 		Private Sub Finish()
-		  EndTimer
+		  CalculateDuration
+		  
 		  Call RunTestCount // Updates all the counts
 		  RaiseEvent AllTestsFinished
 		End Sub
@@ -222,9 +235,6 @@ Protected Class TestController
 	#tag Method, Flags = &h0
 		Sub RaiseGroupFinished(group As TestGroup)
 		  RaiseEvent GroupFinished(group)
-		  If Not IsRunning Then
-		    Finish
-		  End If
 		  
 		End Sub
 	#tag EndMethod
@@ -237,23 +247,42 @@ Protected Class TestController
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub ResetDuration()
+		  mStartMS = Microseconds
+		  mFinishMS = 0.0
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( Hidden )  Sub RunNextTest()
+		  If TestQueue.Ubound = -1 Then
+		    Stop
+		  Else
+		    Dim tg As TestGroup = TestQueue(0)
+		    TestQueue.Remove(0)
+		    tg.Start
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub RunTestGroups()
-		  StartTimer
-		  Dim excludeCount As Integer
+		  ResetDuration
+		  
 		  For Each tg As TestGroup In mTestGroups
-		    If Not tg.IncludeGroup Then
-		      excludeCount = excludeCount + 1
+		    If tg.IncludeGroup Then
+		      TestQueue.Append tg
+		      tg.ClearResults
 		    Else
-		      tg.Start
+		      tg.ClearResults(True)
 		    End If
 		  Next
 		  
-		  If excludeCount = (mTestGroups.Ubound + 1) Then
-		    //
-		    // All excluded or no tests
-		    //
-		    Finish
-		  End If
+		  RunNextTest
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -277,7 +306,7 @@ Protected Class TestController
 		  
 		  pattern = pattern + "$"
 		  
-		  return pattern
+		  Return pattern
 		End Function
 	#tag EndMethod
 
@@ -288,9 +317,15 @@ Protected Class TestController
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub StartTimer()
-		  mTimer = Microseconds
+	#tag Method, Flags = &h0
+		Sub Stop()
+		  For Each tg As TestGroup In mTestGroups
+		    tg.Stop
+		  Next
+		  
+		  Redim TestQueue(-1)
+		  Finish
+		  
 		End Sub
 	#tag EndMethod
 
@@ -338,7 +373,14 @@ Protected Class TestController
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mDuration
+			  Dim duration As Double
+			  If mFinishMS = 0.0 Then
+			    duration = Microseconds - mStartMS
+			  Else
+			    duration = mFinishMS - mStartMS
+			  End If
+			  
+			  Return duration / 1000000.0
 			End Get
 		#tag EndGetter
 		Duration As Double
@@ -379,11 +421,11 @@ Protected Class TestController
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mDuration As Double
+		Private mFailedCount As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mFailedCount As Integer
+		Private mFinishMS As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -399,11 +441,11 @@ Protected Class TestController
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTestGroups() As TestGroup
+		Private mStartMS As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTimer As Double
+		Private mTestGroups() As TestGroup
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -475,11 +517,15 @@ Protected Class TestController
 		SkippedCount As Integer
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h21
+		Private TestQueue() As TestGroup
+	#tag EndProperty
+
 
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.3", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.5", Scope = Public
 	#tag EndConstant
 
 

@@ -37,9 +37,34 @@ Frankly, this is all still new to me so we'll see how it goes!
 If you actively submit good changes, I'll probably make you a Contributor so that I don't have to process all your pull requests.
 
 ### Requirements
+
 Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
+
+6.6 (______)
+
+- In Desktop, "N/A" tests will show as grey and any test with a message will be bolded.
+- Desktop will allow you to filter tests through the command line with either `--includeunittests` or `--excludeunittests` as the last item. Use patterns where "\*" is a wildcard and a dot separates group and test name. Multiple patterns can be separated by commas. Example, `--includeunittests 'MyGroup.A\*'` will only include tests in group MyGroup that start with "A". `--excludeunittests '*.*Broker*'` will exclude any tests in any groups that contain the word "Broker". `--includeunittests 'MyGroup.MyTest'` and `--includeunittests 'MyGroup.My'` will both include only the test named "MyTest" (the "Test" suffix is optional).
+
+6.5 (Jan. 16, 2018)
+
+- Added "Run Until Fail"" button to Desktop. Tests will continue to run in a loop until one fails. "Stop Tests" will stop after the last test if running in a loop, or immediately if not. If you want to stop looping tests right away, press "Stop Tests" twice.
+- Added more contextual menus to Desktop (Selected Failed Tests, Select One Test).
+- Better updating of results and summary on Desktop. Also means less flicker on Windows.
+- Better handling of `Controller.Duration`.
+- Added more Currency tests.
+- Disabled Run button and added progress wheel to iOS.
+- Added Test Timers.
+
+6.4 (Jan. 12, 2018)
+
+- Fixed bug where asynchronous tests will yield time to other TestGroups.
+- Desktop will update UI as tests run and allow Stop.
+- More Desktop contextual menus.
+- Running tests in Desktop with no groups selected will no longer show the useless wheel.
+- If the `TestGroup.Setup` event raised an Exception, the Duration would be wrong. No longer.
+- Test message in Desktop is now read-only.
 
 6.3 (Dec. 16, 2016)
 

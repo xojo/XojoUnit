@@ -3,4 +3,5 @@
 Console Project/XojoUnitConsole.debug
 Web Project/XojoUnitWeb.debug
 iOS Project/XojoUnit.debug.app
-Desktop Project/My Application.debug.app
+Desktop Project/XojoUnit.debug.app
+*.gz
