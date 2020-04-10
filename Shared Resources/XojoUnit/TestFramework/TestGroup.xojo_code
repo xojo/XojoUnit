@@ -347,6 +347,7 @@ Protected Class TestGroup
 		      ResetTestDuration
 		      IsTestRunning = True
 		      method.Invoke(CurrentClone)
+		      IsTestRunning = False
 		      
 		      If CurrentClone.IsAwaitingAsync Then
 		        Return // The next round will resume testing
