@@ -287,6 +287,16 @@ Protected Class TestGroup
 		Private Sub RunTestsTimer_Action(sender As Xojo.Core.Timer)
 		  #Pragma Unused sender
 		  
+		  Static isTestRunning As Boolean
+		  
+		  //
+		  // If DoEvents is called in a test, we could get here before the method is complete,
+		  // so we have to prevent that
+		  //
+		  If isTestRunning Then
+		    Return
+		  End If
+		  
 		  If UseConstructor Is Nil Then
 		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
@@ -335,6 +345,7 @@ Protected Class TestGroup
 		      CurrentClone = useConstructor.Invoke(constructorParams)
 		      
 		      ResetTestDuration
+		      IsTestRunning = True
 		      method.Invoke(CurrentClone)
 		      
 		      If CurrentClone.IsAwaitingAsync Then
@@ -358,6 +369,7 @@ Protected Class TestGroup
 		      
 		    End Try
 		    
+		    IsTestRunning = False
 		    CalculateTestDuration
 		    
 		    If err IsA Object Then
@@ -704,19 +716,27 @@ Protected Class TestGroup
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Duration"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FailedTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IncludeGroup"
+			Visible=false
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -724,11 +744,15 @@ Protected Class TestGroup
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsRunning"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -736,48 +760,71 @@ Protected Class TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NotImplementedCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RunTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SkippedTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="StopTestOnFail"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -785,6 +832,7 @@ Protected Class TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
