@@ -477,7 +477,7 @@ Inherits XojoUnitSuperClassTests
 		  
 		  Dim targetTicks As Integer = Ticks + 60 // One second
 		  While Ticks < targetTicks
-		    App.DoEvents // Without the workaround introducted in 6.5.1, this would crash the entire app
+		    App.DoEvents // Without the workaround introduced in 6.5.1, this would crash the entire app
 		  Wend
 		  
 		  Assert.Pass "DoEvents test complete"
