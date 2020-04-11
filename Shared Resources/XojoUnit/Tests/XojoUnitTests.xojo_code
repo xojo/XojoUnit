@@ -446,6 +446,45 @@ Inherits XojoUnitSuperClassTests
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoEventsTest()
+		  //
+		  // Ensures that calling DoEvents will not short-circuit the test
+		  //
+		  
+		  //**********************************************************/
+		  //*                                                        */
+		  //*   DO NOT USE DoEvents OTHER THAN IN A CONSOLE APP!     */
+		  //*                                                        */
+		  //**********************************************************/
+		  
+		  //
+		  // Use DoEvents in a console app if you must, but otherwise,
+		  // avoid it like it's not even there. Use Threads, events, Timers,
+		  // or anything else instead.
+		  //
+		  // If you think it's the only way to do what you want, you're wrong,
+		  // it's not, it's just the easy way, but it can cause intermittent
+		  // problems in your app that you may not even spot during testing,
+		  // just like the ones that showed up here in XojoUnit that required 
+		  // a workaround.
+		  //
+		  // But keep in mind that, while you may not use DoEvents directly,
+		  // some Xojo functions may.
+		  //
+		  
+		  Assert.Message "Starting test"
+		  
+		  Dim targetTicks As Integer = Ticks + 60 // One second
+		  While Ticks < targetTicks
+		    App.DoEvents // Without the workaround introducted in 6.5.1, this would crash the entire app
+		  Wend
+		  
+		  Assert.Pass "DoEvents test complete"
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub IsFalseTest()
 		  Assert.IsFalse(False)
