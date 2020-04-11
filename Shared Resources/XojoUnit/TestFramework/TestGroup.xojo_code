@@ -370,7 +370,7 @@ Protected Class TestGroup
 		      
 		    End Try
 		    
-		    IsTestRunning = False
+		    IsTestRunning = False // Again, just in case
 		    CalculateTestDuration
 		    
 		    If err IsA Object Then
