@@ -92,6 +92,19 @@ Protected Class TestController
 		  //  "*.Some" = Match the method named "SomeTest" in any group ("Test" is optional)
 		  //  "My*Group" = Match any group that starts with "My" and ends with "Group"
 		  
+		  //
+		  // Replace Nil with an empty array
+		  //
+		  If True Then // Scope
+		    Dim emptyArr() As String
+		    
+		    If includePatterns Is Nil Then
+		      includePatterns = emptyArr
+		    End If
+		    If excludePatterns Is Nil Then
+		      excludePatterns = emptyArr
+		    End If
+		  End If
 		  
 		  If includePatterns.Ubound = -1 And excludePatterns.Ubound = -1 Then
 		    Dim err As New RuntimeException
@@ -293,7 +306,7 @@ Protected Class TestController
 		  
 		  pattern = pattern + "$"
 		  
-		  return pattern
+		  Return pattern
 		End Function
 	#tag EndMethod
 
@@ -512,30 +525,42 @@ Protected Class TestController
 	#tag Constant, Name = kHasDotComment, Type = String, Dynamic = False, Default = \"(\?#HasDot)", Scope = Private, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 	#tag EndConstant
 
-	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.5", Scope = Public
+	#tag Constant, Name = XojoUnitVersion, Type = Text, Dynamic = False, Default = \"6.6", Scope = Public
 	#tag EndConstant
 
 
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AllTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Duration"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FailedCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="GroupCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -543,11 +568,15 @@ Protected Class TestController
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsRunning"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -555,43 +584,63 @@ Protected Class TestController
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NotImplementedCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RunGroupCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RunTestCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SkippedCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -599,6 +648,7 @@ Protected Class TestController
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

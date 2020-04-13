@@ -2,6 +2,7 @@
 Begin iosView XojoUnitTestDetailsView
    BackButtonTitle =   ""
    Compatibility   =   ""
+   LargeTitleMode  =   "2"
    Left            =   0
    NavigationBarVisible=   False
    TabIcon         =   ""
@@ -15,18 +16,18 @@ Begin iosView XojoUnitTestDetailsView
       AutoLayout      =   Rectangle1, 3, Label1, 4, False, +1.00, 1, 1, *kStdControlGapV, , True
       AutoLayout      =   Rectangle1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, , True
       AutoLayout      =   Rectangle1, 1, Label1, 1, False, +1.00, 1, 1, 0, , True
-      BorderColor     =   &c00000000
+      BorderColor     =   "&c00000000"
       BorderWidth     =   2.0
       CornerHeight    =   0.0
       CornerWidth     =   0.0
-      FillColor       =   &cFFFFFF00
+      FillColor       =   "&cFFFFFF00"
       Height          =   218.0
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
       Top             =   73
       Visible         =   True
-      Width           =   984.0
+      Width           =   728.0
       Begin iOSLabel Label2
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
@@ -44,7 +45,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Start:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   93
@@ -68,7 +69,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "2015-01-01 12:00PM"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   93
@@ -92,7 +93,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Total:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   131
@@ -116,7 +117,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "(run tests first)"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   131
@@ -140,7 +141,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Passed:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   169
@@ -164,7 +165,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0 (0%)"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   169
@@ -188,7 +189,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Failed:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   207
@@ -212,7 +213,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0 (0%)"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   207
@@ -236,7 +237,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Skipped:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   245
@@ -260,7 +261,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   245
@@ -284,7 +285,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Duration:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   93
@@ -308,7 +309,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0s"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   93
@@ -332,7 +333,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
          Top             =   245
@@ -356,7 +357,7 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Not Implemented:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
          Top             =   245
@@ -379,7 +380,7 @@ Begin iosView XojoUnitTestDetailsView
       Scope           =   0
       Text            =   "Overview"
       TextAlignment   =   "0"
-      TextColor       =   &c00000000
+      TextColor       =   "&c00000000"
       TextFont        =   "System Bold		"
       TextSize        =   0
       Top             =   35
@@ -401,10 +402,10 @@ Begin iosView XojoUnitTestDetailsView
       Scope           =   0
       Text            =   "Selected Test Results"
       TextAlignment   =   "0"
-      TextColor       =   &c00000000
+      TextColor       =   "&c00000000"
       TextFont        =   "System Bold		"
       TextSize        =   0
-      Top             =   340
+      Top             =   468
       Visible         =   True
       Width           =   294.0
    End
@@ -415,18 +416,18 @@ Begin iosView XojoUnitTestDetailsView
       AutoLayout      =   Rectangle2, 3, Label11, 4, False, +1.00, 1, 1, *kStdControlGapV, , True
       AutoLayout      =   Rectangle2, 1, <Parent>, 1, False, +1.00, 1, 1, 20, , True
       AutoLayout      =   Rectangle2, 8, , 0, False, +1.00, 1, 1, 370, , True
-      BorderColor     =   &c00000000
+      BorderColor     =   "&c00000000"
       BorderWidth     =   2.0
       CornerHeight    =   0.0
       CornerWidth     =   0.0
-      FillColor       =   &cFFFFFF00
+      FillColor       =   "&cFFFFFF00"
       Height          =   370.0
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Top             =   378
+      Top             =   506
       Visible         =   True
-      Width           =   984.0
+      Width           =   728.0
       Begin iOSLabel TestNameLabel
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
@@ -444,10 +445,10 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Test Name"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
-         Top             =   398
+         Top             =   526
          Visible         =   True
          Width           =   190.0
       End
@@ -460,7 +461,7 @@ Begin iosView XojoUnitTestDetailsView
          AutoLayout      =   TestResultLabel, 8, , 0, False, +1.00, 1, 1, 30, , True
          Enabled         =   True
          Height          =   30.0
-         Left            =   884
+         Left            =   628
          LineBreakMode   =   "0"
          LockedInPosition=   False
          PanelIndex      =   0
@@ -468,10 +469,10 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Passed"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
-         Top             =   398
+         Top             =   526
          Visible         =   True
          Width           =   100.0
       End
@@ -492,10 +493,10 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Duration:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
-         Top             =   436
+         Top             =   564
          Visible         =   True
          Width           =   75.0
       End
@@ -516,12 +517,12 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "0s"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
-         Top             =   436
+         Top             =   564
          Visible         =   True
-         Width           =   873.0
+         Width           =   617.0
       End
       Begin iOSLabel Label12
          AccessibilityHint=   ""
@@ -540,10 +541,10 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   "Messages:"
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   "System Bold		"
          TextSize        =   0
-         Top             =   474
+         Top             =   602
          Visible         =   True
          Width           =   100.0
       End
@@ -554,6 +555,8 @@ Begin iosView XojoUnitTestDetailsView
          AutoLayout      =   TestResultsArea, 3, Label12, 4, False, +1.00, 1, 1, *kStdControlGapV, , True
          AutoLayout      =   TestResultsArea, 1, Label12, 1, False, +1.00, 1, 1, 0, , True
          AutoLayout      =   TestResultsArea, 8, , 0, False, +1.00, 1, 1, 200, , True
+         BorderColor     =   ""
+         BorderStyle     =   "0"
          Editable        =   False
          Height          =   200.0
          KeyboardType    =   "0"
@@ -564,12 +567,12 @@ Begin iosView XojoUnitTestDetailsView
          Scope           =   0
          Text            =   ""
          TextAlignment   =   "0"
-         TextColor       =   &c00000000
+         TextColor       =   "&c00000000"
          TextFont        =   ""
          TextSize        =   0
-         Top             =   512
+         Top             =   640
          Visible         =   True
-         Width           =   944.0
+         Width           =   688.0
       End
    End
    Begin iOSProgressWheel ProgressWheel1
@@ -580,7 +583,7 @@ Begin iosView XojoUnitTestDetailsView
       AutoLayout      =   ProgressWheel1, 3, Label1, 3, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   ProgressWheel1, 8, , 0, True, +1.00, 4, 1, 24, , True
       Height          =   24.0
-      Left            =   980
+      Left            =   724
       LockedInPosition=   False
       Scope           =   0
       Shade           =   "0"
@@ -596,8 +599,23 @@ End
 
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackButtonTitle"
+		Name="LargeTitleMode"
+		Visible=true
 		Group="Behavior"
+		InitialValue="2"
+		Type="LargeTitleDisplayModes"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Automatic"
+			"1 - Always"
+			"2 - Never"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackButtonTitle"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
 		Type="Text"
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
@@ -607,6 +625,7 @@ End
 		Group="ID"
 		InitialValue="-2147483648"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
@@ -614,37 +633,53 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="NavigationBarVisible"
+		Visible=false
 		Group="Behavior"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIcon"
+		Visible=false
 		Group="Behavior"
+		InitialValue=""
 		Type="iOSImage"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabTitle"
+		Visible=false
 		Group="Behavior"
+		InitialValue=""
 		Type="Text"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
+		Visible=false
 		Group="Behavior"
+		InitialValue=""
 		Type="Text"
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
@@ -654,5 +689,6 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
