@@ -1,7 +1,7 @@
 XojoUnit
 ========
 
-A Unit Testing framework for Xojo. 
+A Unit Testing framework for Xojo.
 
 ## How to Use
 
@@ -42,10 +42,11 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
 
-6.6 (______)
+6.6 (Apr. 13, 2020)
 
 - In Desktop, "N/A" tests will show as grey and any test with a message will be bolded.
 - Desktop will allow you to filter tests through the command line with either `--includeunittests` or `--excludeunittests` as the last item. Use patterns where "\*" is a wildcard and a dot separates group and test name. Multiple patterns can be separated by commas. Example, `--includeunittests 'MyGroup.A\*'` will only include tests in group MyGroup that start with "A". `--excludeunittests '*.*Broker*'` will exclude any tests in any groups that contain the word "Broker". `--includeunittests 'MyGroup.MyTest'` and `--includeunittests 'MyGroup.My'` will both include only the test named "MyTest" (the "Test" suffix is optional).
+- A method that uses DoEvents (used behind the scenes by some Xojo functions) will no longer cause crashes.
 
 6.5 (Jan. 16, 2018)
 
@@ -127,4 +128,4 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 - Added iOS.
 - Other stuff.
 
-Paul Lefebvre (paul@xojo.com)
+Paul Lefebvre (paul at xojo.com)
