@@ -1493,9 +1493,12 @@ End
 		  #Pragma Unused column
 		  
 		  #If TargetMacOS Then
-		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
-		      g.FillRect(0, 0, g.Width, g.Height)
+		    // Only color background in light mode otherwise listbox is unreadable
+		    If isDarkMode = False Then
+		      If row Mod 2 = 0 And Not Me.Selected(row) Then
+		        g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
+		        g.FillRect(0, 0, g.Width, g.Height)
+		      End If
 		    End If
 		    
 		    Return True
@@ -1629,7 +1632,12 @@ End
 		  #Pragma Unused y
 		  
 		  Const kRedColor As Color = &cFF000000
-		  Const kBlackColor As Color = &c00000000
+		  Dim TextColor As Color
+		  If isDarkMode = False Then
+		    TextColor = &c00000000 // Black
+		  Else
+		    TextColor = &cdcdbda // Gray
+		  End If
 		  Static kGreyColor As Color = DisabledTextColor // Pseudo-constant
 		  
 		  If Me.RowTag(row) IsA TestResult Then
@@ -1644,7 +1652,7 @@ End
 		      If tr.Result = TestResult.NotImplemented Then
 		        g.ForeColor = kGreyColor
 		      Else
-		        g.ForeColor = kBlackColor
+		        g.ForeColor = TextColor
 		      End If
 		      g.Bold = Not tr.Message.Empty
 		      
