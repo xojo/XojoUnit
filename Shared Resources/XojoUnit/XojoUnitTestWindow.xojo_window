@@ -1103,6 +1103,13 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub RunTestsWithoutGUI()
+		  SelectAllTests()
+		  RunTests()
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub SelectAllGroups(value As Boolean, andTests As Boolean)
 		  For i As Integer = 0 To TestGroupList.ListCount - 1
