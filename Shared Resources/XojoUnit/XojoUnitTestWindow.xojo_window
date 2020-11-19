@@ -1105,7 +1105,6 @@ End
 
 	#tag Method, Flags = &h0
 		Sub RunTestsWithoutGUI()
-		  SelectAllTests()
 		  RunTests()
 		End Sub
 	#tag EndMethod
