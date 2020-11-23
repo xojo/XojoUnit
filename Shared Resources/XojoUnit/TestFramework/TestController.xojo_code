@@ -217,6 +217,7 @@ Protected Class TestController
 		  
 		  Call RunTestCount // Updates all the counts
 		  RaiseEvent AllTestsFinished
+		  RaiseEvent TestResults(mTestGroups)
 		End Sub
 	#tag EndMethod
 
@@ -350,6 +351,10 @@ Protected Class TestController
 
 	#tag Hook, Flags = &h0
 		Event TestFinished(result As TestResult, group As TestGroup)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event TestResults(CompleteResult() As TestGroup)
 	#tag EndHook
 
 

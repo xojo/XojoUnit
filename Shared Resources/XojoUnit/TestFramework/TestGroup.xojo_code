@@ -1,5 +1,32 @@
 #tag Class
 Protected Class TestGroup
+	#tag Method, Flags = &h0
+		Shared Function ArrayToCliString(testGroup() As TestGroup) As String
+		  Var TotalTestGroupResult As String 
+		  
+		  TotalTestGroupResult = TotalTestGroupResult + "----------------------------------------------------------------------------------------------------------" + EndOfLine
+		  
+		  For Each tg As TestGroup In testGroup
+		    
+		    TotalTestGroupResult = TotalTestGroupResult + "  testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToText + _
+		    """ tests=""" + tg.TestCount.ToText + _
+		    """ time=""" + tg.Duration.ToText + _
+		    """ failures=""" + tg.FailedTestCount.ToText + _
+		    """ name=""" + tg.Name + """" + EndOfLine
+		    
+		    For Each tr As TestResult In tg.Results
+		      TotalTestGroupResult = TotalTestGroupResult + TestResult.toCliString(tr) + EndOfLine
+		    Next
+		    
+		  Next
+		  
+		  TotalTestGroupResult = TotalTestGroupResult + "----------------------------------------------------------------------------------------------------------" + EndOfLine
+		  Return TotalTestGroupResult
+		  
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub AsyncAwait(maxSeconds As Integer)
 		  If IsRunning Then

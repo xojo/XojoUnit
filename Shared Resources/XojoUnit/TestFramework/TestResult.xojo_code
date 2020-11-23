@@ -1,5 +1,32 @@
 #tag Class
 Protected Class TestResult
+	#tag Method, Flags = &h0
+		Shared Function toCliString(tr As TestResult) As String
+		  Var TotalTestResult As String 
+		  
+		  TotalTestResult =  TotalTestResult + "     name=""" + tr.TestName + """ time=""" + tr.Duration.ToText + _
+		  """ duration= """ + tr.Duration.ToText + """" + EndOfLine // "time" is right, but "duration" is maintained for backwards compatibility
+		  
+		  If tr.Result = TestResult.Skipped Then
+		    TotalTestResult =  TotalTestResult +  "       <skipped />" + EndOfLine
+		    
+		  ElseIf tr.Result = TestResult.NotImplemented Then
+		    TotalTestResult =  TotalTestResult +  "       <not_implemented />" + EndOfLine
+		    
+		  ElseIf tr.Result = TestResult.Failed Then
+		    Dim failMessage As Text = tr.Message
+		    failMessage = failMessage.ReplaceAll("<", "&lt;")
+		    failMessage = failMessage.ReplaceAll(">", "&gt;")
+		    TotalTestResult =  TotalTestResult + "       <failure type=""xojo.AssertionFailedError"" message=""" + failMessage + """/>" + EndOfLine
+		  End If
+		  
+		  TotalTestResult =  TotalTestResult + "    " + EndOfLine
+		  
+		  Return TotalTestResult
+		End Function
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h0
 		Duration As Double
 	#tag EndProperty
@@ -41,14 +68,19 @@ Protected Class TestResult
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Duration"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IncludeMethod"
+			Visible=false
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -56,6 +88,7 @@ Protected Class TestResult
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -63,10 +96,13 @@ Protected Class TestResult
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Message"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -74,11 +110,15 @@ Protected Class TestResult
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Result"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -86,11 +126,15 @@ Protected Class TestResult
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TestName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -100,6 +144,7 @@ Protected Class TestResult
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
