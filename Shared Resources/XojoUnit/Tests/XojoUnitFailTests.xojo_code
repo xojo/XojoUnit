@@ -416,7 +416,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
-		  Dim d2 As New Xojo.Core.Dictionary
+		  Dim d2 As New Dictionary
 		  
 		  Assert.AreSame(d1, d2)
 		  IncrementFailCountIfFail
@@ -573,7 +573,7 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub IsNotNilTest()
-		  Dim d As Xojo.Core.Dictionary
+		  Dim d As Dictionary
 		  
 		  Assert.IsNotNil(d)
 		  IncrementFailCountIfFail

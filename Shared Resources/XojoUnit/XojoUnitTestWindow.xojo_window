@@ -1711,7 +1711,7 @@ End
 		      Else
 		        g.DrawingColor = kBlackColor
 		      End If
-		      g.Bold = Not tr.Message.Empty
+		      g.Bold = Not tr.Message.IsEmpty
 		      
 		    End If
 		    

@@ -9,7 +9,7 @@ Protected Class TestResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Message As Text
+		Message As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -17,24 +17,24 @@ Protected Class TestResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Result As Text
+		Result As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		TestName As Text
+		TestName As String
 	#tag EndProperty
 
 
-	#tag Constant, Name = Failed, Type = Text, Dynamic = False, Default = \"Failed", Scope = Public
+	#tag Constant, Name = Failed, Type = String, Dynamic = False, Default = \"Failed", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = NotImplemented, Type = Text, Dynamic = False, Default = \"n/a", Scope = Public
+	#tag Constant, Name = NotImplemented, Type = String, Dynamic = False, Default = \"n/a", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = Passed, Type = Text, Dynamic = False, Default = \"Passed", Scope = Public
+	#tag Constant, Name = Passed, Type = String, Dynamic = False, Default = \"Passed", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = Skipped, Type = Text, Dynamic = False, Default = \"Skipped", Scope = Public
+	#tag Constant, Name = Skipped, Type = String, Dynamic = False, Default = \"Skipped", Scope = Public
 	#tag EndConstant
 
 

@@ -22,7 +22,7 @@ Inherits XojoUnitSuperClassTests
 	#tag EndEvent
 
 	#tag Event
-		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		Function UnhandledException(err As RuntimeException, methodName As String) As Boolean
 		  #pragma unused err
 		  
 		  Const kMethodName As Text = "UnhandledException"
@@ -501,7 +501,7 @@ Inherits XojoUnitSuperClassTests
 
 	#tag Method, Flags = &h0
 		Sub IsNotNilTest()
-		  Dim d As New Xojo.Core.Dictionary
+		  Dim d As New Dictionary
 		  
 		  Assert.IsNotNil(d)
 		End Sub

@@ -183,7 +183,7 @@ Protected Class TestGroup
 		  //
 		  // Get the unique set of methods
 		  //
-		  Dim methodsDict As New Xojo.Core.Dictionary
+		  Dim methodsDict As New Dictionary
 		  For i As Integer = 0 To methods.LastIndex
 		    Dim m As Xojo.Introspection.MethodInfo = methods(i)
 		    If m.Name.Length > kTestSuffix.Length And m.Name.Right(kTestSuffix.Length) = kTestSuffix And _
@@ -192,7 +192,7 @@ Protected Class TestGroup
 		    End If
 		  Next 
 		  
-		  For Each entry As Xojo.Core.DictionaryEntry In methodsDict
+		  For Each entry As DictionaryEntry In methodsDict
 		    // Initialize test results
 		    Dim m As Xojo.Introspection.MethodInfo = entry.Value
 		    Dim tr As New TestResult
@@ -216,7 +216,7 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function GetTestTimer(key As Text = "") As Double
+		Protected Function GetTestTimer(key As String = "") As Double
 		  Dim endTime As Double = System.Microseconds
 		  Dim startTime As Double = TestTimers.Value(key)
 		  Dim duration As Double = endTime - startTime
@@ -227,7 +227,7 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub LogTestTimer(key As Text = "", stage As Text = "")
+		Protected Sub LogTestTimer(key As String = "", stage As String = "")
 		  //
 		  // StartTestTimer must be called first.
 		  //
@@ -236,9 +236,9 @@ Protected Class TestGroup
 		  
 		  Dim duration As Double = GetTestTimer(key)
 		  
-		  Dim durationText As Text
-		  Dim unit As Text = "µs"
-		  Dim useFormat As Text = "#,###,##0"
+		  Dim durationText As String
+		  Dim unit As String = "µs"
+		  Dim useFormat As String = "#,###,##0"
 		  
 		  Const kSeconds As Double = 1000000.0
 		  
@@ -259,12 +259,12 @@ Protected Class TestGroup
 		    
 		  End If
 		  
-		  durationText = duration.ToText(Xojo.Core.Locale.Current, useFormat) + " " + unit
+		  durationText = duration.ToString(Locale.Current, useFormat) + " " + unit
 		  stage = stage.Trim
 		  
 		  Assert.Message "Test Timer " + _
-		  If(key.Empty, "", key + " ") + _
-		  If(stage.Empty, "", "[" + stage + "] ") + _
+		  If(key.IsEmpty, "", key + " ") + _
+		  If(stage.IsEmpty, "", "[" + stage + "] ") + _
 		  "took " + durationText
 		  
 		  
@@ -435,9 +435,9 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub StartTestTimer(key As Text = "")
+		Protected Sub StartTestTimer(key As String = "")
 		  If TestTimers Is Nil Then
-		    TestTimers = New Xojo.Core.Dictionary
+		    TestTimers = New Dictionary
 		  End If
 		  
 		  TestTimers.Value(key) = System.Microseconds
@@ -466,7 +466,7 @@ Protected Class TestGroup
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		Event UnhandledException(err As RuntimeException, methodName As String) As Boolean
 	#tag EndHook
 
 
@@ -699,7 +699,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private TestTimers As Xojo.Core.Dictionary
+		Private TestTimers As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
