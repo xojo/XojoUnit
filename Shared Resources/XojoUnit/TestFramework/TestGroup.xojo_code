@@ -495,7 +495,7 @@ Protected Class TestGroup
 			  If value Is Nil Then
 			    mController = Nil
 			  Else
-			    mController = Xojo.Core.WeakRef.Create(value)
+			    mController = new WeakRef(value)
 			  End If
 			  
 			End Set
@@ -576,7 +576,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mController As Xojo.Core.WeakRef
+		Private mController As WeakRef
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

@@ -879,7 +879,7 @@ Protected Class Assert
 			  If value Is Nil Then
 			    mGroupWeakRef = Nil
 			  Else
-			    mGroupWeakRef = Xojo.Core.WeakRef.Create(value)
+			    mGroupWeakRef = new WeakRef(value)
 			  End If
 			End Set
 		#tag EndSetter
@@ -887,7 +887,7 @@ Protected Class Assert
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mGroupWeakRef As Xojo.Core.WeakRef
+		Private mGroupWeakRef As WeakRef
 	#tag EndProperty
 
 
