@@ -60,14 +60,14 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(controller As TestController, groupName As Text = "")
+		Sub Constructor(controller As TestController, groupName As String = "")
 		  groupName = groupName.Trim
 		  
 		  //
 		  // If groupName was not given, use the name of the class
 		  //
 		  If groupName = "" Then
-		    Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
+		    Dim ti As Introspection.TypeInfo = Introspection.GetType(Self)
 		    groupName = ti.FullName
 		  End If
 		  
@@ -91,20 +91,20 @@ Protected Class TestGroup
 		  // Only take the super's properties
 		  //
 		  
-		  Static props() As Xojo.Introspection.PropertyInfo
+		  Static props() As Introspection.PropertyInfo
 		  If props.LastIndex = -1 Then
-		    Dim ti As Xojo.Introspection.TypeInfo
-		    ti = Xojo.Introspection.GetType(Self)
+		    Dim ti As Introspection.TypeInfo
+		    ti = Introspection.GetType(Self)
 		    While ti.BaseType IsA Object And Not (ti Is ti.BaseType)
 		      ti = ti.BaseType
 		    Wend
-		    props = ti.Properties
+		    props = ti.GetProperties
 		  End If
 		  
 		  //
 		  // Skip certain props all the time
 		  //
-		  Dim skipProps() As Text = Array("CurrentClone", "TestTimers")
+		  Dim skipProps() As String = Array("CurrentClone", "TestTimers")
 		  
 		  //
 		  // Since computed properties can have side effects, do them first
@@ -114,19 +114,19 @@ Protected Class TestGroup
 		  Do
 		    doComputed = Not doComputed
 		    
-		    For Each prop As Xojo.Introspection.PropertyInfo In props
+		    For Each prop As Introspection.PropertyInfo In props
 		      If prop.IsComputed <> doComputed Then
 		        Continue For prop
 		      End If
 		      
-		      Dim propName As Text = prop.Name
+		      Dim propName As String = prop.Name
 		      
 		      If prop.IsShared Or Not prop.CanRead Or Not prop.CanWrite Or skipProps.IndexOf(propName) <> -1 Then
 		        Continue For prop
 		      End If
 		      
-		      Dim propType As Text = prop.PropertyType.Name
-		      Dim fromValue As Auto = prop.Value(fromGroup)
+		      Dim propType As String = prop.PropertyType.Name
+		      Dim fromValue As Variant = prop.Value(fromGroup)
 		      
 		      //
 		      // Handle arrays specially
@@ -173,28 +173,28 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub GetTestMethods()
-		  Dim info As Xojo.Introspection.TypeInfo
+		  Dim info As Introspection.TypeInfo
 		  
-		  info = Xojo.Introspection.GetType(Self)
+		  info = Introspection.GetType(Self)
 		  
-		  Dim methods() As Xojo.Introspection.MethodInfo
-		  methods = info.Methods
+		  Dim methods() As Introspection.MethodInfo
+		  methods = info.GetMethods
 		  
 		  //
 		  // Get the unique set of methods
 		  //
 		  Dim methodsDict As New Dictionary
 		  For i As Integer = 0 To methods.LastIndex
-		    Dim m As Xojo.Introspection.MethodInfo = methods(i)
+		    Dim m As Introspection.MethodInfo = methods(i)
 		    If m.Name.Length > kTestSuffix.Length And m.Name.Right(kTestSuffix.Length) = kTestSuffix And _
-		      m.Parameters.LastIndex = -1 Then
+		      m.GetParameters.LastIndex = -1 Then
 		      methodsDict.Value(m.Name) = m // Will replace overridden methods
 		    End If
 		  Next 
 		  
 		  For Each entry As DictionaryEntry In methodsDict
 		    // Initialize test results
-		    Dim m As Xojo.Introspection.MethodInfo = entry.Value
+		    Dim m As Introspection.MethodInfo = entry.Value
 		    Dim tr As New TestResult
 		    tr.TestName = m.Name.Left(m.Name.Length - kTestSuffix.Length)
 		    tr.MethodInfo = m
@@ -298,17 +298,17 @@ Protected Class TestGroup
 		  End If
 		  
 		  If UseConstructor Is Nil Then
-		    Dim myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
-		    Dim constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
-		    For Each c As Xojo.Introspection.ConstructorInfo In constructors
-		      If c.Parameters.LastIndex = 0 Then
+		    Dim myInfo As Introspection.TypeInfo = Introspection.GetType(Self)
+		    Dim constructors() As Introspection.ConstructorInfo = myInfo.GetConstructors
+		    For Each c As Introspection.ConstructorInfo In constructors
+		      If c.GetParameters.LastIndex = 0 Then
 		        UseConstructor = c
 		        Exit For c
 		      End If
 		    Next c
 		  End If
 		  
-		  Dim constructorParams() As Auto
+		  Dim constructorParams() As Variant
 		  constructorParams.Add Self
 		  
 		  If CurrentClone IsA Object Then
@@ -337,7 +337,7 @@ Protected Class TestGroup
 		    
 		    Try
 		      CurrentTestResult = result
-		      Dim method As Xojo.Introspection.MethodInfo = result.MethodInfo
+		      Dim method As Introspection.MethodInfo = result.MethodInfo
 		      
 		      //
 		      // Get a clone
@@ -377,11 +377,10 @@ Protected Class TestGroup
 		      
 		      If Not RaiseEvent UnhandledException(err, result.TestName) Then
 		        
-		        Dim eInfo As Xojo.Introspection.TypeInfo
-		        eInfo = Xojo.Introspection.GetType(err)
+		        Dim eInfo As Introspection.TypeInfo
+		        eInfo = Introspection.GetType(err)
 		        
-		        Dim errorMessage As Text
-		        errorMessage = "A " + eInfo.FullName + " occurred and was caught"
+		        Dim errorMessage As String = "A " + eInfo.FullName + " occurred and was caught"
 		        If CurrentClone Is Nil Then
 		          errorMessage = errorMessage + " – something in the Setup event failed"
 		        End If
@@ -588,7 +587,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Name As Text
+		Name As String
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -703,7 +702,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private UseConstructor As Xojo.Introspection.ConstructorInfo
+		Private UseConstructor As Introspection.ConstructorInfo
 	#tag EndProperty
 
 

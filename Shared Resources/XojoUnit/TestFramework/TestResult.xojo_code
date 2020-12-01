@@ -13,7 +13,7 @@ Protected Class TestResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		MethodInfo As Xojo.Introspection.MethodInfo
+		MethodInfo As Introspection.MethodInfo
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
