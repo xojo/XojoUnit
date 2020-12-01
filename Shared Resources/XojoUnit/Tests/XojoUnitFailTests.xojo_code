@@ -21,8 +21,8 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
-		  Var d1 As Xojo.Core.Date = Xojo.Core.Date.Now
-		  Var d2 As Xojo.Core.Date = d1
+		  Var d1 As DateTime = DateTime.Now
+		  Var d2 As DateTime = d1
 		  
 		  Assert.AreDifferent(d1, d2)
 		  IncrementFailCountIfFail
@@ -43,19 +43,6 @@ Inherits TestGroup
 		  s1 = s1.DefineEncoding(Nil)
 		  s2 = s1
 		  Assert.AreDifferent(s1, s2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreDifferentTextTest()
-		  Var t1 As Text = "Hello"
-		  Var t2 As Text = "Hello"
-		  
-		  // Text matches with AreDifferent are case-sensitive
-		  Assert.AreDifferent(t1, t2)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed
@@ -93,12 +80,9 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqualDateTest()
-		  Var d1 As New Date
-		  d1.SQLDate = "2012-11-30"
-		  
-		  Var d2 As New Date
-		  d2.SQLDate = "2012-11-29"
+		Sub AreEqualDateTimeTest()
+		  Var d1 As New DateTime(2012, 11, 30)
+		  Var d2 As New DateTime(2012, 11, 29)
 		  
 		  Assert.AreEqual(d1, d2)
 		  IncrementFailCountIfFail
@@ -210,46 +194,6 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqualNewDateTest()
-		  Var d1 As New Xojo.Core.Date(2014, 11, 12, Xojo.Core.TimeZone.Current)
-		  
-		  Var d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
-		  
-		  Assert.AreEqual(d1, d2)
-		  IncrementFailCountIfFail
-		  
-		  d2 = Nil
-		  
-		  Assert.AreEqual(d1, d2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreEqualNewMemoryBlockTest()
-		  Var m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
-		  Var m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
-		  
-		  Assert.AreEqual(m1, m2)
-		  IncrementFailCountIfFail
-		  
-		  m2 = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello1")
-		  
-		  Assert.AreEqual(m1, m2)
-		  IncrementFailCountIfFail
-		  
-		  m2 = Nil
-		  
-		  Assert.AreEqual(m1, m2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringArrayTest()
 		  Var s1() As String = Array("A", "B", "C")
 		  Var s2() As String
@@ -274,27 +218,6 @@ Inherits TestGroup
 		  Var s2 As String = "hello1"
 		  
 		  Assert.AreEqual(s1, s2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreEqualTextArrayTest()
-		  Var t1() As Text = Array("A", "B", "C")
-		  Var t2() As Text
-		  t2.Add("A")
-		  t2.Add("B")
-		  t2.Add("D")
-		  
-		  Assert.AreEqual(t1, t2)
-		  IncrementFailCountIfFail
-		  
-		  t2(2) = "C"
-		  t2.Add "D"
-		  
-		  Assert.AreEqual(t1, t2)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed
@@ -377,43 +300,6 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqualNewDateTest()
-		  Var d1 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
-		  
-		  Var d2 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
-		  
-		  Assert.AreNotEqual(d1, d2)
-		  IncrementFailCountIfFail
-		  
-		  d1 = Nil
-		  d2 = Nil
-		  
-		  Assert.AreNotEqual(d1, d2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqualNewMemoryBlockTest()
-		  Var m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
-		  Var m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
-		  
-		  Assert.AreNotEqual(m1, m2)
-		  IncrementFailCountIfFail
-		  
-		  m1 = Nil
-		  m2 = Nil
-		  
-		  Assert.AreNotEqual(m1, m2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
 		  Var d1 As DateTime = DateTime.Now
 		  Var d2 As New Dictionary
@@ -455,45 +341,6 @@ Inherits TestGroup
 		  
 		  // String matches with AreSame are case-sensitive
 		  Assert.AreSame(s1, s2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreSameTextArrayTest()
-		  Var t1() As Text = Array("A", "B", "C")
-		  Var t2() As Text
-		  t2.Add("A")
-		  t2.Add("B")
-		  t2.Add("D")
-		  
-		  Assert.AreSame(t1, t2)
-		  IncrementFailCountIfFail
-		  
-		  t2(2) = "c"
-		  
-		  Assert.AreSame(t1, t2)
-		  IncrementFailCountIfFail
-		  
-		  t2(2) = "C"
-		  t2.Add "D"
-		  
-		  Assert.AreSame(t1, t2)
-		  IncrementFailCountIfFail
-		  
-		  PassIfFailed
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreSameTextTest()
-		  Var t1 As Text = "Hello"
-		  Var t2 As Text = "hello"
-		  
-		  // Text matches with AreSame are case-sensitive
-		  Assert.AreSame(t1, t2)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed

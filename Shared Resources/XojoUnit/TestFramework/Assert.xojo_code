@@ -120,7 +120,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected As Global.Date, actual As Global.Date, message As String = "")
-		  If  expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
+		  If expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
 		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ShortDate + " " + expected.LongTime, actual.ShortDate + " " + actual.LongTime), message)
@@ -745,15 +745,15 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As Text
-		  Var r() As Text
+		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As String
+		  Var r() As String
 		  
 		  Var lastByteIndex As Integer = mb.Size - 1
 		  For byteIndex As Integer = 0 To lastByteIndex
 		    r.Add mb.Data.Byte(byteIndex).ToHex
 		  Next
 		  
-		  Return Text.Join(r, " " )
+		  Return String.FromArray(r, " " )
 		End Function
 	#tag EndMethod
 

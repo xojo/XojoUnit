@@ -25,7 +25,7 @@ Inherits XojoUnitSuperClassTests
 		Function UnhandledException(err As RuntimeException, methodName As String) As Boolean
 		  #pragma unused err
 		  
-		  Const kMethodName As Text = "UnhandledException"
+		  Const kMethodName As String = "UnhandledException"
 		  
 		  If methodName.Length >= kMethodName.Length And methodName.Left(kMethodName.Length) = kMethodName Then
 		    Assert.Pass("Exception was handled")
@@ -56,16 +56,6 @@ Inherits XojoUnitSuperClassTests
 		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreDifferent(s1, s2)
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreDifferentTextTest()
-		  Var t1 As Text = "Hello"
-		  Var t2 As Text = "hello"
-		  
-		  // Text matches with AreDifferent are case-sensitive
-		  Assert.AreDifferent(t1, t2)
 		End Sub
 	#tag EndMethod
 
@@ -206,18 +196,6 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreEqualTextArrayTest()
-		  Var t1() As Text = Array("A", "B", "C")
-		  Var t2() As Text
-		  t2.Add("A")
-		  t2.Add("B")
-		  t2.Add("C")
-		  
-		  Assert.AreEqual(t1, t2)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub AreEqualUIntegerTest()
 		  Var i1 As UInteger = 42
 		  Var i2 As UInteger = 7 * 6
@@ -268,24 +246,9 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqualNewDateTest()
-		  Var d1 As New Xojo.Core.Date(2013, 11, 15, Xojo.Core.TimeZone.Current)
-		  
-		  Var d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
-		  
-		  Assert.AreNotEqual(d1, d2)
-		  
-		  d2 = Nil
-		  
-		  Assert.AreNotEqual(d1, d2)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
-		  Var d1 As Xojo.Core.Date = Xojo.Core.Date.Now
-		  Var d2 As Xojo.Core.Date
+		  Var d1 As DateTime = DateTime.Now
+		  Var d2 As DateTime
 		  
 		  d2 = d1
 		  
@@ -312,28 +275,6 @@ Inherits XojoUnitSuperClassTests
 		  
 		  // String matches with AreSame are case-sensitive
 		  Assert.AreSame(s1, s2)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreSameTextArrayTest()
-		  Var t1() As Text = Array("A", "B", "C")
-		  Var t2() As Text
-		  t2.Add("A")
-		  t2.Add("B")
-		  t2.Add("C")
-		  
-		  Assert.AreSame(t1, t2)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreSameTextTest()
-		  Var t1 As Text = "Hello"
-		  Var t2 As Text = "Hello"
-		  
-		  // Text matches with AreSame are case-sensitive
-		  Assert.AreSame(t1, t2)
 		End Sub
 	#tag EndMethod
 
@@ -431,8 +372,8 @@ Inherits XojoUnitSuperClassTests
 		  
 		  Assert.Message "Starting test"
 		  
-		  Var targetTicks As Integer = Ticks + 60 // One second
-		  While Ticks < targetTicks
+		  Var targetTicks As Integer = System.Ticks + 60 // One second
+		  While System.Ticks < targetTicks
 		    App.DoEvents // Without the workaround introduced in 6.6, this would crash the entire app
 		  Wend
 		  
@@ -449,7 +390,7 @@ Inherits XojoUnitSuperClassTests
 
 	#tag Method, Flags = &h0
 		Sub IsNilTest()
-		  Var d As Date
+		  Var d As DateTime
 		  
 		  Assert.IsNil(d)
 		End Sub
@@ -521,7 +462,7 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub TestMethodWithParamTest(param As Text)
+		Sub TestMethodWithParamTest(param As String)
 		  #Pragma Unused param
 		  
 		  Assert.Fail "A test method with a param should have been ignored"

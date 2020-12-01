@@ -1027,7 +1027,7 @@ End
 		  
 		  Var testCount As Integer
 		  testCount = Controller.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
+		  TestCountLabel.Text = testCount.ToString + " tests in " + Controller.GroupCount.ToString + " groups"
 		  
 		End Sub
 	#tag EndMethod
@@ -1253,13 +1253,13 @@ End
 		  Var allTestCount As Integer = Controller.AllTestCount
 		  Var runTestCount As Integer = Controller.RunTestCount
 		  
-		  Var groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Var groupsMessage As String = Controller.RunGroupCount.ToString + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
 		  Var testsMessage As String = If(allTestCount = 1, " test", " tests")
 		  
 		  If runTestCount = allTestCount Then
-		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
+		    TestCountLabel.Text = runTestCount.ToString + testsMessage + " in " + groupsMessage
 		  Else
-		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
+		    TestCountLabel.Text = runTestCount.ToString + " of " + allTestCount.ToString + testsMessage + " in " + groupsMessage
 		  End If
 		  
 		  Var passedCount As Integer = Controller.PassedCount
@@ -1270,10 +1270,10 @@ End
 		  Var failedPercent As Double = failedCount / runTestCount
 		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
 		  
-		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
-		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
-		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
-		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
+		  PassedCountLabel.Text = passedCount.ToString + passedPercentMessage
+		  FailedCountLabel.Text = Controller.FailedCount.ToString + failedPercentMessage
+		  SkippedCountLabel.Text = Controller.SkippedCount.ToString
+		  NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToString
 		  
 		End Sub
 	#tag EndMethod

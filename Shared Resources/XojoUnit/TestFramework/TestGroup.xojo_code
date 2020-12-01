@@ -206,7 +206,7 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function GetTestResult(testName As Text) As TestResult
+		Private Function GetTestResult(testName As String) As TestResult
 		  For Each tr As TestResult In mResults
 		    If tr.TestName + kTestSuffix = testName Then
 		      Return tr
