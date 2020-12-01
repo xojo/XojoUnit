@@ -1,14 +1,16 @@
 #tag WebPage
 Begin WebPage XojoUnitTestPage
+   AllowTabOrderWrap=   True
    Compatibility   =   ""
-   Cursor          =   0
+   ControlID       =   ""
    Enabled         =   True
    Height          =   608
-   HelpTag         =   ""
-   HorizontalCenter=   0
    ImplicitInstance=   True
    Index           =   0
+   Indicator       =   "0"
    IsImplicitInstance=   False
+   LayoutDirection =   "0"
+   LayoutType      =   "0"
    Left            =   74
    LockBottom      =   False
    LockHorizontal  =   False
@@ -16,41 +18,30 @@ Begin WebPage XojoUnitTestPage
    LockRight       =   False
    LockTop         =   False
    LockVertical    =   False
-   MinHeight       =   400
-   MinWidth        =   600
-   Style           =   "None"
-   TabOrder        =   0
+   MinimumHeight   =   400
+   MinimumWidth    =   600
+   TabIndex        =   0
    Title           =   "XojoUnit"
    Top             =   238
-   VerticalCenter  =   0
    Visible         =   True
    Width           =   900
-   ZIndex          =   1
-   _DeclareLineRendered=   False
-   _HorizontalPercent=   0.0
    _ImplicitInstance=   False
-   _IsEmbedded     =   False
-   _Locked         =   False
-   _NeedsRendering =   True
-   _OfficialControl=   False
-   _OpenEventFired =   False
-   _ShownEventFired=   False
-   _VerticalPercent=   0.0
+   _mDesignHeight  =   0
+   _mDesignWidth   =   0
+   _mName          =   ""
    Begin WebListBox TestGroupList
-      AlternateRowColor=   &cEDF3FE00
       ColumnCount     =   2
       ColumnWidths    =   "75%"
-      Cursor          =   0
+      ControlID       =   ""
       Enabled         =   True
-      HasHeading      =   True
-      HeaderStyle     =   "0"
+      HasHeader       =   False
       Height          =   286
-      HelpTag         =   ""
-      HorizontalCenter=   0
+      HighlightSortedColumn=   True
       Index           =   -2147483648
+      Indicator       =   ""
       InitialValue    =   "Test Groups	Run"
+      LastAddedRowIndex=   0
       Left            =   20
-      ListIndex       =   -1
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -58,42 +49,32 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      MinimumRowHeight=   22
-      Multiline       =   False
-      PrimaryRowColor =   &cFFFFFF00
+      NoRowsMessage   =   ""
+      RowCount        =   0
+      RowSelectionType=   "1"
       Scope           =   0
-      SelectionStyle  =   "0"
-      Style           =   "0"
-      TabOrder        =   -1
+      SearchCriteria  =   ""
+      SelectedRowColor=   &c0272D300
+      SelectedRowIndex=   -1
+      TabIndex        =   0
+      Tooltip         =   ""
       Top             =   274
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   226
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebListBox TestList
-      AlternateRowColor=   &cEDF3FE00
       ColumnCount     =   2
       ColumnWidths    =   "75%"
-      Cursor          =   0
+      ControlID       =   ""
       Enabled         =   True
-      HasHeading      =   True
-      HeaderStyle     =   "0"
+      HasHeader       =   False
       Height          =   320
-      HelpTag         =   ""
-      HorizontalCenter=   0
+      HighlightSortedColumn=   True
       Index           =   -2147483648
+      Indicator       =   ""
       InitialValue    =   "Test	Result"
+      LastAddedRowIndex=   0
       Left            =   258
-      ListIndex       =   -1
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -101,34 +82,29 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      MinimumRowHeight=   22
-      Multiline       =   False
-      PrimaryRowColor =   &cFFFFFF00
+      NoRowsMessage   =   ""
+      RowCount        =   0
+      RowSelectionType=   "1"
       Scope           =   0
-      SelectionStyle  =   "0"
-      Style           =   "0"
-      TabOrder        =   -1
+      SearchCriteria  =   ""
+      SelectedRowColor=   &c0272D300
+      SelectedRowIndex=   -1
+      TabIndex        =   0
+      Tooltip         =   ""
       Top             =   274
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   284
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebRectangle Rectangle1
-      Cursor          =   0
+      BackgroundColor =   &cFFFFFF00
+      ControlID       =   ""
       Enabled         =   True
+      HasBackgroundColor=   False
       Height          =   157
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      LayoutDirection =   "0"
+      LayoutType      =   "0"
       Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
@@ -138,30 +114,24 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   -1
+      TabIndex        =   0
+      Tooltip         =   ""
       Top             =   14
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   860
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
+      _mDesignHeight  =   0
+      _mDesignWidth   =   0
    End
    Begin WebLabel Label1
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   37
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
@@ -172,31 +142,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "401385847"
-      TabOrder        =   0
-      Text            =   "Overview"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   14
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Overview"
       Visible         =   True
       Width           =   860
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebRectangle Rectangle2
-      Cursor          =   0
+      BackgroundColor =   &cFFFFFF00
+      ControlID       =   ""
       Enabled         =   True
+      HasBackgroundColor=   False
       Height          =   320
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      LayoutDirection =   "0"
+      LayoutType      =   "0"
       Left            =   554
       LockBottom      =   True
       LockedInPosition=   False
@@ -206,30 +171,24 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   -1
+      TabIndex        =   0
+      Tooltip         =   ""
       Top             =   274
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   326
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
+      _mDesignHeight  =   0
+      _mDesignWidth   =   0
    End
    Begin WebLabel Label2
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   43
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   554
       LockBottom      =   False
       LockedInPosition=   False
@@ -240,35 +199,23 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "401385847"
-      TabOrder        =   1
-      Text            =   "Selected Test Results"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   274
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Selected Test Results"
       Visible         =   True
       Width           =   326
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebToolbar Toolbar1
-      ButtonDisabledStyle=   "0"
-      ButtonStyle     =   "0"
-      Cursor          =   0
+      ControlID       =   ""
       Enabled         =   True
+      FullWidth       =   False
       Height          =   56
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
-      InitialValue    =   "0 WebToolbarButton RunButton UnVuIFRlc3Rz -1 Select... 67 0 1 0	2 WebToolbarSpace Space1  -1 Select... 0 0 1 1	0 WebToolbarButton DownloadButton RG93bmxvYWQgUmVzdWx0cw== -1 Select... 109 0 1 0"
-      ItemStyle       =   "0"
+      Indicator       =   "0"
       Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -277,35 +224,25 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      Position        =   "0"
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   -1
-      ToggledDisabledStyle=   "0"
-      ToggledStyle    =   "0"
+      TabIndex        =   0
+      Title           =   ""
+      Tooltip         =   ""
       Top             =   196
-      Vertical        =   False
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   900
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebButton EnableDisableTestButton
-      AutoDisable     =   False
+      AllowAutoDisable=   False
+      Cancel          =   False
       Caption         =   "Toggle Selected Test"
-      Cursor          =   0
+      ControlID       =   ""
+      Default         =   False
       Enabled         =   True
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   "0"
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
@@ -315,30 +252,22 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   False
       LockVertical    =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   2
+      TabIndex        =   0
+      Tooltip         =   ""
       Top             =   572
-      VerticalCenter  =   0
       Visible         =   True
       Width           =   226
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label3
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   35
       LockBottom      =   False
       LockedInPosition=   False
@@ -349,32 +278,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   3
-      Text            =   "Start:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   63
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Start:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel StartLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   155
       LockBottom      =   False
       LockedInPosition=   False
@@ -385,32 +308,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   4
-      Text            =   "1/1/2013 12:00PM"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   63
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "1/1/2013 12:00PM"
       Visible         =   True
       Width           =   140
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label4
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   336
       LockBottom      =   False
       LockedInPosition=   False
@@ -421,32 +338,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   5
-      Text            =   "Duration:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   63
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Duration:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel DurationLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   448
       LockBottom      =   False
       LockedInPosition=   False
@@ -457,32 +368,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   6
-      Text            =   "0s"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   63
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0s"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label5
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   35
       LockBottom      =   False
       LockedInPosition=   False
@@ -493,32 +398,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   7
-      Text            =   "Passed:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Passed:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel PassedCountLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   155
       LockBottom      =   False
       LockedInPosition=   False
@@ -529,32 +428,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   8
-      Text            =   "0 (0%)"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0 (0%)"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label6
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   284
       LockBottom      =   False
       LockedInPosition=   False
@@ -565,32 +458,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   9
-      Text            =   "Failed:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Failed:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel FailedCountLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   400
       LockBottom      =   False
       LockedInPosition=   False
@@ -601,32 +488,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   10
-      Text            =   "0 (0%)"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0 (0%)"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label7
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   526
       LockBottom      =   False
       LockedInPosition=   False
@@ -637,32 +518,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   11
-      Text            =   "Skipped:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Skipped:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel SkippedCountLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   638
       LockBottom      =   False
       LockedInPosition=   False
@@ -673,32 +548,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   12
-      Text            =   "0 (0%)"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0 (0%)"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label8
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   35
       LockBottom      =   False
       LockedInPosition=   False
@@ -709,32 +578,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   13
-      Text            =   "Total:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   97
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Total:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel TestCountLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   155
       LockBottom      =   False
       LockedInPosition=   False
@@ -745,32 +608,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   14
-      Text            =   "100 tests in 10 groups"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   97
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "100 tests in 10 groups"
       Visible         =   True
       Width           =   393
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel TestNameLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   565
       LockBottom      =   False
       LockedInPosition=   False
@@ -781,32 +638,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   15
-      Text            =   "Test Name"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   319
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Test Name"
       Visible         =   True
       Width           =   282
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel TestResultLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   565
       LockBottom      =   False
       LockedInPosition=   False
@@ -817,32 +668,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   16
-      Text            =   "Passed"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   353
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Passed"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label9
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   565
       LockBottom      =   False
       LockedInPosition=   False
@@ -853,32 +698,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   17
-      Text            =   "Duration:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   395
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "Duration:"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel TestDurationLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   693
       LockBottom      =   False
       LockedInPosition=   False
@@ -889,33 +728,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   18
-      Text            =   "0s"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   395
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0s"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebTextArea TestResultsArea
-      CueText         =   ""
-      Cursor          =   0
+      AllowReturnKey  =   True
+      AllowSpellChecking=   False
+      Caption         =   ""
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
       Height          =   137
-      HelpTag         =   ""
-      HorizontalCenter=   0
+      Hint            =   ""
       Index           =   -2147483648
+      Indicator       =   ""
       Left            =   565
       LockBottom      =   True
       LockedInPosition=   False
@@ -924,26 +756,16 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      MaximumCharactersAllowed=   0
       ReadOnly        =   False
       Scope           =   0
-      ScrollPosition  =   0
-      Style           =   "0"
-      TabOrder        =   19
-      Text            =   ""
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      Tooltip         =   ""
       Top             =   445
-      VerticalCenter  =   0
+      Value           =   ""
       Visible         =   True
       Width           =   305
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebTestController Controller
       AllTestCount    =   0
@@ -960,17 +782,18 @@ Begin WebPage XojoUnitTestPage
       RunTestCount    =   0
       Scope           =   0
       SkippedCount    =   0
-      Style           =   "0"
       Top             =   0.0
    End
    Begin WebLabel NotImplementedCountLabel
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   812
       LockBottom      =   False
       LockedInPosition=   False
@@ -981,32 +804,26 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "0"
-      TabOrder        =   12
-      Text            =   "0 (0%)"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "0 (0%)"
       Visible         =   True
       Width           =   100
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
    Begin WebLabel Label10
-      Cursor          =   1
+      Bold            =   False
+      ControlID       =   ""
       Enabled         =   True
-      HasFocusRing    =   True
+      FontName        =   ""
+      FontSize        =   0.0
       Height          =   22
-      HelpTag         =   ""
-      HorizontalCenter=   0
       Index           =   -2147483648
+      Indicator       =   ""
+      Italic          =   False
       Left            =   750
       LockBottom      =   False
       LockedInPosition=   False
@@ -1017,23 +834,15 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   0
-      Style           =   "16634393"
-      TabOrder        =   11
-      Text            =   "N/A:"
-      TextAlign       =   0
+      TabIndex        =   0
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
       Top             =   139
-      VerticalCenter  =   0
+      Underline       =   False
+      Value           =   "N/A:"
       Visible         =   True
       Width           =   50
-      ZIndex          =   1
-      _DeclareLineRendered=   False
-      _HorizontalPercent=   0.0
-      _IsEmbedded     =   False
-      _Locked         =   False
-      _NeedsRendering =   True
-      _OfficialControl=   False
-      _OpenEventFired =   False
-      _VerticalPercent=   0.0
    End
 End
 #tag EndWebPage
@@ -1161,7 +970,7 @@ End
 
 #tag Events TestGroupList
 	#tag Event
-		Sub SelectionChanged()
+		Sub SelectionChanged(Rows() as Integer)
 		  TestList.DeleteAllRows
 		  
 		  Dim row As Integer
@@ -1198,7 +1007,7 @@ End
 #tag EndEvents
 #tag Events TestList
 	#tag Event
-		Sub SelectionChanged()
+		Sub SelectionChanged(Rows() as Integer)
 		  Dim row As Integer = Me.ListIndex
 		  
 		  If row < 0 Then Return
@@ -1216,7 +1025,7 @@ End
 #tag EndEvents
 #tag Events Toolbar1
 	#tag Event
-		Sub ButtonAction(Item As WebToolbarButton)
+		Sub Pressed(Item as WebToolbarButton)
 		  Select Case item.Name
 		  Case "RunButton"
 		    RunTests
@@ -1230,7 +1039,7 @@ End
 #tag EndEvents
 #tag Events EnableDisableTestButton
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  If TestGroupList.ListIndex < 0 Then Return
 		  
 		  Dim tg As TestGroup
@@ -1293,35 +1102,113 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="Cursor"
+		Name="ControlID"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LayoutType"
 		Visible=true
 		Group="Behavior"
-		InitialValue="0"
-		Type="Integer"
+		InitialValue="LayoutTypes.Fixed"
+		Type="LayoutTypes"
 		EditorType="Enum"
 		#tag EnumValues
-			"0 - Automatic"
-			"1 - Standard Pointer"
-			"2 - Finger Pointer"
-			"3 - IBeam"
-			"4 - Wait"
-			"5 - Help"
-			"6 - Arrow All Directions"
-			"7 - Arrow North"
-			"8 - Arrow South"
-			"9 - Arrow East"
-			"10 - Arrow West"
-			"11 - Arrow Northeast"
-			"12 - Arrow Northwest"
-			"13 - Arrow Southeast"
-			"14 - Arrow Southwest"
-			"15 - Splitter East West"
-			"16 - Splitter North South"
-			"17 - Progress"
-			"18 - No Drop"
-			"19 - Not Allowed"
-			"20 - Vertical IBeam"
-			"21 - Crosshair"
+			"0 - Fixed"
+			"1 - Flex"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Behavior"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumWidth"
+		Visible=true
+		Group="Behavior"
+		InitialValue="600"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_mDesignHeight"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_mDesignWidth"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="_mName"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabOrderWrap"
+		Visible=false
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TabIndex"
+		Visible=true
+		Group="Visual Controls"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Indicator"
+		Visible=false
+		Group="Visual Controls"
+		InitialValue=""
+		Type="WebUIControl.Indicators"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Default"
+			"1 - Primary"
+			"2 - Secondary"
+			"3 - Success"
+			"4 - Danger"
+			"5 - Warning"
+			"6 - Info"
+			"7 - Light"
+			"8 - Dark"
+			"9 - Link"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LayoutDirection"
+		Visible=true
+		Group="WebView"
+		InitialValue="LayoutDirections.LeftToRight"
+		Type="LayoutDirections"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - LeftToRight"
+			"1 - RightToLeft"
+			"2 - TopToBottom"
+			"3 - BottomToTop"
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -1337,22 +1224,6 @@ End
 		Visible=true
 		Group="Behavior"
 		InitialValue="400"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Behavior"
-		InitialValue=""
-		Type="String"
-		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HorizontalCenter"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
@@ -1442,22 +1313,6 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Behavior"
-		InitialValue="400"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Behavior"
-		InitialValue="600"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
@@ -1474,14 +1329,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="TabOrder"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Title"
 		Visible=true
 		Group="Behavior"
@@ -1494,14 +1341,6 @@ End
 		Visible=false
 		Group="Position"
 		InitialValue="0"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="VerticalCenter"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
@@ -1522,91 +1361,11 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="ZIndex"
-		Visible=false
-		Group="Behavior"
-		InitialValue="1"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_DeclareLineRendered"
-		Visible=false
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_HorizontalPercent"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Double"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="_ImplicitInstance"
 		Visible=false
 		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_IsEmbedded"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_Locked"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_NeedsRendering"
-		Visible=false
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_OfficialControl"
-		Visible=false
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_OpenEventFired"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_ShownEventFired"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="_VerticalPercent"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Double"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
