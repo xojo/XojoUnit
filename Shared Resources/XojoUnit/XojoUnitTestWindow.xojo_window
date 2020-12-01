@@ -912,12 +912,12 @@ End
 		  // Note:
 		  //   The '--rununittests path' argument must be last
 		  
-		  Dim argString As String = System.CommandLine
+		  Var argString As String = System.CommandLine
 		  
-		  Dim rx As New RegEx
+		  Var rx As New RegEx
 		  rx.SearchPattern = "(?mi-Us)\s?--rununittests\b( (.+))?"
 		  
-		  Dim match As RegExMatch = rx.Search(argString)
+		  Var match As RegExMatch = rx.Search(argString)
 		  
 		  If match IsA Object Then
 		    Try
@@ -953,9 +953,9 @@ End
 		  match = rx.Search(argString)
 		  
 		  If match IsA Object Then
-		    Dim type As String = match.SubExpressionString(1)
-		    Dim pattern As String = match.SubExpressionString(2)
-		    Dim patterns() As String = pattern.Split(",")
+		    Var type As String = match.SubExpressionString(1)
+		    Var pattern As String = match.SubExpressionString(2)
+		    Var patterns() As String = pattern.Split(",")
 		    
 		    Select Case type
 		    Case "include"
@@ -1008,7 +1008,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ExportTests(filePath As String)
-		  Controller.ExportTestResults filePath.ToText
+		  Controller.ExportTestResults filePath
 		  
 		End Sub
 	#tag EndMethod
@@ -1025,7 +1025,7 @@ End
 		    TestGroupList.RowTagAt(TestGroupList.LastAddedRowIndex) = g
 		  Next
 		  
-		  Dim testCount As Integer
+		  Var testCount As Integer
 		  testCount = Controller.AllTestCount
 		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
 		  
@@ -1034,10 +1034,10 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ResetTestGroupList()
-		  Dim lastRow As Integer
+		  Var lastRow As Integer
 		  
-		  Dim selectedRow As Integer = TestGroupList.SelectedRowIndex
-		  Dim scroll As Integer = TestGroupList.ScrollPosition
+		  Var selectedRow As Integer = TestGroupList.SelectedRowIndex
+		  Var scroll As Integer = TestGroupList.ScrollPosition
 		  
 		  lastRow = TestGroupList.RowCount - 1
 		  
@@ -1049,7 +1049,7 @@ End
 		  
 		  lastRow = TestGroupList.RowCount - 1
 		  For row As Integer = lastRow DownTo 0
-		    Dim g As TestGroup = TestGroup(TestGroupList.RowTagAt(row))
+		    Var g As TestGroup = TestGroup(TestGroupList.RowTagAt(row))
 		    If g.IncludeGroup Then
 		      TestGroupList.RowExpandedAt(row) = True
 		    End If
@@ -1088,7 +1088,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
-		  Dim now As DateTime = DateTime.Now
+		  Var now As DateTime = DateTime.Now
 		  
 		  StartLabel.Text = now.ToString(DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
 		  
@@ -1108,7 +1108,7 @@ End
 		Private Sub SelectAllGroups(value As Boolean, andTests As Boolean)
 		  For i As Integer = 0 To TestGroupList.RowCount - 1
 		    If TestGroupList.RowTagAt(i) IsA TestGroup Then
-		      Dim tg As TestGroup
+		      Var tg As TestGroup
 		      tg = TestGroupList.RowTagAt(i)
 		      tg.IncludeGroup = value
 		      
@@ -1130,7 +1130,7 @@ End
 		    tr.IncludeMethod = value
 		  Next
 		  
-		  Dim tgRow As Integer = RowOfTestGroup(tg)
+		  Var tgRow As Integer = RowOfTestGroup(tg)
 		  
 		  If tgRow <> -1 Then
 		    If TestGroupList.RowExpandedAt(tgRow) Then
@@ -1152,7 +1152,7 @@ End
 		Private Sub SelectInverseGroups(andTests As Boolean)
 		  For i As Integer = 0 To TestGroupList.RowCount - 1
 		    If TestGroupList.RowTagAt(i) IsA TestGroup Then
-		      Dim tg As TestGroup = TestGroupList.RowTagAt(i)
+		      Var tg As TestGroup = TestGroupList.RowTagAt(i)
 		      tg.IncludeGroup = Not tg.IncludeGroup
 		      
 		      TestGroupList.CellCheckboxValueAt(i, ColInclude) = tg.IncludeGroup
@@ -1173,16 +1173,16 @@ End
 		    tr.IncludeMethod = Not tr.IncludeMethod
 		  Next
 		  
-		  Dim tgRow As Integer = RowOfTestGroup(tg)
+		  Var tgRow As Integer = RowOfTestGroup(tg)
 		  
 		  If tgRow <> -1 And TestGroupList.RowExpandedAt(tgRow) Then
 		    
 		    For row As Integer = tgRow + 1 To TestGroupList.RowCount - 1
-		      Dim tag As Variant = TestGroupList.RowTagAt(row)
+		      Var tag As Variant = TestGroupList.RowTagAt(row)
 		      If Not (tag IsA TestResult) Then
 		        Exit For
 		      End If
-		      Dim tr As TestResult = tag
+		      Var tr As TestResult = tag
 		      TestGroupList.CellCheckboxValueAt(row, ColInclude) = tr.IncludeMethod
 		    Next
 		    
@@ -1204,7 +1204,7 @@ End
 		  SelectOneGroup(tg, True)
 		  
 		  tr.IncludeMethod = True
-		  Dim row As Integer = RowOfTestResult(tr)
+		  Var row As Integer = RowOfTestResult(tr)
 		  If row <> -1 Then
 		    TestGroupList.CellCheckboxValueAt(row, ColInclude) = True
 		  End If
@@ -1250,11 +1250,11 @@ End
 		Private Sub UpdateSummary()
 		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
 		  
-		  Dim allTestCount As Integer = Controller.AllTestCount
-		  Dim runTestCount As Integer = Controller.RunTestCount
+		  Var allTestCount As Integer = Controller.AllTestCount
+		  Var runTestCount As Integer = Controller.RunTestCount
 		  
-		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
-		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
+		  Var groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Var testsMessage As String = If(allTestCount = 1, " test", " tests")
 		  
 		  If runTestCount = allTestCount Then
 		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
@@ -1262,13 +1262,13 @@ End
 		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
 		  End If
 		  
-		  Dim passedCount As Integer = Controller.PassedCount
-		  Dim passedPercent As Double = passedCount / runTestCount
-		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  Var passedCount As Integer = Controller.PassedCount
+		  Var passedPercent As Double = passedCount / runTestCount
+		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
 		  
-		  Dim failedCount As Integer = Controller.FailedCount
-		  Dim failedPercent As Double = failedCount / runTestCount
-		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  Var failedCount As Integer = Controller.FailedCount
+		  Var failedPercent As Double = failedCount / runTestCount
+		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
 		  
 		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
 		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
@@ -1301,7 +1301,7 @@ End
 		Private Sub UpdateTestResults(tg As TestGroup)
 		  TestGroupList.Invalidate
 		  
-		  Dim tgRow As Integer = RowOfTestGroup(tg)
+		  Var tgRow As Integer = RowOfTestGroup(tg)
 		  If tgRow = -1 Then
 		    Return
 		  End If
@@ -1312,7 +1312,7 @@ End
 		  
 		  If TestGroupList.RowExpandedAt(tgRow) Then
 		    For row As Integer = tgRow + 1 To TestGroupList.RowCount - 1
-		      Dim tag As Variant = TestGroupList.RowTagAt(row)
+		      Var tag As Variant = TestGroupList.RowTagAt(row)
 		      If Not (tag IsA TestResult) Then
 		        //
 		        // We have exhausted the group
@@ -1329,24 +1329,24 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub UpdateTestSummary()
-		  Dim name As String
-		  Dim result As String
-		  Dim message As String
-		  Dim duration As String
+		  Var name As String
+		  Var result As String
+		  Var message As String
+		  Var duration As String
 		  
-		  Dim item As Variant
+		  Var item As Variant
 		  If TestGroupList.SelectedRowIndex <> -1 Then
 		    item = TestGroupList.RowTagAt(TestGroupList.SelectedRowIndex)
 		  End If
 		  
 		  If item IsA TestResult Then
-		    Dim tr As TestResult = item
+		    Var tr As TestResult = item
 		    name = tr.TestName
 		    result = tr.Result
 		    message = tr.Message
 		    duration = Format(tr.Duration, "#,0.0000000") + "s"
 		  ElseIf item IsA TestGroup Then
-		    Dim tg As TestGroup = item
+		    Var tg As TestGroup = item
 		    name = tg.Name + " Group"
 		    duration = Format(tg.Duration, "#,0.0000000") + "s"
 		  End If
@@ -1461,8 +1461,8 @@ End
 		    StopTests
 		    
 		  Case TestToolbar1.ExportButton
-		    Dim dlg As New SaveFileDialog
-		    Dim f As FolderItem
+		    Var dlg As New SaveFileDialog
+		    Var f As FolderItem
 		    dlg.InitialFolder = SpecialFolder.Documents
 		    dlg.promptText = "Save results as"
 		    dlg.SuggestedFileName = "results.xml"
@@ -1512,7 +1512,7 @@ End
 #tag Events TestGroupList
 	#tag Event
 		Sub ExpandRow(row As Integer)
-		  Dim g As TestGroup
+		  Var g As TestGroup
 		  g = Me.RowTagAt(row)
 		  
 		  If g <> Nil Then
@@ -1542,11 +1542,11 @@ End
 		    
 		    Select Case Me.RowTagAt(row)
 		    Case IsA TestGroup
-		      Dim tg As TestGroup = Me.RowTagAt(row)
+		      Var tg As TestGroup = Me.RowTagAt(row)
 		      tg.IncludeGroup = Me.CellCheckboxValueAt(row, column)
 		      
 		    Case IsA TestResult
-		      Dim tr As TestResult = Me.RowTagAt(row)
+		      Var tr As TestResult = Me.RowTagAt(row)
 		      tr.IncludeMethod = Me.CellCheckboxValueAt(row, column)
 		      
 		    End Select
@@ -1604,18 +1604,18 @@ End
 		    SelectAllTests(hitItem.Tag, False)
 		    
 		  Case kCMSelectOneTest
-		    Dim tag As Pair = hitItem.Tag
-		    Dim tg As TestGroup = tag.Left
-		    Dim tr As TestResult = tag.Right
+		    Var tag As Pair = hitItem.Tag
+		    Var tg As TestGroup = tag.Left
+		    Var tr As TestResult = tag.Right
 		    SelectAllGroups(False, True)
 		    SelectOneTest(tg, tr)
 		    
 		  Case kCMSelectThisGroup
-		    Dim tg As TestGroup = hitItem.Tag
+		    Var tg As TestGroup = hitItem.Tag
 		    SelectOneGroup(tg, True)
 		    
 		  Case kCMUnselectThisGroup
-		    Dim tg As TestGroup = hitItem.Tag
+		    Var tg As TestGroup = hitItem.Tag
 		    SelectOneGroup(tg, False)
 		    
 		  Case kCMSelectAllGroupsAndTests
@@ -1649,7 +1649,7 @@ End
 		  End If
 		  
 		  If Me.SelectedRowIndex <> -1 Then
-		    Dim tg As TestGroup
+		    Var tg As TestGroup
 		    For row As Integer = Me.SelectedRowIndex DownTo 0
 		      If Me.RowTagAt(row) IsA TestGroup Then
 		        tg = Me.RowTagAt(row)
@@ -1657,7 +1657,7 @@ End
 		      End If
 		    Next
 		    
-		    Dim tr As TestResult = _
+		    Var tr As TestResult = _
 		    If(Me.RowTagAt(Me.SelectedRowIndex) IsA TestResult, TestResult(Me.RowTagAt(Me.SelectedRowIndex)), Nil)
 		    
 		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
@@ -1699,7 +1699,7 @@ End
 		  
 		  If Me.RowTagAt(row) IsA TestResult Then
 		    
-		    Dim tr As TestResult = Me.RowTagAt(row)
+		    Var tr As TestResult = Me.RowTagAt(row)
 		    
 		    If tr.Result = TestResult.Failed Then
 		      g.DrawingColor = kRedColor
