@@ -249,12 +249,10 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreNotEqualDateTest()
-		  Var d1 As New Date
-		  d1.SQLDate = "2012-11-29"
+		Sub AreNotEqualDateTimeTest()
+		  Var d1 As New DateTime(2012, 11, 29)
 		  
-		  Var d2 As New Date
-		  d2.SQLDate = "2012-11-29"
+		  Var d2 As New DateTime(2012, 11, 29)
 		  
 		  Assert.AreNotEqual(d1, d2)
 		  IncrementFailCountIfFail
