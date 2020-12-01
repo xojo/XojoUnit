@@ -10,12 +10,12 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreDifferent(expected As String, actual As String, message As Text = "")
-		  If expected.Encoding <> actual.Encoding Or StrComp(expected, actual, 0) <> 0 Then
+	#tag Method, Flags = &h0
+		Sub AreDifferent(expected As String, actual As String, message As String = "")
+		  If expected.Encoding <> actual.Encoding Or expected.Compare(actual, ComparisonOptions.CaseSensitive) <> 0 Then
 		    Pass()
 		  Else
-		    Fail("String '" + StringToText(actual) + "' is the same", message )
+		    Fail("String '" + actual + "' is the same", message )
 		  End If
 		  
 		End Sub
@@ -117,7 +117,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
+		Sub AreEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
 		  If expected = actual Then
 		    Pass()
 		    Return
@@ -132,8 +132,8 @@ Protected Class Assert
 		  Dim actualSize As Integer = actual.Size
 		  
 		  If expectedSize <> actualSize Then
-		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
-		    "] but was [" + actualSize.ToText + "].", _
+		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToString + _
+		    "] but was [" + actualSize.ToString + "].", _
 		    message)
 		    Return
 		  End If
@@ -141,10 +141,10 @@ Protected Class Assert
 		  Dim sExpected As String = expected.StringValue(0, expectedSize)
 		  Dim sActual As String = actual.StringValue(0, actualSize)
 		  
-		  If StrComp(sExpected, sActual, 0) = 0 Then
+		  If sExpected.Compare(sActual, ComparisonOptions.CaseSensitive) = 0 Then
 		    Pass()
 		  Else
-		    Fail(FailEqualMessage(EncodeHex(sExpected, True).ToText, EncodeHex(sActual, True).ToText), message )
+		    Fail(FailEqualMessage(EncodeHex(sExpected, True), EncodeHex(sActual, True)), message )
 		  End If
 		  
 		End Sub
@@ -233,8 +233,8 @@ Protected Class Assert
 		  
 		  For i As Integer = 0 To expectedSize
 		    If expected(i) <> actual(i) Then
-		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
-		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
+		      Fail( FailEqualMessage("Array(" + i.ToText + ") = '" + expected(i) + "'", _
+		      "Array(" + i.ToText + ") = '" + actual(i) + "'"), _
 		      message)
 		      Return
 		    End If
@@ -251,7 +251,7 @@ Protected Class Assert
 		  If expected = actual Then
 		    Pass()
 		  Else
-		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
+		    Fail(FailEqualMessage(expected, actual), message )
 		  End If
 		End Sub
 	#tag EndMethod
@@ -436,7 +436,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As Text = "")
+		Sub AreNotEqual(expected As Global.MemoryBlock, actual As Global.MemoryBlock, message As String = "")
 		  If expected = actual Then
 		    Fail("The MemoryBlocks are the same", message)
 		    
@@ -455,10 +455,10 @@ Protected Class Assert
 		      Dim sExpected As String = expected.StringValue(0, expectedSize)
 		      dim sActual As String = actual.StringValue(0, actualSize)
 		      
-		      If StrComp(sExpected, sActual, 0) <> 0 Then
+		      If sExpected.Compare(sActual, ComparisonOptions.CaseSensitive) <> 0 Then
 		        Pass()
 		      Else
-		        Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True).ToText, message )
+		        Fail("The MemoryBlock is the same: " + EncodeHex(sExpected, True), message )
 		      End If
 		      
 		    End If
@@ -515,7 +515,7 @@ Protected Class Assert
 		  If expected <> actual Then
 		    Pass()
 		  Else
-		    Fail("The Strings '" + StringToText(actual) + " are equal but shouldn't be", message)
+		    Fail("The Strings '" + actual + " are equal but shouldn't be", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -610,28 +610,28 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreSame(expected() As String, actual() As String, message As Text = "")
+	#tag Method, Flags = &h0
+		Sub AreSame(expected() As String, actual() As String, message As String = "")
 		  Dim expectedSize, actualSize As Integer
 		  
 		  expectedSize = expected.LastIndex
 		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
-		    Fail( "Expected Text array Ubound [" + expectedSize.ToText + _
-		    "] but was [" + actualSize.ToText + "].", _
+		    Fail( "Expected Text array Ubound [" + expectedSize.ToString + _
+		    "] but was [" + actualSize.ToString + "].", _
 		    message)
 		    Return
 		  End If
 		  
 		  For i As Integer = 0 To expectedSize
-		    If StrComp(expected(i), actual(i), 0) <> 0 Then
-		      Fail(FailEqualMessage("Array(" + i.ToText + ") = '" + StringToText(expected(i)) + "'", _
-		      "Array(" + i.ToText + ") = '" + StringToText(actual(i)) + "'"), _
+		    If expected(i).Compare(actual(i), ComparisonOptions.CaseSensitive) <> 0 Then
+		      Fail(FailEqualMessage("Array(" + i.ToString + ") = '" + expected(i) + "'", _
+		      "Array(" + i.ToString + ") = '" + actual(i) + "'"), _
 		      message)
 		      Return
 		    ElseIf expected(i).Encoding <> actual(i).Encoding Then
-		      Fail("The text encoding of item " + i.ToText + " ('" + StringToText(expected(i)) + "') differs", message)
+		      Fail("The text encoding of item " + i.ToString + " ('" + expected(i) + "') differs", message)
 		      Return
 		    End If
 		  Next
@@ -640,16 +640,16 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreSame(expected As String, actual As String, message As Text = "")
-		  If StrComp(expected, actual, 0) = 0 Then
+	#tag Method, Flags = &h0
+		Sub AreSame(expected As String, actual As String, message As String = "")
+		  If expected.Compare(actual, ComparisonOptions.CaseSensitive) = 0 Then
 		    If expected.Encoding <> actual.Encoding Then
 		      Fail("The bytes match but the text encoding does not", message)
 		    Else
 		      Pass()
 		    End If
 		  Else
-		    Fail(FailEqualMessage(StringToText(expected), StringToText(actual)), message )
+		    Fail(FailEqualMessage(expected, actual), message )
 		  End If
 		  
 		End Sub
@@ -713,7 +713,7 @@ Protected Class Assert
 		  If rx.Search(actual) Is Nil Then
 		    Pass()
 		  Else
-		    Fail("[" + StringToText(actual) + "]  matches the pattern /" + StringToText(regExPattern) + "/", message)
+		    Fail("[" + actual + "]  matches the pattern /" + regExPattern + "/", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -747,8 +747,8 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function FailEqualMessage(expected As Text, actual As Text) As Text
-		  Dim message As Text
+		Private Function FailEqualMessage(expected As String, actual As String) As String
+		  Dim message As String
 		  
 		  message = "Expected [" + expected + "] but was [" + actual + "]."
 		  
@@ -810,7 +810,7 @@ Protected Class Assert
 		  rx.SearchPattern = regExPattern
 		  
 		  If rx.Search(actual) Is Nil Then
-		    Fail("[" + StringToText(actual) + "]  does not match the pattern /" + StringToText(regExPattern) + "/", message)
+		    Fail("[" + actual + "]  does not match the pattern /" + regExPattern + "/", message)
 		  Else
 		    Pass()
 		  End If
@@ -842,21 +842,6 @@ Protected Class Assert
 		  
 		  
 		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Private Function StringToText(s As String) As Text
-		  // Before a String can be converted to Text, it must have a valid encoding
-		  // to avoid an exception. If the encoding is not valid, we will hex-encode the string instead.
-		  
-		  If s.Encoding Is Nil Or Not s.Encoding.IsValidData(s) Then
-		    s = EncodeHex(s, True)
-		    s = s.DefineEncoding(Encodings.UTF8) // Just to make sure
-		  End If
-		  
-		  Return s.ToText
-		  
-		End Function
 	#tag EndMethod
 
 

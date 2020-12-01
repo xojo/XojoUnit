@@ -21,35 +21,34 @@ Protected Class TestController
 		  // http://www.ibm.com/support/knowledgecenter/SSQ2R2_9.5.1/com.ibm.rsar.analysis.codereview.cobol.doc/topics/cac_useresults_junit.html
 		  //
 		  
-		  #If TargetWin32 Then
-		    Const kEOL As Text = &u0D + &u0A
+		  #If TargetWindows Then
+		    Const kEOL As String = &u0D + &u0A
 		  #Else
-		    Const kEOL As Text = &u0A
+		    Const kEOL As String = &u0A
 		  #Endif
 		  
-		  Dim testId As Text = Xojo.Core.Date.Now.ToText + "." + Xojo.Core.Date.Now.Nanosecond.ToText
+		  Var now As DateTime = DateTime.Now
+		  Dim testId As String = now.SQLDateTime + "." + now.Nanosecond.ToString
 		  
-		  Dim f As FolderItem
-		  f = New FolderItem(filePath, FolderItem.PathModes.Shell)
-		  Dim stream As BinaryStream
-		  If f <> Nil Then
-		    stream=BinaryStream.Create(f, True)
+		  Dim f As New FolderItem(filePath, FolderItem.PathModes.Shell)
+		  If f IsA Object Then
+		    Var stream As BinaryStream = BinaryStream.Create(f, True)
 		    stream.Write "<?xml version=""1.0"" encoding=""UTF-8"" ?>" + kEOL
 		    stream.Write "<testsuites id=""" + testId + _
-		    """ tests=""" + RunTestCount.ToText + _
-		    """ failures=""" + FailedCount.ToText + _
-		    """ time=""" + Duration.ToText + """>" + kEOL
+		    """ tests=""" + RunTestCount.ToString + _
+		    """ failures=""" + FailedCount.ToString + _
+		    """ time=""" + Duration.ToString + """>" + kEOL
 		    
 		    For Each tg As TestGroup In mTestGroups
-		      stream.Write "  <testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToText + _
-		      """ tests=""" + tg.TestCount.ToText + _
-		      """ time=""" + tg.Duration.ToText + _
-		      """ failures=""" + tg.FailedTestCount.ToText + _
+		      stream.Write "  <testsuite errors=""0"" skipped=""" + tg.SkippedTestCount.ToString + _
+		      """ tests=""" + tg.TestCount.ToString + _
+		      """ time=""" + tg.Duration.ToString + _
+		      """ failures=""" + tg.FailedTestCount.ToString + _
 		      """ name=""com.atlassian.bamboo.labels." + tg.Name + """>" + kEOL
 		      
 		      For Each tr As TestResult In tg.Results
-		        stream.Write "    <testcase name=""" + tr.TestName + """ time=""" + tr.Duration.ToText + _
-		        """ duration= """ + tr.Duration.ToText + """>" + kEOL // "time" is right, but "duration" is maintained for backwards compatibility
+		        stream.Write "    <testcase name=""" + tr.TestName + """ time=""" + tr.Duration.ToString + _
+		        """ duration= """ + tr.Duration.ToString + """>" + kEOL // "time" is right, but "duration" is maintained for backwards compatibility
 		        
 		        If tr.Result = TestResult.Skipped Then
 		          stream.Write "       <skipped />" + EndOfLine
@@ -228,7 +227,7 @@ Protected Class TestController
 
 	#tag Method, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 		Private Function PatternHasDot(pattern As String) As Boolean
-		  Return pattern.Left(kHasDotComment.Len) = kHasDotComment
+		  Return pattern.Left(kHasDotComment.Length) = kHasDotComment
 		End Function
 	#tag EndMethod
 
