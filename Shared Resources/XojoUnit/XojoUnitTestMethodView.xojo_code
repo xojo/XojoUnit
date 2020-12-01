@@ -2,7 +2,7 @@
 Begin iosView XojoUnitTestMethodView
    BackButtonTitle =   ""
    Compatibility   =   ""
-   LargeTitleMode  =   "2"
+   LargeTitleMode  =   2
    Left            =   0
    NavigationBarVisible=   True
    TabIcon         =   ""
@@ -20,15 +20,15 @@ Begin iosView XojoUnitTestMethodView
       EditingEnabled  =   False
       EditingEnabled  =   False
       EstimatedRowHeight=   -1
-      Format          =   "0"
-      Height          =   959.0
+      Format          =   0
+      Height          =   503.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       Top             =   65
       Visible         =   True
-      Width           =   768.0
+      Width           =   320.0
    End
 End
 #tag EndIOSView

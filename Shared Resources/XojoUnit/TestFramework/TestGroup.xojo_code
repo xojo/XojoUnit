@@ -158,7 +158,11 @@ Protected Class TestGroup
 		  
 		  If Not IsClone And RunTestsTimer IsA Object Then
 		    RunTestsTimer.RunMode = Timer.RunModes.Off
-		    RemoveHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
+		    #If TargetiOS Then
+		      RemoveHandler RunTestsTimer.Run, WeakAddressOf RunTestsTimer_Action
+		    #Else
+		      RemoveHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
+		    #EndIf
 		    RunTestsTimer = Nil
 		  End If
 		  
@@ -424,7 +428,11 @@ Protected Class TestGroup
 		  If IncludeGroup Then
 		    If RunTestsTimer Is Nil Then
 		      RunTestsTimer = New Timer
-		      AddHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
+		      #If TargetiOS Then
+		        AddHandler RunTestsTimer.Run, WeakAddressOf RunTestsTimer_Action
+		      #Else
+		        AddHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
+		      #EndIf
 		    End If
 		    RunTestsTimer.Period = kTimerPeriod
 		    RunTestsTimer.RunMode = Timer.RunModes.Multiple

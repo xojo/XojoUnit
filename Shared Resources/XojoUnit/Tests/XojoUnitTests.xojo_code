@@ -14,7 +14,11 @@ Inherits XojoUnitSuperClassTests
 		  
 		  If AsyncTestTimer IsA Object Then
 		    AsyncTestTimer.RunMode = Timer.RunModes.Off
-		    RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    #If TargetiOS Then
+		      RemoveHandler AsyncTestTimer.Run, WeakAddressOf AsyncTestTimer_Action
+		    #Else
+		      RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    #EndIf
 		    AsyncTestTimer = Nil
 		  End If
 		  
@@ -296,7 +300,11 @@ Inherits XojoUnitSuperClassTests
 		Sub AsyncTest()
 		  If AsyncTestTimer Is Nil Then
 		    AsyncTestTimer = New Timer
-		    AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    #If TargetiOS Then
+		      AddHandler AsyncTestTimer.Run, WeakAddressOf AsyncTestTimer_Action
+		    #Else
+		      AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    #EndIf
 		  End If
 		  
 		  AsyncTestTimer.RunMode = Timer.RunModes.Single
