@@ -56,6 +56,18 @@ Protected Class Assert
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreEqual(expected As DateTime, actual As DateTime, message As String = "")
+		  If expected Is Nil Xor actual Is Nil Then
+		    Fail("One given Date is Nil", message)
+		  ElseIf expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Pass()
+		  Else
+		    Fail(FailEqualMessage(expected.SQLDateTime , actual.SQLDateTime), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected() As Double, actual() As Double, message As String = "")
 		  Var expectedSize, actualSize As Double
@@ -393,6 +405,20 @@ Protected Class Assert
 		    Pass()
 		  Else
 		    Fail(FailEqualMessage(expected.ToString, actual.ToString), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
+		Sub AreNotEqual(expected As DateTime, actual As DateTime, message As String = "")
+		  If expected Is Nil Xor actual Is Nil Then
+		    Pass()
+		  ElseIf expected Is Nil And actual Is Nil Then
+		    Fail("Both Dates are Nil", message)
+		  ElseIf expected = actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
+		    Fail("Both Dates are the same", message)
+		  Else
+		    Pass()
 		  End If
 		End Sub
 	#tag EndMethod
