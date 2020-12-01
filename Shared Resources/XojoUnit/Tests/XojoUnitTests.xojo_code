@@ -37,8 +37,8 @@ Inherits XojoUnitSuperClassTests
 
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
-		  Var d1 As Xojo.Core.Date = Xojo.Core.Date.Now
-		  Var d2 As New Xojo.Core.Date(2001, 1, 1, Xojo.Core.TimeZone.Current)
+		  Var d1 As DateTime = DateTime.Now
+		  Var d2 As New DateTime(2001, 1, 1, 0, 0, 0, 0, TimeZone.Current)
 		  
 		  Assert.AreDifferent(d1, d2)
 		End Sub
@@ -93,12 +93,9 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqualDateTest()
-		  Var d1 As New Date
-		  d1.SQLDate = "2012-11-30"
-		  
-		  Var d2 As New Date
-		  d2.SQLDate = "2012-11-30"
+		Sub AreEqualDateTimeTest()
+		  Var d1 As New DateTime(2012, 11, 30)
+		  Var d2 As New DateTime(2012, 11, 30)
 		  
 		  Assert.AreEqual(d1, d2)
 		  
@@ -182,35 +179,6 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqualNewDateTest()
-		  Var d1 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
-		  
-		  Var d2 As New Xojo.Core.Date(2013, 11, 12, Xojo.Core.TimeZone.Current)
-		  
-		  Assert.AreEqual(d1, d2)
-		  
-		  d1 = Nil
-		  d2 = Nil
-		  
-		  Assert.AreEqual(d1, d2)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreEqualNewMemoryBlockTest()
-		  Var m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
-		  Var m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("Hello")
-		  
-		  Assert.AreEqual(m1, m2)
-		  
-		  m1 = Nil
-		  m2 = Nil
-		  
-		  Assert.AreEqual(m1, m2)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqualStringArrayTest()
 		  Var s1() As String = Array("A", "B", "C")
 		  Var s2() As String
@@ -268,12 +236,9 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreNotEqualDateTest()
-		  Var d1 As New Date
-		  d1.SQLDate = "2012-11-29"
-		  
-		  Var d2 As New Date
-		  d2.SQLDate = "2012-11-30"
+		Sub AreNotEqualDateTimeTest()
+		  Var d1 As New DateTime(2012, 11, 29)
+		  Var d2 As New DateTime(2012, 11, 30)
 		  
 		  Assert.AreNotEqual(d1, d2)
 		  
@@ -314,15 +279,6 @@ Inherits XojoUnitSuperClassTests
 		  
 		  Assert.AreNotEqual(d1, d2)
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub AreNotEqualNewMemoryBlockTest()
-		  Var m1 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.ASCII.ConvertTextToData("Hello")
-		  Var m2 As Xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData("hello")
-		  
-		  Assert.AreNotEqual(m1, m2)
 		End Sub
 	#tag EndMethod
 

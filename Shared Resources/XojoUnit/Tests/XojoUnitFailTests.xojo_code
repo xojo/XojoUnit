@@ -415,7 +415,7 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub AreSameObjectTest()
-		  Var d1 As Xojo.Core.Date = Xojo.Core.Date.Now
+		  Var d1 As DateTime = DateTime.Now
 		  Var d2 As New Dictionary
 		  
 		  Assert.AreSame(d1, d2)
