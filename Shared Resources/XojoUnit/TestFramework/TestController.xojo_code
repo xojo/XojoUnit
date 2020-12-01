@@ -2,13 +2,13 @@
 Protected Class TestController
 	#tag Method, Flags = &h0
 		Sub AddGroup(group As TestGroup)
-		  mTestGroups.Append(group)
+		  mTestGroups.Add(group)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub CalculateDuration()
-		  mFinishMS = Microseconds
+		  mFinishMS = System.Microseconds
 		  
 		End Sub
 	#tag EndMethod
@@ -30,7 +30,7 @@ Protected Class TestController
 		  Dim testId As Text = Xojo.Core.Date.Now.ToText + "." + Xojo.Core.Date.Now.Nanosecond.ToText
 		  
 		  Dim f As FolderItem
-		  f = New FolderItem(filePath, FolderItem.PathTypeShell)
+		  f = New FolderItem(filePath, FolderItem.PathModes.Shell)
 		  Dim stream As BinaryStream
 		  If f <> Nil Then
 		    stream=BinaryStream.Create(f, True)
@@ -106,7 +106,7 @@ Protected Class TestController
 		    End If
 		  End If
 		  
-		  If includePatterns.Ubound = -1 And excludePatterns.Ubound = -1 Then
+		  If includePatterns.LastIndex = -1 And excludePatterns.LastIndex = -1 Then
 		    Dim err As New RuntimeException
 		    err.Message = "You must specify at least one include or exclude pattern"
 		    Raise err
@@ -115,11 +115,11 @@ Protected Class TestController
 		  //
 		  // Convert the patterns into regular expressions
 		  //
-		  For i As Integer = 0 To includePatterns.Ubound
+		  For i As Integer = 0 To includePatterns.LastIndex
 		    includePatterns(i) = SimplePatternToRegExPattern(includePatterns(i))
 		  Next i
 		  
-		  For i As Integer = 0 To excludePatterns.Ubound
+		  For i As Integer = 0 To excludePatterns.LastIndex
 		    excludePatterns(i) = SimplePatternToRegExPattern(excludePatterns(i))
 		  Next i
 		  
@@ -135,7 +135,7 @@ Protected Class TestController
 		    //
 		    // Turn all methods on and the group on/off
 		    //
-		    group.IncludeGroup = (includePatterns.Ubound = -1) // If there are any includes, default to False
+		    group.IncludeGroup = (includePatterns.LastIndex = -1) // If there are any includes, default to False
 		    group.SetIncludeMethods(True)
 		    Dim methodsTurnedOff As Boolean
 		    
@@ -248,7 +248,7 @@ Protected Class TestController
 
 	#tag Method, Flags = &h21
 		Private Sub ResetDuration()
-		  mStartMS = Microseconds
+		  mStartMS = System.Microseconds
 		  mFinishMS = 0.0
 		  
 		  
@@ -257,11 +257,11 @@ Protected Class TestController
 
 	#tag Method, Flags = &h0
 		Attributes( Hidden )  Sub RunNextTest()
-		  If TestQueue.Ubound = -1 Then
+		  If TestQueue.LastIndex = -1 Then
 		    Stop
 		  Else
 		    Dim tg As TestGroup = TestQueue(0)
-		    TestQueue.Remove(0)
+		    TestQueue.RemoveAt(0)
 		    tg.Start
 		  End If
 		  
@@ -274,7 +274,7 @@ Protected Class TestController
 		  
 		  For Each tg As TestGroup In mTestGroups
 		    If tg.IncludeGroup Then
-		      TestQueue.Append tg
+		      TestQueue.Add tg
 		      tg.ClearResults
 		    Else
 		      tg.ClearResults(True)
@@ -291,10 +291,10 @@ Protected Class TestController
 		Private Function SimplePatternToRegExPattern(pattern As String) As String
 		  Const kPlaceholder As String = &u01
 		  
-		  Dim hasDot As Boolean = pattern.InStr(".") <> 0
+		  Dim hasDot As Boolean = pattern.IndexOf(".") <> -1
 		  
 		  pattern = pattern.ReplaceAll("*", kPlaceholder)
-		  pattern = "^\Q" + pattern.ReplaceAllB("\E", "\E\\E\Q") + "\E"
+		  pattern = "^\Q" + pattern.ReplaceAllBytes("\E", "\E\\E\Q") + "\E"
 		  pattern = pattern.ReplaceAll(kPlaceholder, "\E.*\Q")
 		  
 		  //
@@ -375,7 +375,7 @@ Protected Class TestController
 			Get
 			  Dim duration As Double
 			  If mFinishMS = 0.0 Then
-			    duration = Microseconds - mStartMS
+			    duration = System.Microseconds - mStartMS
 			  Else
 			    duration = mFinishMS - mStartMS
 			  End If
@@ -398,7 +398,7 @@ Protected Class TestController
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mTestGroups.Ubound + 1
+			  Return mTestGroups.LastIndex + 1
 			End Get
 		#tag EndGetter
 		GroupCount As Integer

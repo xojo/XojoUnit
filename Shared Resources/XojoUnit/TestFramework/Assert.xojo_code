@@ -60,8 +60,8 @@ Protected Class Assert
 		Sub AreEqual(expected() As Double, actual() As Double, message As Text = "")
 		  Dim expectedSize, actualSize As Double
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected Integer array Ubound [" + expectedSize.ToText + _
@@ -194,8 +194,8 @@ Protected Class Assert
 		Sub AreEqual(expected() As Integer, actual() As Integer, message As Text = "")
 		  Dim expectedSize, actualSize As Integer
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected Integer array Ubound [" + expectedSize.ToText + _
@@ -221,8 +221,8 @@ Protected Class Assert
 		Sub AreEqual(expected() As String, actual() As String, message As Text = "")
 		  Dim expectedSize, actualSize As Integer
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected String array Ubound [" + expectedSize.ToText + _
@@ -260,8 +260,8 @@ Protected Class Assert
 		Sub AreEqual(expected() As Text, actual() As Text, message As Text = "")
 		  Dim expectedSize, actualSize As Integer
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected Text array Ubound [" + expectedSize.ToText + _
@@ -614,8 +614,8 @@ Protected Class Assert
 		Sub AreSame(expected() As String, actual() As String, message As Text = "")
 		  Dim expectedSize, actualSize As Integer
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected Text array Ubound [" + expectedSize.ToText + _
@@ -659,8 +659,8 @@ Protected Class Assert
 		Sub AreSame(expected() As Text, actual() As Text, message As Text = "")
 		  Dim expectedSize, actualSize As Integer
 		  
-		  expectedSize = UBound(expected)
-		  actualSize = UBound(actual)
+		  expectedSize = expected.LastIndex
+		  actualSize = actual.LastIndex
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected Text array Ubound [" + expectedSize.ToText + _
@@ -724,7 +724,7 @@ Protected Class Assert
 		  
 		  Dim lastByteIndex As Integer = mb.Size - 1
 		  For byteIndex As Integer = 0 To lastByteIndex
-		    r.Append mb.Data.Byte(byteIndex).ToHex
+		    r.Add mb.Data.Byte(byteIndex).ToHex
 		  Next
 		  
 		  Return Text.Join(r, " " )
@@ -894,8 +894,11 @@ Protected Class Assert
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Failed"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -903,6 +906,7 @@ Protected Class Assert
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -910,18 +914,23 @@ Protected Class Assert
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -929,6 +938,7 @@ Protected Class Assert
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -25,58 +25,6 @@ Begin Window XojoUnitTestWindow
    Title           =   "XojoUnit"
    Visible         =   True
    Width           =   800
-   Begin Listbox TestGroupList
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   3
-      ColumnsResizable=   True
-      ColumnWidths    =   "*,55,30"
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   580
-      HelpTag         =   ""
-      Hierarchical    =   True
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   0
-      LockBottom      =   True
-      LockedInPosition=   True
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   0
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   274
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
    Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
@@ -774,6 +722,7 @@ Begin Window XojoUnitTestWindow
          Top             =   346
          Transparent     =   False
          Underline       =   False
+         UnicodeMode     =   0
          UseFocusRing    =   True
          Visible         =   True
          Width           =   463
@@ -896,6 +845,58 @@ Begin Window XojoUnitTestWindow
       Visible         =   False
       Width           =   16
    End
+   Begin Listbox TestGroupList
+      AutoDeactivate  =   True
+      AutoHideScrollbars=   True
+      Bold            =   False
+      Border          =   True
+      ColumnCount     =   3
+      ColumnsResizable=   True
+      ColumnWidths    =   "*,55,30"
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      Enabled         =   True
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   0
+      HasHeading      =   False
+      HeadingIndex    =   -1
+      Height          =   580
+      HelpTag         =   ""
+      Hierarchical    =   True
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   True
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollBarVertical=   True
+      SelectionType   =   0
+      ShowDropIndicator=   False
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   0
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   274
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
 End
 #tag EndWindow
 
@@ -1015,13 +1016,13 @@ End
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
 		  // Add the test groups into the listbox
-		  TestGroupList.DeleteAllRows
+		  TestGroupList.RemoveAllRows
 		  
 		  For Each g As TestGroup In Controller.TestGroups
-		    TestGroupList.AddFolder(g.Name)
-		    TestGroupList.CellType(TestGroupList.LastIndex, ColInclude) = Listbox.TypeCheckbox
-		    TestGroupList.CellCheck(TestGroupList.LastIndex, ColInclude) = g.IncludeGroup
-		    TestGroupList.RowTag(TestGroupList.LastIndex) = g
+		    TestGroupList.AddExpandableRow(g.Name)
+		    TestGroupList.CellTypeAt(TestGroupList.LastAddedRowIndex, ColInclude) = Listbox.CellTypes.CheckBox
+		    TestGroupList.CellCheckBoxValueAt(TestGroupList.LastAddedRowIndex, ColInclude) = g.IncludeGroup
+		    TestGroupList.RowTagAt(TestGroupList.LastAddedRowIndex) = g
 		  Next
 		  
 		  Dim testCount As Integer
@@ -1035,34 +1036,34 @@ End
 		Private Sub ResetTestGroupList()
 		  Dim lastRow As Integer
 		  
-		  Dim selectedRow As Integer = TestGroupList.ListIndex
+		  Dim selectedRow As Integer = TestGroupList.SelectedRowIndex
 		  Dim scroll As Integer = TestGroupList.ScrollPosition
 		  
-		  lastRow = TestGroupList.ListCount - 1
+		  lastRow = TestGroupList.RowCount - 1
 		  
 		  For row As Integer = lastRow DownTo 0
-		    If TestGroupList.RowIsFolder(row) Then
-		      TestGroupList.Expanded(row) = False
+		    If TestGroupList.ExpandableRowAt(row) Then
+		      TestGroupList.RowExpandedAt(row) = False
 		    End If
 		  Next
 		  
-		  lastRow = TestGroupList.ListCount - 1
+		  lastRow = TestGroupList.RowCount - 1
 		  For row As Integer = lastRow DownTo 0
-		    Dim g As TestGroup = TestGroup(TestGroupList.RowTag(row))
+		    Dim g As TestGroup = TestGroup(TestGroupList.RowTagAt(row))
 		    If g.IncludeGroup Then
-		      TestGroupList.Expanded(row) = True
+		      TestGroupList.RowExpandedAt(row) = True
 		    End If
 		  Next
 		  
-		  TestGroupList.ListIndex = selectedRow
+		  TestGroupList.SelectedRowIndex = selectedRow
 		  TestGroupList.ScrollPosition = scroll
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function RowOfTestGroup(tg As TestGroup) As Integer
-		  For row As Integer = 0 To TestGroupList.ListCount - 1
-		    If TestGroupList.RowTag(row) Is tg Then
+		  For row As Integer = 0 To TestGroupList.RowCount - 1
+		    If TestGroupList.RowTagAt(row) Is tg Then
 		      Return row
 		    End If
 		  Next
@@ -1074,8 +1075,8 @@ End
 
 	#tag Method, Flags = &h21
 		Private Function RowOfTestResult(tr As TestResult) As Integer
-		  For row As Integer = TestGroupList.ListCount - 1 DownTo 0
-		    If TestGroupList.RowTag(row) Is tr Then
+		  For row As Integer = TestGroupList.RowCount - 1 DownTo 0
+		    If TestGroupList.RowTagAt(row) Is tr Then
 		      Return row
 		    End If
 		  Next
@@ -1105,13 +1106,13 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub SelectAllGroups(value As Boolean, andTests As Boolean)
-		  For i As Integer = 0 To TestGroupList.ListCount - 1
-		    If TestGroupList.RowTag(i) IsA TestGroup Then
+		  For i As Integer = 0 To TestGroupList.RowCount - 1
+		    If TestGroupList.RowTagAt(i) IsA TestGroup Then
 		      Dim tg As TestGroup
-		      tg = TestGroupList.RowTag(i)
+		      tg = TestGroupList.RowTagAt(i)
 		      tg.IncludeGroup = value
 		      
-		      TestGroupList.CellCheck(i, ColInclude) = value
+		      TestGroupList.CellCheckboxValueAt(i, ColInclude) = value
 		      
 		      If andTests Then
 		        SelectAllTests(tg, value)
@@ -1132,13 +1133,13 @@ End
 		  Dim tgRow As Integer = RowOfTestGroup(tg)
 		  
 		  If tgRow <> -1 Then
-		    If TestGroupList.Expanded(tgRow) Then
+		    If TestGroupList.RowExpandedAt(tgRow) Then
 		      
-		      For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
-		        If Not (TestGroupList.RowTag(row) IsA TestResult) Then
+		      For row As Integer = tgRow + 1 To TestGroupList.RowCount - 1
+		        If Not (TestGroupList.RowTagAt(row) IsA TestResult) Then
 		          Exit For
 		        End If
-		        TestGroupList.CellCheck(row, ColInclude) = value
+		        TestGroupList.CellCheckboxValueAt(row, ColInclude) = value
 		      Next
 		      
 		    End If
@@ -1149,12 +1150,12 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub SelectInverseGroups(andTests As Boolean)
-		  For i As Integer = 0 To TestGroupList.ListCount - 1
-		    If TestGroupList.RowTag(i) IsA TestGroup Then
-		      Dim tg As TestGroup = TestGroupList.RowTag(i)
+		  For i As Integer = 0 To TestGroupList.RowCount - 1
+		    If TestGroupList.RowTagAt(i) IsA TestGroup Then
+		      Dim tg As TestGroup = TestGroupList.RowTagAt(i)
 		      tg.IncludeGroup = Not tg.IncludeGroup
 		      
-		      TestGroupList.CellCheck(i, ColInclude) = tg.IncludeGroup
+		      TestGroupList.CellCheckboxValueAt(i, ColInclude) = tg.IncludeGroup
 		      
 		      If andTests Then
 		        SelectInverseTests(tg)
@@ -1174,15 +1175,15 @@ End
 		  
 		  Dim tgRow As Integer = RowOfTestGroup(tg)
 		  
-		  If tgRow <> -1 And TestGroupList.Expanded(tgRow) Then
+		  If tgRow <> -1 And TestGroupList.RowExpandedAt(tgRow) Then
 		    
-		    For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
-		      Dim tag As Variant = TestGroupList.RowTag(row)
+		    For row As Integer = tgRow + 1 To TestGroupList.RowCount - 1
+		      Dim tag As Variant = TestGroupList.RowTagAt(row)
 		      If Not (tag IsA TestResult) Then
 		        Exit For
 		      End If
 		      Dim tr As TestResult = tag
-		      TestGroupList.CellCheck(row, ColInclude) = tr.IncludeMethod
+		      TestGroupList.CellCheckboxValueAt(row, ColInclude) = tr.IncludeMethod
 		    Next
 		    
 		  End If
@@ -1193,7 +1194,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub SelectOneGroup(tg As TestGroup, value As Boolean)
 		  tg.IncludeGroup = value
-		  TestGroupList.CellCheck(RowOfTestGroup(tg), ColInclude) = tg.IncludeGroup
+		  TestGroupList.CellCheckboxValueAt(RowOfTestGroup(tg), ColInclude) = tg.IncludeGroup
 		  
 		End Sub
 	#tag EndMethod
@@ -1205,7 +1206,7 @@ End
 		  tr.IncludeMethod = True
 		  Dim row As Integer = RowOfTestResult(tr)
 		  If row <> -1 Then
-		    TestGroupList.CellCheck(row, ColInclude) = True
+		    TestGroupList.CellCheckboxValueAt(row, ColInclude) = True
 		  End If
 		  
 		End Sub
@@ -1286,9 +1287,9 @@ End
 		  If row <> -1 Then
 		    TestGroupList.Cell(row, ColTestName) = tr.TestName
 		    TestGroupList.Cell(row, ColResult) = tr.Result
-		    TestGroupList.CellCheck(row, ColInclude) = tr.IncludeMethod
+		    TestGroupList.CellCheckboxValueAt(row, ColInclude) = tr.IncludeMethod
 		    
-		    If TestGroupList.ListIndex = row Then
+		    If TestGroupList.SelectedRowIndex = row Then
 		      UpdateTestSummary
 		    End If
 		  End If
@@ -1305,13 +1306,13 @@ End
 		    Return
 		  End If
 		  
-		  If TestGroupList.ListIndex = tgRow Then
+		  If TestGroupList.SelectedRowIndex = tgRow Then
 		    UpdateTestSummary
 		  End If
 		  
-		  If TestGroupList.Expanded(tgRow) Then
-		    For row As Integer = tgRow + 1 To TestGroupList.ListCount - 1
-		      Dim tag As Variant = TestGroupList.RowTag(row)
+		  If TestGroupList.RowExpandedAt(tgRow) Then
+		    For row As Integer = tgRow + 1 To TestGroupList.RowCount - 1
+		      Dim tag As Variant = TestGroupList.RowTagAt(row)
 		      If Not (tag IsA TestResult) Then
 		        //
 		        // We have exhausted the group
@@ -1334,8 +1335,8 @@ End
 		  Dim duration As String
 		  
 		  Dim item As Variant
-		  If TestGroupList.ListIndex <> -1 Then
-		    item = TestGroupList.RowTag(TestGroupList.ListIndex)
+		  If TestGroupList.SelectedRowIndex <> -1 Then
+		    item = TestGroupList.RowTagAt(TestGroupList.SelectedRowIndex)
 		  End If
 		  
 		  If item IsA TestResult Then
@@ -1444,19 +1445,83 @@ End
 
 #tag EndWindowCode
 
+#tag Events TestToolbar1
+	#tag Event
+		Sub Action(item As ToolItem)
+		  Select Case item
+		  Case TestToolbar1.RunButton
+		    RunUntilFail = False
+		    RunTests
+		    
+		  Case TestToolbar1.RunUntilFailButton
+		    RunUntilFail = True
+		    RunTests
+		    
+		  Case TestToolbar1.StopButton
+		    StopTests
+		    
+		  Case TestToolbar1.ExportButton
+		    Dim dlg As New SaveFileDialog
+		    Dim f As FolderItem
+		    dlg.InitialFolder = SpecialFolder.Documents
+		    dlg.promptText = "Save results as"
+		    dlg.SuggestedFileName = "results.xml"
+		    dlg.Title = "Save Results"
+		    dlg.Filter = "xml"
+		    f = dlg.ShowModal()
+		    If f <> Nil Then
+		      ExportTests f.NativePath
+		    End If
+		    
+		  End Select
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  Me.RunButton.Enabled = True
+		  Me.StopButton.Enabled = False
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Controller
+	#tag Event
+		Sub AllTestsFinished()
+		  TestsFinished()
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TestFinished(result As TestResult, group As TestGroup)
+		  #Pragma Unused group
+		  
+		  UpdateTestResult(result)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub GroupFinished(group As TestGroup)
+		  //
+		  // A final update in case something changed after the test ran
+		  //
+		  
+		  UpdateTestResults(group)
+		  UpdateSummary
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events TestGroupList
 	#tag Event
 		Sub ExpandRow(row As Integer)
 		  Dim g As TestGroup
-		  g = Me.RowTag(row)
+		  g = Me.RowTagAt(row)
 		  
 		  If g <> Nil Then
 		    For Each result As TestResult In g.Results
 		      Me.AddRow("")
-		      Me.ColumnType(ColInclude) = ListBox.TypeCheckbox
-		      Me.RowTag(Me.LastIndex) = result
+		      Me.ColumnTypeAt(ColInclude) = ListBox.CellTypes.CheckBox
+		      Me.RowTagAt(Me.LastAddedRowIndex) = result
 		      
-		      UpdateTestResult(result, Me.LastIndex)
+		      UpdateTestResult(result, Me.LastAddedRowIndex)
 		    Next
 		  End If
 		End Sub
@@ -1468,21 +1533,21 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DoubleClick()
-		  Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  Me.RowExpandedAt(Me.SelectedRowIndex) = Not Me.RowExpandedAt(Me.SelectedRowIndex)
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub CellAction(row As Integer, column As Integer)
 		  If column = ColInclude Then
 		    
-		    Select Case Me.RowTag(row)
+		    Select Case Me.RowTagAt(row)
 		    Case IsA TestGroup
-		      Dim tg As TestGroup = Me.RowTag(row)
-		      tg.IncludeGroup = Me.CellCheck(row, column)
+		      Dim tg As TestGroup = Me.RowTagAt(row)
+		      tg.IncludeGroup = Me.CellCheckboxValueAt(row, column)
 		      
 		    Case IsA TestResult
-		      Dim tr As TestResult = Me.RowTag(row)
-		      tr.IncludeMethod = Me.CellCheck(row, column)
+		      Dim tr As TestResult = Me.RowTagAt(row)
+		      tr.IncludeMethod = Me.CellCheckboxValueAt(row, column)
 		      
 		    End Select
 		  End If
@@ -1494,8 +1559,8 @@ End
 		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
-		      g.FillRect(0, 0, g.Width, g.Height)
+		      g.DrawingColor = RGB(237, 243, 254) '&cD0D4FF
+		      g.FillRectangle(0, 0, g.Width, g.Height)
 		    End If
 		    
 		    Return True
@@ -1573,51 +1638,51 @@ End
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  base.Append(New MenuItem(kCMSelectAllGroups))
-		  base.Append(New MenuItem(kCMSelectInverseGroups))
-		  base.Append(New MenuItem(kCMUnselectAllGroups))
+		  base.AddMenu(New MenuItem(kCMSelectAllGroups))
+		  base.AddMenu(New MenuItem(kCMSelectInverseGroups))
+		  base.AddMenu(New MenuItem(kCMUnselectAllGroups))
 		  
 		  If Controller.FailedCount <> 0 Then
-		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
 		    
-		    base.Append(New MenuItem(kCMSelectFailedTests))
+		    base.AddMenu(New MenuItem(kCMSelectFailedTests))
 		  End If
 		  
-		  If Me.ListIndex <> -1 Then
+		  If Me.SelectedRowIndex <> -1 Then
 		    Dim tg As TestGroup
-		    For row As Integer = Me.ListIndex DownTo 0
-		      If Me.RowTag(row) IsA TestGroup Then
-		        tg = Me.RowTag(row)
+		    For row As Integer = Me.SelectedRowIndex DownTo 0
+		      If Me.RowTagAt(row) IsA TestGroup Then
+		        tg = Me.RowTagAt(row)
 		        Exit For row
 		      End If
 		    Next
 		    
 		    Dim tr As TestResult = _
-		    If(Me.RowTag(Me.ListIndex) IsA TestResult, TestResult(Me.RowTag(Me.ListIndex)), Nil)
+		    If(Me.RowTagAt(Me.SelectedRowIndex) IsA TestResult, TestResult(Me.RowTagAt(Me.SelectedRowIndex)), Nil)
 		    
-		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
 		    
-		    base.Append(New MenuItem(kCMSelectAllTests, tg))
-		    base.Append(New MenuItem(kCMSelectInverseTests, tg))
-		    base.Append(New MenuItem(kCMUnselectAllTests, tg))
+		    base.AddMenu(New MenuItem(kCMSelectAllTests, tg))
+		    base.AddMenu(New MenuItem(kCMSelectInverseTests, tg))
+		    base.AddMenu(New MenuItem(kCMUnselectAllTests, tg))
 		    
-		    base.Append(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
 		    
 		    If tr IsA TestResult Then
-		      base.Append(New MenuItem(kCMSelectOneTest, tg : tr))
+		      base.AddMenu(New MenuItem(kCMSelectOneTest, tg : tr))
 		      
-		      base.Append(New MenuItem(MenuItem.TextSeparator))
+		      base.AddMenu(New MenuItem(MenuItem.TextSeparator))
 		    End If
 		    
-		    base.Append(New MenuItem(kCMSelectThisGroup, tg))
-		    base.Append(New MenuItem(kCMUnselectThisGroup, tg))
+		    base.AddMenu(New MenuItem(kCMSelectThisGroup, tg))
+		    base.AddMenu(New MenuItem(kCMUnselectThisGroup, tg))
 		  End If
 		  
-		  base.Append(New MenuItem(MenuItem.TextSeparator))
+		  base.AddMenu(New MenuItem(MenuItem.TextSeparator))
 		  
-		  base.Append(New MenuItem(kCMSelectAllGroupsAndTests))
-		  base.Append(New MenuItem(kCMSelectInverseGroupsAndTests))
-		  base.Append(New MenuItem(kCMUnselectAllGroupsAndTests))
+		  base.AddMenu(New MenuItem(kCMSelectAllGroupsAndTests))
+		  base.AddMenu(New MenuItem(kCMSelectInverseGroupsAndTests))
+		  base.AddMenu(New MenuItem(kCMUnselectAllGroupsAndTests))
 		  
 		  Return True
 		End Function
@@ -1630,21 +1695,21 @@ End
 		  
 		  Const kRedColor As Color = &cFF000000
 		  Const kBlackColor As Color = &c00000000
-		  Static kGreyColor As Color = DisabledTextColor // Pseudo-constant
+		  Static kGreyColor As Color = Color.DisabledTextColor // Pseudo-constant
 		  
-		  If Me.RowTag(row) IsA TestResult Then
+		  If Me.RowTagAt(row) IsA TestResult Then
 		    
-		    Dim tr As TestResult = Me.RowTag(row)
+		    Dim tr As TestResult = Me.RowTagAt(row)
 		    
 		    If tr.Result = TestResult.Failed Then
-		      g.ForeColor = kRedColor
+		      g.DrawingColor = kRedColor
 		      g.Bold = True
 		      
 		    Else
 		      If tr.Result = TestResult.NotImplemented Then
-		        g.ForeColor = kGreyColor
+		        g.DrawingColor = kGreyColor
 		      Else
-		        g.ForeColor = kBlackColor
+		        g.DrawingColor = kBlackColor
 		      End If
 		      g.Bold = Not tr.Message.Empty
 		      
@@ -1653,70 +1718,6 @@ End
 		  End If
 		  
 		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events TestToolbar1
-	#tag Event
-		Sub Action(item As ToolItem)
-		  Select Case item
-		  Case TestToolbar1.RunButton
-		    RunUntilFail = False
-		    RunTests
-		    
-		  Case TestToolbar1.RunUntilFailButton
-		    RunUntilFail = True
-		    RunTests
-		    
-		  Case TestToolbar1.StopButton
-		    StopTests
-		    
-		  Case TestToolbar1.ExportButton
-		    Dim dlg As New SaveAsDialog
-		    Dim f As FolderItem
-		    dlg.InitialDirectory = SpecialFolder.Documents
-		    dlg.promptText = "Save results as"
-		    dlg.SuggestedFileName = "results.xml"
-		    dlg.Title = "Save Results"
-		    dlg.Filter = "xml"
-		    f = dlg.ShowModal()
-		    If f <> Nil Then
-		      ExportTests f.NativePath
-		    End If
-		    
-		  End Select
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  Me.RunButton.Enabled = True
-		  Me.StopButton.Enabled = False
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Controller
-	#tag Event
-		Sub AllTestsFinished()
-		  TestsFinished()
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub TestFinished(result As TestResult, group As TestGroup)
-		  #Pragma Unused group
-		  
-		  UpdateTestResult(result)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub GroupFinished(group As TestGroup)
-		  //
-		  // A final update in case something changed after the test ran
-		  //
-		  
-		  UpdateTestResults(group)
-		  UpdateSummary
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
