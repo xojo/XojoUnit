@@ -706,7 +706,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 
-	#tag Constant, Name = kTestSuffix, Type = Text, Dynamic = False, Default = \"Test", Scope = Public
+	#tag Constant, Name = kTestSuffix, Type = String, Dynamic = False, Default = \"Test", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = kTimerPeriod, Type = Double, Dynamic = False, Default = \"1", Scope = Private
