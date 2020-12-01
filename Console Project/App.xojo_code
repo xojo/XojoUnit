@@ -29,7 +29,7 @@ Inherits ConsoleApplication
 		  // Output Results
 		  Print "Saving Results..."
 		  
-		  Dim outputFile As FolderItem
+		  Var outputFile As FolderItem
 		  outputFile = OutputResults
 		  
 		  PrintSummary(StdOut, mController)
@@ -42,8 +42,8 @@ Inherits ConsoleApplication
 		Private Sub FilterTests()
 		  // Filter the tests based on the Include and Exclude options
 		  
-		  Dim includeOption As Option = mOptions.OptionValue(kOptionInclude)
-		  Dim excludeOption As Option = mOptions.OptionValue(kOptionExclude)
+		  Var includeOption As Option = mOptions.OptionValue(kOptionInclude)
+		  Var excludeOption As Option = mOptions.OptionValue(kOptionExclude)
 		  
 		  If includeOption.WasSet Or excludeOption.WasSet Then
 		    Print "Filtering Tests..."
@@ -51,19 +51,19 @@ Inherits ConsoleApplication
 		    Return
 		  End If
 		  
-		  Dim includes() As String
+		  Var includes() As String
 		  If Not includeOption.Value.IsNull Then
-		    Dim v() As Variant = includeOption.Value
+		    Var v() As Variant = includeOption.Value
 		    For Each pattern As String In v
-		      includes.Append pattern
+		      includes.Add pattern
 		    Next
 		  End If
 		  
-		  Dim excludes() As String
+		  Var excludes() As String
 		  If not excludeOption.Value.IsNull Then
-		    Dim v() As Variant = excludeOption.Value
+		    Var v() As Variant = excludeOption.Value
 		    For Each pattern As String In v
-		      excludes.Append pattern
+		      excludes.Add pattern
 		    Next
 		  End If
 		  
@@ -76,22 +76,22 @@ Inherits ConsoleApplication
 		  Const kIndent = "   "
 		  Const kFailIndent = " * "
 		  
-		  Dim outputFile As FolderItem
-		  If mOptions.Extra.Ubound = -1 Then
-		    outputFile = GetFolderItem(kDefaultExportFileName)
+		  Var outputFile As FolderItem
+		  If mOptions.Extra.LastIndex = -1 Then
+		    outputFile = new FolderItem(kDefaultExportFileName, FolderItem.PathModes.Native)
 		  Else
-		    outputFile = GetFolderItem(mOptions.Extra(0), FolderItem.PathTypeNative)
-		    If outputFile.Directory Then
+		    outputFile = New FolderItem(mOptions.Extra(0), FolderItem.PathModes.Native)
+		    If outputFile.IsFolder Then
 		      outputFile = outputFile.Child(kDefaultExportFileName)
 		    End If
 		  End If
 		  
-		  Dim output As TextOutputStream = TextOutputStream.Create(outputFile)
+		  Var output As TextOutputStream = TextOutputStream.Create(outputFile)
 		  
 		  PrintSummary(output, mController)
 		  
 		  #If DebugBuild
-		    Dim debugOutput As String
+		    Var debugOutput As String
 		  #Endif
 		  
 		  For Each tg As TestGroup In mController.TestGroups
@@ -102,19 +102,19 @@ Inherits ConsoleApplication
 		    #Endif
 		    
 		    For Each tr As TestResult In tg.Results
-		      Dim useIndent As String = If(tr.Result = tr.Failed, kFailIndent, kIndent)
-		      Dim outLine As String = useIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)"
+		      Var useIndent As String = If(tr.Result = tr.Failed, kFailIndent, kIndent)
+		      Var outLine As String = useIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)"
 		      output.WriteLine(outLine)
 		      #If DebugBuild
 		        debugOutput = debugOutput + outLine + EndOfLine
 		      #Endif
 		      
-		      Dim msg As String = tr.Message
+		      Var msg As String = tr.Message
 		      If msg <> "" Then
-		        msg = ReplaceLineEndings(msg, EndOfLine)
-		        Dim msgs() As String = msg.Split(EndOfLine)
+		        msg = msg.ReplaceLineEndings(EndOfLine)
+		        Var msgs() As String = msg.Split(EndOfLine)
 		        
-		        For i As Integer = 0 To msgs.Ubound
+		        For i As Integer = 0 To msgs.LastIndex
 		          msg = msgs(i)
 		          outLine  = kIndent + kIndent + msg
 		          output.WriteLine(outLine)
@@ -143,12 +143,12 @@ Inherits ConsoleApplication
 
 	#tag Method, Flags = &h21
 		Private Sub PrintSummary(output As Writeable, controller As TestController)
-		  Dim now As New Date
+		  Var now As DateTime = DateTime.Now
 		  
-		  Dim allTestCount As Integer = controller.AllTestCount
-		  Dim runTestCount As Integer = controller.RunTestCount
+		  Var allTestCount As Integer = controller.AllTestCount
+		  Var runTestCount As Integer = controller.RunTestCount
 		  
-		  WriteLine(output, "Start: " + now.ShortDate + " " + now.ShortTime)
+		  WriteLine(output, "Start: " + now.ToString(DateTime.FormatStyles.Short, DateTime.FormatStyles.Short))
 		  WriteLine(output, "Duration: " + Format(controller.Duration, "#,###.0000000") + "s")
 		  WriteLine(output, "Groups: " + Format(controller.RunGroupCount, "#,0"))
 		  WriteLine(output, "Total: " + Str(runTestCount) + If(allTestCount <> runTestCount, " of " + Str(allTestCount), "") + " tests were run")
@@ -164,9 +164,9 @@ Inherits ConsoleApplication
 
 	#tag Method, Flags = &h21
 		Private Function SetOptions() As OptionParser
-		  Dim parser As New OptionParser
+		  Var parser As New OptionParser
 		  
-		  Dim o As Option
+		  Var o As Option
 		  
 		  o = New Option("i", kOptionInclude, "Include a Group[.Method] (* is wildcard)", Option.OptionType.String)
 		  o.IsArray = True

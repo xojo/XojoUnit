@@ -2,24 +2,24 @@
 Protected Class Option
 	#tag Method, Flags = &h0
 		Sub AddAllowedValue(ParamArray values() As String)
-		  if AllowedValues.Ubound <> -1 then
+		  if AllowedValues.LastIndex <> -1 then
 		    raise new OptionParserException("You cannot set both allowed values and disallowed values")
 		  end if
 		  
 		  for each v as string in values
-		    AllowedValues.Append v.Trim
+		    AllowedValues.Add v.Trim
 		  next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub AddDisallowedValue(ParamArray values() As String)
-		  if AllowedValues.Ubound <> -1 then
+		  if AllowedValues.LastIndex <> -1 then
 		    raise new OptionParserException("You cannot set both disallowed values and allowed values")
 		  end if
 		  
 		  for each v as string in values
-		    DisallowedValues.Append v.Trim
+		    DisallowedValues.Add v.Trim
 		  next
 		End Sub
 	#tag EndMethod
@@ -44,9 +44,9 @@ Protected Class Option
 		  // ### Example
 		  //
 		  // ```
-		  // Dim opt As New OptionParser
+		  // Var opt As New OptionParser
 		  //
-		  // Dim o As Option
+		  // Var o As Option
 		  // o = New Option("", "name", "Name to say hello to")
 		  // o.IsRequired = True
 		  // opt.AddOption o
@@ -58,22 +58,22 @@ Protected Class Option
 		  // Validate and cleanup
 		  shortKey = shortKey.Trim
 		  longKey = longKey.Trim
-		  description = ReplaceLineEndings(description.Trim, EndOfLine)
+		  description = description.Trim.ReplaceLineEndings(EndOfLine)
 		  
 		  While shortKey.Left(1) = "-"
-		    shortKey = shortKey.Mid(2).Trim
+		    shortKey = shortKey.Middle(1).Trim
 		  Wend
 		  While longKey.Left(1) = "-"
-		    longKey = longKey.Mid(2).Trim
+		    longKey = longKey.Middle(1).Trim
 		  Wend
 		  
 		  If shortKey = "" and longKey = "" Then
 		    Raise New OptionParserException("Option must specify at least one key.")
 		  End If
-		  If shortKey.Len > 1 Then
+		  If shortKey.Length > 1 Then
 		    Raise New OptionParserException("Short Key is optional but may only be one character: " + shortKey)
 		  End If
-		  If longKey.Len = 1 Then
+		  If longKey.Length = 1 Then
 		    Raise New OptionParserException("Long Key is optional but must be more than one character: " + longKey)
 		  End If
 		  
@@ -97,14 +97,14 @@ Protected Class Option
 		  //
 		  // Check to see if the value is allowed or disallowed first
 		  //
-		  if AllowedValues.Ubound <> -1 and AllowedValues.IndexOf(value) = -1 then
+		  if AllowedValues.LastIndex <> -1 and AllowedValues.IndexOf(value) = -1 then
 		    raise new OptionInvalidKeyValueException("The key value is not allowed: " + value)
 		  end if
-		  if DisallowedValues.Ubound <> -1 and DisallowedValues.IndexOf(value) <> -1 then
+		  if DisallowedValues.LastIndex <> -1 and DisallowedValues.IndexOf(value) <> -1 then
 		    raise new OptionInvalidKeyValueException("The key value is dissallowed: " + value)
 		  end if
 		  
-		  Dim newValue As Variant
+		  Var newValue As Variant
 		  
 		  Select Case Type
 		  Case OptionType.Boolean
@@ -117,7 +117,7 @@ Protected Class Option
 		    End Select
 		    
 		  Case OptionType.Date
-		    Dim dValue As Date
+		    Var dValue As Date
 		    
 		    If ParseDate(value, dValue) Then
 		      newValue = dValue
@@ -150,8 +150,8 @@ Protected Class Option
 		      Self.Value = Array(newValue)
 		      
 		    Else
-		      Dim ary() As Variant = Self.Value
-		      ary.Append newValue
+		      Var ary() As Variant = Self.Value
+		      ary.Add newValue
 		      Self.Value = ary
 		    End If
 		    
@@ -198,19 +198,19 @@ Protected Class Option
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  dim desc() as string = Array(Description)
+			  Var desc() as string = Array(Description)
 			  
-			  if AllowedValues.Ubound <> -1 then
-			    dim chunk as string = "[can be: `" + join(AllowedValues, "', `") + "']"
-			    desc.Append chunk
+			  if AllowedValues.LastIndex <> -1 then
+			    Var chunk as string = "[can be: `" + String.FromArray(AllowedValues, "', `") + "']"
+			    desc.Add chunk
 			  end if
 			  
-			  if DisallowedValues.Ubound <> -1 then
-			    dim chunk as string = "[may not be: `" + join(DisallowedValues, "', `") + "']"
-			    desc.Append chunk
+			  if DisallowedValues.LastIndex <> -1 then
+			    Var chunk as string = "[may not be: `" + String.FromArray(DisallowedValues, "', `") + "']"
+			    desc.Add chunk
 			  end if
 			  
-			  return join(desc, " ")
+			  return String.FromArray(desc, " ")
 			  
 			End Get
 		#tag EndGetter
@@ -230,7 +230,7 @@ Protected Class Option
 			In code would look like:
 			
 			```
-			Dim v() As Variant = optParser.ArrayValue("include")
+			Var v() As Variant = optParser.ArrayValue("include")
 			
 			Print v(0) // include
 			Print v(1) // project/include
@@ -277,7 +277,7 @@ Protected Class Option
 			    Select Case Type
 			    Case OptionType.Date
 			      If IsValidDateRequired Then
-			        Dim d As Date = Value
+			        Var d As Date = Value
 			        
 			        If d Is Nil Then
 			          Return False
@@ -285,7 +285,7 @@ Protected Class Option
 			      End If
 			      
 			    Case OptionType.Directory, OptionType.File
-			      Dim fi As FolderItem = Value
+			      Var fi As FolderItem = Value
 			      
 			      If IsRequired Or WasSet Then
 			        If IsReadableRequired And (fi Is Nil Or fi.IsReadable = False) Then
@@ -298,7 +298,7 @@ Protected Class Option
 			      End If
 			      
 			    Case OptionType.Double, OptionType.Integer
-			      Dim d As Double = Value
+			      Var d As Double = Value
 			      
 			      If MinimumNumber <> kNumberNotSet And d < MinimumNumber Then
 			        Return False
@@ -322,7 +322,7 @@ Protected Class Option
 			date. If the validation fails a `OptionInvalidKeyValueException` exception will be raised.
 			
 			**NOTE:** This does not mean that the option is required. It simply means that if supplied, the
-			option needs to be a valid date. If you want to make sure that the option is both a readable 
+			option needs to be a valid date. If you want to make sure that the option is both a readable
 			date and required, one should also set `IsRequired=True`.
 		#tag EndNote
 		IsValidDateRequired As Boolean
@@ -481,13 +481,17 @@ Protected Class Option
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Description"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HelpDescription"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -497,36 +501,55 @@ Protected Class Option
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsArray"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsReadableRequired"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsRequired"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsValid"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsValidDateRequired"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsWriteableRequired"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -534,34 +557,45 @@ Protected Class Option
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LongKey"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MaximumNumber"
+			Visible=false
 			Group="Behavior"
 			InitialValue="kNumberNotSet"
 			Type="Double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MinimumNumber"
+			Visible=false
 			Group="Behavior"
 			InitialValue="kNumberNotSet"
 			Type="Double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShortKey"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -569,7 +603,9 @@ Protected Class Option
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -577,10 +613,13 @@ Protected Class Option
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Type"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="OptionType"
 			EditorType="Enum"
 			#tag EnumValues
@@ -595,14 +634,19 @@ Protected Class Option
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TypeString"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WasSet"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
