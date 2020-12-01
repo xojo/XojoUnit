@@ -1088,9 +1088,9 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
-		  Dim now As New Date
+		  Dim now As DateTime = DateTime.Now
 		  
-		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
+		  StartLabel.Text = now.ToString(DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
 		  
 		  ProgressWheel1.Visible = True
 		  TestToolbar1.RunButton.Enabled = False
