@@ -37,7 +37,7 @@ Begin Window XojoUnitTestWindow
       Italic          =   False
       Left            =   286
       LockBottom      =   False
-      LockedInPosition=   False
+      LockedInPosition=   True
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
@@ -66,7 +66,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   295
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -101,7 +101,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   540
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -136,7 +136,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   295
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -171,7 +171,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   295
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -206,7 +206,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   295
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -241,7 +241,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   295
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -276,7 +276,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   375
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -311,7 +311,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   620
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -346,7 +346,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   375
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -381,7 +381,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   375
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -416,7 +416,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   375
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -451,7 +451,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   375
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -486,7 +486,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   540
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -521,7 +521,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   680
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -556,7 +556,7 @@ Begin Window XojoUnitTestWindow
       Italic          =   False
       Left            =   286
       LockBottom      =   True
-      LockedInPosition=   False
+      LockedInPosition=   True
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
@@ -585,7 +585,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   304
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
@@ -620,7 +620,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   304
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -655,7 +655,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   420
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -700,7 +700,7 @@ Begin Window XojoUnitTestWindow
          LineHeight      =   0.0
          LineSpacing     =   0.0
          LockBottom      =   True
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
@@ -740,7 +740,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   304
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
@@ -775,7 +775,7 @@ Begin Window XojoUnitTestWindow
          Italic          =   False
          Left            =   667
          LockBottom      =   False
-         LockedInPosition=   False
+         LockedInPosition=   True
          LockLeft        =   False
          LockRight       =   True
          LockTop         =   True
@@ -832,7 +832,7 @@ Begin Window XojoUnitTestWindow
       InitialParent   =   ""
       Left            =   764
       LockBottom      =   False
-      LockedInPosition=   False
+      LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
