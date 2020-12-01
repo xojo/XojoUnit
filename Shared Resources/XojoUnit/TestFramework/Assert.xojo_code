@@ -22,7 +22,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreDifferent(expected As Text, actual As Text, message As String = "")
+		Attributes( Deprecated )  Sub AreDifferent(expected As Text, actual As Text, message As String = "")
 		  If expected.Compare(actual, Text.CompareCaseSensitive) <> 0 Then
 		    Pass()
 		  Else
@@ -119,7 +119,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreEqual(expected As Global.Date, actual As Global.Date, message As String = "")
+		Attributes( Deprecated )  Sub AreEqual(expected As Global.Date, actual As Global.Date, message As String = "")
 		  If expected Is actual Or expected.TotalSeconds = actual.TotalSeconds Then
 		    Pass()
 		  Else
@@ -296,7 +296,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreEqual(expected As Text, actual As Text, message As String = "")
+		Attributes( Deprecated )  Sub AreEqual(expected As Text, actual As Text, message As String = "")
 		  // This is a case-insensitive comparison
 		  
 		  If expected.Compare(actual) = 0 Then
@@ -348,7 +348,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As String = "")
+		Attributes( Deprecated )  Sub AreEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As String = "")
 		  If expected Is Nil Xor actual Is Nil Then
 		    Fail("One given Date is Nil", message)
 		  ElseIf expected Is actual Or expected.SecondsFrom1970 = actual.SecondsFrom1970 Then
@@ -360,7 +360,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		Attributes( Deprecated )  Sub AreEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
 		  If expected = actual Then
 		    Pass()
 		    Return
@@ -447,7 +447,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
-		Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As String = "")
+		Attributes( Deprecated )  Sub AreNotEqual(expected As Global.Date, actual As Global.Date, message As String = "")
 		  //NCM-written
 		  If expected Is Nil Xor actual Is Nil Then
 		    Pass()
@@ -547,7 +547,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreNotEqual(expected As Text, actual As Text, message As String = "")
+		Attributes( Deprecated )  Sub AreNotEqual(expected As Text, actual As Text, message As String = "")
 		  If expected.Compare(actual) <> 0 Then
 		    Pass()
 		  Else
@@ -598,7 +598,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As String = "")
+		Attributes( Deprecated )  Sub AreNotEqual(expected As Xojo.Core.Date, actual As Xojo.Core.Date, message As String = "")
 		  If expected Is Nil Xor actual Is Nil Then
 		    Pass()
 		  ElseIf expected Is Nil And actual Is Nil Then
@@ -612,7 +612,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI) or  (TargetIOS)
-		Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
+		Attributes( Deprecated )  Sub AreNotEqual(expected As Xojo.Core.MemoryBlock, actual As Xojo.Core.MemoryBlock, message As String = "")
 		  If expected Is Nil And actual Is Nil Then
 		    Fail("The given MemoryBlocks are both Nil", message)
 		  ElseIf expected Is Nil Xor actual Is Nil Then
@@ -682,7 +682,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreSame(expected() As Text, actual() As Text, message As String = "")
+		Attributes( Deprecated )  Sub AreSame(expected() As Text, actual() As Text, message As String = "")
 		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = expected.LastIndex
@@ -709,7 +709,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AreSame(expected As Text, actual As Text, message As String = "")
+		Attributes( Deprecated )  Sub AreSame(expected As Text, actual As Text, message As String = "")
 		  If expected.Compare(actual, Text.CompareCaseSensitive) = 0 Then
 		    Pass()
 		  Else
