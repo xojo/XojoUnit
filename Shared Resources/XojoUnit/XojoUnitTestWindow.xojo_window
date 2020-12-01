@@ -1285,8 +1285,8 @@ End
 		  End If
 		  
 		  If row <> -1 Then
-		    TestGroupList.Cell(row, ColTestName) = tr.TestName
-		    TestGroupList.Cell(row, ColResult) = tr.Result
+		    TestGroupList.CellValueAt(row, ColTestName) = tr.TestName
+		    TestGroupList.CellValueAt(row, ColResult) = tr.Result
 		    TestGroupList.CellCheckboxValueAt(row, ColInclude) = tr.IncludeMethod
 		    
 		    If TestGroupList.SelectedRowIndex = row Then
