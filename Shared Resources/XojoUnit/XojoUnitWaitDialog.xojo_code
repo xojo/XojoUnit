@@ -28,7 +28,7 @@ Begin WebDialog XojoUnitWaitDialog
       Enabled         =   True
       FontName        =   ""
       FontSize        =   0.0
-      Height          =   32
+      Height          =   38
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False

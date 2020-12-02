@@ -4,13 +4,13 @@ Begin WebPage XojoUnitTestPage
    Compatibility   =   ""
    ControlID       =   ""
    Enabled         =   True
-   Height          =   608
+   Height          =   642
    ImplicitInstance=   True
    Index           =   0
-   Indicator       =   "0"
+   Indicator       =   0
    IsImplicitInstance=   False
-   LayoutDirection =   "0"
-   LayoutType      =   "0"
+   LayoutDirection =   0
+   LayoutType      =   0
    Left            =   74
    LockBottom      =   False
    LockHorizontal  =   False
@@ -28,14 +28,552 @@ Begin WebPage XojoUnitTestPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
+   _mPanelIndex    =   -1
+   Begin WebRectangle Rectangle1
+      BackgroundColor =   &cFFFFFF00
+      ControlID       =   ""
+      Enabled         =   True
+      HasBackgroundColor=   False
+      Height          =   170
+      Index           =   -2147483648
+      Indicator       =   ""
+      LayoutDirection =   0
+      LayoutType      =   0
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      Scope           =   0
+      TabIndex        =   0
+      Tooltip         =   ""
+      Top             =   77
+      Visible         =   True
+      Width           =   860
+      _mDesignHeight  =   0
+      _mDesignWidth   =   0
+      _mPanelIndex    =   -1
+      Begin WebLabel Label3
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   35
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Start:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   126
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label1
+         Bold            =   True
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   35
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Overview"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   80
+         Underline       =   False
+         Visible         =   True
+         Width           =   835
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel StartLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   151
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "1/1/2013 12:00PM"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   126
+         Underline       =   False
+         Visible         =   True
+         Width           =   349
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label4
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   526
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   4
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Duration:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   126
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel DurationLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   634
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   5
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0s"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   126
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel TestCountLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   151
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   6
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "100 tests in 10 groups"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   160
+         Underline       =   False
+         Visible         =   True
+         Width           =   393
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label8
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   35
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   7
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Total:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   160
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label5
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   35
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   8
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Passed:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel PassedCountLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   151
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   9
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0 (0%)"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label6
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   284
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   10
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Failed:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel FailedCountLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   400
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   11
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0 (0%)"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label7
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   526
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   12
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Skipped:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel SkippedCountLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   634
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   13
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0 (0%)"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label10
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   742
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   14
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "N/A:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   50
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel NotImplementedCountLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   38
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   802
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle1"
+         Scope           =   0
+         TabIndex        =   15
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0 (0%)"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   198
+         Underline       =   False
+         Visible         =   True
+         Width           =   68
+         _mPanelIndex    =   -1
+      End
+   End
    Begin WebListBox TestGroupList
       ColumnCount     =   2
       ColumnWidths    =   "75%"
       ControlID       =   ""
       Enabled         =   True
       HasHeader       =   False
-      Height          =   286
+      Height          =   308
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
@@ -51,7 +589,7 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       NoRowsMessage   =   ""
       RowCount        =   0
-      RowSelectionType=   "1"
+      RowSelectionType=   1
       Scope           =   0
       SearchCriteria  =   ""
       SelectedRowColor=   &c0272D300
@@ -61,6 +599,7 @@ Begin WebPage XojoUnitTestPage
       Top             =   274
       Visible         =   True
       Width           =   226
+      _mPanelIndex    =   -1
    End
    Begin WebListBox TestList
       ColumnCount     =   2
@@ -68,7 +607,7 @@ Begin WebPage XojoUnitTestPage
       ControlID       =   ""
       Enabled         =   True
       HasHeader       =   False
-      Height          =   320
+      Height          =   354
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
@@ -84,7 +623,7 @@ Begin WebPage XojoUnitTestPage
       LockVertical    =   False
       NoRowsMessage   =   ""
       RowCount        =   0
-      RowSelectionType=   "1"
+      RowSelectionType=   1
       Scope           =   0
       SearchCriteria  =   ""
       SelectedRowColor=   &c0272D300
@@ -94,74 +633,18 @@ Begin WebPage XojoUnitTestPage
       Top             =   274
       Visible         =   True
       Width           =   284
-   End
-   Begin WebRectangle Rectangle1
-      BackgroundColor =   &cFFFFFF00
-      ControlID       =   ""
-      Enabled         =   True
-      HasBackgroundColor=   False
-      Height          =   157
-      Index           =   -2147483648
-      Indicator       =   ""
-      LayoutDirection =   "0"
-      LayoutType      =   "0"
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Scope           =   0
-      TabIndex        =   0
-      Tooltip         =   ""
-      Top             =   14
-      Visible         =   True
-      Width           =   860
-      _mDesignHeight  =   0
-      _mDesignWidth   =   0
-   End
-   Begin WebLabel Label1
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   37
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   14
-      Underline       =   False
-      Value           =   "Overview"
-      Visible         =   True
-      Width           =   860
+      _mPanelIndex    =   -1
    End
    Begin WebRectangle Rectangle2
       BackgroundColor =   &cFFFFFF00
       ControlID       =   ""
       Enabled         =   True
       HasBackgroundColor=   False
-      Height          =   320
+      Height          =   354
       Index           =   -2147483648
       Indicator       =   ""
-      LayoutDirection =   "0"
-      LayoutType      =   "0"
+      LayoutDirection =   0
+      LayoutType      =   0
       Left            =   554
       LockBottom      =   True
       LockedInPosition=   False
@@ -178,36 +661,210 @@ Begin WebPage XojoUnitTestPage
       Width           =   326
       _mDesignHeight  =   0
       _mDesignWidth   =   0
-   End
-   Begin WebLabel Label2
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   43
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   554
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   274
-      Underline       =   False
-      Value           =   "Selected Test Results"
-      Visible         =   True
-      Width           =   326
+      _mPanelIndex    =   -1
+      Begin WebLabel Label2
+         Bold            =   True
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   43
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   565
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle2"
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Selected Test Results"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   274
+         Underline       =   False
+         Visible         =   True
+         Width           =   305
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel TestNameLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   22
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   574
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle2"
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Test Name"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   325
+         Underline       =   False
+         Visible         =   True
+         Width           =   282
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel TestResultLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   22
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   574
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle2"
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Passed"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   355
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel Label9
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   22
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   574
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle2"
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "Duration:"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   395
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebLabel TestDurationLabel
+         Bold            =   False
+         ControlID       =   ""
+         Enabled         =   True
+         FontName        =   ""
+         FontSize        =   0.0
+         Height          =   22
+         Index           =   -2147483648
+         Indicator       =   ""
+         Italic          =   False
+         Left            =   697
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         LockVertical    =   False
+         Multiline       =   False
+         Parent          =   "Rectangle2"
+         Scope           =   0
+         TabIndex        =   4
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "0s"
+         TextAlignment   =   0
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   395
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+         _mPanelIndex    =   -1
+      End
+      Begin WebTextArea TestResultsArea
+         AllowReturnKey  =   True
+         AllowSpellChecking=   False
+         Caption         =   ""
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   193
+         Hint            =   ""
+         Index           =   -2147483648
+         Indicator       =   ""
+         Left            =   565
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         MaximumCharactersAllowed=   0
+         Parent          =   "Rectangle2"
+         ReadOnly        =   True
+         Scope           =   0
+         TabIndex        =   5
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   ""
+         TextAlignment   =   0
+         Tooltip         =   ""
+         Top             =   425
+         Visible         =   True
+         Width           =   305
+         _mPanelIndex    =   -1
+      End
    End
    Begin WebToolbar Toolbar1
       ControlID       =   ""
@@ -215,7 +872,7 @@ Begin WebPage XojoUnitTestPage
       FullWidth       =   False
       Height          =   56
       Index           =   -2147483648
-      Indicator       =   "0"
+      Indicator       =   0
       Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -224,14 +881,15 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      Position        =   "0"
+      Position        =   0
       Scope           =   0
       TabIndex        =   0
       Title           =   ""
       Tooltip         =   ""
-      Top             =   196
+      Top             =   0
       Visible         =   True
       Width           =   900
+      _mPanelIndex    =   -1
    End
    Begin WebButton EnableDisableTestButton
       AllowAutoDisable=   False
@@ -240,9 +898,9 @@ Begin WebPage XojoUnitTestPage
       ControlID       =   ""
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   38
       Index           =   -2147483648
-      Indicator       =   "0"
+      Indicator       =   0
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
@@ -254,518 +912,10 @@ Begin WebPage XojoUnitTestPage
       Scope           =   0
       TabIndex        =   0
       Tooltip         =   ""
-      Top             =   572
+      Top             =   590
       Visible         =   True
       Width           =   226
-   End
-   Begin WebLabel Label3
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   35
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   63
-      Underline       =   False
-      Value           =   "Start:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel StartLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   155
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   63
-      Underline       =   False
-      Value           =   "1/1/2013 12:00PM"
-      Visible         =   True
-      Width           =   140
-   End
-   Begin WebLabel Label4
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   336
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   63
-      Underline       =   False
-      Value           =   "Duration:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel DurationLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   448
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   63
-      Underline       =   False
-      Value           =   "0s"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label5
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   35
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "Passed:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel PassedCountLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   155
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "0 (0%)"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label6
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   284
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "Failed:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel FailedCountLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   400
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "0 (0%)"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label7
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   526
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "Skipped:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel SkippedCountLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   638
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "0 (0%)"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label8
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   35
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   97
-      Underline       =   False
-      Value           =   "Total:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel TestCountLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   155
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   97
-      Underline       =   False
-      Value           =   "100 tests in 10 groups"
-      Visible         =   True
-      Width           =   393
-   End
-   Begin WebLabel TestNameLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   565
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   319
-      Underline       =   False
-      Value           =   "Test Name"
-      Visible         =   True
-      Width           =   282
-   End
-   Begin WebLabel TestResultLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   565
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   353
-      Underline       =   False
-      Value           =   "Passed"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label9
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   565
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   395
-      Underline       =   False
-      Value           =   "Duration:"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel TestDurationLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   693
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   395
-      Underline       =   False
-      Value           =   "0s"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebTextArea TestResultsArea
-      AllowReturnKey  =   True
-      AllowSpellChecking=   False
-      Caption         =   ""
-      ControlID       =   ""
-      Enabled         =   True
-      Height          =   137
-      Hint            =   ""
-      Index           =   -2147483648
-      Indicator       =   ""
-      Left            =   565
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      LockVertical    =   False
-      MaximumCharactersAllowed=   0
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      Tooltip         =   ""
-      Top             =   445
-      Value           =   ""
-      Visible         =   True
-      Width           =   305
+      _mPanelIndex    =   -1
    End
    Begin WebTestController Controller
       AllTestCount    =   0
@@ -784,66 +934,6 @@ Begin WebPage XojoUnitTestPage
       SkippedCount    =   0
       Top             =   0.0
    End
-   Begin WebLabel NotImplementedCountLabel
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   812
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "0 (0%)"
-      Visible         =   True
-      Width           =   100
-   End
-   Begin WebLabel Label10
-      Bold            =   False
-      ControlID       =   ""
-      Enabled         =   True
-      FontName        =   ""
-      FontSize        =   0.0
-      Height          =   22
-      Index           =   -2147483648
-      Indicator       =   ""
-      Italic          =   False
-      Left            =   750
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Multiline       =   False
-      Scope           =   0
-      TabIndex        =   0
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   139
-      Underline       =   False
-      Value           =   "N/A:"
-      Visible         =   True
-      Width           =   50
-   End
 End
 #tag EndWebPage
 
@@ -853,6 +943,8 @@ End
 		  Controller.LoadTestGroups
 		  
 		  PopulateTestGroups
+		  
+		  StartLabel.Text = ""
 		End Sub
 	#tag EndEvent
 
@@ -866,14 +958,14 @@ End
 		  
 		  Const kIndent = "   "
 		  
-		  Dim output As String
+		  Var output As String
 		  
-		  Dim testCount As Integer
+		  Var testCount As Integer
 		  testCount = Controller.RunTestCount
 		  
-		  Dim now As New Date
+		  Var now As DateTime = DateTime.Now
 		  
-		  output = output + "Start: " + now.ShortDate + " " + now.ShortTime + EndOfLine
+		  output = output + "Start: " + now.SQLDateTime + EndOfLine
 		  output = output + "Duration: " + Format(Controller.Duration, "#,###.0000000") + "s" + EndOfLine
 		  output = output + "Total: " + Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups were run." + EndOfLine
 		  output = output + "Passed: " + Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
@@ -893,14 +985,14 @@ End
 		  
 		  mResultsFile.Data = output
 		  
-		  ShowURL(mResultsFile.URL)
+		  Self.GoToURL(mResultsFile.URL)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
 		  // Add the test groups into the listbox
-		  TestGroupList.DeleteAllRows
+		  TestGroupList.RemoveAllRows
 		  
 		  For Each g As TestGroup In Controller.TestGroups
 		    If (g.FailedTestCount > 0 And mFilter = TestView.Failed) Or _
@@ -909,22 +1001,22 @@ End
 		      TestGroupList.AddRow(g.Name)
 		      
 		      If g.IncludeGroup Then
-		        TestGroupList.Cell(TestGroupList.LastIndex, 1) = "✓"
+		        TestGroupList.CellValueAt(TestGroupList.LastAddedRowIndex, 1) = "✓"
 		      Else
-		        TestGroupList.Cell(TestGroupList.LastIndex, 1) = ""
+		        TestGroupList.CellValueAt(TestGroupList.LastAddedRowIndex, 1) = ""
 		      End If
 		      
 		      If g.FailedTestCount > 0 Then
-		        TestGroupList.CellStyle(TestGroupList.LastIndex, 0) = FailedTestStyle
+		        // TestGroupList.CellStyle(TestGroupList.LastAddedRowIndex, 0) = FailedTestStyle
 		      Else
-		        TestGroupList.CellStyle(TestGroupList.LastIndex, 0) = PassedTestStyle
+		        // TestGroupList.CellStyle(TestGroupList.LastAddedRowIndex, 0) = PassedTestStyle
 		      End If
 		      
-		      TestGroupList.RowTag(TestGroupList.LastIndex) = g
+		      TestGroupList.RowTagAt(TestGroupList.LastAddedRowIndex) = g
 		    End If
 		  Next
 		  
-		  Dim testCount As Integer
+		  Var testCount As Integer
 		  testCount = Controller.AllTestCount
 		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
 		  
@@ -936,9 +1028,7 @@ End
 		  mWaitDialog = New XojoUnitWaitDialog
 		  mWaitDialog.Show
 		  
-		  Dim now As New Date
-		  
-		  StartLabel.Text = now.ShortDate + " " + now.ShortTime
+		  StartLabel.Text = DateTime.Now.SQLDateTime
 		  
 		  Controller.Start
 		  
@@ -971,35 +1061,35 @@ End
 #tag Events TestGroupList
 	#tag Event
 		Sub SelectionChanged(Rows() as Integer)
-		  TestList.DeleteAllRows
+		  TestList.RemoveAllRows
 		  
-		  Dim row As Integer
-		  row = Me.ListIndex
+		  Var row As Integer
+		  row = Me.SelectedRowIndex
 		  
 		  If row < 0 Then Return
 		  
-		  Dim g As TestGroup
-		  g = Me.RowTag(row)
+		  Var g As TestGroup
+		  g = Me.RowTagAt(row)
 		  
 		  If g <> Nil Then
 		    For Each t As TestResult In g.Results
 		      TestList.AddRow(t.TestName)
 		      
 		      If t.Result <> "" Then
-		        TestList.Cell(TestList.LastIndex, 0) = t.TestName
-		        TestList.Cell(TestList.LastIndex, 1) = t.Result
+		        TestList.CellValueAt(TestList.LastAddedRowIndex, 0) = t.TestName
+		        TestList.CellValueAt(TestList.LastAddedRowIndex, 1) = t.Result
 		        
 		        If t.Result = TestResult.Failed Then
-		          TestList.CellStyle(TestList.LastIndex, 0) = FailedTestStyle
-		          TestList.CellStyle(TestList.LastIndex, 1) = FailedTestStyle
+		          // TestList.CellStyle(TestList.LastAddedRowIndex, 0) = FailedTestStyle
+		          // TestList.CellStyle(TestList.LastAddedRowIndex, 1) = FailedTestStyle
 		        Else
-		          TestList.CellStyle(TestList.LastIndex, 0) = PassedTestStyle
-		          TestList.CellStyle(TestList.LastIndex, 1) = PassedTestStyle
+		          // TestList.CellStyle(TestList.LastAddedRowIndex, 0) = PassedTestStyle
+		          // TestList.CellStyle(TestList.LastAddedRowIndex, 1) = PassedTestStyle
 		        End If
 		        
 		      End If
 		      
-		      TestList.RowTag(TestList.LastIndex) = t
+		      TestList.RowTagAt(TestList.LastAddedRowIndex) = t
 		    Next
 		  End If
 		End Sub
@@ -1008,13 +1098,13 @@ End
 #tag Events TestList
 	#tag Event
 		Sub SelectionChanged(Rows() as Integer)
-		  Dim row As Integer = Me.ListIndex
+		  Var row As Integer = Me.SelectedRowIndex
 		  
 		  If row < 0 Then Return
 		  
-		  If Me.RowTag(row) IsA TestResult Then
-		    Dim tr As TestResult
-		    tr = Me.RowTag(row)
+		  If Me.RowTagAt(row) IsA TestResult Then
+		    Var tr As TestResult
+		    tr = Me.RowTagAt(row)
 		    TestNameLabel.Text = tr.TestName
 		    TestResultLabel.Text = tr.Result
 		    TestResultsArea.Text = tr.Message
@@ -1026,31 +1116,43 @@ End
 #tag Events Toolbar1
 	#tag Event
 		Sub Pressed(Item as WebToolbarButton)
-		  Select Case item.Name
-		  Case "RunButton"
+		  Select Case item.Caption
+		  Case "Run"
 		    RunTests
 		    
-		  Case "DownloadButton"
+		  Case "Download"
 		    DownloadResults
 		    
 		  End Select
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  Me.Title = "XojoUnit"
+		  
+		  Var runButton As New WebToolbarButton
+		  runButton.Caption = "Run"
+		  runButton.style = WebToolbarButton.ButtonStyles.PushButton
+		  Me.AddItem(runButton)
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events EnableDisableTestButton
 	#tag Event
 		Sub Pressed()
-		  If TestGroupList.ListIndex < 0 Then Return
+		  If TestGroupList.SelectedRowIndex < 0 Then Return
 		  
-		  Dim tg As TestGroup
-		  tg = TestGroupList.RowTag(TestGroupList.ListIndex)
+		  Var tg As TestGroup
+		  tg = TestGroupList.RowTagAt(TestGroupList.SelectedRowIndex)
 		  
 		  tg.IncludeGroup = Not tg.IncludeGroup
 		  
 		  If tg.IncludeGroup Then
-		    TestGroupList.Cell(TestGroupList.ListIndex, 1) = "✓"
+		    TestGroupList.CellValueAt(TestGroupList.SelectedRowIndex, 1) = "✓"
 		  Else
-		    TestGroupList.Cell(TestGroupList.ListIndex, 1) = ""
+		    TestGroupList.CellValueAt(TestGroupList.SelectedRowIndex, 1) = ""
 		  End If
 		End Sub
 	#tag EndEvent
@@ -1060,11 +1162,11 @@ End
 		Sub AllTestsFinished()
 		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
 		  
-		  Dim allTestCount As Integer = Controller.AllTestCount
-		  Dim runTestCount As Integer = Controller.RunTestCount
+		  Var allTestCount As Integer = Controller.AllTestCount
+		  Var runTestCount As Integer = Controller.RunTestCount
 		  
-		  Dim groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
-		  Dim testsMessage As String = If(allTestCount = 1, " test", " tests")
+		  Var groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Var testsMessage As String = If(allTestCount = 1, " test", " tests")
 		  
 		  If runTestCount = allTestCount Then
 		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
@@ -1072,13 +1174,13 @@ End
 		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
 		  End If
 		  
-		  Dim passedCount As Integer = Controller.PassedCount
-		  Dim passedPercent As Double = passedCount / runTestCount
-		  Dim passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  Var passedCount As Integer = Controller.PassedCount
+		  Var passedPercent As Double = passedCount / runTestCount
+		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
 		  
-		  Dim failedCount As Integer = Controller.FailedCount
-		  Dim failedPercent As Double = failedCount / runTestCount
-		  Dim failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  Var failedCount As Integer = Controller.FailedCount
+		  Var failedPercent As Double = failedCount / runTestCount
+		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
 		  
 		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
 		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
@@ -1101,6 +1203,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="_mPanelIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="-1"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ControlID"
 		Visible=false
