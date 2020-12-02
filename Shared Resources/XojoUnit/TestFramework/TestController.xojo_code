@@ -322,7 +322,7 @@ Protected Class TestController
 		    tg.Stop
 		  Next
 		  
-		  Redim TestQueue(-1)
+		  TestQueue.RemoveAll
 		  Finish
 		  
 		End Sub
