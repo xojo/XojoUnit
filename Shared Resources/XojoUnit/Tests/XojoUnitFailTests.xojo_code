@@ -341,6 +341,15 @@ Inherits TestGroup
 		  Assert.AreSame(s1, s2)
 		  IncrementFailCountIfFail
 		  
+		  s1 = "Hello"
+		  s2 = s1.ConvertEncoding(Encodings.ASCII)
+		  Assert.AreSame(s1, s2)
+		  IncrementFailCountIfFail
+		  
+		  s2 = ""
+		  Assert.AreSame(s1, s2)
+		  IncrementFailCountIfFail
+		  
 		  PassIfFailed
 		End Sub
 	#tag EndMethod

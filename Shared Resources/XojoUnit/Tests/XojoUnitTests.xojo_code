@@ -279,6 +279,39 @@ Inherits XojoUnitSuperClassTests
 		  
 		  // String matches with AreSame are case-sensitive
 		  Assert.AreSame(s1, s2)
+		  
+		  s1 = ""
+		  s2 = ""
+		  Assert.AreSame(s1, s2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AsertFailCount1Test()
+		  Assert.Fail("")
+		  If Assert.FailCount = 1 Then
+		    Assert.Pass()
+		    Assert.Group.CurrentTestResult.Result = TestResult.Passed
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AsertFailCount2Test()
+		  //
+		  // Want to make sure this runs twice in case it ends up 
+		  // as the first tests
+		  //
+		  
+		  Assert.Fail("")
+		  Assert.Fail("")
+		  If Assert.FailCount = 2 Then
+		    Assert.Pass()
+		    Assert.Group.CurrentTestResult.Result = TestResult.Passed
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
