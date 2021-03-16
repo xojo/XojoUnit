@@ -965,6 +965,8 @@ End
 		    End Select
 		  End If
 		  
+		  Self.Height = Self.Height + TestToolbar1.Height
+		  
 		End Sub
 	#tag EndEvent
 
