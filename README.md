@@ -42,6 +42,12 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 
 ### Release Notes
 
+6.7 (____)
+
+- API 2.0.
+- Web 2.0.
+- Added `Assert.FailCount`, incremented within a test on every failure.
+
 6.6 (Apr. 13, 2020)
 
 - In Desktop, "N/A" tests will show as grey and any test with a message will be bolded.
