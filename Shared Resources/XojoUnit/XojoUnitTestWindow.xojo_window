@@ -965,7 +965,10 @@ End
 		    End Select
 		  End If
 		  
-		  Self.Height = Self.Height + TestToolbar1.Height
+		  //
+		  // Force a resize to accommodate the toolbar
+		  //
+		  Self.Height = Self.Height
 		  
 		End Sub
 	#tag EndEvent
