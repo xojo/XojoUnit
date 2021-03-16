@@ -349,6 +349,7 @@ Protected Class TestGroup
 		      CurrentClone = useConstructor.Invoke(constructorParams)
 		      
 		      ResetTestDuration
+		      Assert.FailCount = 0
 		      IsTestRunning = True
 		      method.Invoke(CurrentClone)
 		      IsTestRunning = False

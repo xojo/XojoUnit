@@ -783,6 +783,7 @@ Protected Class Assert
 		Sub Fail(failMessage As String, message As String = "")
 		  Failed = True
 		  Group.CurrentTestResult.Result = TestResult.Failed
+		  FailCount = FailCount + 1
 		  
 		  Message(message + ": " + failMessage)
 		  
@@ -894,6 +895,10 @@ Protected Class Assert
 
 
 	#tag Property, Flags = &h0
+		FailCount As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Failed As Boolean
 	#tag EndProperty
 
@@ -970,6 +975,14 @@ Protected Class Assert
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FailCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
