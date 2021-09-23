@@ -1,34 +1,40 @@
-#tag IOSView
-Begin iosView XojoUnitTestGroupView
-   BackButtonTitle =   "Groups"
+#tag MobileScreen
+Begin MobileScreen XojoUnitTestGroupView
+   BackButtonCaption=   ""
    Compatibility   =   ""
-   LargeTitleMode  =   "2"
+   ControlCount    =   0
+   HasNavigationBar=   True
+   LargeTitleDisplayMode=   2
    Left            =   0
-   NavigationBarVisible=   True
-   TabIcon         =   ""
-   TabTitle        =   ""
+   TabBarVisible   =   True
+   TabIcon         =   0
+   TintColor       =   0
    Title           =   "XojoUnit"
    Top             =   0
-   Begin iOSTable TestGroupsTable
+   Begin iOSMobileTable TestGroupsTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       AllowRefresh    =   False
+      AllowSearch     =   False
       AutoLayout      =   TestGroupsTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, , True
       AutoLayout      =   TestGroupsTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, , True
       AutoLayout      =   TestGroupsTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, , True
       AutoLayout      =   TestGroupsTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, , True
+      ControlCount    =   0
       EditingEnabled  =   False
       EditingEnabled  =   False
+      Enabled         =   True
       EstimatedRowHeight=   -1
-      Format          =   "0"
-      Height          =   959.0
+      Format          =   0
+      Height          =   503
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
+      TintColor       =   ""
       Top             =   65
       Visible         =   True
-      Width           =   768.0
+      Width           =   320
    End
    Begin iOSTestController Controller
       AllTestCount    =   0
@@ -49,13 +55,13 @@ Begin iosView XojoUnitTestGroupView
       Top             =   0
    End
 End
-#tag EndIOSView
+#tag EndMobileScreen
 
 #tag WindowCode
 	#tag Event
-		Sub Open()
-		  RunButton = iOSToolButton.NewPlain("Run")
-		  Self.RightNavigationToolbar.Add(RunButton)
+		Sub Opening()
+		  RunButton = New MobileToolbarButton(MobileToolbarButton.Types.Plain, "Run")
+		  Self.RightNavigationToolbar.AddButton(RunButton)
 		  
 		  Controller.LoadTestGroups
 		  
@@ -64,7 +70,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub ToolbarPressed(button As iOSToolButton)
+		Sub ToolbarButtonPressed(button As MobileToolbarButton)
 		  #Pragma Unused button
 		  
 		  RunTests
@@ -75,32 +81,28 @@ End
 	#tag Method, Flags = &h21
 		Private Sub PopulateTestGroups()
 		  // Add the test groups
-		  TestGroupsTable.RemoveAll
+		  TestGroupsTable.RemoveAllRows
 		  TestGroupsTable.AddSection("")
 		  
-		  Dim cellData As iOSTableCellData
+		  Var cellData As MobileTableCellData
 		  For Each g As TestGroup In Controller.TestGroups
-		    #If RBVersion < 2016.02
-		      cellData = New iOSTableCellData
-		    #Else
-		      cellData = TestGroupsTable.CreateCell
-		    #Endif
+		    cellData = TestGroupsTable.CreateCell
 		    cellData.Text = g.Name
-		    cellData.DetailText = g.TestCount.ToText + " tests, " _
-		    + g.PassedTestCount.ToText + " passed, " _
-		    + g.FailedTestCount.ToText + " failed"
-		    cellData.AccessoryType = iOSTableCellData.AccessoryTypes.Detail
+		    cellData.DetailText = g.TestCount.ToString + " tests, " _
+		    + g.PassedTestCount.ToString + " passed, " _
+		    + g.FailedTestCount.ToString + " failed"
+		    cellData.AccessoryType = MobileTableCellData.AccessoryTypes.Info
 		    cellData.Tag = g
 		    
 		    TestGroupsTable.AddRow(0, cellData)
 		  Next
 		  
 		  If Self.ParentSplitView <> Nil And Self.ParentSplitView.Available Then
-		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		    Var detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		    
-		    Dim testCount As Integer
+		    Var testCount As Integer
 		    testCount = Controller.AllTestCount
-		    detail.TestCountLabel.Text = testCount.ToText + " tests in " + Controller.GroupCount.ToText + " groups."
+		    detail.TestCountLabel.Text = testCount.ToString + " tests in " + Controller.GroupCount.ToString + " groups."
 		    
 		  End If
 		  
@@ -109,7 +111,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ProgressWheelVisible(Assigns value As Boolean)
-		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		  Var detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		  detail.ProgressWheel1.Visible = value
 		  
 		End Sub
@@ -118,8 +120,8 @@ End
 	#tag Method, Flags = &h21
 		Private Sub RunTests()
 		  If Self.ParentSplitView.Available Then
-		    Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
-		    detail.StartLabel.Text = Date.Now.ToText(Locale.Current, Date.FormatStyles.Medium)
+		    Var detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		    detail.StartLabel.Text = DateTime.Now.ToString(DateTime.FormatStyles.Medium, DateTime.FormatStyles.Medium)
 		    
 		    Controller.Start
 		    RunButton.Enabled = False
@@ -130,38 +132,38 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub UpdateSummary()
-		  Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		  Var detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		  
-		  detail.DurationValueLabel.Text = Controller.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		  detail.DurationValueLabel.Text = Controller.Duration.ToString(Locale.Current, "#,##0.0000000") + "s"
 		  
-		  Dim allTestCount As Integer = Controller.AllTestCount
-		  Dim runTestCount As Integer = Controller.RunTestCount
+		  Var allTestCount As Integer = Controller.AllTestCount
+		  Var runTestCount As Integer = Controller.RunTestCount
 		  
-		  Dim groupsMessage As Text = Controller.RunGroupCount.ToText + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
-		  Dim testsMessage As Text = If(allTestCount = 1, " test", " tests")
+		  Var groupsMessage As String = Controller.RunGroupCount.ToString + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Var testsMessage As String = If(allTestCount = 1, " test", " tests")
 		  
 		  If runTestCount = allTestCount Then
-		    detail.TestCountLabel.Text = runTestCount.ToText + testsMessage + " in " + groupsMessage
+		    detail.TestCountLabel.Text = runTestCount.ToString + testsMessage + " in " + groupsMessage
 		  Else
-		    detail.TestCountLabel.Text = runTestCount.ToText + " of " + allTestCount.ToText + testsMessage + " in " + groupsMessage
+		    detail.TestCountLabel.Text = runTestCount.ToString + " of " + allTestCount.ToString + testsMessage + " in " + groupsMessage
 		  End If
 		  
-		  Dim pct As Double
+		  Var pct As Double
 		  pct = (Controller.PassedCount / runTestCount) * 100.0
-		  detail.PassedCountLabel.Text = Controller.PassedCount.ToText + _
-		  If(runTestCount = 0, "", " (" + pct.ToText(Locale.Current, "#0.00") + "%)")
+		  detail.PassedCountLabel.Text = Controller.PassedCount.ToString + _
+		  If(runTestCount = 0, "", " (" + pct.ToString(Locale.Current, "#0.00") + "%)")
 		  
 		  pct = (Controller.FailedCount / runTestCount) * 100.0
-		  detail.FailedCountLabel.Text = Controller.FailedCount.ToText + _
-		  If(runTestCount = 0, "", " (" + pct.ToText(Locale.Current, "#0.00") + "%)")
-		  detail.SkippedCountLabel.Text = Controller.SkippedCount.ToText
-		  detail.NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToText
+		  detail.FailedCountLabel.Text = Controller.FailedCount.ToString + _
+		  If(runTestCount = 0, "", " (" + pct.ToString(Locale.Current, "#0.00") + "%)")
+		  detail.SkippedCountLabel.Text = Controller.SkippedCount.ToString
+		  detail.NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToString
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h21
-		Private RunButton As iOSToolButton
+		Private RunButton As MobileToolbarButton
 	#tag EndProperty
 
 
@@ -169,10 +171,10 @@ End
 
 #tag Events TestGroupsTable
 	#tag Event
-		Sub AccessoryAction(section As Integer, row As Integer)
+		Sub AccessoryPressed(section As Integer, row As Integer)
 		  // Display the test methods for the group
-		  Dim v As New XojoUnitTestMethodView
-		  v.LoadTests(Me.RowData(section, row).Tag)
+		  Var v As New XojoUnitTestMethodView
+		  v.LoadTests(Me.RowCellData(section, row).Tag)
 		  
 		  Self.PushTo(v)
 		End Sub
@@ -198,11 +200,27 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="LargeTitleMode"
+		Name="BackButtonCaption"
+		Visible=true
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasNavigationBar"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LargeTitleDisplayMode"
 		Visible=true
 		Group="Behavior"
 		InitialValue="2"
-		Type="LargeTitleDisplayModes"
+		Type="MobileScreen.LargeTitleDisplayModes"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Automatic"
@@ -211,12 +229,28 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackButtonTitle"
+		Name="TabBarVisible"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TintColor"
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="Text"
-		EditorType="MultiLineEditor"
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ControlCount"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
@@ -243,14 +277,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="NavigationBarVisible"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -263,15 +289,7 @@ End
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="iOSImage"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="TabTitle"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Text"
+		Type="Picture"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -279,7 +297,7 @@ End
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="Text"
+		Type="String"
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty

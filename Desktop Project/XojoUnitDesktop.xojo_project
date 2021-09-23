@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2019.031
+RBProjectVersion=2021.021
 MinIDEVersion=20070100
 OrigIDEVersion=00000000
 Class=App;App.xojo_code;&h000000001BA8AB47;&h0000000000000000;false
@@ -23,7 +23,7 @@ Class=XojoUnitTestFailedException;../Shared Resources/XojoUnit/TestFramework/Xoj
 DefaultWindow=XojoUnitTestWindow
 AppMenuBar=XojoUnitMenuBar
 MajorVersion=6
-MinorVersion=6
+MinorVersion=7
 SubVersion=0
 NonRelease=0
 Release=3

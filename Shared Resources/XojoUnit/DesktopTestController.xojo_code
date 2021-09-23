@@ -5,7 +5,7 @@ Inherits TestController
 		Sub InitializeTestGroups()
 		  // Instantiate TestGroup subclasses here so that they can be run
 		  
-		  Dim group As TestGroup
+		  Var group As TestGroup
 		  
 		  group = New XojoUnitTests(Self, "Assertion")
 		  group = New XojoUnitFailTests(Self, "Always Fail")
