@@ -38,9 +38,17 @@ If you actively submit good changes, I'll probably make you a Contributor so tha
 
 ### Requirements
 
-Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
+Xojo 2020 Release 2 or later is required to use XojoUnit with iOS and Web.
+
+Xojo 2019 Release 2 or later is required for XojoUnit with Desktop and Console.
 
 ### Release Notes
+
+6.7 (Sept. 23, 2021)
+
+- API 2.0.
+- Web 2.0.
+- Added `Assert.FailCount`, incremented within a test on every failure.
 
 6.6 (Apr. 13, 2020)
 
@@ -128,4 +136,5 @@ Xojo 2016 Release 2 or later is required to use XojoUnit with iOS.
 - Added iOS.
 - Other stuff.
 
-Paul Lefebvre (paul at xojo.com)
+Paul Lefebvre (paul at xojo dot com)
+Kem Tekinay (ktekinay at mactechnologies dot com)

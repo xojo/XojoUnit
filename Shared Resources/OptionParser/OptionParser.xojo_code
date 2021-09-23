@@ -23,7 +23,7 @@ Protected Class OptionParser
 		    Raise New OptionParserException("You can't add the key ""?"" This means ""help"" and has already been added for you")
 		  End If
 		  
-		  Options.Append o
+		  Options.Add o
 		  
 		  If o.ShortKey <> "" Then
 		    Dict.Value(o.ShortKey.Asc) = o
@@ -65,8 +65,8 @@ Protected Class OptionParser
 		  // The option needs to have the `IsArray` property set to `True` to utilize this method.
 		  //
 		  
-		  Dim v() As Variant
-		  Dim o As Option = OptionValue(key)
+		  Var v() As Variant
+		  Var o As Option = OptionValue(key)
 		  
 		  If Not (o Is Nil) Then
 		    v = o.Value
@@ -92,18 +92,18 @@ Protected Class OptionParser
 		  // The option type must be that of `OptionType.Boolean`.
 		  //
 		  
-		  Dim o As Option = OptionValue(key)
+		  Var o As Option = OptionValue(key)
 		  Return If(o Is Nil Or o.WasSet = False, defaultValue, o.Value.BooleanValue)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetHasGUI)
-		 Shared Function CommandLineArgs() As String()
+		Shared Function CommandLineArgs() As String()
 		  // Return an array of command-line arguments
 		  
 		  const kDebugDeclares = false
 		  
-		  dim args() as string
+		  Var args() as string
 		  
 		  #if DebugBuild and not kDebugDeclares then 
 		    //
@@ -122,11 +122,11 @@ Protected Class OptionParser
 		    declare function objectAtIndex lib kCocoaLib selector "objectAtIndex:" (theArray as Ptr, idx as Integer) as CFStringRef
 		    
 		    static c as Ptr = defaultCenter(NSClassFromString("NSProcessInfo"))
-		    dim nsArrayRef as Ptr = arguments(c)
-		    dim ub as integer = m_count(nsArrayRef) - 1
+		    Var nsArrayRef as Ptr = arguments(c)
+		    Var ub as integer = m_count(nsArrayRef) - 1
 		    for i as integer = 0 to ub
-		      dim s as string = objectAtIndex(nsArrayRef, i)
-		      args.Append s
+		      Var s as string = objectAtIndex(nsArrayRef, i)
+		      args.Add s
 		    next
 		    
 		  #elseif TargetWin32 then
@@ -138,19 +138,19 @@ Protected Class OptionParser
 		    declare function CommandLineToArgvW lib "shell32.dll" (lpCmdLine As Ptr, ByRef pNumArgs As Integer) As Ptr
 		    declare sub LocalFree Lib "kernel32.dll" (p as Ptr)
 		    
-		    dim cl as Ptr = GetCommandLineW()
-		    dim n as Integer
-		    dim argList as Ptr = CommandLineToArgvW (cl, n)
+		    Var cl as Ptr = GetCommandLineW()
+		    Var n as Integer
+		    Var argList as Ptr = CommandLineToArgvW (cl, n)
 		    for idx as Integer = 0 to n-1
-		      dim mb as MemoryBlock = argList.Ptr(idx*4)
+		      Var mb as MemoryBlock = argList.Ptr(idx*4)
 		      // mb points to a UTF16 0-terminated string. It seems we have to scan its length ourselves now.
-		      dim len as Integer
+		      Var len as Integer
 		      while mb.UInt16Value(len) <> 0
 		        len = len + 2
 		      wend
-		      dim s as String = mb.StringValue(0,len).DefineEncoding(Encodings.UTF16)
+		      Var s as String = mb.StringValue(0,len).DefineEncoding(Encodings.UTF16)
 		      s = s.ConvertEncoding(Encodings.UTF8)
-		      args.Append s
+		      args.Add s
 		    next
 		    LocalFree(argList)
 		    
@@ -162,19 +162,19 @@ Protected Class OptionParser
 		    declare function read lib SystemLib (fd as Integer, data as Ptr, n as Integer) as Integer
 		    
 		    // first, read the entire cmdline into a string
-		    dim fd as Integer = open ("/proc/self/cmdline", 0)
-		    dim s as String
+		    Var fd as Integer = open ("/proc/self/cmdline", 0)
+		    Var s as String
 		    do
-		      dim mb as new MemoryBlock(1000)
-		      dim n as Integer = read (fd, mb, mb.Size)
+		      Var mb as new MemoryBlock(1000)
+		      Var n as Integer = read (fd, mb, mb.Size)
 		      s = s + mb.StringValue (0, n)
 		      if n < mb.Size then exit
 		    loop
 		    args = s.Split(Chr(0))
 		    call args.Pop // remove last array item because of extra 00 byte at end of string
 		    
-		    for i as integer = 0 to args.Ubound
-		      dim thisArg as string = args(i)
+		    for i as integer = 0 to args.LastIndex
+		      Var thisArg as string = args(i)
 		      if Encodings.UTF8.IsValidData(thisArg) then
 		        args(i) = thisArg.DefineEncoding(Encodings.UTF8)
 		      else
@@ -212,7 +212,7 @@ Protected Class OptionParser
 		  Self.AppName = If(appName = "", App.ExecutableFile.Name, appName)
 		  Self.AppDescription = appDescription
 		  
-		  Dim helpOption As New Option("h", "help", "Show help", Option.OptionType.Boolean)
+		  Var helpOption As New Option("h", "help", "Show help", Option.OptionType.Boolean)
 		  AddOption  helpOption
 		  
 		End Sub
@@ -220,11 +220,11 @@ Protected Class OptionParser
 
 	#tag Method, Flags = &h21
 		Private Function CopyStringArray(arr() As String) As String()
-		  Dim result() As String
-		  If arr.Ubound = -1 Then Return result
+		  Var result() As String
+		  If arr.LastIndex = -1 Then Return result
 		  
-		  ReDim result(arr.Ubound)
-		  For i As Integer = 0 to arr.Ubound
+		  ReDim result(arr.LastIndex)
+		  For i As Integer = 0 to arr.LastIndex
 		    result(i) = arr(i)
 		  Next i
 		  
@@ -259,7 +259,7 @@ Protected Class OptionParser
 		  // will be raised to indicate that an invalid option value has been supplied.
 		  //
 		  
-		  Dim v As Variant = Value(key)
+		  Var v As Variant = Value(key)
 		  Return If(v Is Nil, defaultValue, v.DateValue)
 		End Function
 	#tag EndMethod
@@ -280,7 +280,7 @@ Protected Class OptionParser
 		  // The option type must be that of `OptionType.Double`.
 		  //
 		  
-		  Dim v As Variant = Value(key)
+		  Var v As Variant = Value(key)
 		  Return If(v Is Nil, defaultValue, v.DoubleValue)
 		End Function
 	#tag EndMethod
@@ -289,41 +289,41 @@ Protected Class OptionParser
 		Private Function ExpandArgs(args() As String) As String()
 		  // Takes arguments that may be chained and expands them
 		  
-		  Dim expandedArgs() As String
+		  Var expandedArgs() As String
 		  
-		  For argIndex As Integer = 0 To args.Ubound
-		    Dim arg As String = args(argIndex)
+		  For argIndex As Integer = 0 To args.LastIndex
+		    Var arg As String = args(argIndex)
 		    
 		    If arg = "--" Then
 		      // Start of our "forced" extras
-		      For i As Integer = argIndex To args.Ubound
-		        expandedArgs.Append args(i)
+		      For i As Integer = argIndex To args.LastIndex
+		        expandedArgs.Add args(i)
 		      Next
 		      
 		      Exit For argIndex
 		      
 		    ElseIf arg.Left(2) = "--" Then
-		      expandedArgs.Append arg
+		      expandedArgs.Add arg
 		      
-		    ElseIf arg.Left(1) = "-" And arg.Len > 2 Then
-		      arg = arg.Mid(2) // Chop off the hyphen
-		      Dim value As String
-		      Dim equalIndex As Integer = arg.InStr(2, "=") // If they started the switch with "=", that doesn't count
+		    ElseIf arg.Left(1) = "-" And arg.Length > 2 Then
+		      arg = arg.Middle(1) // Chop off the hyphen
+		      Var value As String
+		      Var equalIndex As Integer = arg.IndexOf(1, "=") // If they started the switch with "=", that doesn't count
 		      
-		      If equalIndex <> 0 Then
-		        value = arg.Mid(equalIndex)
-		        arg = arg.Left(equalIndex - 1)
+		      If equalIndex <> -1 Then
+		        value = arg.Middle(equalIndex)
+		        arg = arg.Left(equalIndex)
 		      End if
 		      
-		      Dim switches() As String = arg.Split("")
-		      Dim lastIndex As Integer = switches.Ubound - 1
+		      Var switches() As String = arg.Split("")
+		      Var lastIndex As Integer = switches.LastIndex - 1
 		      For i As Integer = 0 To lastIndex
-		        expandedArgs.Append "-" + switches(i)
+		        expandedArgs.Add "-" + switches(i)
 		      Next i
-		      expandedArgs.Append "-" + switches(switches.Ubound) + value
+		      expandedArgs.Add "-" + switches(switches.LastIndex) + value
 		      
 		    Else // Append as-is
-		      expandedArgs.Append arg
+		      expandedArgs.Add arg
 		      
 		    End If
 		  Next argIndex
@@ -351,14 +351,14 @@ Protected Class OptionParser
 		  // This will likely be renamed to `FolderItemValue` in the future.
 		  //
 		  
-		  Dim v As Variant = Value(key)
+		  Var v As Variant = Value(key)
 		  Return If(v Is Nil, defaultValue, FolderItem(v))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function GetRelativeFolderItem(path As String, relativeTo As FolderItem = Nil) As FolderItem
-		  Dim prefix As String = ""
+		Shared Function GetRelativeFolderItem(path As String, relativeTo As FolderItem = Nil) As FolderItem
+		  Var prefix As String = ""
 		  
 		  #If TargetWin32 Then
 		    Const pathSep = "\"
@@ -367,12 +367,12 @@ Protected Class OptionParser
 		    // Maybe what is passed isn't actually a relative path
 		    //
 		    
-		    If path.Mid(2, 1) = ":" Then
-		      Return GetFolderItem(path, FolderItem.PathTypeShell)
+		    If path.Middle(1, 1) = ":" Then
+		      Return New FolderItem(path, FolderItem.PathModes.Shell)
 		    End If
 		    
 		    If path.Left(1) = pathSep Then
-		      relativeTo = GetFolderItem(SpecialFolder.CurrentWorkingDirectory.NativePath.Left(3))
+		      relativeTo = New FolderItem(SpecialFolder.CurrentWorkingDirectory.NativePath.Left(3))
 		    End If
 		    
 		  #Else
@@ -382,7 +382,7 @@ Protected Class OptionParser
 		    // Resolve home
 		    //
 		    if path.Left(2) = "~/" then
-		      path = SpecialFolder.UserHome.NativePath + path.Mid(2)
+		      path = SpecialFolder.UserHome.NativePath + path.Middle(1)
 		    end if
 		    
 		    //
@@ -390,7 +390,7 @@ Protected Class OptionParser
 		    //
 		    
 		    If path.Left(1) = pathSep Then
-		      Return GetFolderItem(path, FolderItem.PathTypeShell)
+		      Return new FolderItem(path, FolderItem.PathModes.Shell)
 		    End If
 		    
 		    prefix = pathSep
@@ -405,11 +405,11 @@ Protected Class OptionParser
 		  End If
 		  
 		  path = relativeTo.NativePath + pathSep + path
-		  Dim newParts() As String
+		  Var newParts() As String
 		  
-		  Dim pathParts() As String = path.Split(pathSep)
-		  For i As Integer = 0 to pathParts.Ubound
-		    Dim p As String = pathParts(i)
+		  Var pathParts() As String = path.Split(pathSep)
+		  For i As Integer = 0 to pathParts.LastIndex
+		    Var p As String = pathParts(i)
 		    If p = "" Then
 		      // Can happen on Windows since it appends a pathSep onto the end of NativePath
 		      // if relativeTo is a folder.
@@ -419,19 +419,19 @@ Protected Class OptionParser
 		      
 		    ElseIf p = ".." Then
 		      // Remove the last path component from newParts
-		      If newParts.Ubound > -1 Then
-		        newParts.Remove newParts.Ubound
+		      If newParts.LastIndex > -1 Then
+		        newParts.RemoveAt newParts.LastIndex
 		      End If
 		      
 		    Else
 		      // Nothing special about this path component
-		      newParts.Append p
+		      newParts.Add p
 		    End If
 		  Next
 		  
-		  path = prefix + Join(newParts, pathSep)
+		  path = prefix + String.FromArray(newParts, pathSep)
 		  
-		  Return GetFolderItem(path, FolderItem.PathTypeShell)
+		  Return New FolderItem(path, FolderItem.PathModes.Shell)
 		End Function
 	#tag EndMethod
 
@@ -451,7 +451,7 @@ Protected Class OptionParser
 		  // The option type must be that of `OptionType.Integer`.
 		  //
 		  
-		  Dim v As Variant = Value(key)
+		  Var v As Variant = Value(key)
 		  Return If(v Is Nil, defaultValue, v.IntegerValue)
 		End Function
 	#tag EndMethod
@@ -478,7 +478,7 @@ Protected Class OptionParser
 		  ElseIf key.Left(1) = "-" Then // Already there
 		    Return key
 		    
-		  ElseIf key.Len = 1 Then
+		  ElseIf key.Length = 1 Then
 		    Return "-" + key
 		    
 		  Else
@@ -507,10 +507,10 @@ Protected Class OptionParser
 		  // One can use this to check the `WasSet` property of the `Option` class.
 		  //
 		  
-		  Dim lookupKey As Variant = key
+		  Var lookupKey As Variant = key
 		  
 		  If Not Dict.HasKey(lookupKey) Then
-		    If key.Len = 1 Then
+		    If key.Length = 1 Then
 		      lookupKey = key.Asc
 		    End If
 		  End If
@@ -524,13 +524,15 @@ Protected Class OptionParser
 		  // Pad a string to at least 'width' characters, by adding padding characters
 		  // to the right side of the string.
 		  
-		  dim length as Integer
-		  length = len(s)
-		  if length >= width then return s
+		  Var length as Integer
+		  length = s.Length
+		  if length >= width then 
+		    return s
+		  end if
 		  
-		  dim mostToRepeat as Integer
-		  mostToRepeat = ceil((width-length)/len(padding))
-		  return s + mid(Repeat(padding, mostToRepeat),1,width-length)
+		  Var mostToRepeat as Integer
+		  mostToRepeat = Ceiling((width - length) / padding.Length)
+		  return s + Repeat(padding, mostToRepeat).Middle(0, width-length)
 		  
 		End Function
 	#tag EndMethod
@@ -559,10 +561,10 @@ Protected Class OptionParser
 		  
 		  args = ExpandArgs(args)
 		  
-		  Dim restAreExtras As Boolean
-		  Dim optIdx As Integer = -1
+		  Var restAreExtras As Boolean
+		  Var optIdx As Integer = -1
 		  
-		  While optIdx < args.Ubound // args can be rewritten in the loop
+		  While optIdx < args.LastIndex // args can be rewritten in the loop
 		    optIdx = optIdx + 1
 		    
 		    //
@@ -574,12 +576,12 @@ Protected Class OptionParser
 		    end if
 		    
 		    If restAreExtras Then
-		      Extra.Append args(optIdx)
+		      Extra.Add args(optIdx)
 		      
 		      Continue
 		    End If
 		    
-		    Dim arg As String = args(optIdx)
+		    Var arg As String = args(optIdx)
 		    
 		    If arg = "" Then
 		      Continue
@@ -591,37 +593,37 @@ Protected Class OptionParser
 		      Continue
 		    End If
 		    
-		    Dim key As String
-		    Dim value As String
+		    Var key As String
+		    Var value As String
 		    
 		    // Special case:
 		    // -? is a synonym for help
 		    If arg.Left(2) = "-?" Then
-		      arg = "-h" + arg.Mid(3)
+		      arg = "-h" + arg.Middle(2)
 		    End If
 		    
 		    If arg.Left(2) = "--" Then
-		      key = arg.Mid(3)
+		      key = arg.Middle(2)
 		      
 		    ElseIf arg.Left(1) = "-" Then
-		      key = arg.Mid(2)
+		      key = arg.Middle(1)
 		      
 		    Else
 		      If arg <> "" Then
-		        Extra.Append arg
+		        Extra.Add arg
 		      End If
 		      Continue
 		    End If
 		    
-		    Dim equalIdx As Integer = key.InStr(2, "=") // Start at the second character
-		    dim hasEquals as boolean
-		    If equalIdx <> 0 Then
+		    Var equalIdx As Integer = key.IndexOf(1, "=") // Start at the second character
+		    Var hasEquals as boolean
+		    If equalIdx <> -1 Then
 		      hasEquals = true
-		      value = key.Mid(equalIdx + 1)
-		      key = key.Left(equalIdx - 1)
+		      value = key.Middle(equalIdx + 1)
+		      key = key.Left(equalIdx)
 		    End If
 		    
-		    Dim opt As Option = OptionValue(key)
+		    Var opt As Option = OptionValue(key)
 		    If opt = Nil Then
 		      //
 		      // Maybe the user has specified --no-option which should set a
@@ -632,7 +634,7 @@ Protected Class OptionParser
 		        RaiseUnrecognizedKeyException(key)
 		      End If
 		      
-		      key = key.Mid(4)
+		      key = key.Middle(3)
 		      opt = OptionValue(key)
 		      
 		      If opt = Nil Or opt.Type <> Option.OptionType.Boolean Then
@@ -654,7 +656,7 @@ Protected Class OptionParser
 		      // But if help was requested, it doesn't matter, so we skip this.
 		      // If a value was given next, it will just be added to Extras.
 		      
-		      If optIdx = args.Ubound Then
+		      If optIdx = args.LastIndex Then
 		        RaiseInvalidKeyValueException(key, kMissingKeyValue)
 		      End If
 		      
@@ -672,13 +674,13 @@ Protected Class OptionParser
 		  //
 		  
 		  If Not Self.HelpRequested Then
-		    If ExtrasRequired > 0 And Extra.Ubound < (ExtrasRequired - 1) Then
+		    If ExtrasRequired > 0 And Extra.LastIndex < (ExtrasRequired - 1) Then
 		      Raise New OptionParserException("Insufficient extras specified")
 		    End If
 		    
 		    For Each o As Option In Options
 		      If Not o.IsValid Then
-		        Dim key As String
+		        Var key As String
 		        If o.LongKey <> "" Then
 		          key = o.LongKey
 		        Else
@@ -713,46 +715,46 @@ Protected Class OptionParser
 		  
 		  value = value.ConvertEncoding( Encodings.UTF8 )
 		  
-		  dim allChars() as string = value.Split("")
-		  dim thisChunk() as string
-		  dim inQuote as boolean
-		  dim quoteChar as string
+		  Var allChars() as string = value.Split("")
+		  Var thisChunk() as string
+		  Var inQuote as boolean
+		  Var quoteChar as string
 		  
-		  dim charIndex as integer
-		  while charIndex <= allChars.Ubound
-		    dim thisChar as string = allChars(charIndex)
+		  Var charIndex as integer
+		  while charIndex <= allChars.LastIndex
+		    Var thisChar as string = allChars(charIndex)
 		    
-		    if thisChar = "\" and charIndex < allChars.Ubound then
-		      thisChunk.Append allChars(charIndex + 1)
+		    if thisChar = "\" and charIndex < allChars.LastIndex then
+		      thisChunk.Add allChars(charIndex + 1)
 		      charIndex = charIndex + 1
 		      
 		    elseif inQuote and thisChar = quoteChar then
 		      inQuote = false
 		      
 		    elseif inQuote then
-		      thisChunk.Append thisChar
+		      thisChunk.Add thisChar
 		      
 		    elseif IsQuoteCharacter(thisChar) then
 		      inQuote = true
 		      quoteChar = thisChar
 		      
 		    elseif thisChar = " " then
-		      if thisChunk.Ubound <> -1 then
-		        appendTo.Append join(thisChunk, "")
+		      if thisChunk.LastIndex <> -1 then
+		        appendTo.Add String.FromArray(thisChunk, "")
 		        redim thisChunk(-1)
 		      end if
 		      
 		    else // Just a character
 		      
-		      thisChunk.Append thisChar
+		      thisChunk.Add thisChar
 		      
 		    end if
 		    
 		    charIndex = charIndex + 1
 		  wend
 		  
-		  if thisChunk.Ubound <> -1 then
-		    appendTo.Append join(thisChunk, "")
+		  if thisChunk.LastIndex <> -1 then
+		    appendTo.Add String.FromArray(thisChunk, "")
 		  end if
 		End Sub
 	#tag EndMethod
@@ -775,9 +777,9 @@ Protected Class OptionParser
 		  // See `Parse(args() As String)` for more detailed information
 		  //
 		  
-		  Dim matches() As String
+		  Var matches() As String
 		  
-		  Dim rx As New RegEx
+		  Var rx As New RegEx
 		  
 		  '#if TargetWin32 then
 		  '
@@ -785,10 +787,10 @@ Protected Class OptionParser
 		  '
 		  'rx.SearchPattern = "(""[^""]+""|[^\s""]+)"
 		  '
-		  'Dim match As RegExMatch = rx.Search(value)
+		  'Var match As RegExMatch = rx.Search(value)
 		  '
 		  'While match <> Nil
-		  'matches.Append ReplaceAll(match.SubExpressionString(1), chr(34), "")
+		  'matches.Add ReplaceAll(match.SubExpressionString(1), chr(34), "")
 		  'match = rx.Search()
 		  'Wend
 		  '
@@ -798,20 +800,20 @@ Protected Class OptionParser
 		  // We have to peel off of the executable first
 		  //
 		  
-		  dim rest as string
+		  Var rest as string
 		  
-		  dim myPath as string = App.ExecutableFile.NativePath
-		  dim pattern as string = """?(\Q" + myPath.ReplaceAllB( "\E", "\\EE\Q" ) + "\E)""? (.*)"
+		  Var myPath as string = App.ExecutableFile.NativePath
+		  Var pattern as string = """?(\Q" + myPath.ReplaceAllB( "\E", "\\EE\Q" ) + "\E)""? (.*)"
 		  
 		  rx.SearchPattern = pattern
-		  dim match as RegExMatch = rx.Search(value)
+		  Var match as RegExMatch = rx.Search(value)
 		  
 		  if match IsA RegExMatch then
-		    matches.Append match.SubExpressionString(1)
+		    matches.Add match.SubExpressionString(1)
 		    rest = match.SubExpressionString(2)
 		    ParseRestOfString(rest, matches)
 		  else
-		    matches.Append value
+		    matches.Add value
 		  end if
 		  
 		  '#endif
@@ -858,17 +860,17 @@ Protected Class OptionParser
 		  // is faster than any other we've found (short of declares, which were only
 		  // about 2X faster and were quite platform-specific).
 		  
-		  Dim desiredLenB As Integer = LenB(s) * repeatCount
-		  dim output as String = s
-		  dim cutoff as Integer = (desiredLenB+1)\2
-		  dim curLenB as Integer = LenB(output)
+		  Var desiredLenB As Integer = s.Bytes * repeatCount
+		  Var output as String = s
+		  Var cutoff as Integer = (desiredLenB + 1) \ 2
+		  Var curLenB as Integer = output.Bytes
 		  
 		  while curLenB < cutoff
 		    output = output + output
 		    curLenB = curLenB + curLenB
 		  wend
 		  
-		  output = output + LeftB(output, desiredLenB - curLenB)
+		  output = output + output.LeftBytes(desiredLenB - curLenB)
 		  return output
 		  
 		End Function
@@ -906,73 +908,73 @@ Protected Class OptionParser
 		  
 		  Static descIndent As String = kIndentPrefix + Repeat(" ", kAlignCol + 1)
 		  
-		  Dim helpLines() As String
+		  Var helpLines() As String
 		  
-		  Dim helpFor As String = AppName
+		  Var helpFor As String = AppName
 		  If helpFor <> "" Then
 		    If AppDescription <> "" Then
 		      helpFor = kIndentPrefix + helpFor + " - " + AppDescription
 		    End If
-		    helpLines.Append helpFor
-		    helpLines.Append ""
+		    helpLines.Add helpFor
+		    helpLines.Add ""
 		  End If
 		  
-		  helpLines.Append sectionTitle + ":"
+		  helpLines.Add sectionTitle + ":"
 		  
-		  For i As Integer = 0 To Options.Ubound
-		    Dim opt As Option = Options(i)
-		    Dim keys() As String
+		  For i As Integer = 0 To Options.LastIndex
+		    Var opt As Option = Options(i)
+		    Var keys() As String
 		    
 		    If opt.ShortKey <> "" Then
-		      Dim keyString As String = KeyWithDashes(opt.ShortKey)
+		      Var keyString As String = KeyWithDashes(opt.ShortKey)
 		      
 		      If opt.Type <> Option.OptionType.Boolean Then
 		        keyString = keyString + " " + opt.TypeString
 		      End If
 		      
-		      keys.Append keyString
+		      keys.Add keyString
 		    End If
 		    
 		    If opt.LongKey <> "" Then
-		      Dim keyString As String = KeyWithDashes(opt.LongKey)
+		      Var keyString As String = KeyWithDashes(opt.LongKey)
 		      
 		      If opt.Type <> Option.OptionType.Boolean Then
 		        keyString = keyString + "=" + opt.TypeString
 		      End If
 		      
-		      keys.Append keyString
+		      keys.Add keyString
 		    End If
 		    
-		    Dim key As String = Join(keys, ", ")
-		    dim desc as string = opt.HelpDescription
+		    Var key As String = String.FromArray(keys, ", ")
+		    Var desc as string = opt.HelpDescription
 		    
-		    If key.Len > kAlignCol Or desc.InStr(EndOfLine) <> 0 Then
-		      helpLines.Append kIndentPrefix + key
-		      helpLines.Append WrapTextWithIndent(desc, kLineLength, descIndent)
+		    If key.Length > kAlignCol Or desc.IndexOf(EndOfLine) <> -1 Then
+		      helpLines.Add kIndentPrefix + key
+		      helpLines.Add WrapTextWithIndent(desc, kLineLength, descIndent)
 		      
-		    ElseIf (key.Len + desc.Len) > kLineLength Then
+		    ElseIf (key.Length + desc.Length) > kLineLength Then
 		      key = kIndentPrefix + PadRight(key, kAlignCol + 1)
 		      desc = WrapTextWithIndent(desc, kLineLength, descIndent)
-		      desc = desc.Mid(key.Len + 1)
-		      helpLines.Append key + desc
+		      desc = desc.Middle(key.Length - 1 + 1)
+		      helpLines.Add key + desc
 		      
 		    Else
-		      helpLines.Append kIndentPrefix + PadRight(key, kAlignCol + 1) + desc 
+		      helpLines.Add kIndentPrefix + PadRight(key, kAlignCol + 1) + desc 
 		      
 		    End If
 		  Next
 		  
-		  Dim notes As String = AdditionalHelpNotes.Trim
+		  Var notes As String = AdditionalHelpNotes.Trim
 		  If notes <> "" Then
 		    notes = WrapTextWithIndent(notes, kLineLength)
 		    
-		    helpLines.Append ""
-		    helpLines.Append "Notes:"
-		    helpLines.Append notes
-		    helpLines.Append ""
+		    helpLines.Add ""
+		    helpLines.Add "Notes:"
+		    helpLines.Add notes
+		    helpLines.Add ""
 		  End If
 		  
-		  Dim help As String = Join(helpLines, EndOfLine)
+		  Var help As String = String.FromArray(helpLines, EndOfLine)
 		  
 		  #If TargetConsole Then
 		    Print help
@@ -1001,15 +1003,15 @@ Protected Class OptionParser
 		  // The option type must be that of `OptionType.String`.
 		  //
 		  
-		  Dim o As Option = OptionValue(key)
+		  Var o As Option = OptionValue(key)
 		  Return If(o Is Nil Or o.WasSet = False Or o.Value Is Nil, defaultValue, o.Value.StringValue)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function Value(key As Variant) As Variant
-		  Dim vk As String = key
-		  Dim v As Variant = Dict.Lookup(vk, Nil)
+		  Var vk As String = key
+		  Var v As Variant = Dict.Lookup(vk, Nil)
 		  
 		  If v = Nil Then
 		    v = Dict.Lookup(vk.Asc, Nil)
@@ -1030,15 +1032,15 @@ Protected Class OptionParser
 		  // start with whitespace, join them together into one continuous paragraph.
 		  // Copied from StringUtils.
 		  
-		  If UBound(lines) < 0 Then Return
+		  If lines.LastIndex < 0 Then Return
 		  
 		  // Start by joining lines, if called for.
 		  If paragraphFill Then
-		    Dim lineNum As Integer = 1
-		    Dim lastLineShort As Boolean = (lines(0).Len < charsPerLine - 20)
-		    While lineNum <= UBound(lines)
-		      Dim line As String = lines(lineNum)
-		      Dim firstChar As String = Left(line, 1)
+		    Var lineNum As Integer = 1
+		    Var lastLineShort As Boolean = (lines(0).Length < charsPerLine - 20)
+		    While lineNum <= lines.LastIndex
+		      Var line As String = lines(lineNum)
+		      Var firstChar As String = line.Left(1)
 		      If lastLineShort Then
 		        // last line was short, so don't join this one to it
 		        lineNum = lineNum + 1
@@ -1048,26 +1050,28 @@ Protected Class OptionParser
 		      Else
 		        // this line starts with a character; join it to the previous line
 		        lines(lineNum - 1) = lines(lineNum - 1) + " " + line
-		        lines.Remove lineNum
+		        lines.RemoveAt lineNum
 		      End If
-		      lastLineShort = (line.Len < charsPerLine - 20)
+		      lastLineShort = (line.Length < charsPerLine - 20)
 		    Wend
 		  End If
 		  
 		  // Then, go through and do the wrapping.
-		  For lineNum As Integer = 0 To UBound(lines)
-		    Dim line As String = RTrim(lines(lineNum))
-		    If line.Len <= charsPerLine Then
+		  For lineNum As Integer = 0 To lines.LastIndex
+		    Var line As String = lines(lineNum).TrimRight
+		    If line.Length <= charsPerLine Then
 		      lines(lineNum) = line
 		    Else
-		      Dim breakPos As Integer
+		      Var breakPos As Integer
 		      For breakPos = charsPerLine DownTo 1
-		        Dim c As String = Mid(line, breakPos, 1)
+		        Var c As String = line.Middle(breakPos, 0)
 		        If c <= " " or c = "-" Then Exit
 		      Next
-		      If breakPos < 2 Then breakPos = charsPerLine + 1 // no point breaking before char 1
-		      lines.Insert lineNum + 1, LTrim(Mid(line, breakPos))
-		      lines(lineNum) = LTrim(Left(line, breakPos - 1))
+		      If breakPos < 2 Then 
+		        breakPos = charsPerLine + 1 // no point breaking before char 1
+		      End If
+		      lines.AddAt lineNum + 1, line.Middle(breakPos - 1).TrimLeft
+		      lines(lineNum) = line.Left(breakPos - 1).TrimLeft
 		    End If
 		  Next
 		End Sub
@@ -1075,21 +1079,21 @@ Protected Class OptionParser
 
 	#tag Method, Flags = &h21
 		Private Sub WrapLinesWithIndent(lines() As String, charsPerLine As Integer, indent As String = kIndentPrefix)
-		  WrapLines(lines, charsPerLine - indent.Len, False)
+		  WrapLines(lines, charsPerLine - indent.Length, False)
 		  
-		  For i As Integer = 0 To lines.Ubound
+		  For i As Integer = 0 To lines.LastIndex
 		    lines(i) = indent + lines(i)
 		  Next i
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function WrapTextWithIndent(text As String, charsPerLine As Integer, indent As String = kIndentPrefix) As String
-		  text = ReplaceLineEndings(text, EndOfLine)
+		Private Function WrapTextWithIndent(s As String, charsPerLine As Integer, indent As String = kIndentPrefix) As String
+		  s = s.ReplaceLineEndings(EndOfLine)
 		  
-		  Dim lines() As String = Split(text, EndOfLine)
+		  Var lines() As String = s.Split(EndOfLine)
 		  WrapLinesWithIndent(lines, charsPerLine, indent)
-		  Return Join(lines, EndOfLine)
+		  Return String.FromArray(lines, EndOfLine)
 		End Function
 	#tag EndMethod
 
@@ -1153,7 +1157,6 @@ Protected Class OptionParser
 			
 			This can be used to provide further usage notes and to expand on options
 			when a single line description is not sufficient.
-			
 		#tag EndNote
 		#tag Getter
 			Get
@@ -1162,7 +1165,7 @@ Protected Class OptionParser
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mAdditionalHelpNotes = ReplaceLineEndings(value.Trim, EndOfLine)
+			  mAdditionalHelpNotes = value.Trim.ReplaceLineEndings(EndOfLine)
 			End Set
 		#tag EndSetter
 		AdditionalHelpNotes As String
@@ -1172,7 +1175,6 @@ Protected Class OptionParser
 		#tag Note
 			Typically a single line description of the application that is displayed
 			before the application help.
-			
 		#tag EndNote
 		AppDescription As String
 	#tag EndProperty
@@ -1180,7 +1182,7 @@ Protected Class OptionParser
 	#tag Property, Flags = &h0
 		#tag Note
 			Name of the application. If empty, `OptionParser` will assign the `AppName`
-			variable to the name of the executable filename. This is displayed when 
+			variable to the name of the executable filename. This is displayed when
 			user help is shown.
 		#tag EndNote
 		AppName As String
@@ -1231,7 +1233,7 @@ Protected Class OptionParser
 		#tag EndNote
 		#tag Getter
 			Get
-			  Dim o As Option = OptionValue("help")
+			  Var o As Option = OptionValue("help")
 			  If o Is Nil Then
 			    Return False // Should never happen
 			  Else
@@ -1269,32 +1271,43 @@ Protected Class OptionParser
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AdditionalHelpNotes"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AppDescription"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AppName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ExtrasRequired"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HelpRequested"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -1302,6 +1315,7 @@ Protected Class OptionParser
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1309,18 +1323,23 @@ Protected Class OptionParser
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1328,6 +1347,7 @@ Protected Class OptionParser
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

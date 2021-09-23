@@ -1,65 +1,65 @@
-#tag IOSView
-Begin iosView XojoUnitTestMethodView
-   BackButtonTitle =   ""
+#tag MobileScreen
+Begin MobileScreen XojoUnitTestMethodView
+   BackButtonCaption=   ""
    Compatibility   =   ""
-   LargeTitleMode  =   "2"
+   ControlCount    =   0
+   HasNavigationBar=   True
+   LargeTitleDisplayMode=   2
    Left            =   0
-   NavigationBarVisible=   True
-   TabIcon         =   ""
-   TabTitle        =   ""
+   TabBarVisible   =   True
+   TabIcon         =   0
+   TintColor       =   "&h00000000"
    Title           =   "Test Methods"
    Top             =   0
-   Begin iOSTable MethodTable
+   Begin iOSMobileTable MethodTable
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       AllowRefresh    =   False
+      AllowSearch     =   False
       AutoLayout      =   MethodTable, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, , True
       AutoLayout      =   MethodTable, 2, <Parent>, 2, False, +1.00, 1, 1, -0, , True
       AutoLayout      =   MethodTable, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, , True
       AutoLayout      =   MethodTable, 1, <Parent>, 1, False, +1.00, 1, 1, 0, , True
+      ControlCount    =   0
       EditingEnabled  =   False
       EditingEnabled  =   False
+      Enabled         =   True
       EstimatedRowHeight=   -1
-      Format          =   "0"
-      Height          =   959.0
+      Format          =   0
+      Height          =   503
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
+      TintColor       =   ""
       Top             =   65
       Visible         =   True
-      Width           =   768.0
+      Width           =   320
    End
 End
-#tag EndIOSView
+#tag EndMobileScreen
 
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub LoadTests(g As TestGroup)
 		  Self.Title = g.Name + " Methods"
 		  
-		  MethodTable.RemoveAll
+		  MethodTable.RemoveAllRows
 		  
 		  MethodTable.AddSection("")
 		  
-		  Dim cellData As iOSTableCellData
+		  Var cellData As MobileTableCellData
 		  
 		  For Each t As TestResult In g.Results
-		    #If RBVersion < 2016.02
-		      cellData = New iOSTableCellData
-		      cellData.Text = t.TestName
-		      cellData.DetailText = "Results: " + t.Result
-		    #Else
-		      cellData = MethodTable.CreateCustomCell(GetTypeInfo(XojoUnitMethodTableCell))
-		      Dim cell As XojoUnitMethodTableCell = XojoUnitMethodTableCell(cellData.Control)
-		      
-		      cell.MethodNameLabel.Text = t.TestName
-		      cell.ResultLabel.Text = "Results: " + t.Result
-		      If t.Result = TestResult.Failed Then
-		        cell.MethodNameLabel.TextColor = Color.Red
-		        cell.ResultLabel.TextColor = cell.MethodNameLabel.TextColor
-		      End If
-		    #Endif
+		    cellData = MethodTable.CreateCustomCell(GetTypeInfo(XojoUnitMethodTableCell))
+		    Var cell As XojoUnitMethodTableCell = XojoUnitMethodTableCell(cellData.Control)
+		    
+		    cell.MethodNameLabel.Text = t.TestName
+		    cell.ResultLabel.Text = "Results: " + t.Result
+		    If t.Result = TestResult.Failed Then
+		      cell.MethodNameLabel.TextColor = Color.Red
+		      cell.ResultLabel.TextColor = cell.MethodNameLabel.TextColor
+		    End If
 		    
 		    cellData.Tag = t
 		    MethodTable.AddRow(0, cellData)
@@ -72,17 +72,17 @@ End
 
 #tag Events MethodTable
 	#tag Event
-		Sub Action(section As Integer, row As Integer)
-		  If Me.RowData(section, row).Tag IsA TestResult Then
-		    Dim tr As TestResult
-		    tr = Me.RowData(section, row).Tag
+		Sub SelectionChanged(section As Integer, row As Integer)
+		  If Me.RowCellData(section, row).Tag IsA TestResult Then
+		    Var tr As TestResult
+		    tr = Me.RowCellData(section, row).Tag
 		    
 		    If Self.ParentSplitView.Available Then
-		      Dim detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
+		      Var detail As XojoUnitTestDetailsView = XojoUnitTestDetailsView(Self.ParentSplitView.Detail)
 		      detail.TestNameLabel.Text = tr.TestName
 		      detail.TestResultLabel.Text = tr.Result
 		      detail.TestResultsArea.Text = tr.Message
-		      detail.TestDurationLabel.Text = tr.Duration.ToText(Locale.Current, "#,##0.0000000") + "s"
+		      detail.TestDurationLabel.Text = tr.Duration.ToString(Locale.Current, "#,##0.0000000") + "s"
 		    End If
 		  End If
 		End Sub
@@ -90,11 +90,27 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="LargeTitleMode"
+		Name="BackButtonCaption"
+		Visible=true
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasNavigationBar"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LargeTitleDisplayMode"
 		Visible=true
 		Group="Behavior"
 		InitialValue="2"
-		Type="LargeTitleDisplayModes"
+		Type="MobileScreen.LargeTitleDisplayModes"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Automatic"
@@ -103,12 +119,28 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackButtonTitle"
+		Name="TabBarVisible"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TintColor"
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="Text"
-		EditorType="MultiLineEditor"
+		Type="ColorGroup"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ControlCount"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
@@ -135,14 +167,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="NavigationBarVisible"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -155,15 +179,7 @@ End
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="iOSImage"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="TabTitle"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Text"
+		Type="Picture"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -171,7 +187,7 @@ End
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="Text"
+		Type="String"
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
