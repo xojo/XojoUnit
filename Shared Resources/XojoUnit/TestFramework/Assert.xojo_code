@@ -751,7 +751,7 @@ Protected Class Assert
 		Sub DoesNotMatch(regExPattern As String, actual As String, message As String = "")
 		  If regExPattern = "" Then
 		    Var err As New RegExException
-		    err.Reason = "No pattern was specified"
+		    err.Message = "No pattern was specified"
 		    Raise err
 		  End If
 		  
@@ -851,7 +851,7 @@ Protected Class Assert
 		Sub Matches(regExPattern As String, actual As String, message As String = "")
 		  If regExPattern = "" Then
 		    Var err As New RegExException
-		    err.Reason = "No pattern was specified"
+		    err.Message = "No pattern was specified"
 		    Raise err
 		  End If
 		  

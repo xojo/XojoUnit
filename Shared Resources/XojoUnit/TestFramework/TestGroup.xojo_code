@@ -391,8 +391,8 @@ Protected Class TestGroup
 		        End If
 		        errorMessage = errorMessage + "."
 		        
-		        If err.Reason <> "" Then
-		          errorMessage = errorMessage + &u0A + "Message: " + err.Reason
+		        If err.Message <> "" Then
+		          errorMessage = errorMessage + &u0A + "Message: " + err.Message
 		        End If
 		        Assert.Fail(errorMessage)
 		        

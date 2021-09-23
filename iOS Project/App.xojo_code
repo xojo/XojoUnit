@@ -4,6 +4,8 @@ Inherits MobileApplication
 	#tag CompatibilityFlags = TargetIOS
 	#tag Event
 		Function UnhandledException(exc As RuntimeException) As Boolean
+		  #Pragma Unused exc
+		  
 		  Break
 		End Function
 	#tag EndEvent

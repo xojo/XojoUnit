@@ -28,6 +28,7 @@ Begin WebPage XojoUnitTestPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebRectangle Rectangle1
       BackgroundColor =   &cFFFFFF00
@@ -588,6 +589,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
       Scope           =   0
@@ -622,6 +624,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
       Scope           =   0
@@ -632,7 +635,7 @@ Begin WebPage XojoUnitTestPage
       Tooltip         =   ""
       Top             =   274
       Visible         =   True
-      Width           =   284
+      Width           =   327
       _mPanelIndex    =   -1
    End
    Begin WebRectangle Rectangle2
@@ -645,7 +648,7 @@ Begin WebPage XojoUnitTestPage
       Indicator       =   ""
       LayoutDirection =   0
       LayoutType      =   0
-      Left            =   554
+      Left            =   593
       LockBottom      =   True
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -658,7 +661,7 @@ Begin WebPage XojoUnitTestPage
       Tooltip         =   ""
       Top             =   274
       Visible         =   True
-      Width           =   326
+      Width           =   287
       _mDesignHeight  =   0
       _mDesignWidth   =   0
       _mPanelIndex    =   -1
@@ -672,7 +675,7 @@ Begin WebPage XojoUnitTestPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   565
+         Left            =   604
          LockBottom      =   False
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -693,7 +696,7 @@ Begin WebPage XojoUnitTestPage
          Top             =   274
          Underline       =   False
          Visible         =   True
-         Width           =   305
+         Width           =   266
          _mPanelIndex    =   -1
       End
       Begin WebLabel TestNameLabel
@@ -706,7 +709,7 @@ Begin WebPage XojoUnitTestPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   574
+         Left            =   613
          LockBottom      =   False
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -740,7 +743,7 @@ Begin WebPage XojoUnitTestPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   574
+         Left            =   613
          LockBottom      =   False
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -774,7 +777,7 @@ Begin WebPage XojoUnitTestPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   574
+         Left            =   613
          LockBottom      =   False
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -808,7 +811,7 @@ Begin WebPage XojoUnitTestPage
          Index           =   -2147483648
          Indicator       =   ""
          Italic          =   False
-         Left            =   697
+         Left            =   736
          LockBottom      =   False
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -842,7 +845,7 @@ Begin WebPage XojoUnitTestPage
          Hint            =   ""
          Index           =   -2147483648
          Indicator       =   ""
-         Left            =   565
+         Left            =   604
          LockBottom      =   True
          LockedInPosition=   False
          LockHorizontal  =   False
@@ -862,7 +865,7 @@ Begin WebPage XojoUnitTestPage
          Tooltip         =   ""
          Top             =   425
          Visible         =   True
-         Width           =   305
+         Width           =   266
          _mPanelIndex    =   -1
       End
    End
@@ -1061,6 +1064,8 @@ End
 #tag Events TestGroupList
 	#tag Event
 		Sub SelectionChanged(Rows() as Integer)
+		  #Pragma Unused Rows
+		  
 		  TestList.RemoveAllRows
 		  
 		  Var row As Integer
@@ -1098,6 +1103,8 @@ End
 #tag Events TestList
 	#tag Event
 		Sub SelectionChanged(Rows() as Integer)
+		  #Pragma Unused Rows
+		  
 		  Var row As Integer = Me.SelectedRowIndex
 		  
 		  If row < 0 Then Return

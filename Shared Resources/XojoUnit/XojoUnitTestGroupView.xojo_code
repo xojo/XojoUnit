@@ -8,7 +8,7 @@ Begin MobileScreen XojoUnitTestGroupView
    Left            =   0
    TabBarVisible   =   True
    TabIcon         =   0
-   TintColor       =   ""
+   TintColor       =   0
    Title           =   "XojoUnit"
    Top             =   0
    Begin iOSMobileTable TestGroupsTable
@@ -91,7 +91,7 @@ End
 		    cellData.DetailText = g.TestCount.ToString + " tests, " _
 		    + g.PassedTestCount.ToString + " passed, " _
 		    + g.FailedTestCount.ToString + " failed"
-		    cellData.AccessoryType = MobileTableCellData.AccessoryTypes.Detail
+		    cellData.AccessoryType = MobileTableCellData.AccessoryTypes.Info
 		    cellData.Tag = g
 		    
 		    TestGroupsTable.AddRow(0, cellData)

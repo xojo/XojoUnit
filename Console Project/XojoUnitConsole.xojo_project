@@ -1,5 +1,5 @@
 Type=Console
-RBProjectVersion=2020.02
+RBProjectVersion=2021.021
 MinIDEVersion=20070100
 OrigIDEVersion=00000000
 Class=App;App.xojo_code;&h000000003B77B45F;&h0000000000000000;false
@@ -24,7 +24,7 @@ Class=OptionUnrecognizedKeyException;../Shared Resources/OptionParser/OptionUnre
 Class=XojoUnitSuperClassTests;../Shared Resources/XojoUnit/Tests/XojoUnitSuperClassTests.xojo_code;&h000000003A8067FF;&h0000000044C729E7;false
 Class=XojoUnitTestFailedException;../Shared Resources/XojoUnit/TestFramework/XojoUnitTestFailedException.xojo_code;&h00000000638227FF;&h000000003E1A9B41;false
 MajorVersion=6
-MinorVersion=6
+MinorVersion=7
 SubVersion=0
 NonRelease=0
 Release=3
