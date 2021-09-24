@@ -44,6 +44,10 @@ Xojo 2019 Release 2 or later is required for XojoUnit with Desktop and Console.
 
 ### Release Notes
 
+6.7.1 (___)
+
+- Added checks for Nil objects to prevent unhandled exceptions.
+
 6.7 (Sept. 23, 2021)
 
 - API 2.0.
