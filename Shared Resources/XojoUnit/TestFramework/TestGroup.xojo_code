@@ -23,6 +23,13 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub CalculateTestDuration()
+		  If CurrentTestResult Is Nil Then
+		    //
+		    // Don't do anything
+		    //
+		    Return
+		  End If
+		  
 		  Var elapsed As Double
 		  
 		  If CurrentClone Is Nil Then
@@ -353,6 +360,13 @@ Protected Class TestGroup
 		      IsTestRunning = True
 		      method.Invoke(CurrentClone)
 		      IsTestRunning = False
+		      
+		      If CurrentClone Is Nil Then
+		        //
+		        // Can happen if DoEvents is invoked and the test stopped
+		        //
+		        Return
+		      End If
 		      
 		      If CurrentClone.IsAwaitingAsync Then
 		        Return // The next round will resume testing
