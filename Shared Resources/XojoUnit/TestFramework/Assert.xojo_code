@@ -781,6 +781,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub Fail(failMessage As String, message As String = "")
+		  If Group Is Nil Or Group.CurrentTestResult Is Nil Then
+		    //
+		    // Don't do anything
+		    //
+		    Return
+		  End If
+		  
 		  Failed = True
 		  Group.CurrentTestResult.Result = TestResult.Failed
 		  FailCount = FailCount + 1
@@ -868,6 +875,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub Message(msg As String)
+		  If Group Is Nil Or Group.CurrentTestResult Is Nil Then
+		    //
+		    // Don't do anything
+		    //
+		    Return
+		  End If
+		  
 		  msg = msg.Trim
 		  If msg.IsEmpty Then
 		    Return
@@ -883,6 +897,13 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub Pass(message As String = "")
+		  If Group Is Nil Or Group.CurrentTestResult Is Nil Then
+		    //
+		    // Don't do anything
+		    //
+		    Return
+		  End If
+		  
 		  Failed = False
 		  If Group.CurrentTestResult.Result <> TestResult.Failed Then
 		    Group.CurrentTestResult.Result = TestResult.Passed
