@@ -477,6 +477,28 @@ Inherits XojoUnitSuperClassTests
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub ObjectSpyTest()
+		  Var test As New ObjectSpyTester
+		  Var runner As New ObjectSpy(test)
+		  
+		  Assert.AreEqual 3, runner.Add(1, 2).IntegerValue
+		  Assert.AreEqual 6, runner.Add(1, 2, 3).IntegerValue
+		  
+		  runner.Add(4, 5)
+		  Assert.AreEqual 9, runner.Result.IntegerValue
+		  
+		  runner.Result = 14
+		  Assert.AreEqual 14, runner.Result.IntegerValue
+		  
+		  Assert.AreEqual 9, runner.SharedAdd(4, 5).IntegerValue
+		  
+		  runner.SharedResult = 23
+		  Assert.AreEqual 23, runner.SharedResult.IntegerValue
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub OverriddenMethodTest()
 		  Assert.Pass "This subclass method executed as intended"
 		End Sub
