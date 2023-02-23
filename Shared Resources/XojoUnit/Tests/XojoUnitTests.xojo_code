@@ -479,22 +479,26 @@ Inherits XojoUnitSuperClassTests
 	#tag Method, Flags = &h0
 		Sub ObjectSpyTest()
 		  Var test As New ObjectSpyTester
-		  Var runner As New ObjectSpy(test)
+		  Var spy As New ObjectSpy(test)
 		  
-		  Assert.AreEqual 3, runner.Add(1, 2).IntegerValue
-		  Assert.AreEqual 6, runner.Add(1, 2, 3).IntegerValue
+		  Assert.AreEqual 3, spy.Add(1, 2).IntegerValue
+		  Assert.AreEqual 6, spy.Add(1, 2, 3).IntegerValue
 		  
-		  runner.Add(4, 5)
-		  Assert.AreEqual 9, runner.Result.IntegerValue
+		  spy.Add(4, 5)
+		  Assert.AreEqual 9, spy.Result.IntegerValue
 		  
-		  runner.Result = 14
-		  Assert.AreEqual 14, runner.Result.IntegerValue
+		  spy.Result = 14
+		  Assert.AreEqual 14, spy.Result.IntegerValue
 		  
-		  Assert.AreEqual 9, runner.SharedAdd(4, 5).IntegerValue
+		  Assert.AreEqual 9, spy.SharedAdd(4, 5).IntegerValue
 		  
-		  runner.SharedResult = 23
-		  Assert.AreEqual 23, runner.SharedResult.IntegerValue
+		  spy.SharedResult = 23
+		  Assert.AreEqual 23, spy.SharedResult.IntegerValue
 		  
+		  
+		  Var arr() As Dictionary
+		  arr = spy.AddToArray(arr)
+		  Assert.AreEqual 1, CType(arr.Count, Integer)
 		End Sub
 	#tag EndMethod
 

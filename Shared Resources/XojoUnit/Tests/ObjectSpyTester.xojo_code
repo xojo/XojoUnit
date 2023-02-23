@@ -20,6 +20,14 @@ Protected Class ObjectSpyTester
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function AddToArray(arr() As Dictionary) As Dictionary()
+		  arr.Add New Dictionary
+		  Return arr
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Shared Function SharedAdd(x As Integer, y As Auto) As Integer
 		  Return x + y
 		  
