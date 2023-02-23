@@ -463,6 +463,46 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub ObjectSpyTest()
+		  Var test As New ObjectSpyTester
+		  Var spy As New ObjectSpy(test)
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    spy.DoesNotExist
+		    Assert.Pass
+		  Catch err As InvalidArgumentException
+		    Assert.Fail "Method doesn't exist"
+		  End Try
+		  #Pragma BreakOnExceptions Default
+		  IncrementFailCountIfFail
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    spy.Add 3, True
+		    Assert.Pass
+		  Catch err As InvalidArgumentException
+		    Assert.Fail "Wrong types of parameters"
+		  End Try
+		  #Pragma BreakOnExceptions Default
+		  IncrementFailCountIfFail
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    spy.Add 3, 4, 5, 6, 7
+		    Assert.Pass
+		  Catch err As InvalidArgumentException
+		    Assert.Fail "Too many parameters"
+		  End Try
+		  #Pragma BreakOnExceptions Default
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub PassIfFailed()
 		  If FailCount = ExpectedFailCount Then
