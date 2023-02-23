@@ -44,7 +44,7 @@ Xojo 2019 Release 2 or later is required for XojoUnit with Desktop and Console.
 
 ## Release Notes
 
-### 6.8 (\_\_\_)
+### 6.8 (Feb. 23, 2023)
 
 - Introduced `ObjectSpy` class.
 
