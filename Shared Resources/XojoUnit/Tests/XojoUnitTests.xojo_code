@@ -499,6 +499,8 @@ Inherits XojoUnitSuperClassTests
 		  Var arr() As Dictionary
 		  arr = spy.AddToArray(arr)
 		  Assert.AreEqual 1, CType(arr.Count, Integer)
+		  
+		  Assert.AreEqual 6, spy.AddParams(Array(1, 2, 3)).IntegerValue
 		End Sub
 	#tag EndMethod
 

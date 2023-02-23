@@ -20,6 +20,19 @@ Protected Class ObjectSpyTester
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function AddParams(ParamArray values() As Integer) As Integer
+		  Var sum As Integer
+		  
+		  For Each value As Integer In values
+		    sum = sum + value
+		  Next
+		  
+		  Return sum
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function AddToArray(arr() As Dictionary) As Dictionary()
 		  arr.Add New Dictionary
 		  Return arr
