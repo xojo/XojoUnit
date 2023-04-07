@@ -1,5 +1,24 @@
 #tag Class
 Protected Class TestGroup
+	#tag Method, Flags = &h21
+		Private Function ArrayToString(values() As String, specs() As Pair) As String
+		  Var out() As String
+		  
+		  For i As Integer = 0 To values.LastIndex
+		    Var spec As Pair = specs(i)
+		    Var length As Integer = spec.Left
+		    Var padToLeft As Boolean = spec.Right
+		    
+		    Var value As String = values(i)
+		    
+		    out.Add Pad(value, length, padToLeft)
+		  Next
+		  
+		  Return String.FromArray(out, " ")
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub AsyncAwait(maxSeconds As Integer)
 		  If IsRunning Then
@@ -19,6 +38,13 @@ Protected Class TestGroup
 		  
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function BenchmarkSorter(b1 As BenchmarkResult, b2 As BenchmarkResult) As Integer
+		  Return b1.IterationsPerSecond - b2.IterationsPerSecond
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -58,6 +84,7 @@ Protected Class TestGroup
 		    End If
 		    tr.Message = ""
 		    tr.Duration = 0
+		    tr.Benchmarks.RemoveAll
 		  Next
 		  CurrentTestResult = Nil
 		  CurrentResultIndex = 0
@@ -87,6 +114,7 @@ Protected Class TestGroup
 		  mAssert.Group = Self
 		  
 		  GetTestMethods
+		  GetCloneConstructor
 		End Sub
 	#tag EndMethod
 
@@ -111,7 +139,7 @@ Protected Class TestGroup
 		  //
 		  // Skip certain props all the time
 		  //
-		  Var skipProps() As String = Array("CurrentClone", "TestTimers")
+		  Var skipProps() As String = Array("CurrentClone", "TestTimers", "mBench")
 		  
 		  //
 		  // Since computed properties can have side effects, do them first
@@ -152,6 +180,8 @@ Protected Class TestGroup
 		    
 		  Loop Until doComputed = False
 		  
+		  mBench = New BenchmarkResult(Self)
+		  
 		  IsClone = True
 		  RaiseEvent Setup
 		End Sub
@@ -179,6 +209,21 @@ Protected Class TestGroup
 	#tag Method, Flags = &h1
 		Protected Sub ErrorIf(condition As Boolean, message As String)
 		  Assert.IsFalse(condition, message)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub GetCloneConstructor()
+		  If CloneConstructor Is Nil Then
+		    Var myInfo As Introspection.TypeInfo = Introspection.GetType(Self)
+		    Var constructors() As Introspection.ConstructorInfo = myInfo.GetConstructors
+		    For Each c As Introspection.ConstructorInfo In constructors
+		      If c.GetParameters.LastIndex = 0 Then
+		        CloneConstructor = c
+		        Exit For c
+		      End If
+		    Next c
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -283,6 +328,95 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function Pad(s As String, length As Integer, padToLeft As Boolean) As String
+		  Static spaces As String = " "
+		  
+		  While spaces.Bytes < length
+		    spaces = spaces + spaces
+		  Wend
+		  
+		  Var padded As String
+		  
+		  If padToLeft Then
+		    padded = s + spaces
+		    padded = padded.Left(length)
+		  Else
+		    padded = spaces + s
+		    padded = padded.Right(length)
+		  End If
+		  
+		  Return padded
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub ReportBenchmarks()
+		  Var benchmarks() As BenchmarkResult
+		  
+		  If CurrentClone IsA Object And CurrentClone.CurrentTestResult IsA Object Then
+		    For Each benchmark As BenchmarkResult In CurrentClone.CurrentTestResult.Benchmarks
+		      benchmarks.Add benchmark
+		    Next
+		  End If
+		  
+		  If benchmarks.Count = 0 Then
+		    Return
+		  End If
+		  
+		  benchmarks.Sort AddressOf BenchmarkSorter
+		  
+		  Var columnSpecs() As Pair = Array( _
+		  12 : True, _
+		  9  : False, _
+		  7 : False, _
+		  8 : False, _
+		  10 : False, _
+		  20 : True _
+		  )
+		  
+		  Var columns() As String = Array( _
+		  "Name", _
+		  "Iter", _
+		  "Dur ms", _
+		  "Avg/ms", _
+		  "IPS" _
+		  )
+		  
+		  Var header As String = ArrayToString(columns, columnSpecs)
+		  Assert.Message header
+		  
+		  Var firstBenchmark As BenchmarkResult = benchmarks(benchmarks.LastIndex)
+		  
+		  While benchmarks.Count <> 0
+		    Var benchmark As BenchmarkResult = benchmarks.Pop
+		    
+		    Var duration As Double = benchmark.DurationMicroseconds / 1000.0
+		    Var avg As Double = benchmark.Iterations / duration
+		    
+		    columns.RemoveAll
+		    
+		    columns.Add benchmark.Name
+		    columns.Add benchmark.Iterations.ToString("#,##0")
+		    columns.Add duration.ToString("#,##0.0")
+		    columns.Add avg.ToString("#,##0.0")
+		    columns.Add benchmark.IterationsPerSecond.ToString("#,##0")
+		    
+		    If Not (benchmark Is firstBenchmark) Then
+		      Var slower As Double = firstBenchmark.IterationsPerSecond / benchmark.IterationsPerSecond
+		      columns.Add "(" + slower.ToString("#,##0.0") + "X)"
+		    End If
+		    
+		    Var result As String = ArrayToString(columns, columnSpecs)
+		    Assert.Message result
+		  Wend
+		  
+		  Assert.Pass
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub ResetTestDuration()
 		  TestDuration = System.Microseconds
 		End Sub
@@ -308,22 +442,10 @@ Protected Class TestGroup
 		    Return
 		  End If
 		  
-		  If UseConstructor Is Nil Then
-		    Var myInfo As Introspection.TypeInfo = Introspection.GetType(Self)
-		    Var constructors() As Introspection.ConstructorInfo = myInfo.GetConstructors
-		    For Each c As Introspection.ConstructorInfo In constructors
-		      If c.GetParameters.LastIndex = 0 Then
-		        UseConstructor = c
-		        Exit For c
-		      End If
-		    Next c
-		  End If
-		  
-		  Var constructorParams() As Variant
-		  constructorParams.Add Self
-		  
 		  If CurrentClone IsA Object Then
 		    CalculateTestDuration
+		    ReportBenchmarks
+		    
 		    If CurrentClone.IsAwaitingAsync Then
 		      Assert.Fail "Asynchronous test did not complete in time"
 		    End If
@@ -353,7 +475,10 @@ Protected Class TestGroup
 		      //
 		      // Get a clone
 		      //
-		      CurrentClone = useConstructor.Invoke(constructorParams)
+		      Var constructorParams() As Variant
+		      constructorParams.Add Self
+		      
+		      CurrentClone = CloneConstructor.Invoke(constructorParams)
 		      
 		      ResetTestDuration
 		      Assert.FailCount = 0
@@ -501,6 +626,19 @@ Protected Class TestGroup
 		Protected Assert As Assert
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  Return mBench
+			End Get
+		#tag EndGetter
+		Protected Bench As BenchmarkResult
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private CloneConstructor As Introspection.ConstructorInfo
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
@@ -595,6 +733,10 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h21
 		Private mAssert As Assert
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mBench As BenchmarkResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -722,10 +864,6 @@ Protected Class TestGroup
 
 	#tag Property, Flags = &h21
 		Private TestTimers As Dictionary
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private UseConstructor As Introspection.ConstructorInfo
 	#tag EndProperty
 
 

@@ -716,7 +716,7 @@ Begin Window XojoUnitTestWindow
          TabStop         =   True
          Text            =   ""
          TextColor       =   &c00000000
-         TextFont        =   "System"
+         TextFont        =   "kMonoFont"
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   346
@@ -903,6 +903,12 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
+		  // Set UI stuff
+		  TestResultsArea.TextFont = MonoFont
+		  If MonoFont <> "System" Then
+		    TestResultsArea.FontSize = 12
+		  End If
+		  
 		  Controller.LoadTestGroups
 		  
 		  PopulateTestGroups
@@ -976,37 +982,37 @@ End
 
 	#tag MenuHandler
 		Function EditSelectAllGroups() As Boolean Handles EditSelectAllGroups.Action
-			SelectAllGroups(True, False)
-			
-			Return True
-			
+		  SelectAllGroups(True, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditUnselectAllGroups() As Boolean Handles EditUnselectAllGroups.Action
-			SelectAllGroups(False, False)
-			
-			Return True
-			
+		  SelectAllGroups(False, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function FileRunTests() As Boolean Handles FileRunTests.Action
-			RunTests
-			
-			Return True
-			
+		  RunTests
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function HelpAboutXojoUnit() As Boolean Handles HelpAboutXojoUnit.Action
-			XojoUnitAboutWindow.Show
-			
-			Return True
-			
+		  XojoUnitAboutWindow.Show
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
@@ -1397,6 +1403,46 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private mMonoFont As String
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  If mMonoFont = "" Then
+			    Var fonts() As String
+			    For i As Integer = 0 To System.FontCount - 1
+			      fonts.Add System.FontAt(i)
+			    Next i
+			    
+			    Var preferredFonts() As String = Array( _
+			    "JetBrains Mono NL", _
+			    "JetBrains Mono", _
+			    "Consolas", _
+			    "Source Code Pro", _
+			    "Monaco", _
+			    "Courier New", _
+			    "Courier" _
+			    )
+			    
+			    mMonoFont = "System" // Fallback
+			    
+			    For Each preferredFont As String In preferredFonts
+			      If fonts.IndexOf(preferredFont) <> -1 Then
+			        mMonoFont = preferredFont
+			        Exit
+			      End If
+			    Next
+			  End If
+			  
+			  Return mMonoFont
+			  
+			End Get
+		#tag EndGetter
+		Private MonoFont As String
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
 		Private RunUntilFail As Boolean
 	#tag EndProperty
 
@@ -1564,7 +1610,7 @@ End
 		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.DrawingColor = RGB(237, 243, 254) '&cD0D4FF
+		      g.DrawingColor = Color.RGB(237, 243, 254) '&cD0D4FF
 		      g.FillRectangle(0, 0, g.Width, g.Height)
 		    End If
 		    

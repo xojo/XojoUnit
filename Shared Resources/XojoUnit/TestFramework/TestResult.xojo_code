@@ -1,6 +1,10 @@
 #tag Class
 Protected Class TestResult
 	#tag Property, Flags = &h0
+		Benchmarks() As BenchmarkResult
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Duration As Double
 	#tag EndProperty
 
@@ -76,7 +80,7 @@ Protected Class TestResult
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -92,7 +96,7 @@ Protected Class TestResult
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -108,7 +112,7 @@ Protected Class TestResult
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
