@@ -24,7 +24,7 @@ Begin Window XojoUnitTestWindow
    Resizeable      =   True
    Title           =   "XojoUnit"
    Visible         =   True
-   Width           =   800
+   Width           =   928
    Begin GroupBox GroupBoxes
       AutoDeactivate  =   True
       Bold            =   False
@@ -52,7 +52,7 @@ Begin Window XojoUnitTestWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   494
+      Width           =   622
       Begin Label Labels
          AutoDeactivate  =   True
          Bold            =   False
@@ -571,7 +571,7 @@ Begin Window XojoUnitTestWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   500
+      Width           =   628
       Begin Label TestNameLabel
          AutoDeactivate  =   True
          Bold            =   True
@@ -605,7 +605,7 @@ Begin Window XojoUnitTestWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   242
+         Width           =   370
       End
       Begin Label Labels
          AutoDeactivate  =   True
@@ -725,7 +725,7 @@ Begin Window XojoUnitTestWindow
          UnicodeMode     =   0
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   463
+         Width           =   591
       End
       Begin Label Labels
          AutoDeactivate  =   True
@@ -773,7 +773,7 @@ Begin Window XojoUnitTestWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
-         Left            =   667
+         Left            =   795
          LockBottom      =   False
          LockedInPosition=   True
          LockLeft        =   False
@@ -830,7 +830,7 @@ Begin Window XojoUnitTestWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   764
+      Left            =   892
       LockBottom      =   False
       LockedInPosition=   True
       LockLeft        =   False
