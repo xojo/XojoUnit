@@ -368,10 +368,10 @@ Protected Class TestGroup
 		  
 		  Var columnSpecs() As Pair = Array( _
 		  12 : True, _
-		  9  : False, _
-		  7 : False, _
-		  8 : False, _
+		  10  : False, _
+		  9 : False, _
 		  10 : False, _
+		  12 : False, _
 		  20 : True _
 		  )
 		  
