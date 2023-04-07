@@ -41,58 +41,6 @@ Inherits TestGroup
 		    Assert.AreEqual kExpected, result, testName
 		  Next
 		  
-		  'Var testName As String
-		  '
-		  'testName = "Concat"
-		  'Bench.Start testName
-		  'While Bench.N > 0
-		  'result = ""
-		  '
-		  'While result.Length < kRepetitions
-		  'result = result + kString
-		  'Wend
-		  'Wend
-		  'Assert.AreEqual kExpected, result, testName
-		  '
-		  'testName = "Array Add"
-		  'Bench.Start testName
-		  'While Bench.N > 0
-		  'result = ""
-		  '
-		  'Var arr() As String
-		  'For i As Integer = 1 to kRepetitions
-		  'arr.Add kString
-		  'Next
-		  '
-		  'result = String.FromArray(arr, "")
-		  'Wend
-		  'Assert.AreEqual kExpected, result, testName
-		  '
-		  'testName = "Array Fill"
-		  'Bench.Start testName
-		  'While Bench.N > 0
-		  'result = ""
-		  '
-		  'Var lastIndex As Integer = kRepetitions - 1
-		  '
-		  'Var arr() As String
-		  'arr.ResizeTo lastIndex
-		  '
-		  'For i As Integer = 0 to lastIndex
-		  'arr(i) = kString
-		  'Next
-		  '
-		  'result = String.FromArray(arr, "")
-		  'Wend
-		  'Assert.AreEqual kExpected, result, testName
-		  '
-		  'testName = "Array Join"
-		  'Bench.Start testName
-		  'While Bench.N > 0
-		  'result = Repeat_ArrayJoin(kString, kRepetitions)
-		  'Wend
-		  'Assert.AreEqual kExpected, result, testName
-		  
 		End Sub
 	#tag EndMethod
 
