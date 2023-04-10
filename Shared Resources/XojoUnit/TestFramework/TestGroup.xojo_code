@@ -41,6 +41,17 @@ Protected Class TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub Benchmarker_Finished(sender As Benchmarker, result As BenchmarkResult)
+		  #Pragma Unused sender
+		  
+		  If CurrentTestResult IsA Object Then
+		    CurrentTestResult.Benchmarks.Add result
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function BenchmarkSorter(b1 As BenchmarkResult, b2 As BenchmarkResult) As Integer
 		  Return b2.IterationsPerSecond - b1.IterationsPerSecond // Reverse
 		  
@@ -180,7 +191,8 @@ Protected Class TestGroup
 		    
 		  Loop Until doComputed = False
 		  
-		  mBench = New BenchmarkResult(Self)
+		  mBench = New Benchmarker
+		  AddHandler mBench.Finished, WeakAddressOf Benchmarker_Finished
 		  
 		  IsClone = True
 		  RaiseEvent Setup
@@ -201,6 +213,11 @@ Protected Class TestGroup
 		      RemoveHandler RunTestsTimer.Action, WeakAddressOf RunTestsTimer_Action
 		    #EndIf
 		    RunTestsTimer = Nil
+		  End If
+		  
+		  If mBench IsA Object Then
+		    RemoveHandler mBench.Finished, WeakAddressOf Benchmarker_Finished
+		    mBench = Nil
 		  End If
 		  
 		End Sub
@@ -630,7 +647,7 @@ Protected Class TestGroup
 			  Return mBench
 			End Get
 		#tag EndGetter
-		Protected Bench As BenchmarkResult
+		Protected Bench As Benchmarker
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -734,7 +751,7 @@ Protected Class TestGroup
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mBench As BenchmarkResult
+		Private mBench As Benchmarker
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
