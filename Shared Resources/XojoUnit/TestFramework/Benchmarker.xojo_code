@@ -29,9 +29,7 @@ Protected Class Benchmarker
 		    Return -1
 		  End If
 		  
-		  Const kInsanelyHighNumber As Integer = &h7FFFFFFFFFFFFFFF
-		  Return kInsanelyHighNumber
-		  
+		  Return Iterations
 		End Function
 	#tag EndMethod
 
