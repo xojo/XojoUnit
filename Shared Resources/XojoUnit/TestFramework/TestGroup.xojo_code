@@ -42,7 +42,7 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function BenchmarkSorter(b1 As BenchmarkResult, b2 As BenchmarkResult) As Integer
-		  Return b1.IterationsPerSecond - b2.IterationsPerSecond
+		  Return b2.IterationsPerSecond - b1.IterationsPerSecond // Reverse
 		  
 		End Function
 	#tag EndMethod
@@ -355,9 +355,7 @@ Protected Class TestGroup
 		  Var benchmarks() As BenchmarkResult
 		  
 		  If CurrentClone IsA Object And CurrentClone.CurrentTestResult IsA Object Then
-		    For Each benchmark As BenchmarkResult In CurrentClone.CurrentTestResult.Benchmarks
-		      benchmarks.Add benchmark
-		    Next
+		    benchmarks = CurrentClone.CurrentTestResult.Benchmarks
 		  End If
 		  
 		  If benchmarks.Count = 0 Then
@@ -379,27 +377,27 @@ Protected Class TestGroup
 		  "Name", _
 		  "Iter", _
 		  "Dur ms", _
-		  "Avg/ms", _
-		  "IPS" _
+		  "µs/It", _
+		  "It/s" _
 		  )
 		  
 		  Var header As String = ArrayToString(columns, columnSpecs)
 		  Assert.Message header
 		  
-		  Var firstBenchmark As BenchmarkResult = benchmarks(benchmarks.LastIndex)
+		  Var firstBenchmark As BenchmarkResult = benchmarks(0)
 		  
-		  While benchmarks.Count <> 0
-		    Var benchmark As BenchmarkResult = benchmarks.Pop
+		  For i As Integer = 0 To benchmarks.LastIndex
+		    Var benchmark As BenchmarkResult = benchmarks(i)
 		    
 		    Var duration As Double = benchmark.DurationMicroseconds / 1000.0
-		    Var avg As Double = benchmark.Iterations / duration
+		    Var µspi As Double = benchmark.DurationMicroseconds / benchmark.Iterations
 		    
 		    columns.RemoveAll
 		    
 		    columns.Add benchmark.Name
 		    columns.Add benchmark.Iterations.ToString("#,##0")
 		    columns.Add duration.ToString("#,##0.0")
-		    columns.Add avg.ToString("#,##0.0")
+		    columns.Add µspi.ToString("#,##0.0")
 		    columns.Add benchmark.IterationsPerSecond.ToString("#,##0")
 		    
 		    If Not (benchmark Is firstBenchmark) Then
@@ -409,7 +407,7 @@ Protected Class TestGroup
 		    
 		    Var result As String = ArrayToString(columns, columnSpecs)
 		    Assert.Message result
-		  Wend
+		  Next
 		  
 		  Assert.Pass
 		  
