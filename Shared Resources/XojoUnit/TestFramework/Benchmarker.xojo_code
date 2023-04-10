@@ -54,8 +54,8 @@ Protected Class Benchmarker
 	#tag EndHook
 
 
-	#tag Property, Flags = &h0
-		Iterations As Integer
+	#tag Property, Flags = &h21
+		Private Iterations As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
