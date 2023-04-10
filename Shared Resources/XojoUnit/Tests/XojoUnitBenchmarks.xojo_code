@@ -46,6 +46,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_ArrayAdd(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var arr() As String
 		  
 		  For i As Integer = 1 to repetitions
@@ -59,6 +66,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_ArrayFill(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var lastIndex As Integer = repetitions - 1
 		  
 		  Var arr() As String
@@ -75,6 +89,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_ArrayJoin(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var arr() As String
 		  arr.ResizeTo repetitions
 		  Return String.FromArray(arr, s)
@@ -84,6 +105,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_Concat(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var result As String = s
 		  Var targetLength As Integer = s.Length * repetitions
 		  
@@ -98,6 +126,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_Doubler(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var result As String = s
 		  
 		  Var currentLength As Integer = result.Bytes
@@ -119,6 +154,13 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h21
 		Private Function Repeat_DoublerMB(s As String, repetitions As Integer) As String
+		  #If Not DebugBuild Then
+		    #Pragma BackgroundTasks False
+		    #Pragma BoundsChecking False
+		    #Pragma NilObjectChecking False
+		    #Pragma StackOverflowChecking False
+		  #EndIf
+		  
 		  Var currentLength As Integer = s.Bytes
 		  Var targetLength As Integer = currentLength * repetitions
 		  Var halfLength As Integer = (targetLength + 1) \ 2
