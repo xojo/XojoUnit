@@ -410,7 +410,6 @@ Protected Class TestGroup
 		    Var benchmark As BenchmarkResult = benchmarks(i)
 		    
 		    Var duration As Double = benchmark.DurationMicroseconds / 1000.0
-		    Var µspi As Double = benchmark.DurationMicroseconds / benchmark.Iterations
 		    
 		    columns.RemoveAll
 		    
