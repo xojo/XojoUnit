@@ -387,7 +387,8 @@ Protected Class TestGroup
 		  9 : False, _
 		  10 : False, _
 		  12 : False, _
-		  20 : True _
+		  8 : False, _
+		  8 : False _
 		  )
 		  
 		  Var columns() As String = Array( _
@@ -395,7 +396,9 @@ Protected Class TestGroup
 		  "Iter", _
 		  "Dur ms", _
 		  "µs/It", _
-		  "It/s" _
+		  "It/s", _
+		  "Frm Prev", _
+		  "Frm Best" _
 		  )
 		  
 		  Var header As String = ArrayToString(columns, columnSpecs)
@@ -417,9 +420,13 @@ Protected Class TestGroup
 		    columns.Add µspi.ToString("#,##0.0")
 		    columns.Add benchmark.IterationsPerSecond.ToString("#,##0")
 		    
-		    If Not (benchmark Is firstBenchmark) Then
-		      Var slower As Double = firstBenchmark.IterationsPerSecond / benchmark.IterationsPerSecond
-		      columns.Add "(" + slower.ToString("#,##0.0") + "X)"
+		    If benchmark <> firstBenchmark Then
+		      Var prevBenchmark As BenchmarkResult = benchmarks(i - 1)
+		      Var slower As Double = prevBenchmark.IterationsPerSecond / benchmark.IterationsPerSecond
+		      columns.Add slower.ToString("#,##0.00") + "X"
+		      
+		      slower = firstBenchmark.IterationsPerSecond / benchmark.IterationsPerSecond
+		      columns.Add slower.ToString("#,##0.00") + "X"
 		    End If
 		    
 		    Var result As String = ArrayToString(columns, columnSpecs)

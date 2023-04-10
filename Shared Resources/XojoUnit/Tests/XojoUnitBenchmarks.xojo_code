@@ -33,7 +33,7 @@ Inherits TestGroup
 		    Var testName As String = test.Left
 		    Var repeater As RepeatDelegate = test.Right
 		    
-		    Bench.Start testName
+		    Bench.Start testName, 500
 		    While Bench.N > 0
 		      result = repeater.Invoke(kString, kRepetitions)
 		    Wend

@@ -4,9 +4,11 @@ Protected Class Benchmarker
 		Function N() As Integer
 		  Iterations = Iterations + 1
 		  
-		  Var remaining As Integer = TargetMicroseconds - System.Microseconds
+		  Var currentMicroseconds As Double = System.Microseconds
 		  
-		  If Remaining <= 0 Then
+		  Var remaining As Double = TargetMicroseconds - currentMicroseconds
+		  
+		  If remaining <= 0.0 Then
 		    //
 		    // We are done
 		    //
@@ -14,7 +16,7 @@ Protected Class Benchmarker
 		    
 		    result.Name = Name
 		    result.Iterations = Iterations
-		    result.DurationMicroseconds = (System.Microseconds - StartMicroseconds)
+		    result.DurationMicroseconds = (currentMicroseconds - StartMicroseconds)
 		    
 		    RaiseEvent Finished(result)
 		    
@@ -27,7 +29,8 @@ Protected Class Benchmarker
 		    Return -1
 		  End If
 		  
-		  Return TargetMicroseconds
+		  Const kInsanelyHighNumber As Integer = &h7FFFFFFFFFFFFFFF
+		  Return kInsanelyHighNumber
 		  
 		End Function
 	#tag EndMethod
@@ -66,7 +69,7 @@ Protected Class Benchmarker
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private TargetMicroseconds As Integer
+		Private TargetMicroseconds As Double
 	#tag EndProperty
 
 
