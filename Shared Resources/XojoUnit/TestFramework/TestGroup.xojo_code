@@ -417,7 +417,7 @@ Protected Class TestGroup
 		    columns.Add benchmark.Name
 		    columns.Add benchmark.Iterations.ToString("#,##0")
 		    columns.Add duration.ToString("#,##0.0")
-		    columns.Add µspi.ToString("#,##0.0")
+		    columns.Add benchmark.MicrosecondsPerIteration.ToString("#,##0.0")
 		    columns.Add benchmark.IterationsPerSecond.ToString("#,##0")
 		    
 		    If benchmark <> firstBenchmark Then
