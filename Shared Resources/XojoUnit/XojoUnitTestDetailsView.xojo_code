@@ -3,12 +3,14 @@ Begin MobileScreen XojoUnitTestDetailsView
    BackButtonCaption=   ""
    Compatibility   =   ""
    ControlCount    =   0
+   Device = 2
    HasNavigationBar=   False
    LargeTitleDisplayMode=   2
    Left            =   0
+   Orientation = 1
    TabBarVisible   =   True
    TabIcon         =   0
-   TintColor       =   "&h00000000"
+   TintColor       =   &c00000000
    Title           =   ""
    Top             =   0
    Begin MobileRectangle Rectangle1
@@ -28,10 +30,10 @@ Begin MobileScreen XojoUnitTestDetailsView
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   73
       Visible         =   True
-      Width           =   280
+      Width           =   984
    End
    Begin MobileLabel Label2
       AccessibilityHint=   ""
@@ -52,7 +54,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   93
       Visible         =   True
       Width           =   100
@@ -76,7 +78,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   93
       Visible         =   True
       Width           =   200
@@ -100,7 +102,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   131
       Visible         =   True
       Width           =   100
@@ -124,7 +126,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   131
       Visible         =   True
       Width           =   828
@@ -148,7 +150,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   169
       Visible         =   True
       Width           =   100
@@ -172,7 +174,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   169
       Visible         =   True
       Width           =   187
@@ -196,7 +198,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   207
       Visible         =   True
       Width           =   100
@@ -220,7 +222,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   207
       Visible         =   True
       Width           =   187
@@ -244,7 +246,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   245
       Visible         =   True
       Width           =   100
@@ -268,7 +270,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   245
       Visible         =   True
       Width           =   187
@@ -292,7 +294,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   93
       Visible         =   True
       Width           =   100
@@ -316,7 +318,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   93
       Visible         =   True
       Width           =   187
@@ -340,7 +342,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   245
       Visible         =   True
       Width           =   187
@@ -364,7 +366,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   245
       Visible         =   True
       Width           =   132
@@ -388,7 +390,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   20
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   35
       Visible         =   True
       Width           =   100
@@ -412,8 +414,8 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   20
-      TintColor       =   ""
-      Top             =   240
+      TintColor       =   &c000000
+      Top             =   340
       Visible         =   True
       Width           =   294
    End
@@ -434,10 +436,10 @@ Begin MobileScreen XojoUnitTestDetailsView
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      TintColor       =   ""
-      Top             =   278
+      TintColor       =   &c000000
+      Top             =   378
       Visible         =   True
-      Width           =   280
+      Width           =   984
    End
    Begin MobileLabel TestNameLabel
       AccessibilityHint=   ""
@@ -458,8 +460,8 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   298
+      TintColor       =   &c000000
+      Top             =   398
       Visible         =   True
       Width           =   190
    End
@@ -474,7 +476,7 @@ Begin MobileScreen XojoUnitTestDetailsView
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   180
+      Left            =   884
       LineBreakMode   =   0
       LockedInPosition=   False
       Scope           =   0
@@ -482,8 +484,8 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   298
+      TintColor       =   &c000000
+      Top             =   398
       Visible         =   True
       Width           =   100
    End
@@ -506,8 +508,8 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   336
+      TintColor       =   &c000000
+      Top             =   436
       Visible         =   True
       Width           =   75
    End
@@ -530,10 +532,10 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   336
+      TintColor       =   &c000000
+      Top             =   436
       Visible         =   True
-      Width           =   169
+      Width           =   873
    End
    Begin MobileLabel Label12
       AccessibilityHint=   ""
@@ -554,8 +556,8 @@ Begin MobileScreen XojoUnitTestDetailsView
       TextColor       =   &c00000000
       TextFont        =   "System Bold		"
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   374
+      TintColor       =   &c000000
+      Top             =   474
       Visible         =   True
       Width           =   100
    End
@@ -580,12 +582,12 @@ Begin MobileScreen XojoUnitTestDetailsView
       Scope           =   0
       Text            =   ""
       TextColor       =   &c00000000
-      TextFont        =   ""
+      TextFont        =   "Custom	Menlo	Menlo-Regular"
       TextSize        =   0
-      TintColor       =   ""
-      Top             =   412
+      TintColor       =   &c000000
+      Top             =   512
       Visible         =   True
-      Width           =   240
+      Width           =   944
    End
    Begin MobileProgressWheel ProgressWheel1
       AccessibilityHint=   ""
@@ -597,11 +599,11 @@ Begin MobileScreen XojoUnitTestDetailsView
       ControlCount    =   0
       Enabled         =   True
       Height          =   24
-      Left            =   276
+      Left            =   980
       LockedInPosition=   False
       Scope           =   0
       Shade           =   0
-      TintColor       =   ""
+      TintColor       =   &c000000
       Top             =   35
       Visible         =   False
       Width           =   24
