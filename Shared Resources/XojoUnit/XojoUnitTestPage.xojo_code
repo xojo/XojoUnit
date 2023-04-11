@@ -2,6 +2,7 @@
 Begin WebPage XojoUnitTestPage
    AllowTabOrderWrap=   True
    Compatibility   =   ""
+   ControlCount    =   0
    ControlID       =   ""
    Enabled         =   True
    Height          =   642
@@ -28,10 +29,10 @@ Begin WebPage XojoUnitTestPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebRectangle Rectangle1
       BackgroundColor =   &cFFFFFF00
+      ControlCount    =   0
       ControlID       =   ""
       Enabled         =   True
       HasBackgroundColor=   False
@@ -580,6 +581,7 @@ Begin WebPage XojoUnitTestPage
       Indicator       =   ""
       InitialValue    =   "Test Groups	Run"
       LastAddedRowIndex=   0
+      LastRowIndex    =   0
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
@@ -615,6 +617,7 @@ Begin WebPage XojoUnitTestPage
       Indicator       =   ""
       InitialValue    =   "Test	Result"
       LastAddedRowIndex=   0
+      LastRowIndex    =   0
       Left            =   258
       LockBottom      =   True
       LockedInPosition=   False
@@ -640,6 +643,7 @@ Begin WebPage XojoUnitTestPage
    End
    Begin WebRectangle Rectangle2
       BackgroundColor =   &cFFFFFF00
+      ControlCount    =   0
       ControlID       =   ""
       Enabled         =   True
       HasBackgroundColor=   False
@@ -1083,15 +1087,6 @@ End
 		      If t.Result <> "" Then
 		        TestList.CellValueAt(TestList.LastAddedRowIndex, 0) = t.TestName
 		        TestList.CellValueAt(TestList.LastAddedRowIndex, 1) = t.Result
-		        
-		        If t.Result = TestResult.Failed Then
-		          // TestList.CellStyle(TestList.LastAddedRowIndex, 0) = FailedTestStyle
-		          // TestList.CellStyle(TestList.LastAddedRowIndex, 1) = FailedTestStyle
-		        Else
-		          // TestList.CellStyle(TestList.LastAddedRowIndex, 0) = PassedTestStyle
-		          // TestList.CellStyle(TestList.LastAddedRowIndex, 1) = PassedTestStyle
-		        End If
-		        
 		      End If
 		      
 		      TestList.RowTagAt(TestList.LastAddedRowIndex) = t
@@ -1210,6 +1205,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="ControlCount"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="_mPanelIndex"
 		Visible=false
