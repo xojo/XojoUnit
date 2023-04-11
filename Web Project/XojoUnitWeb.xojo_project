@@ -1,5 +1,5 @@
 Type=Web2
-RBProjectVersion=2022.041
+RBProjectVersion=2023.011
 MinIDEVersion=20200200
 OrigIDEVersion=20200100
 Class=App;App.xojo_code;&h000000005B4E0328;&h0000000000000000;false
@@ -26,6 +26,9 @@ Class=Assert;../Shared Resources/XojoUnit/TestFramework/Assert.xojo_code;&h00000
 Class=XojoUnitFailTests;../Shared Resources/XojoUnit/Tests/XojoUnitFailTests.xojo_code;&h000000002FC99FFF;&h0000000044C729E7;false
 Class=XojoUnitTestFailedException;../Shared Resources/XojoUnit/TestFramework/XojoUnitTestFailedException.xojo_code;&h0000000053F4D7FF;&h000000003E1A9B41;false
 Class=ObjectSpyTester;../Shared Resources/XojoUnit/Tests/ObjectSpyTester.xojo_code;&h0000000002FCEFFF;&h0000000044C729E7;false
+Class=Benchmarker;../Shared Resources/XojoUnit/TestFramework/Benchmarker.xojo_code;&h000000003FF067FF;&h000000003E1A9B41;false
+Class=BenchmarkResult;../Shared Resources/XojoUnit/TestFramework/BenchmarkResult.xojo_code;&h0000000066024FFF;&h000000003E1A9B41;false
+Class=XojoUnitBenchmarks;../Shared Resources/XojoUnit/Tests/XojoUnitBenchmarks.xojo_code;&h000000004A541FFF;&h0000000044C729E7;false
 DefaultWindow=XojoUnitTestPage
 MajorVersion=6
 MinorVersion=8

@@ -97,6 +97,14 @@ Protected Class BenchmarkResult
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MicrosecondsPerIteration"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass
