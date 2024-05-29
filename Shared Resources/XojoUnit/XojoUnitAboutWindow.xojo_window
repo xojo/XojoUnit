@@ -1,31 +1,30 @@
-#tag Window
-Begin Window XojoUnitAboutWindow
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow XojoUnitAboutWindow
    Backdrop        =   0
-   CloseButton     =   True
+   BackgroundColor =   &cFFFFFF00
    Composite       =   False
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   False
+   HasMinimizeButton=   False
    Height          =   192
    ImplicitInstance=   True
-   LiveResize      =   "True"
    MacProcID       =   0
-   MaxHeight       =   32000
-   MaximizeButton  =   False
-   MaxWidth        =   32000
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   64
-   MinimizeButton  =   False
-   MinWidth        =   64
-   Placement       =   0
+   MinimumHeight   =   64
+   MinimumWidth    =   64
    Resizeable      =   False
    Title           =   "About XojoUnit"
+   Type            =   0
    Visible         =   True
    Width           =   301
-   Begin Label AppNameLabel
+   Begin DesktopLabel AppNameLabel
       AutoDeactivate  =   True
       Bold            =   True
       DataField       =   ""
@@ -49,7 +48,7 @@ Begin Window XojoUnitAboutWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "XojoUnit"
-      TextAlign       =   1
+      TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   14.0
@@ -60,7 +59,7 @@ Begin Window XojoUnitAboutWindow
       Visible         =   True
       Width           =   261
    End
-   Begin Label VersionLabel
+   Begin DesktopLabel VersionLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -84,7 +83,7 @@ Begin Window XojoUnitAboutWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Version"
-      TextAlign       =   1
+      TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
@@ -96,14 +95,14 @@ Begin Window XojoUnitAboutWindow
       Width           =   261
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 #tag EndWindowCode
 
 #tag Events VersionLabel
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  Me.Text = "Version " + TestController.XojoUnitVersion
 		  
 		End Sub

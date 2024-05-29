@@ -1,39 +1,40 @@
-#tag Toolbar
-Begin Toolbar XojoUnitTestToolbar
-	Begin ToolbarButton RunButton
+#tag DesktopToolbar
+Begin DesktopToolbar XojoUnitTestToolbar
+Inherits DesktopToolbar
+	Begin DesktopToolbarButton RunButton
 		Caption = "Run Tests"
 		Tooltip = ""
 		ButtonStyle = 0
 	End
-	Begin ToolbarButton RunUntilFailButton
+	Begin DesktopToolbarButton RunUntilFailButton
 		Caption = "Run Until Fail"
 		Tooltip = ""
 		ButtonStyle = 0
 	End
-	Begin ToolbarButton ToolItem3
+	Begin DesktopToolbarButton ToolItem3
 		Caption = "Untitled"
 		Tooltip = ""
 		ButtonStyle = 5
 	End
-	Begin ToolbarButton StopButton
+	Begin DesktopToolbarButton StopButton
 		Caption = "Stop Tests"
 		Tooltip = ""
 		ButtonStyle = 0
 	End
-	Begin ToolbarButton ToolItem1
+	Begin DesktopToolbarButton ToolItem1
 		Caption = "Untitled"
 		Tooltip = ""
 		ButtonStyle = 5
 	End
-	Begin ToolbarButton ToolItem4
+	Begin DesktopToolbarButton ToolItem4
 		Caption = "Untitled"
 		Tooltip = ""
 		ButtonStyle = 5
 	End
-	Begin ToolbarButton ExportButton
+	Begin DesktopToolbarButton ExportButton
 		Caption = "Export Results"
 		Tooltip = ""
 		ButtonStyle = 0
 	End
 End
-#tag EndToolbar
+#tag EndDesktopToolbar
