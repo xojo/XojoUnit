@@ -1564,7 +1564,8 @@ End
 		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.DrawingColor = Color.RGB(237, 243, 254) '&cD0D4FF
+		      Var c As Color = If(Color.IsDarkMode, &c1E1E1E00, Color.RGB(237, 243, 254))
+		      g.DrawingColor = c
 		      g.FillRectangle(0, 0, g.Width, g.Height)
 		    End If
 		    
@@ -1700,6 +1701,7 @@ End
 		  
 		  Const kRedColor As Color = &cFF000000
 		  Const kBlackColor As Color = &c00000000
+		  Const kWhiteColor As Color = &cFFFFFF00
 		  Static kGreyColor As Color = Color.DisabledTextColor // Pseudo-constant
 		  
 		  If Me.RowTagAt(row) IsA TestResult Then
@@ -1714,7 +1716,8 @@ End
 		      If tr.Result = TestResult.NotImplemented Then
 		        g.DrawingColor = kGreyColor
 		      Else
-		        g.DrawingColor = kBlackColor
+		        Var testResultColor As Color = If(Color.IsDarkMode, kWhiteColor, kBlackColor)
+		        g.DrawingColor = testResultColor
 		      End If
 		      g.Bold = Not tr.Message.IsEmpty
 		      

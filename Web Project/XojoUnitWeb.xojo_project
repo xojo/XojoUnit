@@ -58,6 +58,7 @@ UseGDIPlus=False
 UseBuildsFolder=True
 CopyRedistNextToWindowsEXE=False
 IncludePDB=False
+WinUIFramework=False
 IsWebProject=True
 WebDebugPort=8080
 WebLivePort=-1
