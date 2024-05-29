@@ -976,37 +976,37 @@ End
 
 	#tag MenuHandler
 		Function EditSelectAllGroups() As Boolean Handles EditSelectAllGroups.Action
-			SelectAllGroups(True, False)
-			
-			Return True
-			
+		  SelectAllGroups(True, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditUnselectAllGroups() As Boolean Handles EditUnselectAllGroups.Action
-			SelectAllGroups(False, False)
-			
-			Return True
-			
+		  SelectAllGroups(False, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function FileRunTests() As Boolean Handles FileRunTests.Action
-			RunTests
-			
-			Return True
-			
+		  RunTests
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function HelpAboutXojoUnit() As Boolean Handles HelpAboutXojoUnit.Action
-			XojoUnitAboutWindow.Show
-			
-			Return True
-			
+		  XojoUnitAboutWindow.Show
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
@@ -1253,7 +1253,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub UpdateSummary()
-		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
+		  DurationLabel.Text = Controller.Duration.ToString("#,##0.0000000") + "s"
 		  
 		  Var allTestCount As Integer = Controller.AllTestCount
 		  Var runTestCount As Integer = Controller.RunTestCount
@@ -1269,11 +1269,11 @@ End
 		  
 		  Var passedCount As Integer = Controller.PassedCount
 		  Var passedPercent As Double = passedCount / runTestCount
-		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + passedPercent.ToString("#,##0.00%") + ")")
 		  
 		  Var failedCount As Integer = Controller.FailedCount
 		  Var failedPercent As Double = failedCount / runTestCount
-		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + failedPercent.ToString("#,##0.00%") + ")")
 		  
 		  PassedCountLabel.Text = passedCount.ToString + passedPercentMessage
 		  FailedCountLabel.Text = Controller.FailedCount.ToString + failedPercentMessage
@@ -1349,11 +1349,11 @@ End
 		    name = tr.TestName
 		    result = tr.Result
 		    message = tr.Message
-		    duration = Format(tr.Duration, "#,0.0000000") + "s"
+		    duration = tr.Duration.ToString("#,##0.0000000") + "s"
 		  ElseIf item IsA TestGroup Then
 		    Var tg As TestGroup = item
 		    name = tg.Name + " Group"
-		    duration = Format(tg.Duration, "#,0.0000000") + "s"
+		    duration = tg.Duration.ToString("#,##0.0000000") + "s"
 		  End If
 		  
 		  TestNameLabel.Text = name
@@ -1564,7 +1564,7 @@ End
 		  
 		  #If TargetMacOS Then
 		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.DrawingColor = RGB(237, 243, 254) '&cD0D4FF
+		      g.DrawingColor = Color.RGB(237, 243, 254) '&cD0D4FF
 		      g.FillRectangle(0, 0, g.Width, g.Height)
 		    End If
 		    
