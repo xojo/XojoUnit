@@ -1,5 +1,5 @@
 #tag DesktopWindow
-Begin DesktopWindow XojoUnitTestWindow
+Begin DesktopWindow XojoUnitAPI2TestWindow
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF00
    Composite       =   False
@@ -25,12 +25,14 @@ Begin DesktopWindow XojoUnitTestWindow
    Visible         =   True
    Width           =   800
    Begin DesktopGroupBox GroupBoxes
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
       Caption         =   "Overview"
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   188
-      HelpTag         =   ""
       Index           =   0
       InitialParent   =   ""
       Italic          =   False
@@ -44,20 +46,20 @@ Begin DesktopWindow XojoUnitTestWindow
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   14
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   494
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   1
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -74,11 +76,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Start:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   44
          Transparent     =   False
          Underline       =   False
@@ -86,11 +86,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   68
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   2
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -107,11 +109,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Duration:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   44
          Transparent     =   False
          Underline       =   False
@@ -119,11 +119,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   3
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -140,11 +142,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Total:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   76
          Transparent     =   False
          Underline       =   False
@@ -152,11 +152,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   68
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   4
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -173,11 +175,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Passed:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   108
          Transparent     =   False
          Underline       =   False
@@ -185,11 +185,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   68
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   5
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -206,11 +208,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Failed:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   140
          Transparent     =   False
          Underline       =   False
@@ -218,11 +218,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   68
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   6
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -239,11 +241,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Skipped:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   172
          Transparent     =   False
          Underline       =   False
@@ -251,11 +251,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   68
       End
       Begin DesktopLabel StartLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -272,11 +274,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "1/1/2012 12:00PM"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   44
          Transparent     =   False
          Underline       =   False
@@ -284,11 +284,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   145
       End
       Begin DesktopLabel DurationLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -305,11 +307,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0s"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   44
          Transparent     =   False
          Underline       =   False
@@ -317,11 +317,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   137
       End
       Begin DesktopLabel TestCountLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -338,11 +340,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "(run tests first)"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   76
          Transparent     =   False
          Underline       =   False
@@ -350,11 +350,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   382
       End
       Begin DesktopLabel PassedCountLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -371,11 +373,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0 (0%)"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   108
          Transparent     =   False
          Underline       =   False
@@ -383,11 +383,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel FailedCountLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -404,11 +406,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0 (0%)"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   140
          Transparent     =   False
          Underline       =   False
@@ -416,11 +416,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel SkippedCountLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -437,11 +439,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0 (0%)"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   172
          Transparent     =   False
          Underline       =   False
@@ -449,11 +449,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   8
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -470,11 +472,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Not Implemented:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   172
          Transparent     =   False
          Underline       =   False
@@ -482,11 +482,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   135
       End
       Begin DesktopLabel NotImplementedCountLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$0"
          Italic          =   False
@@ -503,11 +505,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0 (0%)"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   172
          Transparent     =   False
          Underline       =   False
@@ -516,12 +516,14 @@ Begin DesktopWindow XojoUnitTestWindow
       End
    End
    Begin DesktopGroupBox GroupBoxes
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
       Caption         =   "Selected Test Results"
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   366
-      HelpTag         =   ""
       Index           =   1
       InitialParent   =   ""
       Italic          =   False
@@ -535,20 +537,20 @@ Begin DesktopWindow XojoUnitTestWindow
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   214
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   500
       Begin DesktopLabel TestNameLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   True
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
@@ -565,11 +567,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Test Name"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   245
          Transparent     =   False
          Underline       =   False
@@ -577,11 +577,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   242
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   0
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
@@ -598,11 +600,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Duration:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   277
          Transparent     =   False
          Underline       =   False
@@ -610,11 +610,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel TestDurationLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
@@ -631,11 +633,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "0s"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   277
          Transparent     =   False
          Underline       =   False
@@ -643,23 +643,27 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopTextArea TestResultsArea
-         AcceptTabs      =   False
-         Alignment       =   0
-         AutoDeactivate  =   True
-         AutomaticallyCheckSpelling=   True
-         BackColor       =   &cFFFFFF00
+         AllowAutoDeactivate=   True
+         AllowFocusRing  =   True
+         AllowSpellChecking=   True
+         AllowStyledText =   True
+         AllowTabs       =   False
+         BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Border          =   True
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Format          =   ""
+         HasBorder       =   True
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
          Height          =   214
-         HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
          Left            =   306
-         LimitText       =   0
          LineHeight      =   0.0
          LineSpacing     =   0.0
          LockBottom      =   True
@@ -667,35 +671,33 @@ Begin DesktopWindow XojoUnitTestWindow
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
-         Mask            =   ""
+         MaximumCharactersAllowed=   0
          Multiline       =   True
          ReadOnly        =   True
          Scope           =   0
-         ScrollbarHorizontal=   False
-         ScrollbarVertical=   True
-         Styled          =   True
          TabIndex        =   3
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   346
          Transparent     =   False
          Underline       =   False
          UnicodeMode     =   0
-         UseFocusRing    =   True
+         ValidationMask  =   ""
          Visible         =   True
          Width           =   463
       End
       Begin DesktopLabel Labels
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   7
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
@@ -712,11 +714,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Messages:"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   317
          Transparent     =   False
          Underline       =   False
@@ -724,11 +724,13 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
       Begin DesktopLabel TestResultLabel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBoxes$1"
          Italic          =   False
@@ -745,11 +747,9 @@ Begin DesktopWindow XojoUnitTestWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   "Passed"
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   245
          Transparent     =   False
          Underline       =   False
@@ -757,7 +757,7 @@ Begin DesktopWindow XojoUnitTestWindow
          Width           =   100
       End
    End
-   Begin XojoUnitTestToolbar TestToolbar1
+   Begin XojoUnitTestAPI2Toolbar TestToolbar1
       Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
@@ -783,11 +783,11 @@ Begin DesktopWindow XojoUnitTestWindow
       TabPanelIndex   =   0
    End
    Begin DesktopProgressWheel ProgressWheel1
+      Active          =   False
+      AllowAutoDeactivate=   True
       AllowTabStop    =   True
-      AutoDeactivate  =   True
       Enabled         =   True
       Height          =   16
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   764
@@ -796,32 +796,44 @@ Begin DesktopWindow XojoUnitTestWindow
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   6
       TabPanelIndex   =   0
+      Tooltip         =   ""
       Top             =   7
       Transparent     =   False
       Visible         =   False
       Width           =   16
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopListBox TestGroupList
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   True
+      AllowFocusRing  =   False
+      AllowResizableColumns=   True
+      AllowRowDragging=   False
+      AllowRowReordering=   False
       Bold            =   False
-      Border          =   True
       ColumnCount     =   3
-      ColumnsResizable=   True
       ColumnWidths    =   "*,55,30"
       DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
       Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       GridLineStyle   =   0
-      HasHeading      =   False
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       HeadingIndex    =   -1
       Height          =   580
-      HelpTag         =   ""
-      Hierarchical    =   True
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -833,21 +845,15 @@ Begin DesktopWindow XojoUnitTestWindow
       LockRight       =   False
       LockTop         =   True
       RequiresSelection=   False
+      RowSelectionType=   0
       Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   False
       Visible         =   True
       Width           =   274
       _ScrollOffset   =   0
@@ -959,7 +965,7 @@ End
 
 	#tag MenuHandler
 		Function HelpAboutXojoUnit() As Boolean Handles HelpAboutXojoUnit.Action
-		  XojoUnitAboutWindow.Show
+		  XojoUnitAPI2AboutWindow.Show
 		  
 		  Return True
 		  
@@ -1735,8 +1741,7 @@ End
 			"6 - Rounded Window"
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
-			"9 - Metal Window"
-			"11 - Modeless Dialog"
+			"9 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -1799,8 +1804,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -1863,7 +1868,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

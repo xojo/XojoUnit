@@ -1,5 +1,5 @@
 #tag DesktopWindow
-Begin DesktopWindow XojoUnitAboutWindow
+Begin DesktopWindow XojoUnitAPI2AboutWindow
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF00
    Composite       =   False
@@ -25,13 +25,13 @@ Begin DesktopWindow XojoUnitAboutWindow
    Visible         =   True
    Width           =   301
    Begin DesktopLabel AppNameLabel
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   True
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -48,11 +48,9 @@ Begin DesktopWindow XojoUnitAboutWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "XojoUnit"
-      TextAlign       =   2
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   14.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   20
       Transparent     =   False
       Underline       =   False
@@ -60,13 +58,13 @@ Begin DesktopWindow XojoUnitAboutWindow
       Width           =   261
    End
    Begin DesktopLabel VersionLabel
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -83,11 +81,9 @@ Begin DesktopWindow XojoUnitAboutWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Version"
-      TextAlign       =   2
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   40
       Transparent     =   False
       Underline       =   False
@@ -158,8 +154,7 @@ End
 			"6 - Rounded Window"
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
-			"9 - Metal Window"
-			"11 - Modeless Dialog"
+			"9 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -222,8 +217,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -286,7 +281,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

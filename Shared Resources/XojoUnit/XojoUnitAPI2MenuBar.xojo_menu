@@ -1,5 +1,5 @@
 #tag Menu
-Begin Menu XojoUnitMenuBar
+Begin Menu XojoUnitAPI2MenuBar
    Begin DesktopMenuItem FileMenu
       SpecialMenu = 0
       Index = -2147483648
