@@ -21,7 +21,6 @@ Begin WebPage XojoUnitTestPage
    LockVertical    =   False
    MinimumHeight   =   400
    MinimumWidth    =   600
-   PanelIndex      =   0
    TabIndex        =   0
    Title           =   "XojoUnit"
    Top             =   238
@@ -30,6 +29,7 @@ Begin WebPage XojoUnitTestPage
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebRectangle Rectangle1
       BackgroundColor =   &cFFFFFF00
@@ -50,7 +50,7 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
       TabStop         =   True
@@ -69,7 +69,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -80,7 +80,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   0
@@ -104,7 +104,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -115,7 +115,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   2
@@ -139,7 +139,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -150,7 +150,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   3
@@ -174,7 +174,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   526
          LockBottom      =   False
@@ -185,7 +185,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   4
@@ -209,7 +209,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   634
          LockBottom      =   False
@@ -220,7 +220,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   5
@@ -244,7 +244,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -255,7 +255,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   6
@@ -279,7 +279,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -290,7 +290,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   7
@@ -314,7 +314,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -325,7 +325,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   8
@@ -349,7 +349,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -360,7 +360,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   9
@@ -384,7 +384,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   284
          LockBottom      =   False
@@ -395,7 +395,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   10
@@ -419,7 +419,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   400
          LockBottom      =   False
@@ -430,7 +430,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   11
@@ -454,7 +454,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   526
          LockBottom      =   False
@@ -465,7 +465,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   12
@@ -489,7 +489,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   634
          LockBottom      =   False
@@ -500,7 +500,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   13
@@ -524,7 +524,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   742
          LockBottom      =   False
@@ -535,7 +535,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   14
@@ -559,7 +559,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   802
          LockBottom      =   False
@@ -570,7 +570,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   15
@@ -591,10 +591,8 @@ Begin WebPage XojoUnitTestPage
       ColumnCount     =   2
       ColumnWidths    =   "75%"
       ControlID       =   ""
-      DefaultRowHeight=   49
       Enabled         =   True
       HasHeader       =   False
-      HeaderHeight    =   0
       Height          =   308
       HighlightSortedColumn=   True
       Index           =   -2147483648
@@ -612,7 +610,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
@@ -632,10 +630,8 @@ Begin WebPage XojoUnitTestPage
       ColumnCount     =   2
       ColumnWidths    =   "75%"
       ControlID       =   ""
-      DefaultRowHeight=   49
       Enabled         =   True
       HasHeader       =   False
-      HeaderHeight    =   0
       Height          =   354
       HighlightSortedColumn=   True
       Index           =   -2147483648
@@ -653,7 +649,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
@@ -688,7 +684,7 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
       TabStop         =   True
@@ -707,7 +703,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   43
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   604
          LockBottom      =   False
@@ -718,7 +714,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   0
@@ -742,7 +738,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -753,7 +749,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   1
@@ -777,7 +773,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -788,7 +784,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   2
@@ -812,7 +808,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -823,7 +819,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   3
@@ -847,7 +843,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   736
          LockBottom      =   False
@@ -858,7 +854,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   4
@@ -883,7 +879,7 @@ Begin WebPage XojoUnitTestPage
          Height          =   193
          Hint            =   ""
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Left            =   604
          LockBottom      =   True
          LockedInPosition=   False
@@ -893,7 +889,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          MaximumCharactersAllowed=   0
-         PanelIndex      =   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          ReadOnly        =   True
          Scope           =   0
@@ -924,7 +920,7 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       Position        =   0
       Scope           =   0
       TabIndex        =   0
@@ -954,8 +950,7 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   False
       LockTop         =   False
       LockVertical    =   False
-      Outlined        =   False
-      PanelIndex      =   0
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
       TabStop         =   True
@@ -968,7 +963,6 @@ Begin WebPage XojoUnitTestPage
    Begin WebTestController Controller
       AllTestCount    =   0
       Duration        =   0.0
-      Enabled         =   True
       FailedCount     =   0
       GroupCount      =   0
       Index           =   -2147483648
@@ -1255,14 +1249,6 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
-	#tag ViewProperty
-		Name="PanelIndex"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ControlCount"
 		Visible=false
