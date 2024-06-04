@@ -44,6 +44,12 @@ Xojo 2019 Release 2 or later is required for XojoUnit with Desktop and Console.
 
 ## Release Notes
 
+## 6.9 (June 6, 2024)
+
+- Support Dark Mode.
+- Split Desktop project into API1 and API2 versions.
+- Converted some function calls to replacements, e.g., `Format` -> `.ToString`.
+
 ### 6.8 (Feb. 23, 2023)
 
 - Introduced `ObjectSpy` class.

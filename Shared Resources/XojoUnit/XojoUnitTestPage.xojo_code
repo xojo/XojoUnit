@@ -2,6 +2,7 @@
 Begin WebPage XojoUnitTestPage
    AllowTabOrderWrap=   True
    Compatibility   =   ""
+   ControlCount    =   0
    ControlID       =   ""
    Enabled         =   True
    Height          =   642
@@ -32,6 +33,7 @@ Begin WebPage XojoUnitTestPage
    _mPanelIndex    =   -1
    Begin WebRectangle Rectangle1
       BackgroundColor =   &cFFFFFF00
+      ControlCount    =   0
       ControlID       =   ""
       Enabled         =   True
       HasBackgroundColor=   False
@@ -48,8 +50,10 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   77
       Visible         =   True
@@ -65,7 +69,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -76,6 +80,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   0
@@ -99,7 +104,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -110,6 +115,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   2
@@ -133,7 +139,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -144,6 +150,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   3
@@ -167,7 +174,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   526
          LockBottom      =   False
@@ -178,6 +185,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   4
@@ -201,7 +209,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   634
          LockBottom      =   False
@@ -212,6 +220,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   5
@@ -235,7 +244,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -246,6 +255,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   6
@@ -269,7 +279,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -280,6 +290,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   7
@@ -303,7 +314,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   35
          LockBottom      =   False
@@ -314,6 +325,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   8
@@ -337,7 +349,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   151
          LockBottom      =   False
@@ -348,6 +360,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   9
@@ -371,7 +384,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   284
          LockBottom      =   False
@@ -382,6 +395,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   10
@@ -405,7 +419,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   400
          LockBottom      =   False
@@ -416,6 +430,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   11
@@ -439,7 +454,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   526
          LockBottom      =   False
@@ -450,6 +465,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   12
@@ -473,7 +489,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   634
          LockBottom      =   False
@@ -484,6 +500,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   13
@@ -507,7 +524,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   742
          LockBottom      =   False
@@ -518,6 +535,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   14
@@ -541,7 +559,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   38
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   802
          LockBottom      =   False
@@ -552,6 +570,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle1"
          Scope           =   0
          TabIndex        =   15
@@ -580,6 +599,8 @@ Begin WebPage XojoUnitTestPage
       Indicator       =   ""
       InitialValue    =   "Test Groups	Run"
       LastAddedRowIndex=   0
+      LastColumnIndex =   0
+      LastRowIndex    =   0
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
@@ -589,6 +610,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      PanelIndex      =   "0"
       ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
@@ -597,6 +619,7 @@ Begin WebPage XojoUnitTestPage
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   -1
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   274
       Visible         =   True
@@ -615,6 +638,8 @@ Begin WebPage XojoUnitTestPage
       Indicator       =   ""
       InitialValue    =   "Test	Result"
       LastAddedRowIndex=   0
+      LastColumnIndex =   0
+      LastRowIndex    =   0
       Left            =   258
       LockBottom      =   True
       LockedInPosition=   False
@@ -624,6 +649,7 @@ Begin WebPage XojoUnitTestPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      PanelIndex      =   "0"
       ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   1
@@ -632,6 +658,7 @@ Begin WebPage XojoUnitTestPage
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   -1
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   274
       Visible         =   True
@@ -640,6 +667,7 @@ Begin WebPage XojoUnitTestPage
    End
    Begin WebRectangle Rectangle2
       BackgroundColor =   &cFFFFFF00
+      ControlCount    =   0
       ControlID       =   ""
       Enabled         =   True
       HasBackgroundColor=   False
@@ -656,8 +684,10 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   274
       Visible         =   True
@@ -673,7 +703,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   43
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   604
          LockBottom      =   False
@@ -684,6 +714,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   0
@@ -707,7 +738,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -718,6 +749,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   1
@@ -741,7 +773,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -752,6 +784,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   2
@@ -775,7 +808,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   613
          LockBottom      =   False
@@ -786,6 +819,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   3
@@ -809,7 +843,7 @@ Begin WebPage XojoUnitTestPage
          FontSize        =   0.0
          Height          =   22
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Italic          =   False
          Left            =   736
          LockBottom      =   False
@@ -820,6 +854,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          Multiline       =   False
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          Scope           =   0
          TabIndex        =   4
@@ -844,7 +879,7 @@ Begin WebPage XojoUnitTestPage
          Height          =   193
          Hint            =   ""
          Index           =   -2147483648
-         Indicator       =   ""
+         Indicator       =   0
          Left            =   604
          LockBottom      =   True
          LockedInPosition=   False
@@ -854,6 +889,7 @@ Begin WebPage XojoUnitTestPage
          LockTop         =   True
          LockVertical    =   False
          MaximumCharactersAllowed=   0
+         PanelIndex      =   "0"
          Parent          =   "Rectangle2"
          ReadOnly        =   True
          Scope           =   0
@@ -884,9 +920,11 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      PanelIndex      =   "0"
       Position        =   0
       Scope           =   0
       TabIndex        =   0
+      TabStop         =   True
       Title           =   ""
       Tooltip         =   ""
       Top             =   0
@@ -912,8 +950,10 @@ Begin WebPage XojoUnitTestPage
       LockRight       =   False
       LockTop         =   False
       LockVertical    =   False
+      PanelIndex      =   "0"
       Scope           =   0
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   590
       Visible         =   True
@@ -927,7 +967,6 @@ Begin WebPage XojoUnitTestPage
       GroupCount      =   0
       Index           =   -2147483648
       IsRunning       =   False
-      Left            =   0.0
       LockedInPosition=   False
       NotImplementedCount=   0
       PassedCount     =   0
@@ -935,7 +974,6 @@ Begin WebPage XojoUnitTestPage
       RunTestCount    =   0
       Scope           =   0
       SkippedCount    =   0
-      Top             =   0.0
    End
 End
 #tag EndWebPage
@@ -963,23 +1001,24 @@ End
 		  
 		  Var output As String
 		  
-		  Var testCount As Integer
-		  testCount = Controller.RunTestCount
+		  Var testCount As Integer = Controller.RunTestCount
+		  Var passedPercent As Double = Controller.PassedCount / testCount
+		  Var failedPercent As Double = Controller.FailedCount / testCount
 		  
 		  Var now As DateTime = DateTime.Now
 		  
 		  output = output + "Start: " + now.SQLDateTime + EndOfLine
-		  output = output + "Duration: " + Format(Controller.Duration, "#,###.0000000") + "s" + EndOfLine
-		  output = output + "Total: " + Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups were run." + EndOfLine
-		  output = output + "Passed: " + Str(Controller.PassedCount) + " (" + Format((Controller.PassedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
-		  output = output + "Failed: " + Str(Controller.FailedCount) + " (" + Format((Controller.FailedCount / testCount) * 100, "##.00") + "%)" + EndOfLine
-		  output = output + "Skipped: " + Str(Controller.SkippedCount) + EndOfLine + EndOfLine
+		  output = output + "Duration: " + Controller.Duration.ToString("#,##0.0000000") + "s" + EndOfLine
+		  output = output + "Total: " + testCount.ToString + " tests in " + Controller.GroupCount.ToString + " groups were run." + EndOfLine
+		  output = output + "Passed: " + Controller.PassedCount.ToString + " (" + passedPercent.ToString("#,##0.00%") + ")" + EndOfLine
+		  output = output + "Failed: " + Controller.FailedCount.ToString + " (" + failedPercent.ToString("#,##0.00%") + ")" + EndOfLine
+		  output = output + "Skipped: " + Controller.SkippedCount.ToString + EndOfLine + EndOfLine
 		  
 		  For Each tg As TestGroup In Controller.TestGroups
 		    output = output + tg.Name + EndOfLine
 		    
 		    For Each tr As TestResult In tg.Results
-		      output = output + kIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)" + EndOfLine
+		      output = output + kIndent + tr.TestName + ": " + tr.Result + " (" + tr.Duration.ToString("#,##0.0000000") + "s)" + EndOfLine
 		      If tr.Message <> "" Then
 		        output = output + kIndent + kIndent + tr.Message + EndOfLine
 		      End If
@@ -1021,7 +1060,7 @@ End
 		  
 		  Var testCount As Integer
 		  testCount = Controller.AllTestCount
-		  TestCountLabel.Text = Str(testCount) + " tests in " + Str(Controller.GroupCount) + " groups"
+		  TestCountLabel.Text = testCount.ToString + " tests in " + Controller.GroupCount.ToString + " groups"
 		  
 		End Sub
 	#tag EndMethod
@@ -1063,7 +1102,7 @@ End
 
 #tag Events TestGroupList
 	#tag Event
-		Sub SelectionChanged(Rows() as Integer)
+		Sub SelectionChanged(rows() As Integer)
 		  #Pragma Unused Rows
 		  
 		  TestList.RemoveAllRows
@@ -1102,7 +1141,7 @@ End
 #tag EndEvents
 #tag Events TestList
 	#tag Event
-		Sub SelectionChanged(Rows() as Integer)
+		Sub SelectionChanged(rows() As Integer)
 		  #Pragma Unused Rows
 		  
 		  Var row As Integer = Me.SelectedRowIndex
@@ -1115,14 +1154,14 @@ End
 		    TestNameLabel.Text = tr.TestName
 		    TestResultLabel.Text = tr.Result
 		    TestResultsArea.Text = tr.Message
-		    TestDurationLabel.Text = Format(tr.Duration, "#,###.0000000") + "s"
+		    TestDurationLabel.Text = tr.Duration.ToString("#,##0.0000000") + "s"
 		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Toolbar1
 	#tag Event
-		Sub Pressed(Item as WebToolbarButton)
+		Sub Pressed(item As WebToolbarButton)
 		  Select Case item.Caption
 		  Case "Run"
 		    RunTests
@@ -1167,32 +1206,32 @@ End
 #tag Events Controller
 	#tag Event
 		Sub AllTestsFinished()
-		  DurationLabel.Text = Format(Controller.Duration, "#,###.0000000") + "s"
+		  DurationLabel.Text = Controller.Duration.ToString("#,##0.0000000") + "s"
 		  
 		  Var allTestCount As Integer = Controller.AllTestCount
 		  Var runTestCount As Integer = Controller.RunTestCount
 		  
-		  Var groupsMessage As String = Str(Controller.RunGroupCount) + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
+		  Var groupsMessage As String = Controller.RunGroupCount.ToString + If(Controller.RunGroupCount = 1, " group was run", " groups were run")
 		  Var testsMessage As String = If(allTestCount = 1, " test", " tests")
 		  
 		  If runTestCount = allTestCount Then
-		    TestCountLabel.Text = Str(runTestCount) + testsMessage + " in " + groupsMessage
+		    TestCountLabel.Text = runTestCount.ToString + testsMessage + " in " + groupsMessage
 		  Else
-		    TestCountLabel.Text = Str(runTestCount) + " of " + Str(allTestCount) + testsMessage + " in " + groupsMessage
+		    TestCountLabel.Text = runTestCount.ToString + " of " + allTestCount.ToString + testsMessage + " in " + groupsMessage
 		  End If
 		  
 		  Var passedCount As Integer = Controller.PassedCount
 		  Var passedPercent As Double = passedCount / runTestCount
-		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(passedPercent, "#.00%") + ")")
+		  Var passedPercentMessage As String = If(runTestCount = 0, "", " (" + passedPercent.ToString("#,##0.00%") + ")")
 		  
 		  Var failedCount As Integer = Controller.FailedCount
 		  Var failedPercent As Double = failedCount / runTestCount
-		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + Format(failedPercent, "#.00%") + ")")
+		  Var failedPercentMessage As String = If(runTestCount = 0, "", " (" + failedPercent.ToString("#,##0.00%") + ")")
 		  
-		  PassedCountLabel.Text = Str(passedCount) + passedPercentMessage
-		  FailedCountLabel.Text = Str(Controller.FailedCount) + failedPercentMessage
-		  SkippedCountLabel.Text = Str(Controller.SkippedCount)
-		  NotImplementedCountLabel.Text = Str(Controller.NotImplementedCount)
+		  PassedCountLabel.Text = passedCount.ToString + passedPercentMessage
+		  FailedCountLabel.Text = Controller.FailedCount.ToString + failedPercentMessage
+		  SkippedCountLabel.Text = Controller.SkippedCount.ToString
+		  NotImplementedCountLabel.Text = Controller.NotImplementedCount.ToString
 		  
 		  If mWaitDialog IsA Object Then
 		    mWaitDialog.Close
@@ -1210,6 +1249,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="ControlCount"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="_mPanelIndex"
 		Visible=false
