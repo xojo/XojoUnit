@@ -1,5 +1,5 @@
 Type=Web2
-RBProjectVersion=2022.041
+RBProjectVersion=2024.011
 MinIDEVersion=20200200
 OrigIDEVersion=20200100
 Class=App;App.xojo_code;&h000000005B4E0328;&h0000000000000000;false
@@ -58,6 +58,7 @@ UseGDIPlus=False
 UseBuildsFolder=True
 CopyRedistNextToWindowsEXE=False
 IncludePDB=False
+WinUIFramework=False
 IsWebProject=True
 WebDebugPort=8080
 WebLivePort=-1

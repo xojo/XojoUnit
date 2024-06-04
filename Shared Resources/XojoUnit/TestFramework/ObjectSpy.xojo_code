@@ -27,7 +27,6 @@ Protected Class ObjectSpy
 		  Var numberTypes() As Int32 = Array( _
 		  Variant.TypeInt32, _
 		  Variant.TypeInt64, _
-		  Variant.TypeInteger, _
 		  Variant.TypeSingle, _
 		  Variant.TypeDouble _
 		  )

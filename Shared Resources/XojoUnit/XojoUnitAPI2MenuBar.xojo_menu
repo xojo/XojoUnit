@@ -1,13 +1,13 @@
 #tag Menu
-Begin Menu XojoUnitMenuBar
-   Begin MenuItem FileMenu
+Begin Menu XojoUnitAPI2MenuBar
+   Begin DesktopMenuItem FileMenu
       SpecialMenu = 0
       Index = -2147483648
       Text = "&File"
       AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin MenuItem FileRunTests
+      Begin DesktopMenuItem FileRunTests
          SpecialMenu = 0
          Index = -2147483648
          Text = "&Run Tests"
@@ -18,7 +18,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin QuitMenuItem FileQuit
+      Begin DesktopQuitMenuItem FileQuit
          SpecialMenu = 0
          Index = -2147483648
          Text = "#App.kFileQuit"
@@ -29,14 +29,14 @@ Begin Menu XojoUnitMenuBar
          Visible = True
       End
    End
-   Begin MenuItem EditMenu
+   Begin DesktopMenuItem EditMenu
       SpecialMenu = 0
       Index = -2147483648
       Text = "&Edit"
       AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin MenuItem EditUndo
+      Begin DesktopMenuItem EditUndo
          SpecialMenu = 0
          Index = -2147483648
          Text = "&Undo"
@@ -47,7 +47,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledMenu1
+      Begin DesktopMenuItem UntitledMenu1
          SpecialMenu = 0
          Index = -2147483648
          Text = "-"
@@ -55,7 +55,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditCut
+      Begin DesktopMenuItem EditCut
          SpecialMenu = 0
          Index = -2147483648
          Text = "Cu&t"
@@ -66,7 +66,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditCopy
+      Begin DesktopMenuItem EditCopy
          SpecialMenu = 0
          Index = -2147483648
          Text = "&Copy"
@@ -77,7 +77,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditPaste
+      Begin DesktopMenuItem EditPaste
          SpecialMenu = 0
          Index = -2147483648
          Text = "&Paste"
@@ -88,7 +88,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditClear
+      Begin DesktopMenuItem EditClear
          SpecialMenu = 0
          Index = -2147483648
          Text = "#App.kEditClear"
@@ -96,7 +96,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledMenu0
+      Begin DesktopMenuItem UntitledMenu0
          SpecialMenu = 0
          Index = -2147483648
          Text = "-"
@@ -104,7 +104,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditSelectAllGroups
+      Begin DesktopMenuItem EditSelectAllGroups
          SpecialMenu = 0
          Index = -2147483648
          Text = "Select &All Groups"
@@ -115,7 +115,7 @@ Begin Menu XojoUnitMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditUnselectAllGroups
+      Begin DesktopMenuItem EditUnselectAllGroups
          SpecialMenu = 0
          Index = -2147483648
          Text = "Unselect All Groups"
@@ -127,14 +127,14 @@ Begin Menu XojoUnitMenuBar
          Visible = True
       End
    End
-   Begin MenuItem HelpMenu
+   Begin DesktopMenuItem HelpMenu
       SpecialMenu = 0
       Index = -2147483648
       Text = "&Help"
       AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin ApplicationMenuItem HelpAboutXojoUnit
+      Begin DesktopApplicationMenuItem HelpAboutXojoUnit
          SpecialMenu = 0
          Index = -2147483648
          Text = "&About XojoUnit"

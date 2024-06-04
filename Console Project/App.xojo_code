@@ -103,7 +103,7 @@ Inherits ConsoleApplication
 		    
 		    For Each tr As TestResult In tg.Results
 		      Var useIndent As String = If(tr.Result = tr.Failed, kFailIndent, kIndent)
-		      Var outLine As String = useIndent + tr.TestName + ": " + tr.Result + " (" + Format(tr.Duration, "#,###.0000000") + "s)"
+		      Var outLine As String = useIndent + tr.TestName + ": " + tr.Result + " (" + tr.Duration.ToString("#,##0.0000000") + "s)"
 		      output.WriteLine(outLine)
 		      #If DebugBuild
 		        debugOutput = debugOutput + outLine + EndOfLine
@@ -147,17 +147,19 @@ Inherits ConsoleApplication
 		  
 		  Var allTestCount As Integer = controller.AllTestCount
 		  Var runTestCount As Integer = controller.RunTestCount
+		  Var passedPercent As Double = controller.PassedCount / runTestCount
+		  Var failedPercent As Double = controller.FailedCount / runTestCount
 		  
 		  WriteLine(output, "Start: " + now.ToString(DateTime.FormatStyles.Short, DateTime.FormatStyles.Short))
-		  WriteLine(output, "Duration: " + Format(controller.Duration, "#,###.0000000") + "s")
-		  WriteLine(output, "Groups: " + Format(controller.RunGroupCount, "#,0"))
-		  WriteLine(output, "Total: " + Str(runTestCount) + If(allTestCount <> runTestCount, " of " + Str(allTestCount), "") + " tests were run")
-		  WriteLine(output, "Passed: " + Str(controller.PassedCount) + _
-		  If(runTestCount = 0, "", " (" + Format((controller.PassedCount / runTestCount) * 100, "##.00") + "%)"))
-		  WriteLine(output, "Failed: " + Str(controller.FailedCount) + _
-		  If(runTestCount = 0, "", " (" + Format((controller.FailedCount / runTestCount) * 100, "##.00") + "%)"))
-		  WriteLine(output, "Skipped: " + Str(controller.SkippedCount))
-		  WriteLine(output, "Not Implemented: " + Str(controller.NotImplementedCount))
+		  WriteLine(output, "Duration: " + controller.Duration.ToString("#,##0.0000000") + "s")
+		  WriteLine(output, "Groups: " + controller.RunGroupCount.ToString("#,##0"))
+		  WriteLine(output, "Total: " + Str(runTestCount) + If(allTestCount <> runTestCount, " of " + allTestCount.ToString, "") + " tests were run")
+		  WriteLine(output, "Passed: " + controller.PassedCount.ToString + _
+		  If(runTestCount = 0, "", " (" + passedPercent.ToString("#,##0.00%") + ")"))
+		  WriteLine(output, "Failed: " + controller.FailedCount.ToString + _
+		  If(runTestCount = 0, "", " (" + failedPercent.ToString("#,##0.00%") + ")"))
+		  WriteLine(output, "Skipped: " + controller.SkippedCount.ToString)
+		  WriteLine(output, "Not Implemented: " + controller.NotImplementedCount.ToString)
 		  
 		End Sub
 	#tag EndMethod

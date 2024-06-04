@@ -1,5 +1,5 @@
 Type=iOS
-RBProjectVersion=2022.041
+RBProjectVersion=2024.011
 MinIDEVersion=20140300
 OrigIDEVersion=00000000
 Class=App;App.xojo_code;&h000000000FF22FFF;&h0000000000000000;false
@@ -70,3 +70,4 @@ OptimizationLevel=0
 WindowsVersions={35138b9a-5d96-4fbd-8e2d-a2440225f93a}|{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}|{1f676c76-80e1-4239-95bb-83d0f6d0da78}|{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}
 WindowsRunAs=0
 MacOSMinimumVersion=
+iOSMinimumVersion=
