@@ -44,7 +44,12 @@ Xojo 2019 Release 2 or later is required for XojoUnit with Desktop and Console.
 
 ## Release Notes
 
-## 6.9 (June 6, 2024)
+### 6.9.1 (June 5, 2024)
+
+- Removed `MenuItem` with `DesktopMenuItem` in API2 project.
+- Fixed previous release notes.
+
+### 6.9 (June 4, 2024)
 
 - Support Dark Mode.
 - Split Desktop project into API1 and API2 versions.
