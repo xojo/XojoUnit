@@ -1607,14 +1607,14 @@ End
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  base.AddMenu(New MenuItem(kCMSelectAllGroups))
-		  base.AddMenu(New MenuItem(kCMSelectInverseGroups))
-		  base.AddMenu(New MenuItem(kCMUnselectAllGroups))
+		  base.AddMenu(New DesktopMenuItem(kCMSelectAllGroups))
+		  base.AddMenu(New DesktopMenuItem(kCMSelectInverseGroups))
+		  base.AddMenu(New DesktopMenuItem(kCMUnselectAllGroups))
 		  
 		  If Controller.FailedCount <> 0 Then
-		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New DesktopMenuItem(DesktopMenuItem.TextSeparator))
 		    
-		    base.AddMenu(New MenuItem(kCMSelectFailedTests))
+		    base.AddMenu(New DesktopMenuItem(kCMSelectFailedTests))
 		  End If
 		  
 		  If Me.SelectedRowIndex <> -1 Then
@@ -1629,29 +1629,29 @@ End
 		    Var tr As TestResult = _
 		    If(Me.RowTagAt(Me.SelectedRowIndex) IsA TestResult, TestResult(Me.RowTagAt(Me.SelectedRowIndex)), Nil)
 		    
-		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New DesktopMenuItem(DesktopMenuItem.TextSeparator))
 		    
-		    base.AddMenu(New MenuItem(kCMSelectAllTests, tg))
-		    base.AddMenu(New MenuItem(kCMSelectInverseTests, tg))
-		    base.AddMenu(New MenuItem(kCMUnselectAllTests, tg))
+		    base.AddMenu(New DesktopMenuItem(kCMSelectAllTests, tg))
+		    base.AddMenu(New DesktopMenuItem(kCMSelectInverseTests, tg))
+		    base.AddMenu(New DesktopMenuItem(kCMUnselectAllTests, tg))
 		    
-		    base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		    base.AddMenu(New DesktopMenuItem(DesktopMenuItem.TextSeparator))
 		    
 		    If tr IsA TestResult Then
-		      base.AddMenu(New MenuItem(kCMSelectOneTest, tg : tr))
+		      base.AddMenu(New DesktopMenuItem(kCMSelectOneTest, tg : tr))
 		      
-		      base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		      base.AddMenu(New DesktopMenuItem(DesktopMenuItem.TextSeparator))
 		    End If
 		    
-		    base.AddMenu(New MenuItem(kCMSelectThisGroup, tg))
-		    base.AddMenu(New MenuItem(kCMUnselectThisGroup, tg))
+		    base.AddMenu(New DesktopMenuItem(kCMSelectThisGroup, tg))
+		    base.AddMenu(New DesktopMenuItem(kCMUnselectThisGroup, tg))
 		  End If
 		  
-		  base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		  base.AddMenu(New DesktopMenuItem(DesktopMenuItem.TextSeparator))
 		  
-		  base.AddMenu(New MenuItem(kCMSelectAllGroupsAndTests))
-		  base.AddMenu(New MenuItem(kCMSelectInverseGroupsAndTests))
-		  base.AddMenu(New MenuItem(kCMUnselectAllGroupsAndTests))
+		  base.AddMenu(New DesktopMenuItem(kCMSelectAllGroupsAndTests))
+		  base.AddMenu(New DesktopMenuItem(kCMSelectInverseGroupsAndTests))
+		  base.AddMenu(New DesktopMenuItem(kCMUnselectAllGroupsAndTests))
 		  
 		  Return True
 		End Function
